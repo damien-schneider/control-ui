@@ -142,7 +142,7 @@
   }
   [data-skin="xp"] :where([data-control-family="tabs"][data-slot="root"]) {
     --cui-tabs-trigger-radius: 3px;
-    --cui-tabs-list-radius: 0px;
+    --cui-tabs-list-radius: var(--nest-radius, 0px);
     --cui-tabs-list-padding: 0px;
     --cui-tabs-list-background: transparent;
     --cui-tabs-foreground: var(--foreground);
@@ -171,7 +171,7 @@
     border-bottom: 1px solid var(--xp-tab);
   }
   [data-skin="xp"] :where([data-control-family="range"][data-slot="root"]) {
-    --cui-range-track-radius: 2px;
+    --cui-range-track-radius: var(--nest-radius, 2px);
     --cui-range-track-background: var(--background);
     --cui-range-track-dragging-background: var(--cui-range-track-background);
     --cui-range-indicator-background: var(--xp-progress);

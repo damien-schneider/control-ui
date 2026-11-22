@@ -6,9 +6,9 @@ type WorkspaceRemote = { setDocked: (docked: boolean) => void };
 
 const windowSize = { width: 1400, height: 900 };
 
-async function open(page: Page, search = "") {
+async function open(page: Page, search = "", skin = "refined") {
   await page.setViewportSize(windowSize);
-  await serveFixture(page, "chat-workspace", { skin: "refined", search });
+  await serveFixture(page, "chat-workspace", { skin, search });
   await expect(page.getByRole("complementary", { name: "Chat" })).toBeVisible();
 }
 
@@ -91,18 +91,20 @@ for (const browserName of ["chromium", "webkit"] as const) {
       expect(Math.abs(middle(await box(title)) - middle(await box(pin)))).toBeLessThanOrEqual(1);
     });
 
-    test("rounds the island concentric with the composer it holds", async ({ page }) => {
-      await open(page);
-      const { panel } = parts(page);
-      const shell = panel.locator('[data-control-family="chat-composer"][data-slot="shell"]');
-      const radius = (locator: typeof panel) =>
-        locator.evaluate((element) => Number.parseFloat(getComputedStyle(element).borderTopLeftRadius));
-      const panelBox = await box(panel);
-      const shellBox = await box(shell);
-      const inset = panelBox.x + panelBox.width - (shellBox.x + shellBox.width);
-      expect(Math.abs((await radius(panel)) - (await radius(shell)) - inset)).toBeLessThanOrEqual(1);
-      expect(Math.abs(panelBox.y + panelBox.height - (shellBox.y + shellBox.height) - inset)).toBeLessThanOrEqual(1);
-    });
+    for (const skin of ["refined", "mastra", "linear"]) {
+      test(`rounds the island concentric with the composer it holds in the ${skin} skin`, async ({ page }) => {
+        await open(page, "", skin);
+        const { panel } = parts(page);
+        const shell = panel.locator('[data-control-family="chat-composer"][data-slot="shell"]');
+        const radius = (locator: typeof panel) =>
+          locator.evaluate((element) => Number.parseFloat(getComputedStyle(element).borderTopLeftRadius));
+        const panelBox = await box(panel);
+        const shellBox = await box(shell);
+        const inset = panelBox.x + panelBox.width - (shellBox.x + shellBox.width);
+        expect(Math.abs((await radius(panel)) - (await radius(shell)) - inset)).toBeLessThanOrEqual(1);
+        expect(Math.abs(panelBox.y + panelBox.height - (shellBox.y + shellBox.height) - inset)).toBeLessThanOrEqual(1);
+      });
+    }
 
     test("lines the header's controls up with the composer's and keeps the header no taller than a toolbar", async ({ page }) => {
       await open(page);

@@ -503,7 +503,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-badge-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
         selector: ':where([data-control-family="badge"][data-slot="root"])',
       },
     ],
@@ -1185,7 +1185,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length-percentage>",
-        defaultValue: "var(--radius-composer)",
+        defaultValue: "var(--nest-radius, var(--radius-composer))",
         selector: ':where([data-control-family="chat-composer"][data-slot="root"])',
       },
       {
@@ -5949,7 +5949,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-tabs-list-radius",
         syntax: "<length-percentage>",
         defaultValue:
-          "calc(\n      var(--cui-tabs-trigger-radius) +\n      clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding))\n    )",
+          "var(\n      --nest-radius,\n      calc(var(--cui-tabs-trigger-radius) + clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding)))\n    )",
         selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
       {

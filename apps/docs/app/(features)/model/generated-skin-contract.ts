@@ -15602,7 +15602,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-badge-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
       },
       {
         name: "--cui-badge-background",
@@ -16224,7 +16224,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-chat-composer-shell-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-composer)",
+        defaultValue: "var(--nest-radius, var(--radius-composer))",
       },
       {
         name: "--cui-chat-composer-shell-background",
@@ -20787,7 +20787,7 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<length-percentage>",
         initialValue: "0px",
         defaultValue:
-          "calc(\n      var(--cui-tabs-trigger-radius) +\n      clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding))\n    )",
+          "var(\n      --nest-radius,\n      calc(var(--cui-tabs-trigger-radius) + clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding)))\n    )",
       },
       {
         name: "--cui-tabs-list-background",

@@ -173,7 +173,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 ### chat-composer
 
 - `--cui-chat-composer-root-background`: `transparent`
-- `--cui-chat-composer-shell-radius`: `var(--radius-composer)`
+- `--cui-chat-composer-shell-radius`: `var(--nest-radius, var(--radius-composer))`
 - `--cui-chat-composer-shell-background`: `var(--card)`
 - `--cui-chat-composer-shell-background-image`: `none`
 - `--cui-chat-composer-shell-backdrop-filter`: `none`

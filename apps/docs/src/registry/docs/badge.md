@@ -93,7 +93,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 ### badge
 
 - `--cui-badge-icon`: `1em`
-- `--cui-badge-radius`: `var(--radius-control)`
+- `--cui-badge-radius`: `var(--nest-radius, var(--radius-control))`
 - `--cui-badge-background`: `var(--_badge-color-background)`
 - `--cui-badge-foreground`: `var(--_badge-color-foreground)`
 - `--cui-badge-border-color`: `transparent`

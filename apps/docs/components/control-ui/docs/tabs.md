@@ -207,9 +207,9 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-tabs-trigger-radius`: `var(--radius-control)`
 - `--cui-tabs-trigger-height`: `var(--control-h-sm)`
 - `--cui-tabs-list-padding`: `calc(var(--spacing) * 1)`
-- `--cui-tabs-list-radius`: `calc(
-      var(--cui-tabs-trigger-radius) +
-      clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding))
+- `--cui-tabs-list-radius`: `var(
+      --nest-radius,
+      calc(var(--cui-tabs-trigger-radius) + clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding)))
     )`
 - `--cui-tabs-list-background`: `var(--hover-fill)`
 - `--cui-tabs-indicator-background`: `var(--background)`

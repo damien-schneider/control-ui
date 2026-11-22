@@ -108,12 +108,12 @@
   }
 
   [data-skin="sketch"] [data-control-family="range"][data-slot="root"] {
-    --cui-range-track-radius: 3px;
+    --cui-range-track-radius: var(--nest-radius, 3px);
     --cui-range-track-background: var(--muted);
   }
 
   [data-skin="sketch"] [data-control-family="badge"][data-slot="root"] {
-    --cui-badge-radius: 4px;
+    --cui-badge-radius: var(--nest-radius, 4px);
     --cui-badge-font-weight: 400;
   }
 

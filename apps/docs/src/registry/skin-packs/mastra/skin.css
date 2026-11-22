@@ -107,7 +107,7 @@
 
   [data-skin="mastra"] :where([data-control-family="tabs"][data-slot="root"]) {
     --cui-tabs-trigger-radius: 9999px;
-    --cui-tabs-list-radius: 9999px;
+    --cui-tabs-list-radius: var(--nest-radius, 9999px);
     --cui-tabs-list-background: var(--hover-fill);
     --cui-tabs-list-shadow: none;
     --cui-tabs-list-padding: 0.25rem;
@@ -120,7 +120,7 @@
   }
 
   [data-skin="mastra"] :where([data-control-family="badge"][data-slot="root"]) {
-    --cui-badge-radius: calc(var(--radius) * 1.75);
+    --cui-badge-radius: var(--nest-radius, calc(var(--radius) * 1.75));
     --cui-badge-font-size: var(--text-caption);
     box-shadow:
       inset 0 1px 0 var(--mastra-inset-highlight),
@@ -191,7 +191,7 @@
     --cui-chat-composer-shell-border-width: 0px;
     --cui-chat-composer-shell-shadow:
       var(--mastra-lip), inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--mastra-raised-shadow);
-    --cui-chat-composer-shell-radius: var(--radius-panel);
+    --cui-chat-composer-shell-radius: var(--nest-radius, var(--radius-panel));
   }
 
   [data-skin="mastra"] :where([data-control-family="chat-message"][data-slot="root"][data-role="user"][data-layout="bubble"]) {

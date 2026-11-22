@@ -27,7 +27,8 @@
   }
 
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="plain"]) {
-    --cui-range-track-radius: min(var(--radius-sm), 3px);
+    --cui-range-track-radius: var(--nest-radius, min(var(--radius-sm), 3px));
+    --cui-range-indicator-radius: min(var(--cui-range-track-radius), var(--radius-sm), 3px);
     --cui-range-track-background: var(--hover-fill);
     --cui-range-indicator-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-range-thumb-radius: min(var(--radius-sm), 1px);

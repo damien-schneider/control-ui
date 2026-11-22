@@ -24,6 +24,20 @@
     transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
+  :where(
+    [data-control-family="range"][data-range-kind="slider"][data-slot="indicator"][data-variant="plain"][data-orientation="horizontal"]
+  ) {
+    border-start-start-radius: var(--cui-range-track-radius);
+    border-end-start-radius: var(--cui-range-track-radius);
+  }
+
+  :where(
+    [data-control-family="range"][data-range-kind="slider"][data-slot="indicator"][data-variant="plain"][data-orientation="vertical"]
+  ) {
+    border-end-start-radius: var(--cui-range-track-radius);
+    border-end-end-radius: var(--cui-range-track-radius);
+  }
+
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="indicator"][data-dragging]) {
     --_range-indicator-background: var(--cui-range-indicator-dragging-background);
   }

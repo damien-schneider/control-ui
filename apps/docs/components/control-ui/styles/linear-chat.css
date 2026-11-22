@@ -41,7 +41,7 @@
   }
 
   [data-skin="linear"] :where([data-control-ui="chat-composer"][data-slot="root"][data-control-family="chat-composer"]) {
-    --cui-chat-composer-shell-radius: 0.625rem;
+    --cui-chat-composer-shell-radius: var(--nest-radius, 0.625rem);
     --cui-chat-composer-shell-background: var(--card);
     --cui-chat-composer-shell-border-color: oklch(from var(--foreground) l c h / 0.08);
     --cui-chat-composer-shell-border-width: var(--control-rim-width);

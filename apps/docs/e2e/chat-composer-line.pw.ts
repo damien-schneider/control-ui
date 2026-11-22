@@ -1,4 +1,5 @@
 import { type Browser, type BrowserType, test as base, chromium, expect, type Locator, type Page, webkit } from "@playwright/test";
+import { findConcentricOffenders } from "./concentric-geometry";
 import { serveFixture } from "./fixtures/serve-fixture";
 
 const REST_HEIGHT_LIMIT = 60;
@@ -68,6 +69,17 @@ for (const engine of [chromium, webkit]) {
   const test = inEngine(engine);
 
   test.describe(`one-line composer in ${engine.name()}`, () => {
+    test("fits a slider in its corner the way it fits its buttons", async ({ page }) => {
+      await open(page, "?layout=stacked&corner=slider");
+      expect(await page.evaluate(findConcentricOffenders)).toEqual([]);
+      const [outer, moving] = await composer(page)
+        .form.locator('[data-control-family="range"][data-slot="indicator"]')
+        .evaluate((fill) =>
+          [getComputedStyle(fill).borderTopLeftRadius, getComputedStyle(fill).borderTopRightRadius].map(Number.parseFloat),
+        );
+      expect(moving).toBeLessThan(outer);
+    });
+
     test("rests on one line with its tools, message and Send side by side", async ({ page }) => {
       await open(page);
       const { shell, message, add, send } = composer(page);

@@ -375,7 +375,7 @@
   }
 
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="badge"]) {
-    --cui-badge-radius: 9999px;
+    --cui-badge-radius: var(--nest-radius, 9999px);
     --cui-badge-background: var(--cuicui-control-bg);
     --cui-badge-foreground: var(--foreground);
     --cui-badge-border-color: var(--control-rim);

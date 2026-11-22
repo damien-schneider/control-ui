@@ -182,7 +182,7 @@
   }
 
   [data-skin="linear"] :where([data-slot="root"][data-control-family="badge"]) {
-    --cui-badge-radius: 9999px;
+    --cui-badge-radius: var(--nest-radius, 9999px);
     --cui-badge-font-weight: 450;
     --cui-badge-border-width: var(--control-rim-width);
   }

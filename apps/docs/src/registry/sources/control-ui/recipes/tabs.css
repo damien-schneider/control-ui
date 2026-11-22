@@ -6,9 +6,9 @@
     --cui-tabs-trigger-radius: var(--radius-control);
     --cui-tabs-trigger-padding-inline: calc(var(--spacing) * 3.5);
     --cui-tabs-list-padding: calc(var(--spacing) * 1);
-    --cui-tabs-list-radius: calc(
-      var(--cui-tabs-trigger-radius) +
-      clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding))
+    --cui-tabs-list-radius: var(
+      --nest-radius,
+      calc(var(--cui-tabs-trigger-radius) + clamp(0px, calc(var(--cui-tabs-trigger-radius) * 1000), var(--cui-tabs-list-padding)))
     );
     --cui-tabs-list-background: var(--hover-fill);
     --cui-tabs-list-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-inset);
@@ -36,7 +36,13 @@
     --cui-tabs-trigger-height: var(--control-h-sm);
     --cui-tabs-trigger-padding-inline-start: var(--cui-tabs-trigger-padding-inline);
     --cui-tabs-trigger-padding-inline-end: var(--cui-tabs-trigger-padding-inline);
-    --_tabs-trigger-radius-fit: min(var(--cui-tabs-trigger-radius), calc(var(--cui-tabs-trigger-height) / 2));
+    --_tabs-trigger-radius-fit: min(
+      max(
+        0px,
+        calc(var(--nest-radius, calc(var(--cui-tabs-trigger-radius) + var(--cui-tabs-list-padding))) - var(--cui-tabs-list-padding))
+      ),
+      calc(var(--cui-tabs-trigger-height) / 2)
+    );
     position: relative;
     display: flex;
     min-block-size: calc(var(--cui-tabs-trigger-height) + var(--cui-tabs-list-padding) + var(--cui-tabs-list-padding));

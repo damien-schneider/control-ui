@@ -15,7 +15,7 @@ describe("knob docs", () => {
     expect(radius).toEqual({
       name: "--cui-chat-composer-shell-radius",
       syntax: "<length-percentage>",
-      defaultValue: "var(--radius-composer)",
+      defaultValue: "var(--nest-radius, var(--radius-composer))",
     });
   });
 });

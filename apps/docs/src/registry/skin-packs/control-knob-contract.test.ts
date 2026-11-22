@@ -687,8 +687,15 @@ function nestRadiusBypassOffenders(root: Root, knobs: readonly string[]): string
 describe("nest radius contract", () => {
   const nestRadiusKnobs = knobsReadingNestRadius(allRecipeRoot);
 
-  test("buttons and fields take their radius from the container", () => {
-    expect(nestRadiusKnobs).toEqual(["--cui-button-radius", "--cui-field-radius"]);
+  test("controls that can sit in a container's corner take their radius from it", () => {
+    expect(nestRadiusKnobs).toEqual([
+      "--cui-badge-radius",
+      "--cui-button-radius",
+      "--cui-chat-composer-shell-radius",
+      "--cui-field-radius",
+      "--cui-range-track-radius",
+      "--cui-tabs-list-radius",
+    ]);
   });
 
   for (const { id, root } of skins) {

@@ -179,6 +179,14 @@
   }
 
   :where(
+    [data-control-family="chat-workspace"][data-slot="root"]:not([data-docked])
+      [data-control-family="chat-workspace"][data-slot="panel"]
+      [data-control-family="chat-layout"][data-slot="dock"]
+  ) {
+    --nest-radius: max(0px, calc(var(--cui-chat-workspace-radius) - var(--cui-chat-workspace-border-width) - var(--composer-padding)));
+  }
+
+  :where(
     :is([data-popup-part="surface"], [data-control-family="chat-layout"][data-slot="root"][data-chrome="panel"])
       [data-control-family="chat-layout"][data-slot="dock"]
   ) {

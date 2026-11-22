@@ -80,6 +80,7 @@ import {
   ChatLayoutHeader,
   ChatLayoutTitle,
   ChatThread,
+  ChatThreadScrollButton,
   ChatTurn,
 } from "@/components/control-ui/chat-layout";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
@@ -130,8 +131,24 @@ export function ChatWorkspaceExample() {
               <ChatWorkspaceDockToggle />
             </ChatLayoutActions>
           </ChatLayoutHeader>
-          <ChatWorkspaceCollapsible>
-            <ChatThread>
+          <ChatThread
+            composer={
+              <>
+                <ChatThreadScrollButton />
+                <ChatComposer density="compact" onSubmit={({ clear }) => clear()}>
+                  <ChatComposerShell>
+                    <ChatComposerTextarea aria-label="Message" placeholder="Ask about this draft…" />
+                    <ChatComposerToolbar>
+                      <ChatComposerSubmit size="sm" iconOnly aria-label="Send message">
+                        <ArrowUp />
+                      </ChatComposerSubmit>
+                    </ChatComposerToolbar>
+                  </ChatComposerShell>
+                </ChatComposer>
+              </>
+            }
+          >
+            <ChatWorkspaceCollapsible>
               {turns.map((turn) => (
                 <ChatTurn key={turn.id} from={turn.from}>
                   <ChatMessage from={turn.from} density="compact">
@@ -143,18 +160,8 @@ export function ChatWorkspaceExample() {
                   </ChatMessage>
                 </ChatTurn>
               ))}
-            </ChatThread>
-          </ChatWorkspaceCollapsible>
-          <ChatComposer density="compact" onSubmit={({ clear }) => clear()}>
-            <ChatComposerShell>
-              <ChatComposerTextarea aria-label="Message" placeholder="Ask about this draft…" />
-              <ChatComposerToolbar>
-                <ChatComposerSubmit size="sm" iconOnly aria-label="Send message">
-                  <ArrowUp />
-                </ChatComposerSubmit>
-              </ChatComposerToolbar>
-            </ChatComposerShell>
-          </ChatComposer>
+            </ChatWorkspaceCollapsible>
+          </ChatThread>
         </ChatLayout>
         <ChatWorkspaceResizeHandle />
       </ChatWorkspacePanel>

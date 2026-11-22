@@ -7,7 +7,7 @@
     --cui-chat-composer-shell-border-color: var(--border);
     --cui-chat-composer-shell-focus-border-color: var(--focus-rim);
     --cui-chat-composer-shell-border-width: var(--control-rim-width);
-    --cui-chat-composer-shell-radius: var(--radius-composer);
+    --cui-chat-composer-shell-radius: var(--nest-radius, var(--radius-composer));
     --cui-chat-composer-shell-shadow: var(--shadow-md);
     --cui-chat-composer-input-foreground: var(--card-foreground);
     --cui-chat-composer-input-placeholder-foreground: var(--muted-foreground);
@@ -19,6 +19,10 @@
     padding-inline: var(--composer-padding);
     padding-block: calc(var(--spacing) * 1) var(--composer-padding);
     background: var(--cui-chat-composer-root-background);
+  }
+
+  :where([data-control-family="chat-composer"]:is([data-slot="shell"], [data-slot="footer"])) {
+    --nest-radius: initial;
   }
 
   :where([data-control-family="chat-composer"][data-slot="shell"]) {
