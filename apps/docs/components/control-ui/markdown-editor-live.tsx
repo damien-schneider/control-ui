@@ -1,6 +1,7 @@
 "use client";
 
 import { useRender } from "@base-ui/react/use-render";
+import type { Extension } from "@codemirror/state";
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useMarkdownEditor } from "./markdown-editor/context";
 import { MarkdownEditorDragHandle } from "./markdown-editor/drag/drag-handle";
@@ -12,11 +13,13 @@ import { MarkdownEditorSourceView } from "./markdown-editor/source-view";
 import { MarkdownEditorTableControls } from "./markdown-editor/table/table-controls";
 import { persistentUrlPolicy } from "./markdown-editor/url-policy";
 
-export type {
-  MarkdownEditorContentProps,
-  MarkdownEditorRootProps as MarkdownEditorProps,
-  MarkdownEditorStatus,
-} from "./markdown-editor/root";
+export type { MarkdownEditorContentProps, MarkdownEditorStatus } from "./markdown-editor/root";
+export type { LiveMarkdownEditorProps as MarkdownEditorProps };
+
+type LiveMarkdownEditorProps = MarkdownEditorRootProps & {
+  /** Extra CodeMirror extensions, applied after the built-in set. Read once, when the editor mounts. */
+  extensions?: Extension;
+};
 
 const LiveEditorContext = createContext<{ live: LiveEditor | null; tasks: TaskCheckboxes } | null>(null);
 
@@ -26,13 +29,17 @@ function useLiveEditor() {
   return context;
 }
 
-export function MarkdownEditor({ isUrlAllowed: urlPolicy = persistentUrlPolicy, ...props }: MarkdownEditorRootProps) {
+export function MarkdownEditor({ extensions = [], isUrlAllowed: urlPolicy = persistentUrlPolicy, ...props }: LiveMarkdownEditorProps) {
   const [isUrlAllowed] = useState(() => urlPolicy);
-  const [initial] = useState(() => ({ markdown: props.value ?? props.defaultValue ?? "", editable: !props.disabled && !props.readOnly }));
+  const [initial] = useState(() => ({
+    markdown: props.value ?? props.defaultValue ?? "",
+    editable: !props.disabled && !props.readOnly,
+    extensions,
+  }));
   const [tasks] = useState(() => new TaskCheckboxes());
   const [live, setLive] = useState<LiveEditor | null>(null);
   useEffect(() => {
-    const editor = createLiveEditor(initial.markdown, initial.editable, { isUrlAllowed, tasks });
+    const editor = createLiveEditor(initial.markdown, initial.editable, { isUrlAllowed, tasks, extensions: initial.extensions });
     setLive(editor);
     return () => editor.destroy();
   }, [initial, isUrlAllowed, tasks]);

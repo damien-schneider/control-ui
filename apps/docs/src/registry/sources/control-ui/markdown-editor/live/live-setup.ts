@@ -25,6 +25,7 @@ export type LiveServices = {
   isUrlAllowed: MarkdownUrlPolicy;
   tasks: TaskCheckboxes;
   onUpdate: Extension;
+  extensions: Extension;
 };
 
 const editableSetting = new Compartment();
@@ -74,6 +75,7 @@ export function liveSetup(settings: LiveSettings, services: LiveServices): Exten
     editableSetting.of(editability(settings.editable)),
     previewSetting.of(previewing(settings.preview)),
     contentSetting.of(describing(settings)),
+    services.extensions,
   ];
 }
 

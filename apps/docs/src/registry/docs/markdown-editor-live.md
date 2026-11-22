@@ -36,7 +36,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## Exports
 
-- `@/components/control-ui/markdown-editor-live`: `MarkdownEditor`, `MarkdownEditorContent`, types `MarkdownEditorContentProps`, `MarkdownEditorProps`, `MarkdownEditorStatus`
+- `@/components/control-ui/markdown-editor-live`: `MarkdownEditor`, `MarkdownEditorContent`, types `MarkdownEditorContentProps`, `MarkdownEditorStatus`, `MarkdownEditorProps`
 - `@/components/control-ui/markdown-editor/live/drag/block-drag`: `blockDragging`, `createLiveBlocks`
 - `@/components/control-ui/markdown-editor/live/drag/block-model`: `blockAt`, `blockStartingAt`, `siblingBlocks`, `moveBlock`, `dropBlock`, types `MarkdownBlockUnit`, `BlockMove`
 - `@/components/control-ui/markdown-editor/live/format/blocks`: `activeBlocks`, `headingLevel`, `toggleBlock`, `setHeading`, `replaceWithBlock`
