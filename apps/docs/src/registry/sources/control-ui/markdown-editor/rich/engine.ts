@@ -85,6 +85,14 @@ export function createRichEngine(
     command(editor.chain().focus()).run();
   };
 
+  /** The empty paragraph kept after a closing block is a place to type, not content, so it never reaches the Markdown. */
+  function serializeContent() {
+    const content = editor.getJSON().content ?? [];
+    const last = content.at(-1);
+    const placeholder = content.length > 1 && last?.type === "paragraph" && !last.content?.length;
+    return codec.serialize({ type: "doc", content: placeholder ? content.slice(0, -1) : content });
+  }
+
   function isEmpty() {
     if (sourceRequired) return markdown.trim() === "";
     if (emptiness.document !== editor.state.doc) emptiness = { document: editor.state.doc, isEmpty: !hasMarkdownContent(editor.state.doc) };
@@ -145,7 +153,9 @@ export function createRichEngine(
     },
     onChange(listener) {
       const handleUpdate = () => {
-        markdown = editor.getMarkdown();
+        const next = serializeContent();
+        if (next === markdown) return;
+        markdown = next;
         sourceRequired = requiresMarkdownSource(markdown, codec, isUrlAllowed);
         listener(markdown);
       };

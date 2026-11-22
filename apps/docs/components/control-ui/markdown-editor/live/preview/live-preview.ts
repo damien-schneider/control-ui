@@ -1,11 +1,24 @@
 import { syntaxTree } from "@codemirror/language";
-import { type EditorState, Facet, type Range, type SelectionRange } from "@codemirror/state";
-import { Decoration, type DecorationSet, type EditorView, ViewPlugin, type ViewUpdate } from "@codemirror/view";
+import {
+  EditorSelection,
+  type EditorState,
+  type Extension,
+  Facet,
+  Prec,
+  type Range,
+  RangeSet,
+  RangeValue,
+  type SelectionRange,
+  type Text,
+} from "@codemirror/state";
+import { BlockType, type Command, Decoration, type DecorationSet, EditorView, keymap, ViewPlugin, type ViewUpdate } from "@codemirror/view";
 import type { SyntaxNode } from "@lezer/common";
 import { markdownHeadingAttributes } from "@/components/control-ui/ui/markdown-heading";
 import { markdownHeadingLevels } from "../../engine";
 import { type MarkdownUrlPolicy, persistentUrlPolicy } from "../../url-policy";
 import { BulletWidget, ImageWidget, TaskWidget } from "./widgets";
+
+class BlockGap extends RangeValue {}
 
 type Span = { from: number; to: number };
 type Preview = {
@@ -13,6 +26,7 @@ type Preview = {
   selection: readonly SelectionRange[];
   visible: Span;
   decorations: Range<Decoration>[];
+  gaps: Range<BlockGap>[];
   codeSpans: Span[];
 };
 /** Returning false skips the node's children. */
@@ -25,6 +39,7 @@ export const markdownUrlPolicy = Facet.define<MarkdownUrlPolicy, MarkdownUrlPoli
 const hidden = Decoration.replace({});
 const bullet = Decoration.replace({ widget: new BulletWidget() });
 const link = Decoration.mark({ tagName: "a" });
+const blockGap = new BlockGap();
 const lineClasses = new Map<string, Decoration>();
 
 function lineClass(className: string) {
@@ -96,22 +111,18 @@ function decorateHeading(level: number, setext: boolean): Decorate {
   };
 }
 
+/** A heading's level has no rendered marker, so its marks show while the selection touches the heading. */
 const decorateHeaderMark: Decorate = (preview, node) => {
   const { state, selection } = preview;
   const heading = node.parent;
+  if (!heading || touches(selection, heading)) return undefined;
   const line = lineOf(preview, node.from);
-  if (!heading?.name.startsWith("ATXHeading")) {
-    if (!touches(selection, line)) hide(preview, line);
-    return undefined;
+  if (!heading.name.startsWith("ATXHeading")) hide(preview, line);
+  else if (node.from === heading.from) hide(preview, { from: node.from, to: node.to + leadingBlanks(state.sliceDoc(node.to, line.to)) });
+  else {
+    const before = state.sliceDoc(line.from, node.from);
+    hide(preview, { from: node.from - (before.length - before.trimEnd().length), to: node.to });
   }
-  if (node.from === heading.from) {
-    const span = { from: node.from, to: node.to + leadingBlanks(state.sliceDoc(node.to, line.to)) };
-    if (!insidePrefix(selection, { from: line.from, to: span.to })) hide(preview, span);
-    return undefined;
-  }
-  const before = state.sliceDoc(line.from, node.from);
-  const span = { from: node.from - (before.length - before.trimEnd().length), to: node.to };
-  if (!touches(selection, span)) hide(preview, span);
   return undefined;
 };
 
@@ -235,49 +246,94 @@ const decorators: Record<string, Decorate> = {
   SetextHeading2: decorateHeading(2, true),
 };
 
-/** Blank lines between blocks shrink to the block gap, except the caret's line and lines inside code. */
-function decorateBlankLines(preview: Preview) {
+const isBlankLine = (doc: Text, number: number) => doc.line(number).text.trim() === "";
+
+/**
+ * A blank line touching a block is the gap between blocks, not a line: it keeps the gap height and the caret steps over it.
+ * Other blank lines, and the one holding the caret, are empty paragraphs.
+ */
+function decorateBlockGaps(preview: Preview) {
   const { doc, selection } = preview.state;
-  if (doc.lines < 2) return;
   const caretLine = doc.lineAt(selection.main.head).number;
   for (let pos = preview.visible.from; pos <= preview.visible.to; ) {
     const line = doc.lineAt(pos);
-    const inCode = preview.codeSpans.some((span) => span.from <= line.from && line.to <= span.to);
-    if (line.number !== caretLine && !inCode && line.text.trim() === "")
-      preview.decorations.push(lineClass("cm-md-blank").range(line.from));
     pos = line.to + 1;
+    if (line.number === 1 || line.number === doc.lines || line.number === caretLine || !isBlankLine(doc, line.number)) continue;
+    if (isBlankLine(doc, line.number - 1) && isBlankLine(doc, line.number + 1)) continue;
+    if (preview.codeSpans.some((span) => span.from <= line.from && line.to <= span.to)) continue;
+    preview.decorations.push(lineClass("cm-md-blank").range(line.from));
+    preview.gaps.push(blockGap.range(line.from - 1, line.to + 1));
   }
 }
 
-function previewDecorations(view: EditorView): DecorationSet {
+function previewDecorations(view: EditorView) {
   const decorations: Range<Decoration>[] = [];
+  const gaps: Range<BlockGap>[] = [];
   const selection = view.hasFocus ? view.state.selection.ranges : [];
   for (const visible of view.visibleRanges) {
-    const preview: Preview = { state: view.state, selection, visible, decorations, codeSpans: [] };
+    const preview: Preview = { state: view.state, selection, visible, decorations, gaps, codeSpans: [] };
     syntaxTree(view.state).iterate({
       from: visible.from,
       to: visible.to,
       enter: (ref) => decorators[ref.name]?.(preview, ref.node),
     });
-    decorateBlankLines(preview);
+    decorateBlockGaps(preview);
   }
-  return Decoration.set(decorations, true);
+  return { decorations: Decoration.set(decorations, true), gaps: RangeSet.of(gaps, true) };
 }
 
-export const livePreview = ViewPlugin.fromClass(
+/** ArrowUp and ArrowDown, with or without Shift, cross a block gap in one press and keep the caret's column, as between rich-text paragraphs. */
+function crossBlockGap(forward: boolean, extend: boolean): Command {
+  return (view) => {
+    const { selection, doc } = view.state;
+    const range = selection.main;
+    if (selection.ranges.length > 1 || (!extend && !range.empty)) return false;
+    const start = EditorSelection.cursor(range.head, range.assoc, range.bidiLevel ?? undefined, range.goalColumn);
+    const moved = view.moveVertically(start, forward);
+    const steppedOverGap = moved.goalColumn === undefined && Math.abs(doc.lineAt(moved.head).number - doc.lineAt(range.head).number) > 1;
+    const target = view.lineBlockAt(moved.head);
+    const caret = view.coordsAtPos(range.head);
+    if (!(steppedOverGap && caret && target.type === BlockType.Text)) return false;
+    const edge = view.documentTop + (forward ? target.top : target.bottom);
+    const distance = Math.abs(edge - (forward ? caret.bottom : caret.top)) + view.defaultLineHeight / 2;
+    const head = view.moveVertically(start, forward, distance);
+    view.dispatch({
+      selection: extend ? EditorSelection.range(range.anchor, head.head, head.goalColumn) : head,
+      scrollIntoView: true,
+      userEvent: "select",
+    });
+    return true;
+  };
+}
+
+const previewPlugin = ViewPlugin.fromClass(
   class {
     decorations: DecorationSet;
+    gaps: RangeSet<BlockGap>;
 
     constructor(view: EditorView) {
-      this.decorations = previewDecorations(view);
+      ({ decorations: this.decorations, gaps: this.gaps } = previewDecorations(view));
     }
 
     update(update: ViewUpdate) {
       const treeChanged = syntaxTree(update.startState) !== syntaxTree(update.state);
       if (update.docChanged || update.selectionSet || update.focusChanged || update.viewportChanged || treeChanged) {
-        this.decorations = previewDecorations(update.view);
+        ({ decorations: this.decorations, gaps: this.gaps } = previewDecorations(update.view));
       }
     }
   },
-  { decorations: (plugin) => plugin.decorations },
+  {
+    decorations: (plugin) => plugin.decorations,
+    provide: (plugin) => EditorView.atomicRanges.of((view) => view.plugin(plugin)?.gaps ?? RangeSet.empty),
+  },
 );
+
+export const livePreview: Extension = [
+  previewPlugin,
+  Prec.high(
+    keymap.of([
+      { key: "ArrowDown", run: crossBlockGap(true, false), shift: crossBlockGap(true, true) },
+      { key: "ArrowUp", run: crossBlockGap(false, false), shift: crossBlockGap(false, true) },
+    ]),
+  ),
+];

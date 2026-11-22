@@ -50,6 +50,20 @@ test("preserves cursor and undo while the controlled value updates", async ({ pa
   await expect(editor.locator("strong")).toHaveText("update");
 });
 
+test("opening a draft and placing the caret changes nothing, and the line after a closing list types new Markdown", async ({ page }) => {
+  const draft = "## First\n\nSecond paragraph\n\n- [ ] Third task";
+  await serveFixture(page, "markdown-editor", { search: `?draft=${encodeURIComponent(draft)}` });
+  const editor = page.getByRole("textbox", { name: "Comment", exact: true });
+  const value = page.getByLabel("Markdown value");
+  await editor.getByText("Second paragraph").click();
+  await editor.getByText("Third task").click();
+  await expect.poll(() => value.textContent()).toBe(draft);
+  await editor.press("End");
+  await editor.press("ArrowDown");
+  await editor.pressSequentially("After");
+  await expect.poll(() => value.textContent()).toBe(`${draft}\n\nAfter`);
+});
+
 test("failed publication keeps the draft and source-only content is preserved", async ({ page }) => {
   await page.getByRole("button", { name: "Load HTML source" }).click();
   const source = page.getByRole("textbox", { name: "Comment", exact: true });

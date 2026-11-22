@@ -5,7 +5,7 @@ import type { MarkdownImageUploader } from "@/components/control-ui/markdown-edi
 import { MarkdownEditorBubbleMenuExample } from "@/src/registry/examples/markdown-editor";
 
 function Fixture() {
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useState(() => new URLSearchParams(location.search).get("draft") ?? "");
   const [saved, setSaved] = useState("");
   const [editing, setEditing] = useState(false);
   const [failPost, setFailPost] = useState(false);

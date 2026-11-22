@@ -40,11 +40,20 @@ const describing = ({ attributes, placeholder: text }: LiveSettings) => [
   text ? placeholder(text) : [],
 ];
 
-/** Enter ends a paragraph or heading with a blank line, as a rich editor starts a new paragraph. */
+/** Enter ends a paragraph or heading with a blank line, as a rich editor starts a new paragraph; text right below stays a separate block. */
 const paragraphBreak: StateCommand = ({ state, dispatch }) => {
   const { main } = state.selection;
   if (state.selection.ranges.length > 1 || state.doc.lineAt(main.head).text.trim() === "" || insideCode(state, main.head)) return false;
-  dispatch(state.update(state.replaceSelection("\n\n"), { scrollIntoView: true, userEvent: "input" }));
+  const line = state.doc.lineAt(main.to);
+  const textBelow = main.to === line.to && line.number < state.doc.lines && state.doc.line(line.number + 1).text.trim() !== "";
+  dispatch(
+    state.update({
+      changes: { from: main.from, to: main.to, insert: textBelow ? "\n\n\n" : "\n\n" },
+      selection: { anchor: main.from + 2 },
+      scrollIntoView: true,
+      userEvent: "input",
+    }),
+  );
   return true;
 };
 

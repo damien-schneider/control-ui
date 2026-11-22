@@ -59,6 +59,54 @@ test("markup shows only on the line holding the caret", async ({ page }) => {
   await expect(line).toHaveText("Some **bold** text");
 });
 
+test("a heading shows its level markup wherever the caret sits in it", async ({ page }) => {
+  await load(page, "Load blocks");
+  const editor = editorOf(page);
+  const heading = editor.locator(".cm-line").first();
+  await editor.getByText("Second paragraph").click();
+  await expect(heading).toHaveText("First");
+  await heading.click();
+  await editor.press("End");
+  await expect(heading).toHaveText("## First");
+});
+
+test("the gap between two blocks is not a line the caret can open", async ({ page }) => {
+  await load(page, "Load blocks");
+  const editor = editorOf(page);
+  const heading = editor.locator(".cm-line").first();
+  const paragraph = editor.getByText("Second paragraph");
+  await paragraph.click();
+  const headingBox = await center(heading);
+  const before = await center(paragraph);
+  await page.mouse.click(before.x, (headingBox.box.y + headingBox.box.height + before.box.y) / 2);
+  expect((await center(paragraph)).box.y).toBe(before.box.y);
+  await editor.pressSequentially("New ");
+  await expect.poll(() => markdownOf(page).textContent()).toBe("## First\n\nNew Second paragraph\n\n- [ ] Third task");
+});
+
+test("arrow keys cross the gap between blocks in one press", async ({ page }) => {
+  await load(page, "Load blocks");
+  const editor = editorOf(page);
+  await editor.locator(".cm-line").first().click();
+  await editor.press("End");
+  await editor.press("ArrowDown");
+  await editor.pressSequentially("|");
+  await expect(markdownOf(page)).toHaveText(/\n\nS[^\n|]+\|/);
+  await editor.press("ArrowUp");
+  await editor.pressSequentially("|");
+  await expect(markdownOf(page)).toHaveText(/^## [^\n]*\|[^\n]*\n\n/);
+});
+
+test("Enter after a heading opens a paragraph that stays its own block", async ({ page }) => {
+  await load(page, "Load blocks");
+  const editor = editorOf(page);
+  await editor.locator(".cm-line").first().click();
+  await editor.press("End");
+  await editor.press("Enter");
+  await editor.pressSequentially("Intro");
+  await expect.poll(() => markdownOf(page).textContent()).toBe("## First\n\nIntro\n\nSecond paragraph\n\n- [ ] Third task");
+});
+
 test("toolbar formatting writes Markdown and undo restores the text", async ({ page }) => {
   const editor = editorOf(page);
   await editor.fill("Feedback");
@@ -98,7 +146,7 @@ test("slash commands and mentions insert Markdown", async ({ page }) => {
   await expect(page.getByRole("option", { name: "Heading 2", exact: true })).toBeVisible();
   await editor.press("Enter");
   await editor.pressSequentially("A heading");
-  await expect(editor.locator('[data-heading="2"]')).toHaveText("A heading");
+  await expect(editor.locator('[data-heading="2"]')).toHaveText("## A heading");
   await editor.press("Enter");
   await editor.pressSequentially("/task");
   await page.getByRole("option", { name: "Task list" }).click();
@@ -176,7 +224,6 @@ test("arrow keys leave a table for the text around it and come back", async ({ p
   await page.keyboard.press("ArrowUp");
   await page.keyboard.type("Intro");
   await expect(markdownOf(page)).toContainText("Intro\n\n| Need | Start with | Decision |");
-  await page.keyboard.press("ArrowDown");
   await page.keyboard.press("ArrowDown");
   await expect.poll(() => header(page, "Need").evaluate((element) => element.contains(document.activeElement))).toBe(true);
   await cell(page, "Several proofs").click();
