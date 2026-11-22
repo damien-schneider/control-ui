@@ -71,6 +71,13 @@
           "swap"
         ],
         "states": []
+      },
+      "text": {
+        "family": "swap",
+        "registryItems": [
+          "swap"
+        ],
+        "states": []
       }
     }
   },

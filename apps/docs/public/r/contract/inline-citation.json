@@ -245,6 +245,7 @@
   },
   "adornments": {},
   "uncovered": [
+    "--cui-inline-citation-navigation-background",
     "--cui-inline-citation-quote-background",
     "--cui-inline-citation-trigger-hover-background",
     "--cui-inline-citation-trigger-hover-foreground"

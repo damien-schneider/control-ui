@@ -1,6 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const auditSpecs = ["**/*-performance.pw.ts", "**/tabs-transition.pw.ts", "**/contrast-sweep.pw.ts", "**/sidebar-controls-contrast.pw.ts"];
+const auditSpecs = [
+  "**/*-performance.pw.ts",
+  "**/tabs-transition.pw.ts",
+  "**/contrast-sweep.pw.ts",
+  "**/concentric-sweep.pw.ts",
+  "**/sidebar-controls-contrast.pw.ts",
+];
 
 export default defineConfig({
   testDir: "./e2e",

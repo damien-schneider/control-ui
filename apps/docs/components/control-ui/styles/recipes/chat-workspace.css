@@ -1,0 +1,210 @@
+@layer components {
+  :where([data-control-family="chat-workspace"][data-slot="root"]) {
+    --cui-chat-workspace-gap: calc(var(--spacing) * 3);
+    --cui-chat-workspace-island-max-inline-size: 44rem;
+    --cui-chat-workspace-transcript-block-size: 28rem;
+    --cui-chat-workspace-background: var(--card);
+    --cui-chat-workspace-foreground: var(--card-foreground);
+    --cui-chat-workspace-border-color: var(--border);
+    --cui-chat-workspace-border-width: var(--control-rim-width);
+    --cui-chat-workspace-radius: max(
+      var(--radius-panel),
+      calc(var(--radius-composer) + var(--composer-padding) + var(--cui-chat-workspace-border-width))
+    );
+    --cui-chat-workspace-shadow: var(--shadow-pop);
+    --cui-chat-workspace-handle-background: oklch(from var(--foreground) l c h / 0.3);
+    container-type: inline-size;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="main"]) {
+    grid-area: 1 / 1;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="panel"]) {
+    z-index: var(--z-raised);
+    grid-area: 1 / 1;
+    align-self: end;
+    justify-self: center;
+    inline-size: min(var(--cui-chat-workspace-island-max-inline-size), 100% - var(--cui-chat-workspace-gap) * 2);
+    max-block-size: calc(100% - var(--cui-chat-workspace-gap) * 2);
+    margin-block-end: var(--cui-chat-workspace-gap);
+    overflow: hidden;
+    border: var(--cui-chat-workspace-border-width) solid var(--cui-chat-workspace-border-color);
+    border-radius: var(--cui-chat-workspace-radius);
+    background-color: var(--cui-chat-workspace-background);
+    color: var(--cui-chat-workspace-foreground);
+    box-shadow: var(--cui-chat-workspace-shadow);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-docked]) {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-docked][data-side="left"]) {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-docked][data-side="left"] > [data-slot="main"]) {
+    grid-column: 2;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-docked] > [data-slot="panel"]) {
+    grid-column: 2;
+    align-self: stretch;
+    justify-self: stretch;
+    max-block-size: none;
+    margin: 0;
+    border-block-width: 0;
+    border-inline-end-width: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-docked][data-side="left"] > [data-slot="panel"]) {
+    grid-column: 1;
+    border-inline-start-width: 0;
+    border-inline-end-width: var(--cui-chat-workspace-border-width);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="collapsible"]) {
+    display: contents;
+  }
+
+  :where(
+    [data-control-family="chat-workspace"][data-slot="root"]:not([data-docked])
+      > [data-slot="panel"]
+      [data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"]
+  ) {
+    max-block-size: var(--cui-chat-workspace-transcript-block-size);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="expand-icon"]) {
+    transition: rotate var(--duration-base) var(--ease-emphasized);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"]:not([data-expanded]) [data-slot="expand-icon"]) {
+    rotate: 180deg;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="resize-handle"]) {
+    --_chat-workspace-handle-color: transparent;
+    z-index: 1;
+    inline-size: calc(var(--spacing) * 2);
+    cursor: col-resize;
+    outline: none;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-side="right"] [data-slot="resize-handle"]) {
+    left: 0;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-side="left"] [data-slot="resize-handle"]) {
+    right: 0;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="resize-handle"])::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inline-size: max(1px, var(--cui-chat-workspace-border-width));
+    background-color: var(--_chat-workspace-handle-color);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-side="right"] [data-slot="resize-handle"])::after {
+    left: 0;
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="root"][data-side="left"] [data-slot="resize-handle"])::after {
+    right: 0;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="chat-workspace"][data-slot="resize-handle"]:hover) {
+      --_chat-workspace-handle-color: var(--cui-chat-workspace-handle-background);
+    }
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="resize-handle"][data-resizing]) {
+    --_chat-workspace-handle-color: var(--cui-chat-workspace-handle-background);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="resize-handle"]:focus-visible) {
+    --_chat-workspace-handle-color: var(--focus-ring);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="resize-shield"]) {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-tooltip);
+    cursor: col-resize;
+    user-select: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where([data-control-family="chat-workspace"][data-slot="expand-icon"]) {
+      transition: none;
+    }
+  }
+}
+
+@property --cui-chat-workspace-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-workspace-island-max-inline-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-workspace-transcript-block-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-workspace-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-workspace-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-workspace-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-chat-workspace-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-workspace-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-chat-workspace-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-chat-workspace-handle-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}

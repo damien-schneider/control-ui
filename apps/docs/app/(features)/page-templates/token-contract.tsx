@@ -35,6 +35,8 @@ const advancedGroups = GROUP_ORDER.flatMap((group) => {
 
 const derivedTokens = GROUP_ORDER.flatMap((group) => THEME_CONTRACT.filter((token) => token.tier === "derived" && token.group === group));
 
+const computedTokens = GROUP_ORDER.flatMap((group) => THEME_CONTRACT.filter((token) => token.tier === "computed" && token.group === group));
+
 function TokenTable({ label, tokens }: { label: string; tokens: ThemeContractToken[] }) {
   return (
     <Table aria-label={label}>
@@ -101,6 +103,19 @@ export function TokenContractTable() {
               </AccordionTrigger>
               <AccordionPanel>
                 <TokenTable label="Derived tokens" tokens={derivedTokens} />
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem value="computed">
+              <AccordionTrigger>
+                <span className="flex flex-wrap items-baseline gap-x-2">
+                  Computed — never re-valued
+                  <Text size="caption" tone="muted" numeric>
+                    {computedTokens.length} tokens solved from other tokens; re-value their inputs instead
+                  </Text>
+                </span>
+              </AccordionTrigger>
+              <AccordionPanel>
+                <TokenTable label="Computed tokens" tokens={computedTokens} />
               </AccordionPanel>
             </AccordionItem>
             {advancedGroups.map(({ group, tokens }) => (

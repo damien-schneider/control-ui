@@ -4,6 +4,7 @@ import { useRender } from "@base-ui/react/use-render";
 import { ArrowDown } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode, RefObject } from "react";
 import { createContext, useContext, useState } from "react";
+import { createPortal } from "react-dom";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import { ChatThreadAnnounceContext, ChatThreadDockContext } from "@/components/control-ui/hooks/use-chat-message";
 import { useChatThreadScroll } from "@/components/control-ui/hooks/use-chat-thread-scroll";
@@ -109,6 +110,7 @@ type ChatThreadScrollContextValue = {
   atBottom: boolean;
   scrollToBottom: (behavior?: ScrollBehavior) => void;
   viewportRef: RefObject<HTMLDivElement | null>;
+  anchorLayer: HTMLDivElement | null;
 };
 
 const ChatThreadScrollContext = createContext<ChatThreadScrollContextValue | null>(null);
@@ -132,7 +134,8 @@ export function ChatThread({
   "aria-labelledby": ariaLabelledby,
   ...props
 }: ChatThreadProps) {
-  const { viewportRef, contentRef, dockRef, atBottom, scrollToBottom, followFromDock } = useChatThreadScroll();
+  const { rootRef, viewportRef, contentRef, dockRef, atBottom, scrollToBottom, followFromDock } = useChatThreadScroll();
+  const [anchorLayer, setAnchorLayer] = useState<HTMLDivElement | null>(null);
   const [announcement, setAnnouncement] = useState("");
   const [announce] = useState(() => (message: string) => {
     // A trailing no-break space makes a repeated message a real text change, so it is read again.
@@ -141,14 +144,15 @@ export function ChatThread({
 
   return (
     <ChatThreadAnnounceContext.Provider value={announce}>
-      <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom, viewportRef }}>
+      <ChatThreadScrollContext.Provider value={{ atBottom, scrollToBottom, viewportRef, anchorLayer }}>
         <div
+          ref={rootRef}
           data-control-ui="chat-thread"
           data-control-family="chat-layout"
           data-chat-layout-kind="thread"
           data-slot="root"
           data-at-bottom={atBottom ? "" : undefined}
-          className={cn("flex min-h-0 min-w-0 flex-1 flex-col", className)}
+          className={cn("relative flex min-h-0 min-w-0 flex-1 flex-col", className)}
           {...props}
         >
           {/* The viewport is the focusable scroller, so a name belongs there (as a region), not on the role-less root. */}
@@ -159,7 +163,6 @@ export function ChatThread({
             contentClassName="flex min-h-full flex-col"
             viewportRef={viewportRef}
             lockAxis="x"
-            mask={false}
             blur={false}
           >
             <div
@@ -169,12 +172,7 @@ export function ChatThread({
               data-slot="track"
               className="relative flex min-w-0 flex-1 flex-col"
             >
-              <div
-                data-control-ui="chat-thread"
-                data-control-family="chat-layout"
-                data-slot="thread-content"
-                className="flex min-w-0 flex-1 flex-col"
-              >
+              <div data-control-ui="chat-thread" data-control-family="chat-layout" data-slot="thread-content">
                 {children}
               </div>
               {composer ? (
@@ -183,6 +181,7 @@ export function ChatThread({
                   data-control-ui="chat-thread"
                   data-control-family="chat-layout"
                   data-slot="dock"
+                  data-scroll-area-pinned=""
                   className="sticky bottom-0 z-1 shrink-0"
                 >
                   <ChatThreadDockContext.Provider value={followFromDock}>{composer}</ChatThreadDockContext.Provider>
@@ -190,6 +189,7 @@ export function ChatThread({
               ) : null}
             </div>
           </ScrollArea>
+          <div ref={setAnchorLayer} data-control-ui="chat-thread" data-control-family="chat-layout" data-slot="anchor-layer" />
           <LiveStatus message={announcement} />
         </div>
       </ChatThreadScrollContext.Provider>
@@ -220,7 +220,8 @@ export function ChatThreadScrollButton({
     if (document.activeElement === event.currentTarget) scroll.viewportRef.current?.focus({ preventScroll: true });
   }
 
-  return (
+  if (!scroll.anchorLayer) return null;
+  return createPortal(
     <div
       data-control-ui="chat-thread"
       data-control-family="chat-layout"
@@ -230,7 +231,8 @@ export function ChatThreadScrollButton({
       <Button {...props} type="button" variant={variant} size={size} shape={shape} iconOnly aria-label={label} onClick={handleClick}>
         <ArrowDown aria-hidden="true" />
       </Button>
-    </div>
+    </div>,
+    scroll.anchorLayer,
   );
 }
 

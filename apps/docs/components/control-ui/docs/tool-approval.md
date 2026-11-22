@@ -162,10 +162,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-tool-approval-body-background`: `transparent`
 - `--cui-tool-approval-body-border-color`: `transparent`
 - `--cui-tool-approval-body-border-width`: `0px`
-- `--cui-tool-approval-body-radius`: `max(
-      0px,
-      calc(var(--cui-tool-approval-radius) - var(--cui-tool-approval-padding) - var(--cui-tool-approval-border-width))
-    )`
+- `--cui-tool-approval-body-radius`: `max(0px, calc(var(--_tool-approval-corner) - var(--cui-tool-approval-padding)))`
 - `--cui-tool-approval-body-shadow`: `0 0 transparent`
 - `--cui-tool-approval-body-padding`: `calc(var(--spacing) * 3)`
 - `--cui-tool-approval-body-gap`: `calc(var(--spacing) * 3)`
@@ -176,10 +173,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-tool-approval-preview-background`: `transparent`
 - `--cui-tool-approval-preview-border-color`: `transparent`
 - `--cui-tool-approval-preview-border-width`: `0px`
-- `--cui-tool-approval-preview-radius`: `max(
-      0px,
-      calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding) - var(--cui-tool-approval-body-border-width))
-    )`
+- `--cui-tool-approval-preview-radius`: `max(0px, calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding)))`
 - `--cui-tool-approval-preview-padding`: `0px`
 - `--cui-tool-approval-preview-gap`: `calc(var(--spacing) * 1.5)`
 - `--cui-tool-approval-label-foreground`: `var(--muted-foreground)`

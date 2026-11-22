@@ -148,6 +148,12 @@
       "defaultValue": "var(--cui-popup-item-foreground)"
     },
     {
+      "name": "--cui-popup-command-padding",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
       "name": "--cui-popup-command-heading-padding-block",
       "syntax": "<length-percentage>",
       "initialValue": "0px",

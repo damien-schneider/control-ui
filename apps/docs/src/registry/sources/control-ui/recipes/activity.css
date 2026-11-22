@@ -95,6 +95,18 @@
     font-weight: var(--font-weight-normal);
   }
 
+  :where(
+    [data-control-family="activity"][data-slot="root"][data-activity-state="running"]
+      [data-control-family="activity"][data-slot="title"]
+      :is([data-control-family="swap"][data-slot="text"])
+  ),
+  :where(
+    [data-control-family="activity"][data-slot="root"][data-activity-state="running"]
+      [data-control-family="activity"][data-slot="title"]:not(:has([data-control-family="swap"]))
+  ) {
+    @apply shimmer-text;
+  }
+
   :where([data-control-family="activity"][data-slot="status"]) {
     color: var(--cui-activity-row-foreground);
     font-size: var(--text-caption);

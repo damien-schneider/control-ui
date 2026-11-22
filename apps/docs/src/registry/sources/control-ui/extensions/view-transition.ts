@@ -78,10 +78,10 @@ export function startPageViewTransition(update: () => void, { finishTimeout = FI
 // Enforced here: page-level names are un-named for transition's lifetime (they would replay page preset behind the
 // morph), and second morph skips first rather than fighting it over overlay. Uniqueness of shared name stays
 // caller's job — two live elements holding one name abort transition outright.
-export function startMorphViewTransition(update: () => void) {
+export function startMorphViewTransition(update: () => void): ViewTransition | undefined {
   if (!supportsViewTransition() || prefersReducedMotion(document.documentElement)) {
     update();
-    return;
+    return undefined;
   }
 
   activeMorph?.skipTransition();
@@ -99,4 +99,5 @@ export function startMorphViewTransition(update: () => void) {
       activeMorph = null;
       document.documentElement.removeAttribute(MORPH_ATTRIBUTE);
     });
+  return transition;
 }

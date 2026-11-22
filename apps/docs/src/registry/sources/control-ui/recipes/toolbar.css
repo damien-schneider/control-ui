@@ -49,9 +49,9 @@
     --cui-toolbar-border-color: transparent;
     --cui-toolbar-shadow: none;
     --cui-toolbar-item-foreground: var(--foreground);
+    --cui-toolbar-border-width: 0px;
     position: relative;
     isolation: isolate;
-    border-width: 0;
   }
 
   :where([data-control-family="toolbar"][data-slot="root"][data-variant="inverse"]) {

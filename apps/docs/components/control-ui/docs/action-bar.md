@@ -30,7 +30,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Exports
 
 - `@/components/control-ui/knob-contracts/action-bar-knobs`: `actionBarKnobs`, types `ActionBarKnobStyle`
-- `@/components/control-ui/action-bar`: `ActionBar`, `ActionBarItem`, `ActionBarCopy`, `ActionBarEdit`, types `ActionBarCopyValue`, `ActionBarContextValue`, `ActionBarProps`, `ActionBarItemProps`, `ActionBarCopyProps`, `ActionBarEditProps`
+- `@/components/control-ui/action-bar`: `ActionBar`, `ActionBarItem`, `ActionBarCopy`, `ActionBarMeta`, `ActionBarEdit`, types `ActionBarCopyValue`, `ActionBarContextValue`, `ActionBarProps`, `ActionBarItemProps`, `ActionBarCopyProps`, `ActionBarMetaProps`, `ActionBarEditProps`
 
 ## Composition
 
@@ -50,26 +50,45 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 "use client";
 
 import { useState } from "react";
-import { ActionBarCopy, ActionBarEdit } from "@/components/control-ui/action-bar";
+import { ActionBar, ActionBarCopy, ActionBarEdit, ActionBarMeta } from "@/components/control-ui/action-bar";
 import { ChatTurn } from "@/components/control-ui/chat-layout";
-import { ChatMessage, ChatMessageBody, ChatMessageEditable, ChatMessageRow } from "@/components/control-ui/chat-message";
+import {
+  ChatMessage,
+  ChatMessageBody,
+  ChatMessageContent,
+  ChatMessageEditable,
+  ChatMessageRow,
+} from "@/components/control-ui/chat-message";
+
+const answer = "The deploy shipped the new billing page; two migrations ran and nothing rolled back.";
 
 export function ActionBarExample() {
   const [message, setMessage] = useState("Summarize the latest deployment notes.");
 
   return (
-    <ChatTurn from="user" className="mx-auto max-w-xl">
-      <ChatMessage from="user" density="compact">
-        <ChatMessageRow>
-          <ChatMessageBody>
-            <ChatMessageEditable value={message} onSave={setMessage}>
-              <ActionBarCopy />
-              <ActionBarEdit />
-            </ChatMessageEditable>
-          </ChatMessageBody>
-        </ChatMessageRow>
-      </ChatMessage>
-    </ChatTurn>
+    <div className="mx-auto grid w-full max-w-xl gap-6">
+      <ChatTurn from="user">
+        <ChatMessage from="user" density="compact">
+          <ChatMessageRow>
+            <ChatMessageBody>
+              <ChatMessageEditable value={message} onSave={setMessage}>
+                <ActionBarCopy />
+                <ActionBarEdit />
+              </ChatMessageEditable>
+            </ChatMessageBody>
+          </ChatMessageRow>
+        </ChatMessage>
+      </ChatTurn>
+      <ChatTurn from="assistant">
+        <ChatMessage from="assistant" density="compact">
+          <ChatMessageContent>{answer}</ChatMessageContent>
+        </ChatMessage>
+        <ActionBar label="Response actions" copyValue={answer}>
+          <ActionBarCopy />
+          <ActionBarMeta>Sonnet 4.5 · High · 9s</ActionBarMeta>
+        </ActionBar>
+      </ChatTurn>
+    </div>
   );
 }
 ```
@@ -79,6 +98,7 @@ export function ActionBarExample() {
 Scopes, their parts, and the state attributes each part carries. Selector pattern: `[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])`.
 
 - `action-bar`
+  - `meta`
   - `root`: `data-disabled`, `data-orientation` (`horizontal` | `vertical`)
 
 ## Knobs

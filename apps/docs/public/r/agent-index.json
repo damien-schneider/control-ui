@@ -1,7 +1,7 @@
 {
   "type": "index",
   "data": {
-    "count": 198,
+    "count": 199,
     "contracts": {
       "skin": "https://control-ui.dev/r/contract/index.json",
       "theme": "https://control-ui.dev/r/theme-contract.json"
@@ -774,6 +774,14 @@
         "summary": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
         "href": "/kits/chat-layout",
         "install": "npx shadcn@latest add https://control-ui.dev/r/chat-layout.json"
+      },
+      {
+        "id": "chat-workspace",
+        "name": "ChatWorkspace",
+        "kind": "Kit",
+        "summary": "A chat that floats as an island over the content or pins beside it as a resizable column, without remounting.",
+        "href": "/kits/chat-workspace",
+        "install": "npx shadcn@latest add https://control-ui.dev/r/chat-workspace.json"
       },
       {
         "id": "thread-rail",

@@ -2,8 +2,8 @@
 
 import { XIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent, ReactNode } from "react";
-import { createContext, useContext, useLayoutEffect, useState } from "react";
-
+import { Children, createContext, useContext, useLayoutEffect, useState } from "react";
+import { useHoldChatComposerOpen } from "@/components/control-ui/chat-composer";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -167,6 +167,8 @@ export function ChatComposerAttachments({
   children,
   ...props
 }: ChatComposerAttachmentsProps) {
+  useHoldChatComposerOpen(Children.toArray(children).length > 0);
+
   return (
     <div
       data-control-ui="chat-composer-attachments"

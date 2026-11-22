@@ -70,3 +70,30 @@ test("the thinking ramp names only the picked level and keeps the picker open wh
   await page.mouse.up();
   await expect(model).toHaveAccessibleName("Model: Claude Sonnet 4.5, Thinking: Low");
 });
+
+test("the thinking track nests in the picker's corner the way its model rows do", async ({ page }) => {
+  const model = await openKit(page);
+  await model.click();
+  const geometry = await page.getByRole("dialog").evaluate((dialog) => {
+    const measure = (element: Element | null) => {
+      if (!element) throw new Error("missing part");
+      const rect = element.getBoundingClientRect();
+      return { rect, radius: Number.parseFloat(getComputedStyle(element).borderBottomLeftRadius) };
+    };
+    const popup = measure(dialog);
+    const row = measure(dialog.querySelector('[role="option"]'));
+    const track = measure(dialog.querySelector('[data-control-family="thinking-level"][data-slot="track"]'));
+    const pill = measure(dialog.querySelector('[data-control-family="thinking-level"][data-slot="pill"]'));
+    const radius = (part: { rect: DOMRect; radius: number }) => Math.min(part.radius, part.rect.height / 2);
+    return {
+      popupRadius: popup.radius,
+      trackNest: radius(track) + (popup.rect.bottom - track.rect.bottom),
+      trackSides: [track.rect.left - row.rect.left, row.rect.right - track.rect.right],
+      pillNest: radius(pill) + (track.rect.bottom - pill.rect.bottom),
+      trackRadius: radius(track),
+    };
+  });
+  expect(geometry.trackNest).toBeCloseTo(geometry.popupRadius, 0);
+  for (const side of geometry.trackSides) expect(Math.abs(side)).toBeLessThanOrEqual(1);
+  expect(geometry.pillNest).toBeCloseTo(geometry.trackRadius, 0);
+});

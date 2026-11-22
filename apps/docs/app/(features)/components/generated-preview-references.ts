@@ -17,6 +17,7 @@ import { ChatComposerExample } from "@/src/registry/examples/control-ui/chat-com
 import { ChatLayoutExample } from "@/src/registry/examples/control-ui/chat-layout";
 import { ChatMessageTeamExample } from "@/src/registry/examples/control-ui/chat-message-team";
 import { ChatThreadPositionExample } from "@/src/registry/examples/control-ui/chat-thread-position";
+import { ChatWorkspaceExample } from "@/src/registry/examples/control-ui/chat-workspace";
 import { CodingAgentExample } from "@/src/registry/examples/control-ui/coding-agent";
 import { ContextComposedExample, ContextExample } from "@/src/registry/examples/control-ui/context";
 import { DesignCanvasExample } from "@/src/registry/examples/control-ui/design-canvas";
@@ -408,6 +409,7 @@ export const previewReferences: LoadedPreviews = {
   "kit/markdown-block": MarkdownBlockExample,
   "kit/chat-layout": ChatLayoutExample,
   "kit/chat-layout/thread-position": ChatThreadPositionExample,
+  "kit/chat-workspace": ChatWorkspaceExample,
   "kit/thread-rail": ThreadRailExample,
   "block/chat": ChatExample,
   "block/theme-toggle": ThemeToggleExample,

@@ -28,7 +28,11 @@
     --cui-table-of-contents-indicator-foreground: var(--cui-table-of-contents-trail-stroke);
     --cui-table-of-contents-scroll-inset: calc(var(--spacing) * 20);
     border: var(--cui-table-of-contents-border-width) solid var(--cui-table-of-contents-border-color);
-    border-radius: var(--cui-table-of-contents-radius);
+    border-radius: min(
+      var(--cui-table-of-contents-radius),
+      var(--cui-table-of-contents-padding) +
+      var(--cui-table-of-contents-border-width)
+    );
     background-color: var(--cui-table-of-contents-background);
     box-shadow: var(--cui-table-of-contents-shadow);
     -webkit-backdrop-filter: var(--cui-table-of-contents-backdrop-filter);

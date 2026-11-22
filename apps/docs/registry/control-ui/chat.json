@@ -12,6 +12,7 @@
     "chat-composer-attachment",
     "chat-layout",
     "chat-message",
+    "chat-workspace",
     "core",
     "inline-attachment",
     "inline-citation",

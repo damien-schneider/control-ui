@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "family": "chat-workspace",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-expanded": "",
+          "data-side": "right",
+          "data-slot": "root"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-slot": "panel"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-chat-workspace-background",
+        "text": "--cui-chat-workspace-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

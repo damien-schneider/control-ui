@@ -50,12 +50,6 @@ for (const skin of skinsWithOwnChatSurfaceCode) {
     }, authoredLabel);
 
     const dock = thread.locator('[data-slot="dock"]');
-    const veil = await dock.evaluate((element) => {
-      const style = getComputedStyle(element, "::before");
-      return { mask: style.maskImage, background: style.backgroundImage };
-    });
-    expect(veil.mask).toContain("linear-gradient");
-    expect(veil.background).toBe("none");
 
     await composer.evaluate((element) => {
       element.style.setProperty("--cui-chat-composer-shell-shadow", "none");
@@ -78,12 +72,17 @@ for (const skin of skinsWithOwnChatSurfaceCode) {
       await scroller.evaluate((element, position) => {
         element.scrollTop = (element.scrollHeight - element.clientHeight) * position;
       }, fraction);
-      const bottomGap = await dock.evaluate((element) => {
+      const edges = await dock.evaluate((element) => {
         const viewport = element.closest('[data-control-family="scroll-area"][data-slot="viewport"]');
-        if (!viewport) throw new Error("Composer must belong to the conversation scroller");
-        return viewport.getBoundingClientRect().bottom - element.getBoundingClientRect().bottom;
+        if (!(viewport instanceof HTMLElement)) throw new Error("Composer must belong to the conversation scroller");
+        return {
+          floor: viewport.getBoundingClientRect().bottom - element.getBoundingClientRect().bottom,
+          inset: Number.parseFloat(getComputedStyle(viewport).getPropertyValue("--scroll-area-inset-end")),
+          height: element.getBoundingClientRect().height,
+        };
       });
-      expect(Math.abs(bottomGap)).toBeLessThanOrEqual(1);
+      expect(Math.abs(edges.floor)).toBeLessThanOrEqual(1);
+      expect(Math.abs(edges.inset - edges.height)).toBeLessThanOrEqual(1);
     }
 
     const codeTab = preview.getByRole("tab", { name: "Code", exact: true });
@@ -164,6 +163,8 @@ test("the composer header belongs to the message field and sits concentric with 
   await waitForSkinLayout(page, "refined");
   const shell = page.locator('#preview [data-control-ui="chat-composer"][data-slot="shell"]');
   const header = shell.locator('[data-slot="header"]');
+  await shell.getByRole("textbox", { name: "Message" }).focus();
+  await expect(header).toBeVisible();
   await expect(header).toHaveCSS("border-bottom-width", "0px");
   const insets = await shell.evaluate((element) => {
     const box = element.getBoundingClientRect();
@@ -183,6 +184,8 @@ test("components inside the composer header keep their own icon size", async ({ 
   await page.goto("/templates/coding-agent");
   await waitForSkinLayout(page, "refined");
   const header = page.locator('#preview [data-control-ui="chat-composer"][data-slot="header"]');
+  await page.locator("#preview").getByRole("textbox", { name: "Message" }).focus();
+  await expect(header).toBeVisible();
   const sizes = await header.evaluate((element) => {
     const svg = '<svg viewBox="0 0 24 24"><path d="M4 12h16"/></svg>';
     const nested = document.createElement("span");

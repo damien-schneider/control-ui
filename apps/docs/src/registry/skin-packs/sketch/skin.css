@@ -109,7 +109,6 @@
 
   [data-skin="sketch"] [data-control-family="range"][data-slot="root"] {
     --cui-range-track-radius: 3px;
-    --cui-range-indicator-radius: 3px;
     --cui-range-track-background: var(--muted);
   }
 

@@ -92,8 +92,12 @@
       [data-control-family="sidebar"][data-slot="panel"][data-layer="raised"]
   ) {
     margin-block: calc(var(--cui-sidebar-inset-inset) - var(--spacing) * 2);
+    --_sidebar-corner-inset: calc(var(--spacing) * 2 + var(--cui-sidebar-raised-border-width));
     border: var(--cui-sidebar-raised-border-width) solid var(--cui-sidebar-raised-border-color);
-    border-radius: var(--cui-sidebar-raised-radius);
+    border-radius: calc(
+      min(var(--cui-sidebar-raised-radius), var(--_sidebar-corner-inset)) +
+      clamp(0px, (var(--cui-sidebar-raised-radius) - var(--_sidebar-corner-inset)) * 1000, var(--_sidebar-corner-nest))
+    );
     box-shadow: var(--cui-sidebar-raised-shadow);
     overflow: clip;
   }

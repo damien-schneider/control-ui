@@ -25,8 +25,12 @@ export type ChatComposerProps = Omit<ComponentProps<"form">, "onSubmit" | "style
   /** Let an empty message send, for composers where an attachment or recording carries the turn. */
   allowEmptySubmit?: boolean;
   submitKey?: ChatComposerSubmitKey;
+  /** `auto` rests on one line and opens while the message has focus, a draft, or attachments; `stacked` always stays open. */
+  layout?: ChatComposerLayout;
   style?: CSSProperties & ChatComposerKnobStyle;
 };
+
+export type ChatComposerLayout = "auto" | "stacked";
 
 export type MentionItem = { id: string; label: string; kind: string };
 

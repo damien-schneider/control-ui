@@ -14,42 +14,6 @@
       },
       {
         "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "inline-citation",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slide": "scope",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "inline-citation",
-          "data-slot": "source-favicon",
-          "data-source-badge-favicon": ""
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "inline-citation",
           "data-control-ui": "inline-citation",
           "data-slot": "root"
@@ -71,79 +35,6 @@
           "data-control-ui": "inline-citation",
           "data-slot": "favicon",
           "data-source-badge-favicon": ""
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-popup-kind": "popover",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-slot": "trigger",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "inline-citation",
-          "data-slot": "favicon",
-          "data-source-badge-favicon": ""
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
-          "data-control-ui": "inline-citation",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slide": "scope",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-slot": "navigation"
         }
       }
     ],
@@ -187,34 +78,10 @@
     },
     {
       "knobs": {
-        "fill": "--cui-inline-citation-favicon-background"
-      },
-      "anatomy": 1,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-inline-citation-favicon-background"
-      },
-      "anatomy": 2,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-inline-citation-navigation-background"
-      },
-      "anatomy": 3,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
         "fill": "--cui-inline-citation-trigger-background",
         "text": "--cui-inline-citation-trigger-foreground"
       },
-      "anatomy": 4,
+      "anatomy": 1,
       "rendersText": true,
       "state": false
     }

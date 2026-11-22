@@ -32,6 +32,7 @@
     "chat-composer-attachment",
     "chat-layout",
     "chat-message",
+    "chat-workspace",
     "checkbox",
     "checkbox-group",
     "code",

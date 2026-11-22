@@ -74,6 +74,9 @@
   :where([data-control-family="markdown-editor"][data-slot="bubble-menu"]) {
     white-space: nowrap;
   }
+  :where([data-control-family="markdown-editor"][data-slot="bubble-menu"] > [data-control-family="toolbar"][data-slot="root"]) {
+    --cui-toolbar-item-radius: max(0px, calc(var(--cui-popup-radius) - var(--cui-toolbar-padding)));
+  }
   :where([data-control-family="markdown-editor"] [data-markdown-drag-handle]) {
     position: absolute;
     inset-inline-start: calc(var(--cui-markdown-editor-padding) / 2);

@@ -201,6 +201,15 @@ const internalDefinitions: Definition[] = [
     internal: true,
   },
   {
+    id: "composer-engagement",
+    type: "registry:item",
+    title: "Composer engagement",
+    description: "Opens a one-line chat composer while its message has focus, and glides it between its two layouts.",
+    seeds: ["src/registry/lib/composer-engagement.ts", "src/registry/lib/composer-glide.ts"],
+    primary: ["src/registry/lib/composer-engagement.ts", "src/registry/lib/composer-glide.ts"],
+    internal: true,
+  },
+  {
     id: "press-focus",
     type: "registry:item",
     title: "Press focus",
@@ -516,6 +525,7 @@ function definitions(): Definition[] {
         "inline-attachment",
         "markdown-block",
         "chat-layout",
+        "chat-workspace",
         "thread-rail",
         "transcript-divider",
         "model-switcher",

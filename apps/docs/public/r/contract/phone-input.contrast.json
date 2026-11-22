@@ -17,7 +17,7 @@
           "data-control": "true",
           "data-control-family": "field",
           "data-control-ui": "input-group",
-          "data-field-kind": "phone-input",
+          "data-field-kind": "input-group",
           "data-size": "md",
           "data-slot": "root"
         }
@@ -46,7 +46,7 @@
           "data-control": "true",
           "data-control-family": "field",
           "data-control-ui": "input-group",
-          "data-field-kind": "phone-input",
+          "data-field-kind": "input-group",
           "data-size": "md",
           "data-slot": "root"
         }

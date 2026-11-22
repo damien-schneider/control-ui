@@ -165,6 +165,7 @@
 - `markdown-editor` (MarkdownEditor) **[beta]** — Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine. — `npx shadcn@latest add https://control-ui.dev/r/markdown-editor.json`
 - `markdown-block` (MarkdownBlock) — Assistant markdown output rendered to prose, with a header and copy-source action. — `npx shadcn@latest add https://control-ui.dev/r/markdown-block.json`
 - `chat-layout` (ChatLayout) — A scrolling conversation with a pinned header, message turns, and a floating composer dock. — `npx shadcn@latest add https://control-ui.dev/r/chat-layout.json`
+- `chat-workspace` (ChatWorkspace) — A chat that floats as an island over the content or pins beside it as a resizable column, without remounting. — `npx shadcn@latest add https://control-ui.dev/r/chat-workspace.json`
 - `thread-rail` (ThreadRail) — Conversation minimap for scanning and jumping between chat turns. — `npx shadcn@latest add https://control-ui.dev/r/thread-rail.json`
 
 ### Templates (pre-composed recipes)

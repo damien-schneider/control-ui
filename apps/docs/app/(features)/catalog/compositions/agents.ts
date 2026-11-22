@@ -366,6 +366,30 @@ export const agentsCompositions = {
       ),
     ),
   ],
+  "chat-workspace": [
+    example(
+      "Floating or pinned chat",
+      part(
+        "ChatWorkspace",
+        part("ChatWorkspaceMain", content("page content"), part("ChatWorkspaceInset")),
+        part(
+          "ChatWorkspacePanel",
+          part(
+            "ChatLayout",
+            part(
+              "ChatLayoutHeader",
+              part("ChatWorkspaceExpandToggle"),
+              part("ChatLayoutTitle"),
+              part("ChatLayoutActions", part("ChatWorkspaceDockToggle")),
+            ),
+            part("ChatWorkspaceCollapsible", part("ChatThread")),
+            part("ChatComposer"),
+          ),
+          part("ChatWorkspaceResizeHandle"),
+        ),
+      ),
+    ),
+  ],
   "thread-rail": [
     example(
       "Anatomy",

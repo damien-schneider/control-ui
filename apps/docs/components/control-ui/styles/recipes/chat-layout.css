@@ -36,10 +36,29 @@
     border-radius: var(--cui-chat-layout-radius);
   }
 
+  :where(
+    [data-control-family="chat-workspace"][data-slot="panel"] [data-control-family="chat-layout"][data-slot="root"][data-chrome="embedded"]
+  ) {
+    --cui-chat-layout-background: var(--cui-chat-workspace-background);
+    --cui-chat-layout-gutter-size: calc(var(--composer-padding) * 2 + var(--control-rim-width));
+  }
+
   :where([data-control-family="chat-layout"][data-slot="header"]) {
     padding-block: calc(var(--spacing) * 3);
-    padding-inline: calc(var(--spacing) * 4);
+    padding-inline: var(--cui-chat-layout-gutter-size);
     border-block-end: var(--cui-chat-layout-border-width) solid var(--cui-chat-layout-border-color);
+  }
+
+  :where([data-control-family="chat-workspace"][data-slot="panel"] [data-control-family="chat-layout"][data-slot="header"]) {
+    padding-block: calc(var(--spacing) * 2);
+  }
+
+  :where(
+    [data-control-family="chat-workspace"][data-slot="root"]:not([data-docked])
+      > [data-slot="panel"]
+      [data-control-family="chat-layout"][data-slot="header"]
+  ) {
+    border-block-end-width: 0;
   }
 
   :where([data-control-family="chat-layout"][data-slot="header"] > :not([data-control-family="chat-layout"])) {
@@ -55,6 +74,10 @@
     color: var(--foreground);
   }
 
+  :where([data-control-family="chat-layout"][data-slot="title"]:not(:has(+ [data-control-family="chat-layout"][data-slot="description"]))) {
+    grid-row: 1 / span 2;
+  }
+
   :where([data-control-family="chat-layout"][data-slot="description"]) {
     margin-block-start: calc(var(--spacing) * 0.5);
     font-size: var(--text-caption);
@@ -66,39 +89,25 @@
     margin-inline-start: calc(var(--spacing) * 3);
   }
 
+  :where([data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"] > [data-control-family="scroll-area"]) {
+    --_chat-thread-dock-size: inherit;
+    --scroll-area-inset-end: var(--_chat-thread-dock-size);
+    display: flex;
+    flex-direction: column;
+  }
+
   :where(
     [data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"]
       > [data-control-family="scroll-area"]
       > [data-scroll-area-viewport]
   ) {
-    --_chat-thread-overflow-start: var(--scroll-area-overflow-y-start, 0px);
-    scroll-padding-block: var(--scroll-fade-size) var(--_chat-thread-dock-size, 0px);
-  }
-
-  :where(
-    [data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"]
-      > [data-control-family="scroll-area"]
-      > [data-slot="scrollbar"][data-orientation="vertical"]
-  ) {
-    padding-block-end: var(--_chat-thread-dock-size, 0px);
+    flex: 1 1 auto;
+    min-block-size: 0;
+    scroll-padding-block: var(--scroll-fade-size) calc(var(--scroll-area-inset-end) + var(--scroll-fade-size));
   }
 
   :where([data-control-family="chat-layout"][data-slot="track"]) {
     --_chat-layout-column-inset: max(var(--cui-chat-layout-gutter-size), calc((100% - var(--cui-chat-layout-column-max-inline-size)) / 2));
-  }
-
-  :where([data-control-family="chat-layout"][data-slot="track"])::before {
-    content: "";
-    position: sticky;
-    inset-block-start: 0;
-    z-index: 1;
-    flex: none;
-    block-size: var(--scroll-fade-size);
-    margin-block-end: calc(var(--scroll-fade-size) * -1);
-    pointer-events: none;
-    background: var(--cui-chat-layout-veil-background);
-    backdrop-filter: var(--cui-chat-layout-veil-backdrop-filter);
-    mask-image: linear-gradient(to bottom, oklch(0 0 0), transparent min(var(--scroll-fade-size), var(--_chat-thread-overflow-start)));
   }
 
   :where(
@@ -110,6 +119,10 @@
   }
 
   :where([data-control-family="chat-layout"][data-slot="thread-content"]) {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-inline-size: 0;
     gap: calc(var(--spacing) * 8);
     padding-block: calc(var(--spacing) * 6);
     padding-inline: var(--_chat-layout-column-inset);
@@ -119,6 +132,13 @@
     gap: 0;
   }
 
+  :where(
+    [data-control-family="chat-workspace"][data-slot="root"]:not([data-expanded], [data-folding])
+      [data-control-family="chat-layout"][data-slot="thread-content"]:has(> [data-control-family="chat-workspace"][data-slot="collapsible"])
+  ) {
+    display: none;
+  }
+
   :where([data-control-family="chat-layout"][data-slot="turn"]) {
     gap: var(--cui-chat-layout-turn-gap);
   }
@@ -126,10 +146,36 @@
   :where([data-control-family="chat-layout"][data-slot="dock"]) {
     padding-inline: var(--_chat-layout-column-inset);
     padding-block-end: env(safe-area-inset-bottom, 0px);
+    background: var(--cui-chat-layout-veil-background);
+    backdrop-filter: var(--cui-chat-layout-veil-backdrop-filter);
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      backdrop-filter var(--duration-fast) var(--ease-standard);
   }
 
-  :where([data-control-family="chat-layout"][data-slot="dock"]:has(> [data-control-family="chat-composer"][data-slot="root"])) {
+  :where([data-scroll-area-viewport]:not([data-overflow-y-end]) [data-control-family="chat-layout"][data-slot="dock"]) {
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="anchor-layer"]) {
+    --_chat-thread-dock-size: inherit;
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: var(--_chat-thread-dock-size);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="dock"]:has([data-control-family="chat-composer"][data-slot="root"])) {
     padding-inline: max(0px, calc(var(--_chat-layout-column-inset) - var(--composer-padding)));
+  }
+
+  :where(
+    [data-control-family="chat-workspace"][data-slot="panel"]
+      [data-control-family="chat-layout"][data-slot="dock"]:has([data-control-family="chat-composer"][data-slot="root"])
+  ) {
+    padding-inline: max(0px, calc(var(--_chat-layout-column-inset) - var(--cui-chat-layout-gutter-size)));
   }
 
   :where(
@@ -139,20 +185,10 @@
     padding-block-end: 0;
   }
 
-  :where([data-control-family="chat-layout"][data-slot="dock"])::before {
-    content: "";
-    position: absolute;
-    inset: calc(var(--scroll-fade-size) * -1) 0 0;
-    z-index: -1;
-    pointer-events: none;
-    background: var(--cui-chat-layout-veil-background);
-    backdrop-filter: var(--cui-chat-layout-veil-backdrop-filter);
-    mask-image: linear-gradient(to bottom, transparent, oklch(0 0 0) var(--scroll-fade-size));
-  }
-
   :where([data-control-family="chat-layout"][data-slot="scroll-anchor"]) {
     position: absolute;
-    inset-block-end: calc(100% + var(--cui-chat-layout-scroll-button-gap));
+    inset-block-end: var(--cui-chat-layout-scroll-button-gap);
+    pointer-events: auto;
     inset-inline: 0;
     margin-inline: auto;
     inline-size: fit-content;
@@ -221,6 +257,12 @@
 @property --cui-chat-layout-veil-backdrop-filter {
   syntax: "*";
   inherits: true;
+}
+
+@property --_chat-thread-dock-size {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
 }
 
 @property --cui-chat-layout-scroll-button-gap {

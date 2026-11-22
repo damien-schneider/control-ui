@@ -950,3 +950,9 @@
   inherits: false;
   initial-value: 0px;
 }
+
+@property --scroll-area-inset-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}

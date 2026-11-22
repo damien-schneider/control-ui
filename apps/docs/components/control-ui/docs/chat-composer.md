@@ -28,6 +28,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 - `button`
 - `chat-message`
+- `composer-engagement`
 - `core`
 - `file-paste`
 - `live-status`
@@ -38,7 +39,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## Exports
 
-- `@/components/control-ui/hooks/use-chat-composer`: `useChatComposer`, types `ChatComposerSubmitPayload`, `ChatComposerSubmitKey`, `ChatComposerProps`, `MentionItem`, `RegisterInsertionTarget`, `ChatComposerController`
+- `@/components/control-ui/hooks/use-chat-composer`: `useChatComposer`, types `ChatComposerSubmitPayload`, `ChatComposerSubmitKey`, `ChatComposerProps`, `ChatComposerLayout`, `MentionItem`, `RegisterInsertionTarget`, `ChatComposerController`
 - `@/components/control-ui/knob-contracts/chat-composer-knobs`: `chatComposerKnobs`, types `ChatComposerKnobStyle`
 - `@/components/control-ui/chat-composer-editor`: `ChatComposerEditor`
 - `@/components/control-ui/chat-composer-editor/extensions/mention`: `deleteMentionBackward`, `deleteMentionForward`, `mentionExtension`, types `MentionExtensionConfig`
@@ -46,7 +47,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 - `@/components/control-ui/chat-composer-editor/schema`: `createEditorSchema`
 - `@/components/control-ui/chat-composer-editor/serialize`: `serializeDoc`, `docFromText`, `sliceFromText`, `serializeSlice`
 - `@/components/control-ui/chat-composer-editor/types`: types `ChatComposerEditorApi`, `ChatComposerEditorOverlayProps`, `ChatComposerEditorExtension`, `ChatComposerEditorProps`
-- `@/components/control-ui/chat-composer`: `useChatComposerContext`, `ChatComposer`, `useChatComposerMessageRef`, `ChatComposerShell`, `ChatComposerAccent`, `ChatComposerHeader`, `ChatComposerTextarea`, `ChatComposerToolbar`, `ChatComposerTools`, `ChatComposerFooter`, `ChatComposerSubmit`, types `ChatComposerShellProps`, `ChatComposerAccentProps`, `ChatComposerHeaderProps`, `ChatComposerTextareaProps`, `ChatComposerToolbarProps`, `ChatComposerToolsProps`, `ChatComposerFooterProps`, `ChatComposerSubmitProps`
+- `@/components/control-ui/chat-composer`: `useHoldChatComposerOpen`, `useChatComposerContext`, `ChatComposer`, `useChatComposerMessageRef`, `ChatComposerShell`, `ChatComposerAccent`, `ChatComposerHeader`, `ChatComposerTextarea`, `ChatComposerToolbar`, `ChatComposerTools`, `ChatComposerFooter`, `ChatComposerSubmit`, types `ChatComposerShellProps`, `ChatComposerAccentProps`, `ChatComposerHeaderProps`, `ChatComposerTextareaProps`, `ChatComposerToolbarProps`, `ChatComposerToolsProps`, `ChatComposerFooterProps`, `ChatComposerSubmitProps`
 
 ## Composition
 
@@ -153,7 +154,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `mention-description`
   - `mention-icon`
   - `mention-label`
-  - `root`: `data-density` (`comfortable` | `compact`), `data-state` (`disabled` | `idle` | `submitting`)
+  - `root`: `data-density` (`comfortable` | `compact`), `data-draft` (any value), `data-layout` (`auto` | `stacked`), `data-state` (`disabled` | `idle` | `submitting`)
   - `shell`: `data-state` (`disabled` | `idle` | `submitting`)
   - `submit`: `data-stop`
   - `textarea`

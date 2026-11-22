@@ -275,6 +275,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-popup-shortcut-letter-spacing`: `0.02em`
 - `--cui-popup-separator-gap`: `calc(var(--spacing) * 1)`
 - `--cui-popup-submenu-indicator-foreground`: `var(--cui-popup-item-foreground)`
+- `--cui-popup-command-padding`: `0px`
 - `--cui-popup-command-heading-padding-block`: `calc(var(--spacing) * 1.5)`
 - `--cui-popup-command-heading-padding-inline`: `calc(var(--spacing) * 2)`
 - `--cui-popup-command-heading-font-size`: `var(--text-caption)`

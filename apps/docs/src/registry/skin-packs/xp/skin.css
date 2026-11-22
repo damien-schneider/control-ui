@@ -352,7 +352,8 @@
   [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu"]) {
     background: var(--xp-task-body);
   }
-  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu-track"] > [data-control-family="sidebar"][data-slot="menu"]) {
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="menu-track"] > [data-control-family="sidebar"][data-slot="menu"]),
+  [data-skin="xp"] :where([data-control-family="sidebar"][data-slot="group"] [data-control-family="sidebar"][data-slot="menu"]) {
     background: transparent;
   }
 }

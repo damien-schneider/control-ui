@@ -32,6 +32,7 @@
     "https://control-ui.dev/r/chat-composer-attachment.json",
     "https://control-ui.dev/r/chat-layout.json",
     "https://control-ui.dev/r/chat-message.json",
+    "https://control-ui.dev/r/chat-workspace.json",
     "https://control-ui.dev/r/checkbox.json",
     "https://control-ui.dev/r/checkbox-group.json",
     "https://control-ui.dev/r/code.json",

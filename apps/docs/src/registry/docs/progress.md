@@ -101,7 +101,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-range-track-size`: `calc(var(--spacing) * 2)`
 - `--cui-range-track-radius`: `9999px`
 - `--cui-range-track-background`: `var(--muted)`
-- `--cui-range-indicator-radius`: `9999px`
+- `--cui-range-indicator-radius`: `var(--cui-range-track-radius)`
 - `--cui-range-indicator-background`: `var(--primary)`
 - `--cui-range-thumb-radius`: `9999px`
 - `--cui-range-thumb-inline-size`: `calc(var(--spacing) * 3.5)`

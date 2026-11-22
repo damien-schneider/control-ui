@@ -84,3 +84,26 @@ describe("composer input contract", () => {
     expect(html).toContain("Keep this draft");
   });
 });
+
+describe("composer layout", () => {
+  function render(props: { layout?: "auto" | "stacked"; defaultValue?: string }) {
+    return renderToStaticMarkup(
+      <ChatComposer {...props}>
+        <ChatComposerShell>
+          <ChatComposerTextarea />
+          <ChatComposerSubmit />
+        </ChatComposerShell>
+      </ChatComposer>,
+    );
+  }
+
+  test("rests on one line by default, and a stacked composer opts out", () => {
+    expect(render({})).toMatch(/<form[^>]*data-layout="auto"/);
+    expect(render({ layout: "stacked" })).toMatch(/<form[^>]*data-layout="stacked"/);
+  });
+
+  test("marks a composer holding a draft, so it stays open after focus leaves", () => {
+    expect(render({ defaultValue: "Half a thought" })).toMatch(/<form[^>]*data-draft=""/);
+    expect(render({})).not.toContain("data-draft");
+  });
+});

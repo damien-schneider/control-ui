@@ -3,7 +3,7 @@ import { CHART_COLORS } from "../sources/control-ui/ui/chart-colors";
 
 export type ThemeContractGroup = "color" | "typography" | "radius" | "shadow" | "motion" | "surface" | "layout";
 
-export type ThemeContractTier = "core" | "advanced" | "derived";
+export type ThemeContractTier = "core" | "advanced" | "derived" | "computed";
 
 export type ThemeContractToken = {
   name: string;
@@ -178,7 +178,7 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token(
     "--radius-composer",
     "radius",
-    "derived",
+    "computed",
     "Composer shell corner, concentric with the fitted control corner plus composer padding and rim.",
   ),
   token("--composer-padding", "layout", "derived", "Inset shared by the composer shell, toolbar controls, and nested corner geometry."),
@@ -189,10 +189,10 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
   token(
     "--radius-popup-item-fit",
     "radius",
-    "derived",
+    "computed",
     "Row corner capped at half the smallest control height; --radius-popover nests around it.",
   ),
-  token("--radius-popover", "radius", "derived", "Popup container corner, concentric with the fitted row corner."),
+  token("--radius-popover", "radius", "computed", "Popup container corner, concentric with the fitted row corner."),
 
   token("--shadow-color", "shadow", "advanced", "Hue every shadow is tinted with."),
   token("--shadow-highlight", "shadow", "derived", "Inner top light painted along raised surfaces' top edge (carries its resting alpha)."),
@@ -266,6 +266,10 @@ export const THEME_CONTRACT: readonly ThemeContractToken[] = [
     "Smallest text-input font size under a coarse pointer, so iOS never zooms on focus; defaults to 16px.",
   ),
 ];
+
+export const COMPUTED_THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(
+  THEME_CONTRACT.filter((entry) => entry.tier === "computed").map((entry) => entry.name),
+);
 
 export const THEME_CONTRACT_NAMES: ReadonlySet<string> = new Set(THEME_CONTRACT.map((entry) => entry.name));
 

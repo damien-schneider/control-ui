@@ -18,6 +18,7 @@
       calc(var(--spacing) * 2),
       calc(var(--_infinite-canvas-radius) - var(--_infinite-canvas-controls-radius))
     );
+    --nest-radius: max(0px, calc(var(--_infinite-canvas-radius) - var(--cui-infinite-canvas-padding)));
     border-radius: var(--_infinite-canvas-radius);
     background-color: var(--cui-infinite-canvas-background);
     background-image: radial-gradient(circle at center, var(--cui-infinite-canvas-grid-dot-color) 1px, transparent 1px);
@@ -71,7 +72,20 @@
     inset-block-end: var(--cui-infinite-canvas-padding);
   }
 
+  :where([data-control-family="infinite-canvas"][data-slot="controls"] > [data-control-family="toolbar"][data-slot="root"]) {
+    --cui-toolbar-item-radius: max(
+      0px,
+      calc(
+        var(--cui-infinite-canvas-radius) -
+        var(--cui-infinite-canvas-padding) -
+        var(--cui-toolbar-padding) -
+        var(--cui-toolbar-border-width)
+      )
+    );
+  }
+
   :where([data-control-family="infinite-canvas"][data-slot="content"]) {
+    --nest-radius: initial;
     transform-origin: 0 0;
   }
 }

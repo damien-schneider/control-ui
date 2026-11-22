@@ -23,9 +23,18 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -77,48 +86,10 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
           "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "user",
-          "data-slot": "content"
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
         }
       },
       {
@@ -126,6 +97,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -165,6 +137,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -194,6 +168,38 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -223,6 +229,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -249,9 +256,56 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "submitting"
         }
@@ -273,7 +327,14 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "wide"
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-slot": "panel"
         }
       },
       {
@@ -281,6 +342,45 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -316,9 +416,18 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -361,39 +470,10 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
           "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "user",
-          "data-slot": "content"
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
         }
       },
       {
@@ -401,6 +481,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -431,6 +512,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -451,6 +534,29 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -471,6 +577,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -488,9 +595,47 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "submitting"
         }
@@ -503,7 +648,14 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "wide"
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-slot": "panel"
         }
       },
       {
@@ -511,6 +663,36 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -537,9 +719,18 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -581,55 +772,10 @@
       },
       {
         "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "textarea"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
           "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "assistant",
-          "data-slot": "content"
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
         }
       },
       {
@@ -637,6 +783,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -695,9 +842,18 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -715,59 +871,6 @@
         "attributes": {
           "contenteditable": "true",
           "role": "textbox"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "panel",
-          "data-control-family": "chat-layout",
-          "data-control-ui": "chat-layout",
-          "data-slot": "root",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-message",
-          "data-control-ui": "chat-message",
-          "data-role": "user",
-          "data-slot": "content"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-density": "compact",
-          "data-slot": "root",
-          "data-state": "idle"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "shell",
-          "data-state": "idle",
-          "data-surface": "panel"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "chat-composer",
-          "data-control-ui": "chat-composer",
-          "data-slot": "textarea"
         }
       }
     ],
@@ -796,6 +899,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -831,6 +936,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -867,6 +974,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -900,9 +1008,63 @@
       },
       {
         "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "textarea"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "submitting"
         }
@@ -931,7 +1093,14 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "wide"
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-slot": "panel"
         }
       },
       {
@@ -939,6 +1108,52 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "compact",
+          "data-layout": "auto",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "shell",
+          "data-state": "idle",
+          "data-surface": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-slot": "textarea"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "wide"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-layout",
+          "data-control-ui": "chat-thread",
+          "data-scroll-area-pinned": "",
+          "data-slot": "dock"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-composer",
+          "data-control-ui": "chat-composer",
+          "data-density": "compact",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -983,7 +1198,7 @@
         "boundary": "--cui-chat-composer-shell-focus-border-color"
       },
       "anatomy": 2,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -1028,26 +1243,26 @@
     },
     {
       "knobs": {
-        "fill": "--cui-chat-composer-root-background"
+        "boundary": "--cui-chat-composer-shell-focus-border-color"
       },
       "anatomy": 8,
-      "rendersText": true,
-      "state": false
+      "rendersText": false,
+      "state": true
     },
     {
       "knobs": {
-        "fill": "--cui-chat-composer-root-background"
+        "boundary": "--cui-chat-composer-shell-focus-border-color"
       },
       "anatomy": 9,
       "rendersText": true,
-      "state": false
+      "state": true
     },
     {
       "knobs": {
         "fill": "--cui-chat-composer-root-background"
       },
       "anatomy": 10,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1092,6 +1307,38 @@
     },
     {
       "knobs": {
+        "fill": "--cui-chat-composer-root-background"
+      },
+      "anatomy": 16,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-composer-root-background"
+      },
+      "anatomy": 17,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-composer-root-background"
+      },
+      "anatomy": 18,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-composer-root-background"
+      },
+      "anatomy": 19,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
         "fill": "--cui-chat-composer-shell-background"
       },
       "anatomy": 0,
@@ -1111,7 +1358,7 @@
         "fill": "--cui-chat-composer-shell-background"
       },
       "anatomy": 2,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1156,34 +1403,18 @@
     },
     {
       "knobs": {
-        "text": "--cui-chat-composer-input-foreground"
+        "fill": "--cui-chat-composer-shell-background"
       },
-      "anatomy": 16,
+      "anatomy": 8,
       "rendersText": false,
       "state": false
     },
     {
       "knobs": {
-        "text": "--cui-chat-composer-input-foreground"
+        "fill": "--cui-chat-composer-shell-background"
       },
-      "anatomy": 17,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-chat-composer-input-foreground"
-      },
-      "anatomy": 18,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-chat-composer-input-foreground"
-      },
-      "anatomy": 19,
-      "rendersText": false,
+      "anatomy": 9,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1199,7 +1430,7 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 21,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1215,7 +1446,7 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 23,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1231,6 +1462,38 @@
         "text": "--cui-chat-composer-input-foreground"
       },
       "anatomy": 25,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-composer-input-foreground"
+      },
+      "anatomy": 26,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-composer-input-foreground"
+      },
+      "anatomy": 27,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-composer-input-foreground"
+      },
+      "anatomy": 28,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-composer-input-foreground"
+      },
+      "anatomy": 29,
       "rendersText": false,
       "state": false
     }

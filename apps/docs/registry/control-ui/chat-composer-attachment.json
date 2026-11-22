@@ -9,6 +9,7 @@
   ],
   "registryDependencies": [
     "button",
+    "chat-composer",
     "core",
     "live-status",
     "scroll-area",

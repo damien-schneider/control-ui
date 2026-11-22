@@ -77,8 +77,7 @@
   --radius-field: calc(var(--radius) * 2);
   --radius-panel: calc(var(--radius) * 3);
   --radius-scene: calc(var(--radius) * 3);
-  --radius-popup-item: 0.5rem;
-  --radius-popover: var(--radius-panel);
+  --radius-popup-item: 0.375rem;
   --popover-padding: 0.375rem;
 
   --padding-x: 0.75rem;

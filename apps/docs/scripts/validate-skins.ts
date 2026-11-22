@@ -5,7 +5,7 @@ import path from "node:path";
 import { parse } from "@babel/parser";
 import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
-import { THEME_CONTRACT_NAMES } from "../src/registry/lib/theme-contract";
+import { COMPUTED_THEME_CONTRACT_NAMES, THEME_CONTRACT_NAMES } from "../src/registry/lib/theme-contract";
 import {
   familyAttribute,
   familyPartAttribute,
@@ -292,6 +292,9 @@ function validateShadowLayer(file: string, declaration: postcss.Declaration): vo
 function validateKnobs(file: string, root: postcss.Root): void {
   root.walkDecls((declaration) => {
     const line = declaration.source?.start?.line;
+    if (COMPUTED_THEME_CONTRACT_NAMES.has(declaration.prop)) {
+      failures.push(`${file}:${line ?? "?"} ${declaration.prop} is computed from other tokens — re-value its inputs instead`);
+    }
     validateKnobName(file, declaration.prop, line);
     validateShadowLayer(file, declaration);
     for (const match of declaration.value.matchAll(/var\(\s*(--[\w-]+)/g)) validateKnobName(file, match[1] ?? "", line);

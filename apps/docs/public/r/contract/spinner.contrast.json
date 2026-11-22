@@ -46,6 +46,42 @@
       },
       {
         "attributes": {
+          "data-align": "center",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "spinner",
+          "data-control-ui": "spinner",
+          "data-motion-essential": "",
+          "data-slot": "root",
+          "role": "status"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-control-family": "spinner",
           "data-control-ui": "spinner",
           "data-motion-essential": "",
@@ -147,6 +183,14 @@
         "text": "--cui-spinner-foreground"
       },
       "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-spinner-foreground"
+      },
+      "anatomy": 4,
       "rendersText": true,
       "state": false
     }

@@ -1,12 +1,14 @@
 @layer components {
   :where([data-control-family="thinking-level"][data-slot="root"]) {
     --_thinking-level-pad: calc(var(--spacing) * 0.75);
+    --_thinking-level-radius: var(--nest-radius, 9999px);
     gap: calc(var(--spacing) * 2);
   }
 
   :where([data-control-family="thinking-level"][data-slot="header"]) {
     gap: calc(var(--spacing) * 2);
     min-block-size: calc(var(--spacing) * 5);
+    padding-inline: calc(var(--spacing) * 1.5);
   }
 
   :where([data-control-family="thinking-level"][data-slot="label"]) {
@@ -18,7 +20,7 @@
   :where([data-control-family="thinking-level"][data-slot="track"]) {
     block-size: var(--control-h-sm);
     padding: var(--_thinking-level-pad);
-    border-radius: 9999px;
+    border-radius: var(--_thinking-level-radius);
     background-color: var(--muted);
     cursor: pointer;
   }
@@ -35,7 +37,7 @@
 
   :where([data-control-family="thinking-level"][data-slot="pill"]) {
     inset-block: var(--_thinking-level-pad);
-    border-radius: 9999px;
+    border-radius: max(0px, calc(min(var(--_thinking-level-radius), var(--control-h-sm) / 2) - var(--_thinking-level-pad)));
     background-color: var(--card);
     box-shadow:
       inset 0 0 0 var(--control-rim-width) var(--control-rim),

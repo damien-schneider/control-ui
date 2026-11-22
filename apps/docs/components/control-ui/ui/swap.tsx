@@ -16,14 +16,21 @@ function useSwap() {
   return context;
 }
 
+function naturalInlineSize(item: HTMLSpanElement) {
+  const range = document.createRange();
+  range.selectNodeContents(item);
+  return Math.ceil(range.getBoundingClientRect().width);
+}
+
 function fitRootToItem(item: HTMLSpanElement) {
   const root = item.parentElement;
   if (!root) return;
+  const truncates = root.hasAttribute("data-text");
   const observer = new ResizeObserver(([entry]) => {
     const [borderBox] = entry.borderBoxSize;
     // A hidden item measures 0: release the width so the next reveal snaps to size instead of growing from 0.
     if (borderBox.inlineSize === 0) root.style.removeProperty("--_swap-inline-size");
-    else root.style.setProperty("--_swap-inline-size", `${borderBox.inlineSize}px`);
+    else root.style.setProperty("--_swap-inline-size", `${truncates ? naturalInlineSize(item) : borderBox.inlineSize}px`);
   });
   observer.observe(item);
   return () => observer.disconnect();
@@ -97,5 +104,29 @@ export function SwapItem({ value, children, ref, ...props }: SwapItemProps) {
     >
       {wrapLabelText(children)}
     </span>
+  );
+}
+
+export type SwapTextProps = Omit<SwapProps, "value" | "children"> & {
+  children: string;
+};
+
+export function SwapText({ children, ...props }: SwapTextProps) {
+  const [texts, setTexts] = useState<{ current: string; previous: string | null }>({ current: children, previous: null });
+  if (texts.current !== children) setTexts({ current: children, previous: texts.current });
+  const shown = texts.previous === null ? [texts.current] : [texts.previous, texts.current];
+
+  return (
+    <Swap value={texts.current} data-text="" {...props}>
+      {shown.map((text) => (
+        <SwapItem key={text} value={text}>
+          <span data-control-ui="swap" data-control-family="swap" data-slot="label">
+            <span data-control-ui="swap" data-control-family="swap" data-slot="text">
+              {text}
+            </span>
+          </span>
+        </SwapItem>
+      ))}
+    </Swap>
   );
 }

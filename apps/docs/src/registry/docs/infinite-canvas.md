@@ -141,7 +141,7 @@ export function PrimitiveInfiniteCanvasExample() {
             </InfiniteCanvasItem>
           ))}
         </InfiniteCanvasContent>
-        <div className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-[var(--radius-sm)] bg-card/90 px-2.5 py-1.5 shadow-sm ring-1 ring-border backdrop-blur-sm">
+        <div className="pointer-events-none absolute top-(--cui-infinite-canvas-padding) left-(--cui-infinite-canvas-padding) rounded-(--nest-radius) bg-card/90 px-2.5 py-1.5 shadow-sm ring-1 ring-border backdrop-blur-sm">
           <Text as="p" size="caption" tone="muted">
             Drag the background or hold Space to pan · ⌘-scroll or pinch to zoom · 1 to fit
           </Text>

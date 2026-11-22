@@ -76,6 +76,7 @@ export function DiscussionComposer({
   return (
     <ChatComposer
       submitKey="mod-enter"
+      layout="stacked"
       {...props}
       value={value}
       onValueChange={(next) => {

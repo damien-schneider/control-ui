@@ -20,6 +20,7 @@ export const popupKnobs = [
   "--cui-popup-shortcut-letter-spacing",
   "--cui-popup-separator-gap",
   "--cui-popup-submenu-indicator-foreground",
+  "--cui-popup-command-padding",
   "--cui-popup-command-heading-padding-block",
   "--cui-popup-command-heading-padding-inline",
   "--cui-popup-command-heading-font-size",

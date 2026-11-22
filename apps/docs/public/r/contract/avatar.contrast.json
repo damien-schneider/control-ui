@@ -50,44 +50,6 @@
       },
       {
         "attributes": {
-          "aria-expanded": "true",
-          "data-control-family": "inline-citation",
-          "data-control-ui": "inline-citation",
-          "data-popup-kind": "popover",
-          "data-popup-open": "",
-          "data-pressed": "",
-          "data-slot": "trigger",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "inline-citation",
-          "data-slot": "favicon",
-          "data-source-badge-favicon": ""
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "avatar",
-          "data-control-ui": "avatar",
-          "data-slot": "fallback"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "hover-card",
@@ -861,15 +823,6 @@
         "text": "--cui-avatar-fallback-foreground"
       },
       "anatomy": 1,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
-      },
-      "anatomy": 2,
       "rendersText": true,
       "state": false
     },
@@ -878,8 +831,17 @@
         "fill": "--cui-avatar-fallback-background",
         "text": "--cui-avatar-fallback-foreground"
       },
-      "anatomy": 3,
+      "anatomy": 2,
       "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-avatar-fallback-background",
+        "text": "--cui-avatar-fallback-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
       "state": false
     },
     {
@@ -1001,8 +963,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-avatar-fallback-background",
-        "text": "--cui-avatar-fallback-foreground"
+        "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 17,
       "rendersText": true,
@@ -1021,14 +982,6 @@
         "text": "--cui-avatar-badge-foreground"
       },
       "anatomy": 19,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-avatar-badge-foreground"
-      },
-      "anatomy": 20,
       "rendersText": true,
       "state": false
     }

@@ -29,6 +29,7 @@ function distanceToEnd(viewport: HTMLElement) {
 }
 
 export function useChatThreadScroll() {
+  const rootRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const dockRef = useRef<HTMLDivElement>(null);
@@ -52,10 +53,9 @@ export function useChatThreadScroll() {
 
   useEffect(() => {
     const viewport = viewportRef.current;
-    const scrollArea = viewport?.parentElement;
     const content = contentRef.current;
     const messageList = content?.firstElementChild;
-    if (!viewport || !scrollArea || !content || !(messageList instanceof HTMLElement)) return;
+    if (!viewport || !content || !(messageList instanceof HTMLElement)) return;
     let anchor: ScrollAnchor | undefined;
     let lastTop = viewport.scrollTop;
     let settled = false;
@@ -111,7 +111,7 @@ export function useChatThreadScroll() {
     };
 
     const handleResize = () => {
-      scrollArea.style.setProperty("--_chat-thread-dock-size", `${dockRef.current?.offsetHeight ?? 0}px`);
+      rootRef.current?.style.setProperty("--_chat-thread-dock-size", `${dockRef.current?.offsetHeight ?? 0}px`);
       if (followingRef.current) followEnd();
       else keepAnchorInPlace();
       lastTop = viewport.scrollTop;
@@ -141,5 +141,5 @@ export function useChatThreadScroll() {
     };
   }, []);
 
-  return { viewportRef, contentRef, dockRef, atBottom, scrollToBottom, followFromDock };
+  return { rootRef, viewportRef, contentRef, dockRef, atBottom, scrollToBottom, followFromDock };
 }

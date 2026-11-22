@@ -123,38 +123,6 @@
       },
       {
         "attributes": {
-          "data-control-family": "card",
-          "data-control-ui": "card",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "popup",
-          "data-control-ui": "dialog",
-          "data-open": "",
-          "data-popup-kind": "dialog",
-          "data-popup-part": "backdrop",
-          "data-slot": "backdrop",
-          "role": "presentation"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "popup",
           "data-control-ui": "alert-dialog",
           "data-open": "",
@@ -763,34 +731,6 @@
         "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
-          "data-control-ui": "inline-citation",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slide": "scope",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "start",
-          "data-control-family": "popup",
           "data-control-ui": "menubar",
           "data-open": "",
           "data-popup-kind": "menubar",
@@ -906,42 +846,6 @@
           "data-slot": "content",
           "data-surface": "floating",
           "role": "presentation",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-chrome": "embedded",
-          "data-control-family": "infinite-canvas",
-          "data-control-ui": "infinite-canvas",
-          "data-slot": "root",
-          "role": "application",
-          "tabindex": "0"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
-          "data-arrow": "true",
-          "data-control-family": "popup",
-          "data-control-ui": "tooltip",
-          "data-open": "",
-          "data-popup-kind": "tooltip",
-          "data-popup-part": "surface",
-          "data-side": "top",
-          "data-slot": "content",
-          "role": "tooltip",
           "tabindex": "-1"
         }
       }
@@ -1168,54 +1072,10 @@
       },
       {
         "attributes": {
-          "data-control-family": "card",
-          "data-control-ui": "card",
-          "data-size": "sm",
-          "data-slot": "root",
-          "data-surface": "panel",
-          "data-variant": "default"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "popup",
-          "data-control-ui": "dialog",
-          "data-open": "",
-          "data-popup-kind": "dialog",
-          "data-popup-part": "backdrop",
-          "data-slot": "backdrop",
-          "role": "presentation"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "popup",
-          "data-control-ui": "dialog",
-          "data-open": "",
-          "data-popup-kind": "dialog",
-          "data-popup-part": "surface",
-          "data-slot": "content",
-          "data-surface": "modal",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -1268,6 +1128,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -1296,6 +1157,90 @@
           "data-open": "",
           "data-popup-part": "list-surface",
           "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "aria-pressed": "false",
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-slot": "reaction"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "participant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "menu",
@@ -2156,6 +2101,102 @@
       },
       {
         "attributes": {
+          "data-activation-direction": "none",
+          "data-control-family": "tabs",
+          "data-control-ui": "tabs",
+          "data-orientation": "horizontal",
+          "data-size": "sm",
+          "data-slot": "list",
+          "data-variant": "default",
+          "role": "tablist"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "true",
+          "data-slot": "item",
+          "data-value": "claude-sonnet-4-5",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "true",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "true",
+          "data-slot": "item",
+          "data-value": "claude-sonnet-4-5",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-align": "start",
           "data-control-family": "popup",
           "data-control-ui": "audio-device-select",
@@ -2716,6 +2757,43 @@
           "data-popup-part": "navigation-link",
           "data-slot": "link",
           "href": "#"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-popup-kind": "command",
+          "data-popup-part": "separator",
+          "data-slot": "separator",
+          "role": "separator"
         }
       }
     ],
@@ -3532,6 +3610,54 @@
       },
       {
         "attributes": {
+          "data-active": "true",
+          "data-control-family": "sidebar",
+          "data-control-ui": "sidebar",
+          "data-icon-tone": "default",
+          "data-indicator": "hover",
+          "data-size": "default",
+          "data-slot": "menu-button",
+          "data-variant": "default"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "data-tone": "neutral",
+          "role": "menuitem",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
           "data-align": "end",
           "data-control-family": "popup",
           "data-control-ui": "dropdown-menu",
@@ -3664,6 +3790,90 @@
           "data-tone": "neutral",
           "role": "menuitem",
           "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "gemini-2.5-pro",
+          "role": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "aria-disabled": "false",
+          "aria-selected": "false",
+          "data-control-family": "popup",
+          "data-control-ui": "command",
+          "data-disabled": "false",
+          "data-popup-kind": "command",
+          "data-popup-part": "item",
+          "data-selected": "false",
+          "data-slot": "item",
+          "data-value": "gpt-5",
+          "role": "option"
         }
       }
     ],
@@ -5405,6 +5615,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -5459,6 +5670,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -5520,6 +5732,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -5562,6 +5775,209 @@
           "data-slot": "radio-item",
           "data-unchecked": "",
           "role": "menuitemradio",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "aria-pressed": "false",
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-slot": "reaction"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "data-tone": "neutral",
+          "role": "menuitem",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "data-tone": "neutral",
+          "role": "menuitem",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "avatar",
+          "data-control-ui": "avatar",
+          "data-slot": "fallback"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "data-tone": "neutral",
+          "role": "menuitem",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "comfortable",
+          "data-layout": "flat",
+          "data-slot": "row"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "participant",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "start",
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-open": "",
+          "data-popup-part": "list-surface",
+          "data-side": "right",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "menu",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "popup",
+          "data-control-ui": "dropdown-menu",
+          "data-popup-part": "item",
+          "data-slot": "item",
+          "data-tone": "neutral",
+          "role": "menuitem",
           "tabindex": "-1"
         }
       }
@@ -6372,6 +6788,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -6783,10 +7200,11 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-backdrop-background"
+        "fill": "--cui-popup-background",
+        "text": "--cui-popup-foreground"
       },
       "anatomy": 6,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -6993,7 +7411,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 29,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7020,7 +7438,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 32,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7119,7 +7537,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 43,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7137,7 +7555,7 @@
         "text": "--cui-popup-foreground"
       },
       "anatomy": 45,
-      "rendersText": false,
+      "rendersText": true,
       "state": false
     },
     {
@@ -7286,8 +7704,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-background",
-        "text": "--cui-popup-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 62,
       "rendersText": true,
@@ -7295,8 +7713,8 @@
     },
     {
       "knobs": {
-        "fill": "--cui-popup-background",
-        "text": "--cui-popup-foreground"
+        "fill": "--cui-popup-item-highlight-background",
+        "text": "--cui-popup-item-highlight-foreground"
       },
       "anatomy": 63,
       "rendersText": true,
@@ -7469,10 +7887,10 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-description-foreground"
+        "fill": "--cui-popup-separator-color"
       },
       "anatomy": 83,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -7517,7 +7935,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-item-foreground"
+        "text": "--cui-popup-description-foreground"
       },
       "anatomy": 89,
       "rendersText": true,
@@ -7983,14 +8401,6 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
-      "anatomy": 77,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "text": "--cui-popup-item-foreground"
-      },
       "anatomy": 147,
       "rendersText": true,
       "state": false
@@ -8055,6 +8465,14 @@
       "knobs": {
         "text": "--cui-popup-item-foreground"
       },
+      "anatomy": 77,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-item-foreground"
+      },
       "anatomy": 155,
       "rendersText": true,
       "state": false
@@ -8093,7 +8511,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 160,
       "rendersText": true,
@@ -8101,7 +8519,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 161,
       "rendersText": true,
@@ -8109,7 +8527,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 162,
       "rendersText": true,
@@ -8117,7 +8535,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 163,
       "rendersText": true,
@@ -8125,7 +8543,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 164,
       "rendersText": true,
@@ -8133,7 +8551,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 165,
       "rendersText": true,
@@ -8141,7 +8559,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 166,
       "rendersText": true,
@@ -8149,7 +8567,7 @@
     },
     {
       "knobs": {
-        "text": "--cui-popup-title-foreground"
+        "text": "--cui-popup-item-foreground"
       },
       "anatomy": 167,
       "rendersText": true,
@@ -8160,6 +8578,70 @@
         "text": "--cui-popup-title-foreground"
       },
       "anatomy": 168,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 169,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 170,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 171,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 172,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 173,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 174,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 175,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-popup-title-foreground"
+      },
+      "anatomy": 176,
       "rendersText": true,
       "state": false
     }

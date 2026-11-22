@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "family": "chat-workspace",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "chat-workspace"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-chat-workspace-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-chat-workspace-island-max-inline-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "44rem"
+    },
+    {
+      "name": "--cui-chat-workspace-transcript-block-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "28rem"
+    },
+    {
+      "name": "--cui-chat-workspace-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card)"
+    },
+    {
+      "name": "--cui-chat-workspace-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--card-foreground)"
+    },
+    {
+      "name": "--cui-chat-workspace-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--border)"
+    },
+    {
+      "name": "--cui-chat-workspace-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "var(--control-rim-width)"
+    },
+    {
+      "name": "--cui-chat-workspace-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "max(\n      var(--radius-panel),\n      calc(var(--radius-composer) + var(--composer-padding) + var(--cui-chat-workspace-border-width))\n    )"
+    },
+    {
+      "name": "--cui-chat-workspace-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "var(--shadow-pop)"
+    },
+    {
+      "name": "--cui-chat-workspace-handle-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--foreground) l c h / 0.3)"
+    }
+  ],
+  "parts": {
+    "chat-workspace": {
+      "root": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": [
+          {
+            "attribute": "data-docked",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-expanded",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-side",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      },
+      "collapsible": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": []
+      },
+      "inset": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": []
+      },
+      "main": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": []
+      },
+      "panel": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": []
+      },
+      "resize-handle": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": []
+      },
+      "resize-shield": {
+        "family": "chat-workspace",
+        "registryItems": [
+          "chat-workspace"
+        ],
+        "states": []
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/chat-workspace.contrast.json"
+}

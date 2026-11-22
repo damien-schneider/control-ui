@@ -61,3 +61,26 @@ test("bubble menu stays away from code blocks", async ({ page }) => {
   await page.waitForTimeout(400);
   await expect(bubble).toHaveCount(0);
 });
+
+test("bubble menu waits for the pointer to lift, so a drag over its place keeps extending the selection", async ({ page }) => {
+  const editor = page.getByRole("textbox", { name: "Project notes", exact: true });
+  const bubble = page.getByRole("toolbar", { name: "Selection formatting", exact: true });
+  const quote = editor.locator("blockquote p");
+  await editor.scrollIntoViewIfNeeded();
+  const line = await quote.boundingBox();
+  if (!line) throw new Error("blockquote is not laid out");
+  const lineStart = { x: line.x + 1, y: line.y + line.height / 2 };
+  const lineEnd = { x: line.x + line.width - 1, y: line.y + line.height / 2 };
+
+  await page.mouse.move(lineEnd.x, lineEnd.y);
+  await page.mouse.down();
+  await page.mouse.move(lineStart.x, lineStart.y, { steps: 8 });
+  await expect(bubble).toHaveCount(0);
+  await page.mouse.move(lineStart.x + 40, line.y - 24, { steps: 8 });
+  await page.mouse.move(lineStart.x, lineStart.y, { steps: 8 });
+  await expect(bubble).toHaveCount(0);
+  await page.mouse.up();
+
+  await expect(bubble).toBeVisible();
+  await expect.poll(() => page.evaluate(() => getSelection()?.toString())).toBe("Keep the next step easy to find.");
+});

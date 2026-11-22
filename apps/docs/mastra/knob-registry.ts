@@ -1476,6 +1476,72 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "chat-workspace",
+    knobs: [
+      {
+        name: "--cui-chat-workspace-background",
+        syntax: "<color>",
+        defaultValue: "var(--card)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--border)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-border-width",
+        syntax: "<length>",
+        defaultValue: "var(--control-rim-width)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--card-foreground)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-gap",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 3)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-handle-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.3)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-island-max-inline-size",
+        syntax: "<length-percentage>",
+        defaultValue: "44rem",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-radius",
+        syntax: "<length-percentage>",
+        defaultValue:
+          "max(\n      var(--radius-panel),\n      calc(var(--radius-composer) + var(--composer-padding) + var(--cui-chat-workspace-border-width))\n    )",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-shadow",
+        syntax: "*",
+        defaultValue: "var(--shadow-pop)",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+      {
+        name: "--cui-chat-workspace-transcript-block-size",
+        syntax: "<length-percentage>",
+        defaultValue: "28rem",
+        selector: ':where([data-control-family="chat-workspace"][data-slot="root"])',
+      },
+    ],
+  },
+  {
     id: "choice",
     knobs: [
       {
@@ -3993,6 +4059,13 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
           ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
       },
       {
+        name: "--cui-popup-command-padding",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
+        selector:
+          ':where([data-control-family="popup"][data-popup-part="surface"]),\n  :where([data-control-family="popup"][data-popup-part="list-surface"]),\n  :where([data-control-family="popup"][data-popup-part="bar"])',
+      },
+      {
         name: "--cui-popup-description-font-size",
         syntax: "<length-percentage>",
         defaultValue: "var(--text-body)",
@@ -4384,7 +4457,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-range-indicator-radius",
         syntax: "<length-percentage>",
-        defaultValue: "9999px",
+        defaultValue: "var(--cui-range-track-radius)",
         selector: ':where([data-control-family="range"][data-slot="root"])',
       },
       {
@@ -6245,8 +6318,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-tool-approval-body-radius",
         syntax: "<length-percentage>",
-        defaultValue:
-          "max(\n      0px,\n      calc(var(--cui-tool-approval-radius) - var(--cui-tool-approval-padding) - var(--cui-tool-approval-border-width))\n    )",
+        defaultValue: "max(0px, calc(var(--_tool-approval-corner) - var(--cui-tool-approval-padding)))",
         selector: ':where([data-control-family="tool-approval"][data-slot="root"])',
       },
       {
@@ -6348,8 +6420,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
       {
         name: "--cui-tool-approval-preview-radius",
         syntax: "<length-percentage>",
-        defaultValue:
-          "max(\n      0px,\n      calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding) - var(--cui-tool-approval-body-border-width))\n    )",
+        defaultValue: "max(0px, calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding)))",
         selector: ':where([data-control-family="tool-approval"][data-slot="root"])',
       },
       {

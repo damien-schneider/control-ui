@@ -121,8 +121,8 @@ test("rich composer keeps focus, inherited knobs, and locks read-only while resp
   await expectTextFocusEdge(shell, restingEdge);
   await input.blur();
   await expect.poll(() => paintedEdge(shell)).toBe(restingEdge);
-  const toolbarSpace = await blankPoint(composer.locator('[data-slot="toolbar"]'));
-  await page.mouse.click(toolbarSpace.x, toolbarSpace.y);
+  const restingSpace = await blankPoint(shell);
+  await page.mouse.click(restingSpace.x, restingSpace.y);
   await expect(input).toBeFocused();
   await input.fill("Summarize the note.");
   await input.press("Enter");

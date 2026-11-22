@@ -211,13 +211,7 @@ export function ChatComposerEditor({
       className={cn("relative", className)}
     >
       {input.value === "" && placeholder ? (
-        <div
-          aria-hidden="true"
-          data-control-ui="chat-composer-editor"
-          data-control-family="chat-composer"
-          data-slot="placeholder"
-          className="pointer-events-none absolute start-[var(--padding-x)] end-[var(--padding-x)] top-[var(--padding-y)]"
-        >
+        <div aria-hidden="true" data-control-ui="chat-composer-editor" data-control-family="chat-composer" data-slot="placeholder">
           {placeholder}
         </div>
       ) : null}
@@ -226,10 +220,7 @@ export function ChatComposerEditor({
         data-control-ui="chat-composer-editor"
         data-control-family="chat-composer"
         data-slot="editor"
-        className={cn(
-          "[&_.ProseMirror]:max-h-[40dvh] [&_.ProseMirror]:min-h-16 [&_.ProseMirror]:w-full [&_.ProseMirror]:overflow-y-auto [&_.ProseMirror]:whitespace-pre-wrap [&_.ProseMirror]:break-words [&_.ProseMirror]:px-[var(--padding-x)] [&_.ProseMirror]:py-[var(--padding-y)]",
-          mounted ? "" : "hidden",
-        )}
+        className={mounted ? undefined : "hidden"}
       />
       {mounted ? null : (
         <textarea
@@ -244,7 +235,6 @@ export function ChatComposerEditor({
           disabled={input.isDisabled}
           rows={2}
           placeholder={placeholder}
-          className="min-h-16 w-full resize-none px-[var(--padding-x)] py-[var(--padding-y)]"
         />
       )}
       {mounted

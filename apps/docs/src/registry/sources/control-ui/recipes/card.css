@@ -13,8 +13,9 @@
     --cui-card-padding-inline: calc(var(--spacing) * 6);
     --cui-card-gap: calc(var(--spacing) * 6);
     --cui-card-title-font-size: 1em;
+    --_card-corner: min(var(--cui-card-radius), var(--cui-card-padding-inline) + var(--cui-card-border-width));
     border: var(--cui-card-border-width) solid var(--cui-card-border-color);
-    border-radius: var(--cui-card-radius);
+    border-radius: var(--_card-corner);
     background: var(--cui-card-background);
     color: var(--cui-card-foreground);
     box-shadow: var(--cui-card-shadow);
@@ -71,7 +72,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: var(--cui-card-radius);
+    border-radius: var(--_card-corner);
   }
 
   :where([data-control-family="card"][data-slot="root"]:has([data-control-family="card"][data-slot="link"])) {

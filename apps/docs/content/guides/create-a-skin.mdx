@@ -121,5 +121,8 @@ export function AppTheme({ children }: { children: ReactNode }) {
   that fitted default, including inside a composer. A circle-shaped button also keeps its circular shape.
   When a skin changes its control default, use `var(--nest-radius, <skin-radius>)` as the knob value to retain the
   container's fitted corner inside composed controls.
+  To change a corner, re-value the radius and padding knobs it is computed from, such as `--cui-popup-command-padding`.
+  Writing `padding` on the part directly, or re-valuing a computed token like `--radius-popover`, breaks the nesting:
+  `bun run validate` rejects both.
   The composer uses `--radius-composer` and `--composer-padding`; `--radius-field` controls message bubbles.
 </GuideSection>

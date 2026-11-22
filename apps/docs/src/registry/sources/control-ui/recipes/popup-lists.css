@@ -48,6 +48,11 @@
     color: var(--muted-foreground);
   }
 
+  :where([data-control-family="popup"][data-popup-kind="command"][data-slot="root"][data-popup-part="surface"]) {
+    padding: var(--cui-popup-command-padding);
+    border-radius: calc(var(--cui-popup-radius) + clamp(0px, var(--cui-popup-radius) * 1000, var(--cui-popup-command-padding)));
+  }
+
   :where([data-control-family="popup"][data-popup-kind="command"][data-chrome="embedded"]) {
     border-radius: inherit;
     corner-shape: inherit;
@@ -322,6 +327,12 @@
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
+}
+
+@property --cui-popup-command-padding {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
 }
 
 @property --cui-popup-command-heading-padding-block {

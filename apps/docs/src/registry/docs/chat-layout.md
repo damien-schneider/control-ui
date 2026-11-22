@@ -281,7 +281,8 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `root`: `data-chrome` (`embedded` | `panel`)
   - `title`
 - `chat-thread`
-  - `dock`
+  - `anchor-layer`
+  - `dock`: `data-scroll-area-pinned`
   - `root`: `data-at-bottom`, `data-chat-layout-kind` (`thread`)
   - `scroll-anchor`: `data-hidden`
   - `thread-content`

@@ -82,6 +82,7 @@
 @import "../src/registry/sources/control-ui/recipes/markdown-editor.css";
 @import "../src/registry/sources/control-ui/recipes/markdown-editor-table.css";
 @import "../src/registry/sources/control-ui/recipes/chat-layout.css";
+@import "../src/registry/sources/control-ui/recipes/chat-workspace.css";
 @import "../src/registry/sources/control-ui/recipes/audio-recorder.css";
 @import "../src/registry/sources/control-ui/recipes/audio-device-select.css";
 @import "../src/registry/sources/control-ui/recipes/audio-visualizer.css";
@@ -90,6 +91,7 @@
 @import "../src/registry/sources/control-ui/recipes/code.css";
 @import "../src/registry/sources/control-ui/recipes/code-diff.css";
 @import "../src/registry/sources/control-ui/recipes/chat-composer.css";
+@import "../src/registry/sources/control-ui/recipes/chat-composer-line.css";
 @import "../src/registry/sources/control-ui/recipes/chat-composer-attachment.css";
 @import "../src/registry/sources/control-ui/recipes/user-ask.css";
 @import "../src/registry/sources/control-ui/recipes/tool-approval.css";

@@ -43,6 +43,13 @@
             ]
           }
         ]
+      },
+      "meta": {
+        "family": "action-bar",
+        "registryItems": [
+          "action-bar"
+        ],
+        "states": []
       }
     }
   },

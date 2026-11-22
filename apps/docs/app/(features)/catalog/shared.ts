@@ -17,6 +17,7 @@ export const registryKindIds = [
   "markdown-editor",
   "markdown-editor-live",
   "chat-layout",
+  "chat-workspace",
   "thread-rail",
   "transcript-divider",
   "user-ask",

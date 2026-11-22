@@ -174,7 +174,6 @@
     --cui-range-track-radius: 2px;
     --cui-range-track-background: var(--background);
     --cui-range-track-dragging-background: var(--cui-range-track-background);
-    --cui-range-indicator-radius: 0px;
     --cui-range-indicator-background: var(--xp-progress);
     --cui-range-indicator-dragging-background: var(--xp-progress);
     --cui-range-thumb-radius: 3px;

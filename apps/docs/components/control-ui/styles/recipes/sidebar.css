@@ -81,6 +81,7 @@
     --_sidebar-inner-background: var(--cui-sidebar-inner-background);
     --_sidebar-inner-border-width: var(--cui-sidebar-inner-border-width);
     --_sidebar-inner-radius: var(--cui-sidebar-inner-radius);
+    --_sidebar-corner-nest: min(var(--cui-sidebar-menu-button-radius), var(--cui-sidebar-menu-button-height) / 2);
     --_sidebar-inner-shadow: var(--cui-sidebar-inner-shadow);
     --_sidebar-container-border-width: var(--cui-sidebar-container-border-width);
     --_sidebar-header-border-width: var(--cui-sidebar-header-border-width);
@@ -116,8 +117,12 @@
   :where([data-control-family="sidebar"][data-slot="inner"]) {
     position: relative;
     isolation: isolate;
+    --_sidebar-corner-inset: calc(var(--spacing) * 2 + var(--_sidebar-inner-border-width));
     border: var(--_sidebar-inner-border-width) solid var(--cui-sidebar-inner-border-color);
-    border-radius: var(--_sidebar-inner-radius);
+    border-radius: calc(
+      min(var(--_sidebar-inner-radius), var(--_sidebar-corner-inset)) +
+      clamp(0px, (var(--_sidebar-inner-radius) - var(--_sidebar-corner-inset)) * 1000, var(--_sidebar-corner-nest))
+    );
     box-shadow: var(--_sidebar-inner-shadow);
   }
 

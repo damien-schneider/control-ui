@@ -144,12 +144,26 @@
           }
         ]
       },
-      "dock": {
+      "anchor-layer": {
         "family": "chat-layout",
         "registryItems": [
           "chat-layout"
         ],
         "states": []
+      },
+      "dock": {
+        "family": "chat-layout",
+        "registryItems": [
+          "chat-layout"
+        ],
+        "states": [
+          {
+            "attribute": "data-scroll-area-pinned",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          }
+        ]
       },
       "scroll-anchor": {
         "family": "chat-layout",
@@ -201,8 +215,6 @@
     }
   },
   "adornments": {},
-  "uncovered": [
-    "--cui-chat-layout-veil-background"
-  ],
+  "uncovered": [],
   "contrast": "/r/contract/chat-layout.contrast.json"
 }

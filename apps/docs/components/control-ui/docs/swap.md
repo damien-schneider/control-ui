@@ -21,7 +21,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Exports
 
 - `@/components/control-ui/knob-contracts/swap-knobs`: `swapKnobs`, types `SwapKnobStyle`
-- `@/components/control-ui/ui/swap`: `Swap`, `SwapItem`, types `SwapItemState`, `SwapProps`, `SwapItemProps`
+- `@/components/control-ui/ui/swap`: `Swap`, `SwapItem`, `SwapText`, types `SwapItemState`, `SwapProps`, `SwapItemProps`, `SwapTextProps`
 
 ## Composition
 
@@ -110,6 +110,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `item`: `data-state` (`active` | `exiting` | `inactive`)
   - `label`
   - `root`: `data-swapped`
+  - `text`
 
 ## Knobs
 

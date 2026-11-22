@@ -820,7 +820,7 @@
     {
       "name": "--radius-composer",
       "group": "radius",
-      "tier": "derived",
+      "tier": "computed",
       "description": "Composer shell corner, concentric with the fitted control corner plus composer padding and rim."
     },
     {
@@ -856,13 +856,13 @@
     {
       "name": "--radius-popup-item-fit",
       "group": "radius",
-      "tier": "derived",
+      "tier": "computed",
       "description": "Row corner capped at half the smallest control height; --radius-popover nests around it."
     },
     {
       "name": "--radius-popover",
       "group": "radius",
-      "tier": "derived",
+      "tier": "computed",
       "description": "Popup container corner, concentric with the fitted row corner."
     },
     {

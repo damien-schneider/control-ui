@@ -142,6 +142,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [MarkdownEditor](https://control-ui.dev/kits/markdown-editor): Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine. Status: beta.
 - [MarkdownBlock](https://control-ui.dev/kits/markdown-block): Assistant markdown output rendered to prose, with a header and copy-source action.
 - [ChatLayout](https://control-ui.dev/kits/chat-layout): A scrolling conversation with a pinned header, message turns, and a floating composer dock.
+- [ChatWorkspace](https://control-ui.dev/kits/chat-workspace): A chat that floats as an island over the content or pins beside it as a resizable column, without remounting.
 - [ThreadRail](https://control-ui.dev/kits/thread-rail): Conversation minimap for scanning and jumping between chat turns.
 
 ## Templates

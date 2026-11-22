@@ -72,6 +72,55 @@
           "role": "group"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-recorder",
+          "data-control-ui": "audio-recorder",
+          "data-slot": "root",
+          "data-state": "requesting",
+          "role": "group"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-recorder",
+          "data-control-ui": "audio-recorder",
+          "data-slot": "root",
+          "data-state": "requesting",
+          "role": "group"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "audio-recorder",
+          "data-control-ui": "audio-recorder",
+          "data-slot": "status",
+          "data-tone": "neutral",
+          "data-visible": "true"
+        }
+      }
     ]
   ],
   "probes": [
@@ -96,6 +145,22 @@
         "text": "--cui-audio-recorder-foreground"
       },
       "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-audio-recorder-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-audio-recorder-meta-foreground"
+      },
+      "anatomy": 4,
       "rendersText": true,
       "state": false
     }

@@ -1,0 +1,108 @@
+@layer components {
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"] [data-control-family="chat-composer"][data-slot="shell"]
+  ) {
+    --_composer-line-row: calc(var(--control-h-xs) + var(--spacing) * 0.5);
+    --_composer-line-inset: max(0px, calc(var(--padding-x) - var(--composer-padding)));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"] [data-control-family="chat-composer"][data-slot="shell"] > *
+  ) {
+    flex-shrink: 0;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="shell"]
+  ) {
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: flex-end;
+    column-gap: calc(var(--spacing) * 2);
+    row-gap: 0;
+    padding: var(--composer-padding);
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="toolbar"]
+  ) {
+    display: contents;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="tools"]
+  ) {
+    order: -1;
+    flex-shrink: 0;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="shell"]
+      > :is([data-control-family="chat-composer"][data-slot="header"], [data-control-family="chat-composer-attachment"][data-slot="root"])
+  ) {
+    display: none;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="editor-root"])
+  ) {
+    flex: 1 1 0;
+    min-inline-size: calc(var(--spacing) * 20);
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"])
+  ),
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="editor"]
+      .ProseMirror
+  ) {
+    field-sizing: fixed;
+    block-size: var(--_composer-line-row);
+    min-block-size: var(--_composer-line-row);
+    max-block-size: var(--_composer-line-row);
+    padding-block: max(0px, calc((var(--_composer-line-row) - 1lh) / 2));
+    padding-inline: var(--_composer-line-inset);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="editor-root"]
+      > [data-slot="placeholder"]
+  ) {
+    inset-inline: var(--_composer-line-inset) 0;
+    inset-block-start: max(0px, calc((var(--_composer-line-row) - 1lh) / 2));
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"])
+  )::placeholder {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  :where(
+    [data-control-family="chat-composer"][data-slot="root"][data-layout="auto"]:not([data-engaged], [data-draft])
+      [data-control-family="chat-composer"][data-slot="footer"]
+  ) {
+    flex-basis: calc(100% + var(--composer-padding) * 2);
+    margin-inline: calc(var(--composer-padding) * -1);
+    margin-block: var(--composer-padding) calc(var(--composer-padding) * -1);
+  }
+}

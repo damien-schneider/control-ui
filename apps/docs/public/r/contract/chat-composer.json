@@ -121,6 +121,21 @@
             ]
           },
           {
+            "attribute": "data-draft",
+            "source": "control-ui",
+            "valueKind": "open",
+            "values": []
+          },
+          {
+            "attribute": "data-layout",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "auto",
+              "stacked"
+            ]
+          },
+          {
             "attribute": "data-state",
             "source": "control-ui",
             "valueKind": "enum",

@@ -5,10 +5,32 @@ import { Popover, PopoverContent } from "@/components/control-ui/ui/popover";
 import { Toolbar, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 import { TooltipProvider } from "@/components/control-ui/ui/tooltip";
 import { useMarkdownEditor, useMarkdownEditorSnapshot } from "./context";
+import type { MarkdownEditorEngine } from "./engine";
 import { MarkdownEditorFormatButton, MarkdownEditorHeading, MarkdownEditorLink, useMarkdownEditorFormatActions } from "./toolbar";
 
 const sameRect = (a: DOMRect | null, b: DOMRect | null) =>
   a === b || (a !== null && b !== null && a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height);
+
+function usePointerSelecting(engine: MarkdownEditorEngine | null) {
+  const [selecting, setSelecting] = useState(false);
+  useEffect(() => {
+    if (!engine) return;
+    const owner = engine.element.ownerDocument;
+    const press = (event: PointerEvent) => {
+      if (event.button === 0) setSelecting(true);
+    };
+    const release = () => setSelecting(false);
+    engine.element.addEventListener("pointerdown", press);
+    owner.addEventListener("pointerup", release, true);
+    owner.addEventListener("pointercancel", release, true);
+    return () => {
+      engine.element.removeEventListener("pointerdown", press);
+      owner.removeEventListener("pointerup", release, true);
+      owner.removeEventListener("pointercancel", release, true);
+    };
+  }, [engine]);
+  return selecting;
+}
 
 export function MarkdownEditorBubbleMenu({ children }: { children?: ReactNode }) {
   const { engine, editable, labels } = useMarkdownEditor();
@@ -17,8 +39,9 @@ export function MarkdownEditorBubbleMenu({ children }: { children?: ReactNode })
   const [focusWithin, setFocusWithin] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [selectionRect, setSelectionRect] = useState<DOMRect | null>(null);
+  const pointerSelecting = usePointerSelecting(engine);
   if (dismissed && !formattable) setDismissed(false);
-  const visible = editable && formattable && (focused || focusWithin) && !dismissed;
+  const visible = editable && formattable && (focused || focusWithin) && !dismissed && !pointerSelecting;
 
   useEffect(() => {
     if (!engine || !visible) return;

@@ -37,9 +37,13 @@
 </GuideSection>
 
 <GuideSection id="radius" title="Radius and corners">
-  One `--radius` knob drives the whole scale: each role is a multiple of it. Nested corners stay concentric through
-  the additive tokens — `--radius-popover`, `--radius-composer`, and `--nest-radius` add the inset to the inner
-  corner — and `--corner-shape` reshapes every corner where the browser supports it.
+  One `--radius` knob drives the whole scale: each role is a multiple of it, and `--corner-shape` reshapes every corner
+  where the browser supports it. Nested corners stay concentric because each padded container works out its own
+  corner from its padding. A tight container, such as a menu, toolbar, or composer, adds its padding to the corner of
+  the item inside it. A loose surface, such as a card, panel, or popover, caps its preferred radius at its padding, so
+  any content fits its corner. The container passes the corner left over for its edge controls to `--nest-radius`.
+  `--radius-popover`, `--radius-popup-item-fit`, and `--radius-composer` are computed this way, and no skin re-values
+  them.
 
   <RadiusFoundations />
 </GuideSection>

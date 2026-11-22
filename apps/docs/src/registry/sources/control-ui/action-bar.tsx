@@ -175,6 +175,20 @@ export function ActionBarCopy({
   );
 }
 
+export type ActionBarMetaProps = Omit<ComponentProps<"span">, "style"> & { style?: CSSProperties & ActionBarKnobStyle };
+
+export function ActionBarMeta({ className, ...props }: ActionBarMetaProps) {
+  return (
+    <span
+      data-control-ui="action-bar"
+      data-control-family="action-bar"
+      data-slot="meta"
+      {...props}
+      className={cn("inline-flex min-w-0 items-center", className)}
+    />
+  );
+}
+
 export type ActionBarEditProps = ActionBarItemBaseProps & {
   value?: ActionBarCopyValue;
   children?: NonNullable<ReactNode>;

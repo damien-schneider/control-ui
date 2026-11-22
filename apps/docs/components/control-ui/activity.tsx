@@ -10,6 +10,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import type { ScrollAreaProps } from "@/components/control-ui/ui/scroll-area";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { SwapText } from "@/components/control-ui/ui/swap";
 
 export type ActivityState = "pending" | "running" | "waiting" | "success" | "error";
 
@@ -167,16 +168,17 @@ export type ActivityTitleProps = ActivityStyleProps<ComponentProps<"span">, Acti
 export function ActivityTitle({ className, children, ...props }: ActivityTitleProps) {
   const activity = useActivityContext();
   const text = children ?? (activity.name ? formatActivityTitle(activity.name) : undefined);
+  const rolls = typeof text === "string";
   return (
     <span
       data-control-ui="activity"
       data-control-family="activity"
       data-slot="title"
-      title={typeof text === "string" ? text : undefined}
+      title={rolls ? text : undefined}
       {...props}
-      className={cn("min-w-0 flex-1 truncate", className)}
+      className={cn("min-w-0 flex-1", !rolls && "truncate", className)}
     >
-      {text}
+      {rolls ? <SwapText>{text}</SwapText> : text}
     </span>
   );
 }

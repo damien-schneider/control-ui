@@ -17,6 +17,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -57,6 +59,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }
@@ -97,6 +101,8 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-draft": "",
+          "data-layout": "auto",
           "data-slot": "root",
           "data-state": "idle"
         }

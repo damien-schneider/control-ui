@@ -12,6 +12,7 @@
     "https://control-ui.dev/r/chat-composer-attachment.json",
     "https://control-ui.dev/r/chat-layout.json",
     "https://control-ui.dev/r/chat-message.json",
+    "https://control-ui.dev/r/chat-workspace.json",
     "https://control-ui.dev/r/core.json",
     "https://control-ui.dev/r/inline-attachment.json",
     "https://control-ui.dev/r/inline-citation.json",

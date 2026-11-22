@@ -35,6 +35,7 @@ export const generatedSkinContract: SkinContract = {
     "chat-message": ["chat-message"],
     "chat-thread": ["chat-layout"],
     "chat-turn": ["chat-layout"],
+    "chat-workspace": ["chat-workspace"],
     checkbox: ["checkbox"],
     "checkbox-group": ["checkbox-group"],
     code: ["code"],
@@ -271,6 +272,11 @@ export const generatedSkinContract: SkinContract = {
               values: ["horizontal", "vertical"],
             },
           ],
+        },
+        meta: {
+          family: "action-bar",
+          registryItems: ["action-bar"],
+          states: [],
         },
       },
       registryItems: ["action-bar"],
@@ -1953,6 +1959,18 @@ export const generatedSkinContract: SkinContract = {
               values: ["comfortable", "compact"],
             },
             {
+              attribute: "data-draft",
+              source: "control-ui",
+              valueKind: "open",
+              values: [],
+            },
+            {
+              attribute: "data-layout",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["auto", "stacked"],
+            },
+            {
               attribute: "data-state",
               source: "control-ui",
               valueKind: "enum",
@@ -2555,10 +2573,22 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        dock: {
+        "anchor-layer": {
           family: "chat-layout",
           registryItems: ["chat-layout"],
           states: [],
+        },
+        dock: {
+          family: "chat-layout",
+          registryItems: ["chat-layout"],
+          states: [
+            {
+              attribute: "data-scroll-area-pinned",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+          ],
         },
         "scroll-anchor": {
           family: "chat-layout",
@@ -2601,6 +2631,65 @@ export const generatedSkinContract: SkinContract = {
         },
       },
       registryItems: ["chat-layout"],
+    },
+    "chat-workspace": {
+      parts: {
+        root: {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [
+            {
+              attribute: "data-docked",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-expanded",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-side",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["left", "right"],
+            },
+          ],
+        },
+        collapsible: {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [],
+        },
+        inset: {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [],
+        },
+        main: {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [],
+        },
+        panel: {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [],
+        },
+        "resize-handle": {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [],
+        },
+        "resize-shield": {
+          family: "chat-workspace",
+          registryItems: ["chat-workspace"],
+          states: [],
+        },
+      },
+      registryItems: ["chat-workspace"],
     },
     checkbox: {
       parts: {
@@ -13061,6 +13150,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["swap"],
           states: [],
         },
+        text: {
+          family: "swap",
+          registryItems: ["swap"],
+          states: [],
+        },
       },
       registryItems: ["swap"],
     },
@@ -16487,6 +16581,69 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "oklch(from var(--primary) l c h / 0.55)",
       },
     ],
+    "chat-workspace": [
+      {
+        name: "--cui-chat-workspace-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-chat-workspace-island-max-inline-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "44rem",
+      },
+      {
+        name: "--cui-chat-workspace-transcript-block-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "28rem",
+      },
+      {
+        name: "--cui-chat-workspace-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--card)",
+      },
+      {
+        name: "--cui-chat-workspace-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--card-foreground)",
+      },
+      {
+        name: "--cui-chat-workspace-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--border)",
+      },
+      {
+        name: "--cui-chat-workspace-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "var(--control-rim-width)",
+      },
+      {
+        name: "--cui-chat-workspace-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue:
+          "max(\n      var(--radius-panel),\n      calc(var(--radius-composer) + var(--composer-padding) + var(--cui-chat-workspace-border-width))\n    )",
+      },
+      {
+        name: "--cui-chat-workspace-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "var(--shadow-pop)",
+      },
+      {
+        name: "--cui-chat-workspace-handle-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--foreground) l c h / 0.3)",
+      },
+    ],
     choice: [
       {
         name: "--cui-choice-size",
@@ -18891,6 +19048,12 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--cui-popup-item-foreground)",
       },
       {
+        name: "--cui-popup-command-padding",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
         name: "--cui-popup-command-heading-padding-block",
         syntax: "<length-percentage>",
         initialValue: "0px",
@@ -19222,7 +19385,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-range-indicator-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "9999px",
+        defaultValue: "var(--cui-range-track-radius)",
       },
       {
         name: "--cui-range-indicator-background",
@@ -21008,8 +21171,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tool-approval-body-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue:
-          "max(\n      0px,\n      calc(var(--cui-tool-approval-radius) - var(--cui-tool-approval-padding) - var(--cui-tool-approval-border-width))\n    )",
+        defaultValue: "max(0px, calc(var(--_tool-approval-corner) - var(--cui-tool-approval-padding)))",
       },
       {
         name: "--cui-tool-approval-body-shadow",
@@ -21075,8 +21237,7 @@ export const generatedSkinContract: SkinContract = {
         name: "--cui-tool-approval-preview-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue:
-          "max(\n      0px,\n      calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding) - var(--cui-tool-approval-body-border-width))\n    )",
+        defaultValue: "max(0px, calc(var(--cui-tool-approval-body-radius) - var(--cui-tool-approval-body-padding)))",
       },
       {
         name: "--cui-tool-approval-preview-padding",

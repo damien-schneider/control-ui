@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "composer-engagement",
+  "type": "registry:item",
+  "title": "Composer engagement",
+  "description": "Opens a one-line chat composer while its message has focus, and glides it between its two layouts.",
+  "dependencies": [],
+  "registryDependencies": [
+    "core",
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "src/registry/lib/composer-engagement.ts",
+      "target": "@components/control-ui/lib/composer-engagement.ts",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/registry/lib/composer-glide.ts",
+      "target": "@components/control-ui/lib/composer-glide.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "meta": {
+    "internal": true,
+    "sourceManifestPath": "registry/control-ui/composer-engagement.json"
+  }
+}

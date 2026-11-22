@@ -12,6 +12,11 @@
       "syntax": "none | auto"
     },
     {
+      "name": "--_chat-thread-dock-size",
+      "description": "Control UI chat-layout knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
       "name": "--_dynamic-notification-ink-low",
       "description": "Control UI dynamic-notification-motion knob — registered syntax <color>, fallback oklch(0 0 0 / 0.97). Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -50,6 +55,11 @@
       "name": "--_popover-viewport-height",
       "description": "Control UI popup-motion knob — registered syntax <length> | auto, fallback auto. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length> | auto"
+    },
+    {
+      "name": "--_popup-padding",
+      "description": "Control UI popup knob — registered syntax <length>, fallback 9999px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
     },
     {
       "name": "--_scroll-area-fade-bottom",
@@ -1220,6 +1230,55 @@
     {
       "name": "--cui-chat-message-shadow",
       "description": "Control UI chat-message knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-chat-workspace-background",
+      "description": "Control UI chat-workspace knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-workspace-border-color",
+      "description": "Control UI chat-workspace knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-workspace-border-width",
+      "description": "Control UI chat-workspace knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length>"
+    },
+    {
+      "name": "--cui-chat-workspace-foreground",
+      "description": "Control UI chat-workspace knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-workspace-gap",
+      "description": "Control UI chat-workspace knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chat-workspace-handle-background",
+      "description": "Control UI chat-workspace knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-chat-workspace-island-max-inline-size",
+      "description": "Control UI chat-workspace knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chat-workspace-radius",
+      "description": "Control UI chat-workspace knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-chat-workspace-shadow",
+      "description": "Control UI chat-workspace knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-chat-workspace-transcript-block-size",
+      "description": "Control UI chat-workspace knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-choice-background",
@@ -3089,6 +3148,11 @@
       "name": "--cui-popup-command-heading-text-transform",
       "description": "Control UI popup-lists knob — registered syntax none | uppercase | lowercase | capitalize, fallback none. Re-value it under [data-skin] or per instance via style.",
       "syntax": "none | uppercase | lowercase | capitalize"
+    },
+    {
+      "name": "--cui-popup-command-padding",
+      "description": "Control UI popup-lists knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-popup-description-font-size",

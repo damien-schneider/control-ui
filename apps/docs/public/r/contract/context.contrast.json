@@ -21,6 +21,48 @@
           "data-padding": "none",
           "data-popup-kind": "popover",
           "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-kind": "message",
+          "data-slot": "legend-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
           "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
@@ -40,6 +82,48 @@
           "data-control-family": "context",
           "data-control-ui": "context",
           "data-kind": "message",
+          "data-slot": "legend-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-kind": "reasoning",
           "data-slot": "legend-indicator"
         }
       }
@@ -105,6 +189,48 @@
           "data-padding": "none",
           "data-popup-kind": "popover",
           "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-kind": "source",
+          "data-slot": "legend-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
           "data-side": "top",
           "data-slot": "content",
           "data-surface": "floating",
@@ -124,6 +250,48 @@
           "data-control-family": "context",
           "data-control-ui": "context",
           "data-kind": "source",
+          "data-slot": "legend-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-kind": "system",
           "data-slot": "legend-indicator"
         }
       }
@@ -189,7 +357,7 @@
           "data-padding": "none",
           "data-popup-kind": "popover",
           "data-popup-part": "surface",
-          "data-side": "top",
+          "data-side": "bottom",
           "data-slot": "content",
           "data-surface": "floating",
           "role": "dialog",
@@ -249,6 +417,90 @@
         "attributes": {
           "data-control-family": "context",
           "data-control-ui": "context",
+          "data-kind": "tool",
+          "data-slot": "legend-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "bottom",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-kind": "other",
+          "data-slot": "legend-indicator"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-align": "end",
+          "data-control-family": "popup",
+          "data-control-ui": "popover",
+          "data-open": "",
+          "data-padding": "none",
+          "data-popup-kind": "popover",
+          "data-popup-part": "surface",
+          "data-side": "top",
+          "data-slot": "content",
+          "data-surface": "floating",
+          "role": "dialog",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
+          "data-slot": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "context",
+          "data-control-ui": "context",
           "data-kind": "other",
           "data-slot": "legend-indicator"
         }
@@ -266,7 +518,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-context-segment-reasoning-fill"
+        "fill": "--cui-context-segment-message-fill"
       },
       "anatomy": 1,
       "rendersText": false,
@@ -274,7 +526,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-context-segment-source-fill"
+        "fill": "--cui-context-segment-reasoning-fill"
       },
       "anatomy": 2,
       "rendersText": false,
@@ -282,7 +534,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-context-segment-system-fill"
+        "fill": "--cui-context-segment-reasoning-fill"
       },
       "anatomy": 3,
       "rendersText": false,
@@ -290,7 +542,7 @@
     },
     {
       "knobs": {
-        "fill": "--cui-context-segment-tool-fill"
+        "fill": "--cui-context-segment-source-fill"
       },
       "anatomy": 4,
       "rendersText": false,
@@ -298,9 +550,57 @@
     },
     {
       "knobs": {
-        "fill": "--cui-context-track-fill"
+        "fill": "--cui-context-segment-source-fill"
       },
       "anatomy": 5,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-context-segment-system-fill"
+      },
+      "anatomy": 6,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-context-segment-system-fill"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-context-segment-tool-fill"
+      },
+      "anatomy": 8,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-context-segment-tool-fill"
+      },
+      "anatomy": 9,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-context-track-fill"
+      },
+      "anatomy": 10,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-context-track-fill"
+      },
+      "anatomy": 11,
       "rendersText": false,
       "state": false
     }

@@ -27,6 +27,20 @@ export type KnobReachabilityProbe = {
   undeclared: string[];
 };
 
+/** Popup-kind-scoped ownership folds into its part: the probe checks a part, whichever kinds stamp it. */
+function groupKnobsByPart(declared: ReadonlySet<string>): Record<string, Record<string, string[]>> {
+  const knobsByFamily: Record<string, Record<string, string[]>> = {};
+  const contract = collectSkinContract();
+  for (const [anatomy, byProperty] of collectKnobOwnership(contract, createSubjectAnatomyResolver(contract))) {
+    const knobs = [...byProperty.values()].flatMap((set) => [...set]).filter((knob) => declared.has(knob));
+    if (knobs.length === 0) continue;
+    const [family, part] = anatomy.split(anatomySeparator);
+    const known = knobsByFamily[family]?.[part] ?? [];
+    knobsByFamily[family] = { ...knobsByFamily[family], [part]: [...new Set([...known, ...knobs])].sort() };
+  }
+  return knobsByFamily;
+}
+
 /**
  * Re-values every knob a recipe declares, at the anatomy the recipe declares it on — the same move a skin makes.
  * A part that still resolves its `@property` initial value is a part no skin can reach.
@@ -59,19 +73,10 @@ export function buildKnobReachabilityProbe(): KnobReachabilityProbe {
     for (const [selector, declarations] of bySelector) rules.push(`${selector} { ${declarations.join(" ")} }`);
   }
 
-  const knobsByFamily: Record<string, Record<string, string[]>> = {};
-  const contract = collectSkinContract();
-  for (const [anatomy, byProperty] of collectKnobOwnership(contract, createSubjectAnatomyResolver(contract))) {
-    const knobs = [...new Set([...byProperty.values()].flatMap((set) => [...set]))].filter((knob) => declared.has(knob));
-    if (knobs.length === 0) continue;
-    const [family, part] = anatomy.split(anatomySeparator);
-    knobsByFamily[family] = { ...knobsByFamily[family], [part]: knobs.sort() };
-  }
-
   return {
     css: rules.join("\n"),
     expected,
-    knobsByFamily,
+    knobsByFamily: groupKnobsByPart(declared),
     undeclared: Object.keys(expected)
       .filter((knob) => !declared.has(knob))
       .sort(),

@@ -48,6 +48,10 @@
     and popup bars set it, and the button and field radius knobs default to `var(--nest-radius, …)`. A skin that
     re-values `--cui-button-radius` or `--cui-field-radius` keeps that wrapper, or its buttons stop following the
     container.</GuidePoint>
+    <GuidePoint>Each container's corner depends only on the knobs a skin re-values, its preferred radius and its padding.
+    The fitted value lives in a private `--_*` property, so no override can set one half of a nested pair without the
+    other. `e2e/concentric-sweep.pw.ts` measures the painted corners of every component and kit page, plus the opened
+    portal surfaces, in every skin. It flags any part whose corner is not the surface radius minus the inset.</GuidePoint>
   </GuidePoints>
 
   The compiled styles set the browser floor: registered custom properties and relative color syntax — 274

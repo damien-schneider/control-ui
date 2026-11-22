@@ -3,13 +3,19 @@
     block-size: var(--target-min);
     gap: calc(var(--spacing) * 1.5);
     padding-block: 0;
-    padding-inline: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+    --_source-badge-padding-start: calc(var(--spacing) * 1.5);
+    padding-inline: var(--_source-badge-padding-start) calc(var(--spacing) * 2);
     --cui-source-badge-background: var(--background);
     --cui-source-badge-foreground: var(--muted-foreground);
     --cui-source-badge-hover-background: var(--hover-fill);
     --cui-source-badge-hover-foreground: var(--foreground);
     --cui-source-badge-favicon-background: var(--muted);
     --cui-source-badge-favicon-radius: var(--radius-sm);
+    --_source-badge-favicon-nest: calc(
+      min(var(--cui-badge-radius), var(--target-min) / 2) -
+      var(--_source-badge-padding-start) -
+      var(--cui-badge-border-width)
+    );
     background: var(--cui-source-badge-background);
     color: var(--cui-source-badge-foreground);
     font-weight: var(--font-weight-normal);
@@ -33,11 +39,15 @@
 
   :where([data-control-family="avatar"][data-source-badge-favicon][data-slot="root"]) {
     --cui-avatar-size: calc(var(--spacing) * 3.5);
-    --cui-avatar-radius: var(--cui-source-badge-favicon-radius);
+    --_source-badge-favicon-radius: calc(
+      max(0px, var(--_source-badge-favicon-nest)) +
+      clamp(0px, var(--_source-badge-favicon-nest) * -1000, var(--cui-source-badge-favicon-radius))
+    );
+    --cui-avatar-radius: var(--_source-badge-favicon-radius);
     --cui-avatar-fallback-background: var(--cui-source-badge-favicon-background);
     --cui-avatar-fallback-foreground: var(--cui-source-badge-foreground);
     background: var(--cui-source-badge-favicon-background);
-    border-radius: var(--cui-source-badge-favicon-radius);
+    border-radius: var(--_source-badge-favicon-radius);
   }
 }
 

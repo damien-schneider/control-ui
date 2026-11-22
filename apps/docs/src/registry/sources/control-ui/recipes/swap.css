@@ -36,6 +36,22 @@
     display: inline-block;
   }
 
+  :where([data-control-family="swap"][data-slot="root"][data-text]) {
+    max-inline-size: 100%;
+    overflow-x: clip;
+    vertical-align: bottom;
+  }
+
+  :where([data-control-family="swap"][data-slot="root"][data-text] > [data-slot="item"]) {
+    max-inline-size: 100%;
+  }
+
+  :where([data-control-family="swap"][data-slot="root"][data-text] [data-control-family="swap"][data-slot="label"]) {
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   :where([data-control-family="swap"][data-swapped] > [data-slot="item"][data-state="active"]) {
     animation: cui-swap-item-enter var(--cui-swap-animation-duration) var(--cui-swap-easing) both;
   }

@@ -45,6 +45,11 @@ const chatLayoutRecipeFile = sourceFile(
   "src/registry/sources/control-ui/recipes/chat-layout.css",
   "recipe-css",
 );
+const chatWorkspaceRecipeFile = sourceFile(
+  "Chat workspace recipe — paint + @property knobs",
+  "src/registry/sources/control-ui/recipes/chat-workspace.css",
+  "recipe-css",
+);
 const audioRecorderRecipeFile = sourceFile(
   "Audio recorder recipe — paint + @property knobs",
   "src/registry/sources/control-ui/recipes/audio-recorder.css",
@@ -164,6 +169,7 @@ export const kitEntries = [
         sourceFile("Exit-animation ghost", "src/registry/sources/control-ui/chat-composer-editor/ghost.ts", "support"),
         sourceFile("Editor motion (blur choreography)", "src/registry/sources/control-ui/chat-composer-editor.css", "editor-css"),
         chatComposerRecipeFile,
+        sourceFile("One-line recipe", "src/registry/sources/control-ui/recipes/chat-composer-line.css", "recipe-css"),
       ],
     },
     preview: preview(() =>
@@ -812,6 +818,30 @@ export const kitEntries = [
         ),
       },
     ],
+  },
+  {
+    id: "chat-workspace",
+    category: "chat",
+    kind: "Kit",
+    name: "ChatWorkspace",
+    summary: "A chat that floats as an island over the content or pins beside it as a resizable column, without remounting.",
+    registryKind: "chat-workspace",
+    paths: {
+      example: sourceFile("Example", "src/registry/examples/control-ui/chat-workspace.tsx", "example"),
+      usage: {
+        mastra: sourceFile("Usage", "src/registry/usage/components/chat-workspace.tsx", "usage"),
+        "ai-sdk": sourceFile("Usage", "src/registry/usage/components/chat-workspace.tsx", "usage"),
+      },
+      source: sourceFile("Component", "src/registry/sources/control-ui/chat-workspace.tsx", "component"),
+      supportFiles: [
+        sourceFile("Workspace state", "src/registry/sources/control-ui/chat-workspace-state.ts", "component"),
+        sourceFile("Resize handle", "src/registry/sources/control-ui/chat-workspace-resize-handle.tsx", "component"),
+        chatWorkspaceRecipeFile,
+      ],
+    },
+    preview: preview(() =>
+      import("@/src/registry/examples/control-ui/chat-workspace").then((mod) => ({ default: mod.ChatWorkspaceExample })),
+    ),
   },
   {
     id: "thread-rail",

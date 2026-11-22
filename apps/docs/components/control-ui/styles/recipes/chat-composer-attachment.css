@@ -132,7 +132,7 @@
     inline-size: calc(var(--spacing) * 5);
     block-size: calc(var(--spacing) * 5);
     padding: 0;
-    --cui-button-radius: 9999px;
+    --nest-radius: 9999px;
     --cui-button-icon: calc(var(--spacing) * 3);
     --cui-button-background: var(--foreground);
     --cui-button-foreground: var(--background);

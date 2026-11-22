@@ -21,6 +21,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Registry dependencies
 
 - `button`
+- `chat-composer`
 - `core`
 - `live-status`
 - `scroll-area`

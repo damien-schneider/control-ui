@@ -3,7 +3,7 @@
     --cui-range-track-radius: 9999px;
     --cui-range-track-size: calc(var(--spacing) * 2);
     --cui-range-track-background: var(--muted);
-    --cui-range-indicator-radius: 9999px;
+    --cui-range-indicator-radius: var(--cui-range-track-radius);
     --cui-range-indicator-background: var(--primary);
     --cui-range-thumb-radius: 9999px;
     --cui-range-thumb-inline-size: calc(var(--spacing) * 3.5);
@@ -29,7 +29,6 @@
   :where([data-control-family="range"][data-range-kind="slider"][data-slot="root"][data-variant="plain"]) {
     --cui-range-track-radius: min(var(--radius-sm), 3px);
     --cui-range-track-background: var(--hover-fill);
-    --cui-range-indicator-radius: var(--cui-range-track-radius);
     --cui-range-indicator-background: oklch(from var(--foreground) l c h / 0.14);
     --cui-range-thumb-radius: min(var(--radius-sm), 1px);
     --cui-range-thumb-inline-size: 0.125rem;

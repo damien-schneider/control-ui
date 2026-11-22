@@ -65,11 +65,34 @@
 
   :where([data-control-family="chat-composer"]:is([data-slot="textarea"], [data-slot="fallback"])),
   :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
+    inline-size: 100%;
+    min-block-size: calc(var(--spacing) * 16);
+    padding: var(--padding-y) var(--padding-x);
+    resize: none;
     border: 0;
     background: transparent;
     color: var(--cui-chat-composer-input-foreground);
     --focus-ring-width: 0px;
     outline: none;
+  }
+
+  :where([data-control-family="chat-composer"][data-slot="textarea"]) {
+    field-sizing: content;
+    max-block-size: 40dvh;
+  }
+
+  :where([data-control-family="chat-composer"][data-slot="editor"] .ProseMirror) {
+    max-block-size: 40dvh;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+
+  :where([data-control-family="chat-composer"][data-slot="editor-root"] > [data-slot="placeholder"]) {
+    position: absolute;
+    inset-inline: var(--padding-x);
+    inset-block-start: var(--padding-y);
+    pointer-events: none;
   }
 
   :where([data-control-family="chat-composer"][data-slot="textarea"])::placeholder,
@@ -93,6 +116,9 @@
       0px,
       calc(var(--cui-chat-composer-shell-radius) - var(--cui-chat-composer-shell-border-width) - var(--composer-padding))
     );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     min-block-size: calc(var(--control-h-xs) + var(--composer-padding) + var(--spacing) * 0.5);
     gap: calc(var(--spacing) * 2);
     flex-wrap: wrap;
@@ -100,8 +126,16 @@
     padding-block-end: var(--composer-padding);
   }
 
+  :where(
+    [data-control-family="chat-composer"][data-slot="toolbar"]
+      > :last-child:not([data-control-family="chat-composer"][data-slot="tools"] ~ *)
+  ) {
+    margin-inline-start: auto;
+  }
+
   :where([data-control-family="chat-composer"][data-slot="tools"]) {
     gap: calc(var(--spacing) * 1.5);
+    margin-inline-end: auto;
   }
 
   :where([data-control-family="chat-composer"]:is([data-slot="header"], [data-slot="tools"], [data-slot="footer"])) {
@@ -115,6 +149,9 @@
   }
 
   :where([data-control-family="chat-composer"][data-slot="header"]) {
+    display: flex;
+    align-items: center;
+    min-inline-size: 0;
     gap: calc(var(--spacing) * 3);
     padding-inline: var(--composer-padding);
     padding-block-start: var(--composer-padding);

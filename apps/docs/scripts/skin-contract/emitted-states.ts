@@ -1,3 +1,4 @@
+import type { ChatComposerLayout } from "../../src/registry/hooks/use-chat-composer";
 import type { ChatDensity, ChatMessageLayout, ChatRole, ChatState } from "../../src/registry/hooks/use-chat-message";
 import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone";
 import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
@@ -7,6 +8,7 @@ import type { ActivityDetailFormat, ActivityDetailTone, ActivityKind, ActivitySt
 import type { AudioDevicePermission } from "../../src/registry/sources/control-ui/audio-device-select";
 import type { BarAudioVisualizerProps } from "../../src/registry/sources/control-ui/audio-visualizer-bar";
 import type { ChatLayoutChrome } from "../../src/registry/sources/control-ui/chat-layout";
+import type { ChatWorkspaceSide } from "../../src/registry/sources/control-ui/chat-workspace-state";
 import type { ContextLegendItemTone } from "../../src/registry/sources/control-ui/context";
 import type { ContextSegmentKind, ContextStatus } from "../../src/registry/sources/control-ui/context-model";
 import type { HoverIndicator } from "../../src/registry/sources/control-ui/control-props";
@@ -131,6 +133,8 @@ export type EmittedStateContract = {
   "button-group:text:data-size": ControlSize;
   "chat-composer:root:data-density": ChatDensity;
   "chat-composer:root:data-state": "idle" | "submitting" | "disabled";
+  "chat-composer:root:data-layout": ChatComposerLayout;
+  "chat-composer:root:data-draft": "";
   "chat-composer:shell:data-state": "idle" | "submitting" | "disabled";
   "chat-composer:mention:data-icon": string;
   "chat-composer:mention:data-id": string;
@@ -140,6 +144,9 @@ export type EmittedStateContract = {
   "chat-composer-attachment:root:data-variant": "preview" | "file";
   "chat-composer-attachment:description:data-state": "idle" | "uploading" | "uploaded" | "error";
   "chat-layout:root:data-chrome": ChatLayoutChrome;
+  "chat-workspace:root:data-side": ChatWorkspaceSide;
+  "chat-workspace:root:data-docked": true;
+  "chat-workspace:root:data-expanded": true;
   "chat-message:root:data-density": ChatDensity;
   "chat-message:root:data-kind": "typing";
   "chat-message:root:data-layout": ChatMessageLayout;

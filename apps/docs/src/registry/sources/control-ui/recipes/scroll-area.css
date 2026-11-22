@@ -89,8 +89,9 @@
         to bottom,
         oklch(0 0 0 / 0),
         oklch(0 0 0) min(50%, var(--_scroll-area-fade-top)),
-        oklch(0 0 0) calc(100% - min(50%, var(--_scroll-area-fade-bottom))),
-        oklch(0 0 0 / 0)
+        oklch(0 0 0) calc(100% - var(--scroll-area-inset-end) - min(50%, var(--_scroll-area-fade-bottom))),
+        oklch(0 0 0 / 0) calc(100% - var(--scroll-area-inset-end)),
+        oklch(0 0 0) calc(100% - var(--scroll-area-inset-end))
       ),
       linear-gradient(
         to right,
@@ -156,7 +157,8 @@
   }
 
   :where(
-    [data-control-family="scroll-area"][data-slot="root"][data-mask] > [data-scroll-area-viewport]:is(:focus-visible, :has(:focus-visible))
+    [data-control-family="scroll-area"][data-slot="root"][data-mask]
+      > [data-scroll-area-viewport]:is(:focus-visible, :has(:focus-visible:not([data-scroll-area-pinned] *)))
   ) {
     mask-image: none;
   }
@@ -176,8 +178,13 @@
     --_scroll-area-edge-enter: 0;
   }
 
+  :where([data-control-family="scroll-area"][data-slot="root"] > :is([data-scroll-area-viewport], [data-slot="scrollbar"])) {
+    --scroll-area-inset-end: inherit;
+  }
+
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
     inline-size: var(--cui-scroll-area-scrollbar-size);
+    padding-block-end: var(--scroll-area-inset-end);
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {

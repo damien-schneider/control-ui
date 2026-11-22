@@ -64,6 +64,7 @@ It uses direct keyboard events, checks CPU and style budgets, and verifies selec
 It measures CPU, style work, React commits, and focus changes, and verifies disabled items, keyboard selection, and nested pointer targets.
 `e2e/infinite-canvas-performance.pw.ts` checks that a 300-item canvas pans and zooms without rerendering items and writes the transform once per frame.
 `e2e/contrast-sweep.pw.ts` renders every docs page across skins and modes and checks text contrast;
+`e2e/concentric-sweep.pw.ts` renders every component and kit page across skins and checks that nested corners follow their surface's curve;
 `e2e/sidebar-controls-contrast.pw.ts` checks the docs sidebar controls in every skin and mode.
 
 React Compiler is enabled in the docs app. Start `NEXT_PUBLIC_REACT_SCAN=1 bun run dev` to enable React Scan;

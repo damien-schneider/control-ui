@@ -16,6 +16,7 @@
   "registryDependencies": [
     "button",
     "chat-message",
+    "composer-engagement",
     "core",
     "file-paste",
     "live-status",
@@ -81,6 +82,11 @@
       "type": "registry:component"
     },
     {
+      "path": "src/registry/sources/control-ui/recipes/chat-composer-line.css",
+      "target": "@components/control-ui/styles/recipes/chat-composer-line.css",
+      "type": "registry:file"
+    },
+    {
       "path": "src/registry/sources/control-ui/recipes/chat-composer.css",
       "target": "@components/control-ui/styles/recipes/chat-composer.css",
       "type": "registry:file"
@@ -88,7 +94,8 @@
   ],
   "css": {
     "@import \"../components/control-ui/styles/recipes/chat-composer.css\"": {},
-    "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
+    "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {},
+    "@import \"../components/control-ui/styles/recipes/chat-composer-line.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/control-ui/chat-composer.json"

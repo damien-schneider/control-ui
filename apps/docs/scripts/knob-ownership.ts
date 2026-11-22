@@ -7,18 +7,20 @@ import { knobPrefix } from "./knob-contracts/collect";
 import { flattenCompound, subjectCompound } from "./selector-bucketing";
 import type { SkinContract } from "./skin-contract/model";
 
-export type Anatomy = { family: string; part: string | undefined };
+export type Anatomy = { family: string; part: string | undefined; popupKind?: string };
 
 /** A core rule keyed on a bare `[data-control-family]` paints every family at once. */
 const EVERY_FAMILY = "*";
 
 const CORE_ROOT = "src/registry/sources/control-ui";
 const VAR_REFERENCE = /var\(\s*(--[\w-]+)/g;
+const POPUP_KIND_ATTRIBUTE = "data-popup-kind";
 const PSEUDO_ELEMENTS = /^(::|:(before|after|first-line|first-letter)$)/;
 
 export const anatomySeparator = "\u0000";
 
-const anatomyKey = ({ family, part }: Anatomy): string => `${family}${anatomySeparator}${part ?? ""}`;
+const anatomyKey = ({ family, part, popupKind }: Anatomy): string =>
+  [family, part ?? "", ...(popupKind ? [popupKind] : [])].join(anatomySeparator);
 
 function readVars(value: string): string[] {
   return [...value.matchAll(VAR_REFERENCE)].map((match) => match[1]);
@@ -114,7 +116,7 @@ function createAnatomyOf(contract: SkinContract): (compound: Compound) => Anatom
     const site = scope && slot ? `${scope}/${slot}` : undefined;
     const family = attributeValue(compound, familyAttribute) ?? (site ? familyOfPart.get(site) : undefined);
     if (!family) return keysEveryFamily(compound) ? { family: EVERY_FAMILY, part: partOf(compound, EVERY_FAMILY, undefined) } : undefined;
-    return { family, part: partOf(compound, family, site) };
+    return { family, part: partOf(compound, family, site), popupKind: attributeValue(compound, POPUP_KIND_ATTRIBUTE) };
   };
 
   return anatomyOf;
@@ -197,10 +199,9 @@ export function collectKnobOwnership(
 /** A recipe rule keyed on the family alone paints every part of it, so its knobs own the property there too. */
 export function knobsPainting(ownership: KnobOwnership, anatomy: Anatomy, property: string): string[] {
   if (anatomy.family === EVERY_FAMILY) {
-    const partOfKey = (key: string): string => key.slice(key.indexOf(anatomySeparator) + 1);
     const reached = [...ownership.entries()].filter(([key]) => {
-      const part = partOfKey(key);
-      return anatomy.part === undefined || part === "" || part === anatomy.part;
+      const [, part, popupKind] = key.split(anatomySeparator);
+      return popupKind === undefined && (anatomy.part === undefined || part === "" || part === anatomy.part);
     });
     return [...new Set(reached.flatMap(([, byProperty]) => [...(byProperty.get(property) ?? [])]))];
   }
@@ -208,6 +209,8 @@ export function knobsPainting(ownership: KnobOwnership, anatomy: Anatomy, proper
     { family: EVERY_FAMILY, part: undefined },
     { family: EVERY_FAMILY, part: anatomy.part },
     { family: anatomy.family, part: undefined },
+    { family: anatomy.family, part: undefined, popupKind: anatomy.popupKind },
+    { family: anatomy.family, part: anatomy.part },
     anatomy,
   ];
   return [...new Set(reaching.flatMap((key) => [...(ownership.get(anatomyKey(key))?.get(property) ?? [])]))];

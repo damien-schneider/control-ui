@@ -12,7 +12,8 @@
     "core",
     "effects",
     "live-status",
-    "scroll-area"
+    "scroll-area",
+    "swap"
   ],
   "files": [
     {

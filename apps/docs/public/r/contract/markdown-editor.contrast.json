@@ -17,6 +17,7 @@
           "data-control-family": "chat-composer",
           "data-control-ui": "chat-composer",
           "data-density": "comfortable",
+          "data-layout": "stacked",
           "data-slot": "root",
           "data-state": "idle"
         }

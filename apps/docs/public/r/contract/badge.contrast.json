@@ -160,6 +160,27 @@
           "data-control-ui": "badge",
           "data-size": "md",
           "data-slot": "root",
+          "data-variant": "ghost"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-color": "neutral",
+          "data-control-family": "badge",
+          "data-control-ui": "badge",
+          "data-size": "md",
+          "data-slot": "root",
           "data-variant": "outline"
         }
       }
@@ -636,27 +657,6 @@
           "data-size": "sm",
           "data-slot": "root",
           "data-variant": "outline"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "wide"
-        }
-      },
-      {
-        "attributes": {
-          "data-color": "red",
-          "data-control-family": "badge",
-          "data-control-ui": "badge",
-          "data-size": "md",
-          "data-slot": "root",
-          "data-variant": "default"
         }
       }
     ],

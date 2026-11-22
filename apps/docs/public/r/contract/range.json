@@ -73,7 +73,7 @@
       "name": "--cui-range-indicator-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "9999px"
+      "defaultValue": "var(--cui-range-track-radius)"
     },
     {
       "name": "--cui-range-indicator-background",

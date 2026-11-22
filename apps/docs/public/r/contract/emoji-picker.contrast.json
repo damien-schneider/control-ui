@@ -43,98 +43,6 @@
           "data-control-ui": "emoji-picker",
           "data-focusable": "",
           "data-orientation": "horizontal",
-          "data-slot": "category",
-          "tabindex": "-1"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
-          "data-control-family": "popup",
-          "data-control-ui": "popover",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-focused": "",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-focusable": "",
-          "data-orientation": "horizontal",
-          "data-slot": "category",
-          "tabindex": "0"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
-          "data-control-family": "popup",
-          "data-control-ui": "popover",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-focused": "",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "aria-disabled": "false",
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-focusable": "",
-          "data-orientation": "horizontal",
           "data-slot": "emoji",
           "tabindex": "-1"
         }
@@ -542,48 +450,6 @@
         "attributes": {
           "data-control-family": "emoji-picker",
           "data-control-ui": "emoji-picker",
-          "data-slot": "category-header"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-align": "center",
-          "data-control-family": "popup",
-          "data-control-ui": "popover",
-          "data-open": "",
-          "data-padding": "none",
-          "data-popup-kind": "popover",
-          "data-popup-part": "surface",
-          "data-side": "bottom",
-          "data-slot": "content",
-          "data-surface": "floating",
-          "role": "dialog",
-          "tabindex": "-1"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
-          "data-focused": "",
-          "data-slot": "root"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "emoji-picker",
-          "data-control-ui": "emoji-picker",
           "data-slot": "recent-label"
         }
       }
@@ -677,7 +543,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 0,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -685,7 +551,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 1,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -717,7 +583,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 5,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -725,7 +591,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 6,
-      "rendersText": true,
+      "rendersText": false,
       "state": true
     },
     {
@@ -733,7 +599,7 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 7,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
@@ -741,24 +607,26 @@
         "fill": "--cui-emoji-picker-active-background"
       },
       "anatomy": 8,
-      "rendersText": false,
+      "rendersText": true,
       "state": true
     },
     {
       "knobs": {
-        "fill": "--cui-emoji-picker-active-background"
+        "fill": "--cui-emoji-picker-header-background",
+        "text": "--cui-emoji-picker-header-foreground"
       },
       "anatomy": 9,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-emoji-picker-active-background"
+        "fill": "--cui-emoji-picker-header-background",
+        "text": "--cui-emoji-picker-header-foreground"
       },
       "anatomy": 10,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
@@ -766,33 +634,6 @@
         "text": "--cui-emoji-picker-header-foreground"
       },
       "anatomy": 11,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-emoji-picker-header-background",
-        "text": "--cui-emoji-picker-header-foreground"
-      },
-      "anatomy": 12,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-emoji-picker-header-background",
-        "text": "--cui-emoji-picker-header-foreground"
-      },
-      "anatomy": 13,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-emoji-picker-header-background",
-        "text": "--cui-emoji-picker-header-foreground"
-      },
-      "anatomy": 14,
       "rendersText": true,
       "state": false
     }

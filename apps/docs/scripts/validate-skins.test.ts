@@ -172,4 +172,20 @@ describe("skin validator", () => {
     const table = '[data-skin="test"] [data-control-family="table"][data-slot="root"]';
     expect(validate(`@layer components { ${table} { box-shadow: 0 0 0 1px red; } }`).stderr).toBe("");
   });
+
+  test("a knob a recipe paints on one popup kind owns that kind, not every popup surface", () => {
+    const dialog = '[data-control-ui="dialog"][data-popup-part="surface"][data-control-family="popup"]';
+    const command =
+      '[data-control-ui="command"][data-slot="root"][data-control-family="popup"][data-popup-kind="command"][data-popup-part="surface"]';
+    expect(validate(`@layer components { [data-skin="test"] :where(${dialog}) { padding: 1.5rem; } }`).stderr).toBe("");
+    const bypass = validate(`@layer components { [data-skin="test"] :where(${command}) { padding: 0.25rem; } }`);
+    expect(bypass.stderr).toContain("paints padding directly — re-value --cui-popup-command-padding instead");
+  });
+
+  test("rejects re-valuing a computed corner, which breaks the nesting it solves for", () => {
+    const result = validate(':root[data-skin="test"] { --radius-popup-item: 0.5rem; --radius-popover: 12px; }');
+    expect(result.exitCode).toBe(1);
+    expect(result.stderr).toContain("--radius-popover is computed from other tokens");
+    expect(result.stderr).not.toContain("--radius-popup-item ");
+  });
 });

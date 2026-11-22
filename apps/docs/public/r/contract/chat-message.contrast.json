@@ -819,6 +819,80 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-slot": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "compact",
+          "data-layout": "bubble",
+          "data-role": "assistant",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "assistant",
+          "data-slot": "content"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-workspace",
+          "data-control-ui": "chat-workspace",
+          "data-slot": "panel"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-density": "compact",
+          "data-layout": "bubble",
+          "data-role": "user",
+          "data-slot": "root",
+          "data-state": "idle"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "chat-message",
+          "data-control-ui": "chat-message",
+          "data-role": "user",
+          "data-slot": "content"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
           "data-width": "wide"
         }
       },
@@ -1777,9 +1851,27 @@
     },
     {
       "knobs": {
-        "fill": "--cui-chat-message-pending-dot-color"
+        "fill": "--cui-chat-message-background",
+        "text": "--cui-chat-message-foreground"
       },
       "anatomy": 26,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-message-background",
+        "text": "--cui-chat-message-foreground"
+      },
+      "anatomy": 27,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-message-pending-dot-color"
+      },
+      "anatomy": 28,
       "rendersText": false,
       "state": false
     },
@@ -1787,24 +1879,8 @@
       "knobs": {
         "fill": "--cui-chat-message-pending-dot-color"
       },
-      "anatomy": 27,
-      "rendersText": false,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-chat-message-reaction-background"
-      },
-      "anatomy": 28,
-      "rendersText": true,
-      "state": false
-    },
-    {
-      "knobs": {
-        "fill": "--cui-chat-message-reaction-background"
-      },
       "anatomy": 29,
-      "rendersText": true,
+      "rendersText": false,
       "state": false
     },
     {
@@ -1833,19 +1909,19 @@
     },
     {
       "knobs": {
-        "fill": "--cui-chat-message-row-hover-background"
+        "fill": "--cui-chat-message-reaction-background"
       },
       "anatomy": 33,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
-        "fill": "--cui-chat-message-row-hover-background"
+        "fill": "--cui-chat-message-reaction-background"
       },
       "anatomy": 34,
       "rendersText": true,
-      "state": true
+      "state": false
     },
     {
       "knobs": {
@@ -1905,9 +1981,25 @@
     },
     {
       "knobs": {
-        "text": "--cui-chat-message-foreground"
+        "fill": "--cui-chat-message-row-hover-background"
       },
       "anatomy": 42,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "fill": "--cui-chat-message-row-hover-background"
+      },
+      "anatomy": 43,
+      "rendersText": true,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-chat-message-foreground"
+      },
+      "anatomy": 44,
       "rendersText": true,
       "state": false
     },
@@ -1915,7 +2007,7 @@
       "knobs": {
         "text": "--cui-chat-message-foreground"
       },
-      "anatomy": 43,
+      "anatomy": 45,
       "rendersText": true,
       "state": false
     }

@@ -3,6 +3,7 @@
 import { BookOpen, Globe, Radio, Search, SquareTerminal } from "lucide-react";
 
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Activity,
@@ -40,6 +41,31 @@ const thinkingTrace = [
   { icon: <SquareTerminal />, label: "Run the focused render tests", state: "pending" },
 ] satisfies Array<{ icon: ReactNode; label: string; state: TimelineState }>;
 
+const runSteps = [
+  "Reading activity.tsx",
+  "Searching the registry for disclosure patterns",
+  "Editing chat-layout.tsx",
+  "Running the render tests",
+];
+
+function LiveRunActivity() {
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setStep((current) => (current + 1) % runSteps.length), 1800);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return (
+    <Activity kind="tool" state="running">
+      <ActivityRow>
+        <ActivityIcon />
+        <ActivityTitle>{runSteps[step]}</ActivityTitle>
+      </ActivityRow>
+    </Activity>
+  );
+}
+
 export function ActivityExample() {
   return (
     <div className="mx-auto grid w-full max-w-xl gap-5">
@@ -61,6 +87,8 @@ export function ActivityExample() {
           <ActivityStatus>Delivered</ActivityStatus>
         </ActivityRow>
       </Activity>
+
+      <LiveRunActivity />
 
       <Activity kind="reasoning" state="running" defaultOpen>
         <ActivityTrigger>

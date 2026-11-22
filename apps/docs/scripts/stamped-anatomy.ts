@@ -51,12 +51,30 @@ const componentTagOf = (element: any): string | undefined => {
   return tag !== undefined && /^[A-Z]/.test(tag) ? tag : undefined;
 };
 
+const isNullish = (node: any): boolean => node?.type === "NullLiteral" || (node?.type === "Identifier" && node.name === "undefined");
+
+/** `cond ? "surface" : undefined` stamps the literal on some renders and nothing on the others. */
+const optionalLiteralOf = (node: any): string | undefined => {
+  const expression = unwrapExpression(node);
+  if (expression?.type !== "ConditionalExpression") return undefined;
+  const { consequent, alternate } = expression;
+  if (consequent?.type === "StringLiteral" && isNullish(alternate)) return consequent.value;
+  if (alternate?.type === "StringLiteral" && isNullish(consequent)) return alternate.value;
+  return undefined;
+};
+
+const jsxAttributeLiteral = (value: any): string | undefined => {
+  if (value?.type === "StringLiteral") return value.value;
+  if (value?.type === "JSXExpressionContainer") return optionalLiteralOf(value.expression);
+  return undefined;
+};
+
 const jsxLiteralPairs = (element: any): AnatomyPair[] =>
   (element?.openingElement?.attributes ?? []).flatMap((attribute: any) => {
     if (attribute.type !== "JSXAttribute") return [];
     if (attribute.name?.type !== "JSXIdentifier" || !isIdentityAttributeName(attribute.name.name)) return [];
-    if (attribute.value?.type !== "StringLiteral") return [];
-    return [[attribute.name.name, attribute.value.value] as AnatomyPair];
+    const literal = jsxAttributeLiteral(attribute.value);
+    return literal === undefined ? [] : [[attribute.name.name, literal] as AnatomyPair];
   });
 
 const objectPropertyName = (property: any): string | undefined => {

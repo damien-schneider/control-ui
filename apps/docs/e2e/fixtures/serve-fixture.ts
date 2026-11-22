@@ -38,8 +38,11 @@ const stylesheetBuilds = {
 };
 
 const fixtureStylesheets = {
+  "agent-turn": "docs",
   "app-shell": "docs",
+  "chat-composer-line": "docs",
   "chat-message-edit": "docs",
+  "chat-workspace": "docs",
   "component-performance": "docs",
   "dropdown-hover": "docs",
   "infinite-canvas": "docs",

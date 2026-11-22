@@ -100,7 +100,8 @@
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/effects.json",
         "https://control-ui.dev/r/live-status.json",
-        "https://control-ui.dev/r/scroll-area.json"
+        "https://control-ui.dev/r/scroll-area.json",
+        "https://control-ui.dev/r/swap.json"
       ],
       "files": [
         {
@@ -309,6 +310,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -440,6 +442,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -578,6 +581,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -716,6 +720,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -854,6 +859,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -992,6 +998,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -1130,6 +1137,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -1268,6 +1276,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -1406,6 +1415,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -1544,6 +1554,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -1682,6 +1693,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
@@ -2537,6 +2549,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/inline-attachment.json",
         "https://control-ui.dev/r/inline-citation.json",
@@ -2591,6 +2604,7 @@
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/composer-engagement.json",
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/file-paste.json",
         "https://control-ui.dev/r/live-status.json",
@@ -2656,6 +2670,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/registry/sources/control-ui/recipes/chat-composer-line.css",
+          "target": "@components/control-ui/styles/recipes/chat-composer-line.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/registry/sources/control-ui/recipes/chat-composer.css",
           "target": "@components/control-ui/styles/recipes/chat-composer.css",
           "type": "registry:file"
@@ -2663,7 +2682,8 @@
       ],
       "css": {
         "@import \"../components/control-ui/styles/recipes/chat-composer.css\"": {},
-        "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {}
+        "@import \"../components/control-ui/styles/chat-composer-editor.css\"": {},
+        "@import \"../components/control-ui/styles/recipes/chat-composer-line.css\"": {}
       }
     },
     {
@@ -2677,6 +2697,7 @@
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
+        "https://control-ui.dev/r/chat-composer.json",
         "https://control-ui.dev/r/core.json",
         "https://control-ui.dev/r/live-status.json",
         "https://control-ui.dev/r/scroll-area.json",
@@ -2821,6 +2842,57 @@
         "@import \"../components/control-ui/styles/recipes/chat-message.css\"": {},
         "@import \"../components/control-ui/styles/recipes/chat-message-edit.css\"": {},
         "@import \"../components/control-ui/styles/recipes/chat-message-social.css\"": {}
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chat-workspace",
+      "type": "registry:component",
+      "title": "ChatWorkspace",
+      "description": "A chat that floats as an island over the content or pins beside it as a resizable column, without remounting.",
+      "dependencies": [
+        "lucide-react@^1.47.0"
+      ],
+      "registryDependencies": [
+        "https://control-ui.dev/r/button.json",
+        "https://control-ui.dev/r/core.json",
+        "https://control-ui.dev/r/motion.json",
+        "https://control-ui.dev/r/view-transition.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/docs/chat-workspace.md",
+          "target": "@components/control-ui/docs/chat-workspace.md",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-workspace-fold.ts",
+          "target": "@components/control-ui/chat-workspace-fold.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-workspace-resize-handle.tsx",
+          "target": "@components/control-ui/chat-workspace-resize-handle.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-workspace-state.ts",
+          "target": "@components/control-ui/chat-workspace-state.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/chat-workspace.tsx",
+          "target": "@components/control-ui/chat-workspace.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/chat-workspace.css",
+          "target": "@components/control-ui/styles/recipes/chat-workspace.css",
+          "type": "registry:file"
+        }
+      ],
+      "css": {
+        "@import \"../components/control-ui/styles/recipes/chat-workspace.css\"": {}
       }
     },
     {
@@ -7980,6 +8052,7 @@
         "https://control-ui.dev/r/chat-composer-attachment.json",
         "https://control-ui.dev/r/chat-layout.json",
         "https://control-ui.dev/r/chat-message.json",
+        "https://control-ui.dev/r/chat-workspace.json",
         "https://control-ui.dev/r/checkbox.json",
         "https://control-ui.dev/r/checkbox-group.json",
         "https://control-ui.dev/r/code.json",
