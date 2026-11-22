@@ -431,6 +431,10 @@
     backdrop-filter: blur(var(--backdrop-blur-popover));
   }
 
+  [data-skin="cuicui"] :where([data-control-ui="chat-layout"][data-slot="root"][data-control-family="chat-layout"]) {
+    --cui-chat-layout-veil-backdrop-filter: blur(var(--backdrop-blur-popover));
+  }
+
   [data-skin="cuicui"] :where([data-slot="root"][data-control-family="chat-message"]) {
     --cui-chat-message-avatar-radius: 9999px;
     --cui-chat-message-avatar-background: var(--cuicui-control-bg);
