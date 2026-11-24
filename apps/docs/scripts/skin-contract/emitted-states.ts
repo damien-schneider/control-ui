@@ -3,7 +3,7 @@ import type { ChatDensity, ChatMessageLayout, ChatRole, ChatState } from "../../
 import type { DropzoneVisualState } from "../../src/registry/hooks/use-dropzone";
 import type { DynamicNotificationVariant } from "../../src/registry/hooks/use-dynamic-notification";
 import type { CodeDiffLineType } from "../../src/registry/lib/diff";
-import type { SidebarLayout } from "../../src/registry/skin";
+import type { ButtonGroupJoin, SidebarLayout } from "../../src/registry/skin";
 import type { ActivityDetailFormat, ActivityDetailTone, ActivityKind, ActivityState } from "../../src/registry/sources/control-ui/activity";
 import type { AudioDevicePermission } from "../../src/registry/sources/control-ui/audio-device-select";
 import type { BarAudioVisualizerProps } from "../../src/registry/sources/control-ui/audio-visualizer-bar";
@@ -127,6 +127,7 @@ export type EmittedStateContract = {
   "button:root:data-variant": ButtonVariant;
   "card:root:data-size": CardSize;
   "card:root:data-variant": CardVariant;
+  "button-group:root:data-join": ButtonGroupJoin;
   "button-group:root:data-orientation": "horizontal" | "vertical";
   "button-group:root:data-track": HoverIndicator;
   "button-group:separator:data-orientation": "horizontal" | "vertical";

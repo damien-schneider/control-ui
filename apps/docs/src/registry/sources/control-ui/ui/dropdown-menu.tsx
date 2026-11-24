@@ -24,7 +24,7 @@ export type DropdownMenuHandle<Payload = unknown> = MenuPrimitive.Handle<Payload
 
 export const createDropdownMenuHandle = MenuPrimitive.createHandle;
 
-export const dropdownMenuTriggerVariants = ["surface", "ghost"] as const;
+export const dropdownMenuTriggerVariants = ["surface", "ghost", "solid"] as const;
 
 export type DropdownMenuTriggerVariant = (typeof dropdownMenuTriggerVariants)[number];
 

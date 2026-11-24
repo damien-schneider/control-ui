@@ -2,9 +2,9 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test("selected button keeps shared seams above adjacent focus", async ({ page }) => {
+test("an overlapped group keeps the selected button's shared seams above adjacent focus", async ({ page }) => {
   await page.addInitScript((storageKey) => {
-    localStorage.setItem(storageKey, JSON.stringify({ skin: "refined" }));
+    localStorage.setItem(storageKey, JSON.stringify({ skin: "windows-98" }));
   }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/components/button-group");
 

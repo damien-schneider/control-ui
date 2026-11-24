@@ -690,6 +690,7 @@ describe("nest radius contract", () => {
   test("controls that can sit in a container's corner take their radius from it", () => {
     expect(nestRadiusKnobs).toEqual([
       "--cui-badge-radius",
+      "--cui-button-group-radius",
       "--cui-button-radius",
       "--cui-chat-composer-shell-radius",
       "--cui-field-radius",

@@ -1,9 +1,11 @@
 "use client";
 
+import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/control-ui/ui/button";
 import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/control-ui/ui/button-group";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 
 export function PrimitiveButtonGroupExample() {
   const [alignment, setAlignment] = useState<"left" | "center" | "right">("center");
@@ -25,6 +27,19 @@ export function PrimitiveButtonGroupExample() {
         <Button variant="surface" active={alignment === "right"} aria-pressed={alignment === "right"} onClick={() => setAlignment("right")}>
           Right
         </Button>
+      </ButtonGroup>
+
+      <ButtonGroup aria-label="Merge pull request">
+        <Button variant="solid">Merge</Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger variant="solid" iconOnly aria-label="More merge options">
+            <ChevronDownIcon aria-hidden />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>Squash and merge</DropdownMenuItem>
+            <DropdownMenuItem>Rebase and merge</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </ButtonGroup>
 
       <ButtonGroup aria-label="Share link">

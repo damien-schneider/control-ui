@@ -83,6 +83,12 @@ export function AppTheme({ children }: { children: ReactNode }) {
   Set `calendarShowOutsideDays: false` to leave days from neighboring months blank, as Linear's date picker does.
   Calendar's `showOutsideDays` prop overrides it per instance; the neutral default shows them.
 
+  ButtonGroup frames its buttons by default: segments drop their own rim and elevation, and the group draws one frame
+  with hairline seams from `--cui-button-group-radius`, `--cui-button-group-shadow`, and
+  `--cui-button-group-separator-background`. Set `buttonGroupJoin: "overlap"` when each button is a self-contained
+  object, such as a bevel or a hand-drawn outline, so grouped buttons keep their own paint and share overlapping edges,
+  as Windows 98 does.
+
   Set `indicators` to choose how selection and hover are drawn per family. `sidebar` and `tree` accept a selection
   indicator; `sidebar`, `button-group`, `toggle-group`, `checkbox-group`, and `radio-group` accept a hover indicator.
   Each component's own indicator prop overrides the skin default for one instance.

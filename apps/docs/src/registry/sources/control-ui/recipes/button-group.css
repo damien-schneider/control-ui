@@ -1,22 +1,47 @@
 @layer components {
   :where([data-control-family="button-group"][data-slot="root"]) {
-    --cui-button-group-text-radius: var(--radius-control);
+    --cui-button-group-radius: var(--nest-radius, var(--radius-control));
+    --cui-button-group-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm);
     --cui-button-group-text-background: var(--control-fill);
     --cui-button-group-text-foreground: var(--muted-foreground);
     --cui-button-group-separator-background: var(--border);
+    position: relative;
+    isolation: isolate;
+    border-radius: var(--cui-button-group-radius);
+  }
+
+  :where([data-control-family="button-group"][data-slot="root"][data-join="frame"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    border-radius: inherit;
+    box-shadow: var(--cui-button-group-shadow);
+    pointer-events: none;
+  }
+
+  :where([data-control-family="button-group"][data-slot="root"][data-join="frame"] > [data-control-family="button"][data-control="true"]) {
+    border-width: 0;
+    border-radius: var(--cui-button-group-radius);
+    box-shadow: none;
   }
 
   :where([data-control-family="button-group"][data-slot="text"]) {
     --_button-group-text-icon: 1rem;
     min-block-size: var(--control-h-md);
-    border: var(--control-rim-width) solid var(--control-rim);
-    border-radius: var(--cui-button-group-text-radius);
+    border-radius: var(--cui-button-group-radius);
     background: var(--cui-button-group-text-background);
-    box-shadow: var(--shadow-sm);
     padding-inline: var(--padding-x);
     color: var(--cui-button-group-text-foreground);
     font-size: var(--text-body);
     font-weight: var(--font-weight-medium);
+  }
+
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-join="overlap"] > [data-control-family="button-group"][data-slot="text"]
+  ) {
+    border: var(--control-rim-width) solid var(--control-rim);
+    box-shadow: var(--shadow-sm);
   }
 
   :where([data-control-family="button-group"][data-slot="text"] > svg) {
@@ -46,8 +71,15 @@
   }
 
   :where([data-control-family="button-group"][data-slot="separator"]) {
-    z-index: 1;
     background: var(--cui-button-group-separator-background);
+  }
+
+  :where([data-control-family="button-group"][data-slot="separator"][data-orientation="vertical"]) {
+    inline-size: var(--control-rim-width);
+  }
+
+  :where([data-control-family="button-group"][data-slot="separator"][data-orientation="horizontal"]) {
+    block-size: var(--control-rim-width);
   }
 
   :where([data-control-family="button-group"][data-slot="root"] > :not([data-control-family="track-highlight"])) {
@@ -55,50 +87,98 @@
   }
 
   :where(
+    [data-control-family="button-group"][data-slot="root"][data-orientation="horizontal"]
+      > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+      ~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+  ) {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+
+  :where(
     [data-control-family="button-group"][data-orientation="horizontal"]
+      > :nth-last-child(n + 2 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns]))
+  ) {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"]
+      > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+      ~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+  ) {
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-orientation="vertical"]
+      > :nth-last-child(n + 2 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns]))
+  ) {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-join="overlap"][data-orientation="horizontal"]
       > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
       ~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
   ) {
     margin-inline-start: -1px;
-    border-start-start-radius: 0;
-    border-end-start-radius: 0;
   }
 
   :where(
-    [data-control-family="button-group"][data-orientation="horizontal"]
-      > :nth-last-child(n + 2 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns]))
-  ) {
-    border-start-end-radius: 0;
-    border-end-end-radius: 0;
-  }
-
-  :where(
-    [data-control-family="button-group"][data-orientation="vertical"]
+    [data-control-family="button-group"][data-slot="root"][data-join="overlap"][data-orientation="vertical"]
       > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
       ~ :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
   ) {
     margin-block-start: -1px;
-    border-start-start-radius: 0;
-    border-start-end-radius: 0;
   }
 
   :where(
-    [data-control-family="button-group"][data-orientation="vertical"]
-      > :nth-last-child(n + 2 of :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns]))
+    [data-control-family="button-group"][data-slot="root"][data-join="frame"][data-orientation="horizontal"]
+      > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+      ~ :is([data-control-family="button"][data-control="true"], [data-control-family="button-group"][data-slot="text"]):not(
+        [data-slot="separator"] + *
+      )
   ) {
-    border-end-start-radius: 0;
-    border-end-end-radius: 0;
+    border-inline-start: var(--control-rim-width) solid var(--cui-button-group-separator-background);
+  }
+
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-join="frame"][data-orientation="vertical"]
+      > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
+      ~ :is([data-control-family="button"][data-control="true"], [data-control-family="button-group"][data-slot="text"]):not(
+        [data-slot="separator"] + *
+      )
+  ) {
+    border-block-start: var(--control-rim-width) solid var(--cui-button-group-separator-background);
+  }
+
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-join="frame"]
+      > [data-control-family="button"][data-control="true"][data-variant="solid"]
+  ) {
+    border-color: oklch(from var(--cui-button-foreground) l c h / 0.3);
   }
 
   :where([data-control-family="button-group"][data-slot="root"] > :focus-within) {
     z-index: 1;
   }
 
-  :where([data-control-family="button-group"][data-slot="root"] > [data-active="true"]) {
+  :where(
+    [data-control-family="button-group"][data-slot="root"][data-join="overlap"]
+      > [data-control-family="button-group"][data-slot="separator"]
+  ) {
+    z-index: 1;
+  }
+
+  :where([data-control-family="button-group"][data-slot="root"][data-join="overlap"] > [data-active="true"]) {
     z-index: 2;
   }
 
-  :where([data-control-family="button-group"][data-slot="root"] > [data-active="true"]:focus-within) {
+  :where([data-control-family="button-group"][data-slot="root"][data-join="overlap"] > [data-active="true"]:focus-within) {
     z-index: 3;
   }
 
@@ -121,10 +201,15 @@
   }
 }
 
-@property --cui-button-group-text-radius {
+@property --cui-button-group-radius {
   syntax: "<length-percentage>";
   inherits: true;
   initial-value: 0px;
+}
+
+@property --cui-button-group-shadow {
+  syntax: "*";
+  inherits: true;
 }
 
 @property --cui-button-group-text-background {

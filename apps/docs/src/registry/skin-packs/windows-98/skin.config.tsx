@@ -5,6 +5,7 @@ export const skin: ControlUiSkin = {
   motion: "reduced",
   colorScheme: "light",
   sidebarLayout: "sidebar",
+  buttonGroupJoin: "overlap",
   indicators: { sidebar: "none", tree: "none" },
   adornments: {
     "chat-layout": {
