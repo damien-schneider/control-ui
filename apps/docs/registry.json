@@ -3167,12 +3167,15 @@
       "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
       "dependencies": [
         "@tanstack/react-virtual@^3.14.28",
-        "diff@^9.0.0"
+        "diff@^9.0.0",
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
+        "https://control-ui.dev/r/button.json",
         "https://control-ui.dev/r/code.json",
         "https://control-ui.dev/r/core.json",
-        "https://control-ui.dev/r/scroll-area.json"
+        "https://control-ui.dev/r/scroll-area.json",
+        "https://control-ui.dev/r/tooltip.json"
       ],
       "files": [
         {

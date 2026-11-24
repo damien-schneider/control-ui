@@ -292,3 +292,31 @@ describe("computeWordDiff — perf guard and modes", () => {
     expect(newSeg?.some((segment) => segment.emphasis)).toBe(true);
   });
 });
+
+describe("computeWordDiff — readable emphasis", () => {
+  test("a rewritten line keeps only its line tint, without word-by-word chips", () => {
+    const before = "- SSOT: one fact, one place — everything else derives; two places that must change together are one source.";
+    const after = "- **Copy look-alikes until a third case.** Code that only looks alike stays copied.";
+    expect(computeWordDiff(before, after, "word", 2000)).toEqual([undefined, undefined]);
+    expect(computeWordDiff(before, after, "char", 2000)).toEqual([undefined, undefined]);
+  });
+
+  test("changed words separated only by a space read as one run", () => {
+    const [oldSeg, newSeg] = computeWordDiff("move the old red box", "move the new blue box", "word", 2000);
+    expect(oldSeg).toEqual([
+      { text: "move the ", emphasis: false },
+      { text: "old red", emphasis: true },
+      { text: " box", emphasis: false },
+    ]);
+    expect(newSeg).toEqual([
+      { text: "move the ", emphasis: false },
+      { text: "new blue", emphasis: true },
+      { text: " box", emphasis: false },
+    ]);
+  });
+
+  test("a small edit inside a long line still points at the words that moved", () => {
+    const [, newSeg] = computeWordDiff("  return fetchUser(id);", "  return fetchUser(id, { cache: true });", "word", 2000);
+    expect(newSeg?.filter((segment) => segment.emphasis).length).toBe(1);
+  });
+});

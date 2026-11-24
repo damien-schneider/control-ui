@@ -2534,8 +2534,8 @@ export const registryMetadata = {
     ],
   },
   "code-diff": {
-    dependencies: ["@tanstack/react-virtual@^3.14.28", "diff@^9.0.0"],
-    registryDependencies: ["code", "core", "scroll-area"],
+    dependencies: ["@tanstack/react-virtual@^3.14.28", "diff@^9.0.0", "lucide-react@^1.78.0"],
+    registryDependencies: ["button", "code", "core", "scroll-area", "tooltip"],
     sourceManifestPath: "registry/control-ui/code-diff.json",
     files: [
       {

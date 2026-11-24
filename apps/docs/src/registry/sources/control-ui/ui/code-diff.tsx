@@ -1,16 +1,19 @@
 "use client";
 
 import { useVirtualizer } from "@tanstack/react-virtual";
-import type { ComponentProps, CSSProperties, ReactNode } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
+import type { ComponentProps, CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/code-diff-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
 import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine, diffRunEnd } from "@/components/control-ui/lib/diff";
+import { Button } from "@/components/control-ui/ui/button";
 import type { CodeOverflow } from "@/components/control-ui/ui/code";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
 
 export type DiffStyle = "unified" | "split";
 
@@ -25,6 +28,8 @@ export type DiffLineKind = "word" | "char" | "none";
 
 const ESTIMATED_ROW_HEIGHT = 20;
 const VIRTUALIZE_THRESHOLD = 150;
+// an opened diff still stops at the screen, so a huge one keeps scrolling inside and stays virtualized
+const OPEN_MAX_HEIGHT = "100dvh";
 
 type SideTokens = { old: CodeTokenLines | null; new: CodeTokenLines | null };
 
@@ -38,7 +43,7 @@ type Expansion = { identity: string; gaps: ReadonlySet<number>; revealedRowId: s
 const NO_EXPANSION: Expansion = { identity: "", gaps: new Set(), revealedRowId: null };
 
 type VisualRow =
-  | { kind: "separator"; id: string; gapIndex: number; label: string; canExpand: boolean }
+  | { kind: "separator"; id: string; gapIndex: number; label: string; hidden: number; canExpand: boolean }
   | { kind: "unified"; id: string; line: DiffLine }
   | { kind: "split"; id: string; left: DiffLine | null; right: DiffLine | null };
 
@@ -62,6 +67,9 @@ export type CodeDiffProps = Omit<ComponentProps<"figure">, "children" | "style">
   header?: boolean;
   emptyLabel?: ReactNode;
   expandLabel?: string;
+  getHiddenLinesLabel?: (count: number) => string;
+  showAllLabel?: string;
+  showFewerLabel?: string;
   noNewlineLabel?: string;
   copyLabel?: string;
   copiedLabel?: string;
@@ -75,6 +83,7 @@ export type CodeDiffProps = Omit<ComponentProps<"figure">, "children" | "style">
 type DiffLabels = {
   empty: ReactNode;
   expand: string;
+  hidden: (count: number) => string;
   noNewline: string;
   stats: (additions: number, deletions: number) => string;
   line: (role: CodeDiffLineRole, lineNumber: number | undefined, text: string) => string;
@@ -94,6 +103,10 @@ function defaultStatsLabel(additions: number, deletions: number): string {
 
 function defaultLineLabel(role: CodeDiffLineRole, lineNumber: number | undefined, text: string): string {
   return `${LINE_ROLE_NAMES[role]} line ${lineNumber ?? "?"}: ${text}`;
+}
+
+function defaultHiddenLinesLabel(count: number): string {
+  return `${count} unchanged ${count === 1 ? "line" : "lines"}`;
 }
 
 function defaultFileCountLabel(count: number): string {
@@ -211,17 +224,19 @@ function expandedRowId(gapIndex: number, line: DiffLine): string {
 function gapRows(file: DiffFile, hunk: DiffHunk, gapIndex: number, diffStyle: DiffStyle, expanded: ReadonlySet<number>): VisualRow[] {
   const hasGap = gapIndex > 0 || hunk.collapsedBefore > 0;
   if (!hasGap) return [];
-  if (expanded.has(gapIndex) && !file.isPartial) {
+  if ((expanded.has(gapIndex) || hunk.collapsedBefore === 1) && !file.isPartial) {
     return expandedContext(file, gapIndex).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
   }
 
-  const label = hunk.header ?? `@@ -${hunkRange(hunk.oldStart, hunk.oldCount)} +${hunkRange(hunk.newStart, hunk.newCount)} @@`;
+  const range = `@@ -${hunkRange(hunk.oldStart, hunk.oldCount)} +${hunkRange(hunk.newStart, hunk.newCount)} @@`;
+  const label = file.isPartial ? (hunk.header ?? range) : "";
   return [
     {
       kind: "separator",
       id: `sep-${gapIndex}`,
       gapIndex,
       label,
+      hidden: file.isPartial ? 0 : hunk.collapsedBefore,
       canExpand: !file.isPartial && hunk.collapsedBefore > 0,
     },
   ];
@@ -242,10 +257,10 @@ function changedRows(hunk: DiffHunk, gapIndex: number, diffStyle: DiffStyle): Vi
 function trailingRows(file: DiffFile, diffStyle: DiffStyle, expanded: ReadonlySet<number>): VisualRow[] {
   const gapIndex = file.hunks.length;
   if (hiddenAfter(file) === 0) return [];
-  if (expanded.has(gapIndex)) {
+  if (expanded.has(gapIndex) || hiddenAfter(file) === 1) {
     return trailingContext(file).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
   }
-  return [{ kind: "separator", id: `sep-${gapIndex}`, gapIndex, label: "", canExpand: true }];
+  return [{ kind: "separator", id: `sep-${gapIndex}`, gapIndex, label: "", hidden: hiddenAfter(file), canExpand: true }];
 }
 
 // pushed one by one: spreading a hunk of 100k+ lines into push() overflows the call stack
@@ -262,7 +277,7 @@ function buildRows(file: DiffFile, diffStyle: DiffStyle, expanded: ReadonlySet<n
 function gutterDigits(file: DiffFile, expanded: ReadonlySet<number>): number {
   let last = 1;
   for (const hunk of file.hunks) last = Math.max(last, hunk.oldStart + hunk.oldCount - 1, hunk.newStart + hunk.newCount - 1);
-  if (expanded.has(file.hunks.length)) last = Math.max(last, file.oldLines.length, file.newLines.length);
+  if (expanded.has(file.hunks.length) || hiddenAfter(file) === 1) last = Math.max(last, file.oldLines.length, file.newLines.length);
   return String(last).length;
 }
 
@@ -498,6 +513,43 @@ function fileIdentity(file: DiffFile): string {
   return `${file.oldName ?? ""}->${file.name}:${file.type}:${hunks}`;
 }
 
+function DiffSeparator({
+  row,
+  labels,
+  onExpand,
+}: {
+  row: Extract<VisualRow, { kind: "separator" }>;
+  labels: DiffLabels;
+  onExpand: () => void;
+}) {
+  const label = row.label || (row.hidden > 0 ? labels.hidden(row.hidden) : "");
+  return (
+    <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander" className="flex items-center">
+      {row.canExpand ? (
+        <button
+          type="button"
+          data-control-ui="code-diff"
+          data-control-family="code-diff"
+          data-slot="expand-button"
+          data-control="true"
+          onClick={onExpand}
+          className="cursor-pointer"
+          aria-label={labels.expand}
+        >
+          ⋯
+        </button>
+      ) : (
+        <span aria-hidden="true">⋯</span>
+      )}
+      {label ? (
+        <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander-label" title={label} className="truncate">
+          {label}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
 function CodeDiffFileSection({
   file,
   lang,
@@ -505,6 +557,8 @@ function CodeDiffFileSection({
   diffIndicators,
   overflow,
   maxHeight,
+  open,
+  onOverflowingChange,
   showFileHeader,
   labels,
 }: {
@@ -514,6 +568,8 @@ function CodeDiffFileSection({
   diffIndicators: DiffIndicators;
   overflow: CodeOverflow;
   maxHeight: string;
+  open: boolean;
+  onOverflowingChange: Dispatch<SetStateAction<number>>;
   showFileHeader: boolean;
   labels: DiffLabels;
 }) {
@@ -535,6 +591,24 @@ function CodeDiffFileSection({
     enabled: shouldVirtualize,
   });
   const virtualItems = virtualizer.getVirtualItems();
+  const [overflows, setOverflows] = useState(false);
+
+  useEffect(() => {
+    const viewport = scrollRef.current;
+    if (!viewport || open) return;
+    const measure = () => setOverflows(viewport.scrollHeight > viewport.clientHeight + 1);
+    const observer = new ResizeObserver(measure);
+    observer.observe(viewport);
+    if (viewport.firstElementChild) observer.observe(viewport.firstElementChild);
+    measure();
+    return () => observer.disconnect();
+  }, [open]);
+
+  useLayoutEffect(() => {
+    if (!overflows) return;
+    onOverflowingChange((count) => count + 1);
+    return () => onOverflowingChange((count) => count - 1);
+  }, [overflows, onOverflowingChange]);
 
   function expandGap(gapIndex: number) {
     const firstLine = expandedContext(file, gapIndex)[0];
@@ -563,37 +637,7 @@ function CodeDiffFileSection({
 
   function renderRow(row: VisualRow): ReactNode {
     if (row.kind === "separator") {
-      return (
-        <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander" className="flex items-center">
-          {row.canExpand ? (
-            <button
-              type="button"
-              data-control-ui="code-diff"
-              data-control-family="code-diff"
-              data-slot="expand-button"
-              data-control="true"
-              onClick={() => expandGap(row.gapIndex)}
-              className="cursor-pointer"
-              aria-label={labels.expand}
-            >
-              ⋯
-            </button>
-          ) : (
-            <span aria-hidden="true">⋯</span>
-          )}
-          {row.label ? (
-            <span
-              data-control-ui="code-diff"
-              data-control-family="code-diff"
-              data-slot="expander-label"
-              title={row.label}
-              className="truncate"
-            >
-              {row.label}
-            </span>
-          ) : null}
-        </div>
-      );
+      return <DiffSeparator row={row} labels={labels} onExpand={() => expandGap(row.gapIndex)} />;
     }
     if (row.kind === "unified") {
       return (
@@ -653,7 +697,7 @@ function CodeDiffFileSection({
         <code>{accessibleDiffText(labels, file, rows)}</code>
       </pre>
       <ScrollArea
-        maxHeight={maxHeight}
+        maxHeight={open ? OPEN_MAX_HEIGHT : maxHeight}
         aria-label={fileTitle(file)}
         viewportProps={{
           "data-control-ui": "code-diff",
@@ -720,6 +764,9 @@ export function CodeDiff({
   header = true,
   emptyLabel = "No changes",
   expandLabel = "Expand hidden lines",
+  getHiddenLinesLabel = defaultHiddenLinesLabel,
+  showAllLabel = "Show all lines",
+  showFewerLabel = "Show fewer lines",
   noNewlineLabel = "No newline at end of file",
   copyLabel,
   copiedLabel,
@@ -745,11 +792,15 @@ export function CodeDiff({
   const labels: DiffLabels = {
     empty: emptyLabel,
     expand: expandLabel,
+    hidden: getHiddenLinesLabel,
     noNewline: noNewlineLabel,
     stats: getStatsLabel,
     line: getLineLabel,
   };
   const copyProps = { "aria-label": copyLabel, copiedAriaLabel: copiedLabel, copyFailedLabel };
+  const [open, setOpen] = useState(false);
+  const [overflowing, setOverflowing] = useState(0);
+  const heightLabel = open ? showFewerLabel : showAllLabel;
 
   return (
     <figure
@@ -777,6 +828,25 @@ export function CodeDiff({
           </span>
           <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="actions" className="flex shrink-0 items-center">
             <DiffStats additions={additions} deletions={deletions} label={getStatsLabel(additions, deletions)} />
+            {open || overflowing > 0 ? (
+              <Tooltip>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      type="button"
+                      variant="quiet"
+                      size="xs"
+                      aria-label={heightLabel}
+                      aria-expanded={open}
+                      onClick={() => setOpen(!open)}
+                    >
+                      {open ? <ChevronsDownUp aria-hidden="true" /> : <ChevronsUpDown aria-hidden="true" />}
+                    </Button>
+                  }
+                />
+                <TooltipContent side="inline-start">{heightLabel}</TooltipContent>
+              </Tooltip>
+            ) : null}
             <CodeDiffCopy value={copyValue} {...copyProps} />
           </div>
         </figcaption>
@@ -793,6 +863,8 @@ export function CodeDiff({
           diffIndicators={diffIndicators}
           overflow={overflow}
           maxHeight={maxHeight}
+          open={open}
+          onOverflowingChange={setOverflowing}
           showFileHeader={files.length > 1}
           labels={labels}
         />

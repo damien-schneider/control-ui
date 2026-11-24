@@ -18,12 +18,15 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 - `@tanstack/react-virtual@^3.14.28`
 - `diff@^9.0.0`
+- `lucide-react@^1.78.0`
 
 ## Registry dependencies
 
+- `button`
 - `code`
 - `core`
 - `scroll-area`
+- `tooltip`
 
 ## Exports
 

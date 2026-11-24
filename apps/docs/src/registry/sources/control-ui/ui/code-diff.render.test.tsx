@@ -112,6 +112,36 @@ describe("CodeDiff renders", () => {
     expect(html.match(/data-slot="expand-button"[^>]*aria-label="Show hidden rows"/g)).toHaveLength(1);
   });
 
+  test("a gap between two texts says how many unchanged lines it hides, not a patch range", () => {
+    const rows = Array.from({ length: 24 }, (_, index) => `row ${index + 1}`);
+    const oldText = rows.join("\n");
+    const newText = rows.map((row, index) => (index === 4 || index === 14 ? row.toUpperCase() : row)).join("\n");
+    const html = renderToString(
+      <CodeDiff oldText={oldText} newText={newText} getHiddenLinesLabel={(count) => `${count} lignes masquées`} />,
+    );
+
+    expect(html).not.toContain("@@");
+    expect(html).toContain(">3 lignes masquées</span>");
+    expect(html).toContain(">6 lignes masquées</span>");
+  });
+
+  test("a gap hiding a single line shows that line instead of a separator as tall as it", () => {
+    const rows = Array.from({ length: 12 }, (_, index) => `row ${index + 1}`);
+    const html = renderToString(
+      <CodeDiff oldText={rows.join("\n")} newText={rows.map((row, index) => (index === 4 ? "ROW 5" : row)).join("\n")} />,
+    );
+
+    expect(html).toContain(">row 1</code>");
+    expect(html).not.toContain("1 unchanged line<");
+  });
+
+  test("a patch gap keeps its hunk header, since a patch does not know what it hides", () => {
+    const patch = "--- a/x.ts\n+++ b/x.ts\n@@ -10,2 +10,2 @@ function demo()\n a\n-b\n+c\n";
+    const html = renderToString(<CodeDiff patch={patch} />);
+
+    expect(html).toContain(">function demo()</span>");
+  });
+
   test("a missing final newline is marked on its line and in the accessible source", () => {
     const withoutFinalNewline = "a\nb";
     const html = renderToString(

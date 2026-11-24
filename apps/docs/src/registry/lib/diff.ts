@@ -81,6 +81,31 @@ function stripGitPrefix(name: string | undefined): string | undefined {
 }
 
 // [undefined, undefined] when diff is disabled or pair is too long
+// below this share of unchanged text a pair is a rewrite: per-word chips would flag nearly every word
+const MIN_SHARED_FOR_EMPHASIS = 0.4;
+
+function visibleLength(text: string): number {
+  return text.replace(/\s/g, "").length;
+}
+
+function pushSegment(segments: DiffSegment[], segment: DiffSegment): void {
+  const last = segments.at(-1);
+  if (last?.emphasis === segment.emphasis) {
+    last.text += segment.text;
+    return;
+  }
+  segments.push({ ...segment });
+}
+
+function joinChangedRuns(segments: DiffSegment[]): DiffSegment[] {
+  const joined: DiffSegment[] = [];
+  segments.forEach((segment, index) => {
+    const bridges = !segment.emphasis && segment.text.trim() === "" && segments[index - 1]?.emphasis && segments[index + 1]?.emphasis;
+    pushSegment(joined, bridges ? { text: segment.text, emphasis: true } : segment);
+  });
+  return joined;
+}
+
 export function computeWordDiff(
   oldText: string,
   newText: string,
@@ -94,18 +119,22 @@ export function computeWordDiff(
 
   const oldSegments: DiffSegment[] = [];
   const newSegments: DiffSegment[] = [];
+  let shared = 0;
   for (const change of changes) {
     if (change.value.length === 0) continue;
     if (change.added) {
-      newSegments.push({ text: change.value, emphasis: true });
+      pushSegment(newSegments, { text: change.value, emphasis: true });
     } else if (change.removed) {
-      oldSegments.push({ text: change.value, emphasis: true });
+      pushSegment(oldSegments, { text: change.value, emphasis: true });
     } else {
-      oldSegments.push({ text: change.value, emphasis: false });
-      newSegments.push({ text: change.value, emphasis: false });
+      shared += visibleLength(change.value);
+      pushSegment(oldSegments, { text: change.value, emphasis: false });
+      pushSegment(newSegments, { text: change.value, emphasis: false });
     }
   }
-  return [oldSegments, newSegments];
+  const longest = Math.max(visibleLength(oldText), visibleLength(newText));
+  if (longest > 0 && shared / longest < MIN_SHARED_FOR_EMPHASIS) return [undefined, undefined];
+  return [joinChangedRuns(oldSegments), joinChangedRuns(newSegments)];
 }
 
 export function diffRunEnd(lines: readonly DiffLine[], start: number, type: DiffLine["type"]): number {
