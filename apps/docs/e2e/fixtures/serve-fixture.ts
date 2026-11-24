@@ -38,6 +38,7 @@ const stylesheetBuilds = {
 };
 
 const fixtureStylesheets = {
+  "activity-group": "docs",
   "agent-turn": "docs",
   "app-shell": "docs",
   "chat-composer-line": "docs",
