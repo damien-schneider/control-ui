@@ -23,7 +23,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Exports
 
 - `@/components/control-ui/knob-contracts/button-group-knobs`: `buttonGroupKnobs`, types `ButtonGroupKnobStyle`
-- `@/components/control-ui/ui/button-group`: `ButtonGroup`, `ButtonGroupText`, `ButtonGroupSeparator`, types `ButtonGroupTextProps`, `ButtonGroupProps`, `ButtonGroupSeparatorProps`
+- `@/components/control-ui/ui/button-group`: `ButtonGroup`, `ButtonGroupText`, types `ButtonGroupTextProps`, `ButtonGroupProps`
 
 ## Composition
 
@@ -34,7 +34,6 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
   <ButtonGroupText />
   primary action
     <Button />
-  <ButtonGroupSeparator />
   secondary action
     <Button />
 </ButtonGroup>
@@ -49,7 +48,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/control-ui/ui/button";
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/control-ui/ui/button-group";
+import { ButtonGroup, ButtonGroupText } from "@/components/control-ui/ui/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 
 export function PrimitiveButtonGroupExample() {
@@ -90,7 +89,6 @@ export function PrimitiveButtonGroupExample() {
       <ButtonGroup aria-label="Share link">
         <ButtonGroupText>https://</ButtonGroupText>
         <Button variant="surface">control-ui.dev/r</Button>
-        <ButtonGroupSeparator />
         <Button variant="surface">Copy</Button>
       </ButtonGroup>
 
@@ -117,7 +115,6 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
 
 - `button-group`
   - `root`: `data-join` (`frame` | `overlap`), `data-orientation` (`horizontal` | `vertical`), `data-track` (`hover` | `none`)
-  - `separator`: `data-orientation` (`horizontal` | `vertical`)
   - `text`: `data-size` (`lg` | `md` | `sm` | `xs`)
 
 ## Knobs
@@ -130,7 +127,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-button-group-shadow`: `inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm)`
 - `--cui-button-group-text-background`: `var(--control-fill)`
 - `--cui-button-group-text-foreground`: `var(--muted-foreground)`
-- `--cui-button-group-separator-background`: `var(--border)`
+- `--cui-button-group-separator-color`: `var(--border)`
 
 ## Links
 

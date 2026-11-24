@@ -1560,18 +1560,6 @@ export const generatedSkinContract: SkinContract = {
             },
           ],
         },
-        separator: {
-          family: "button-group",
-          registryItems: ["button-group"],
-          states: [
-            {
-              attribute: "data-orientation",
-              source: "control-ui",
-              valueKind: "enum",
-              values: ["horizontal", "vertical"],
-            },
-          ],
-        },
         text: {
           family: "button-group",
           registryItems: ["button-group"],
@@ -16008,7 +15996,7 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--muted-foreground)",
       },
       {
-        name: "--cui-button-group-separator-background",
+        name: "--cui-button-group-separator-color",
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--border)",

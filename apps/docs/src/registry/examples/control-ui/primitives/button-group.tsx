@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/control-ui/ui/button";
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/control-ui/ui/button-group";
+import { ButtonGroup, ButtonGroupText } from "@/components/control-ui/ui/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 
 export function PrimitiveButtonGroupExample() {
@@ -45,7 +45,6 @@ export function PrimitiveButtonGroupExample() {
       <ButtonGroup aria-label="Share link">
         <ButtonGroupText>https://</ButtonGroupText>
         <Button variant="surface">control-ui.dev/r</Button>
-        <ButtonGroupSeparator />
         <Button variant="surface">Copy</Button>
       </ButtonGroup>
 

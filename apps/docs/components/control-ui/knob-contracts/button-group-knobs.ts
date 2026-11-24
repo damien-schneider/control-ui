@@ -4,6 +4,6 @@ export const buttonGroupKnobs = [
   "--cui-button-group-shadow",
   "--cui-button-group-text-background",
   "--cui-button-group-text-foreground",
-  "--cui-button-group-separator-background",
+  "--cui-button-group-separator-color",
 ] as const;
 export type ButtonGroupKnobStyle = Partial<Record<(typeof buttonGroupKnobs)[number], string>>;

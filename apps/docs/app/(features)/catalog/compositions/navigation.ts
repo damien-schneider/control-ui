@@ -193,13 +193,7 @@ export const navigationCompositions = {
   "button-group": [
     example(
       "Joined actions",
-      part(
-        "ButtonGroup",
-        part("ButtonGroupText"),
-        content("primary action", part("Button")),
-        part("ButtonGroupSeparator"),
-        content("secondary action", part("Button")),
-      ),
+      part("ButtonGroup", part("ButtonGroupText"), content("primary action", part("Button")), content("secondary action", part("Button"))),
     ),
   ],
   pagination: [

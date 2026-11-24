@@ -15966,113 +15966,6 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
     },
     {
       knobs: {
-        fill: "--cui-button-group-separator-background",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "button-group",
-            "data-control-ui": "button-group",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-track": "hover",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-track-item": "",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control": "true",
-            "data-control-family": "button",
-            "data-control-ui": "button",
-            "data-layout": "inline",
-            "data-shape": "default",
-            "data-size": "sm",
-            "data-slot": "root",
-            "data-tone": "neutral",
-            "data-track-item": "",
-            "data-variant": "surface",
-            tabindex: "0",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "button-group",
-            "data-control-ui": "button-group",
-            "data-orientation": "vertical",
-            "data-slot": "separator",
-          },
-        },
-      ],
-      recipe: "button-group",
-      rendersText: false,
-      state: false,
-      route: "/components/button-group",
-    },
-    {
-      knobs: {
-        fill: "--cui-button-group-text-background",
-        text: "--cui-button-group-text-foreground",
-      },
-      anatomy: [
-        {
-          attributes: {
-            "data-control-family": "page-layout",
-            "data-control-ui": "page-layout",
-            "data-scroll": "page",
-            "data-slot": "root",
-            "data-width": "prose",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "button-group",
-            "data-control-ui": "button-group",
-            "data-orientation": "horizontal",
-            "data-slot": "root",
-            "data-track": "hover",
-            role: "group",
-          },
-        },
-        {
-          attributes: {
-            "data-control-family": "button-group",
-            "data-control-ui": "button-group",
-            "data-size": "sm",
-            "data-slot": "text",
-          },
-        },
-      ],
-      recipe: "button-group",
-      rendersText: true,
-      state: false,
-      route: "/components/button-group",
-    },
-    {
-      knobs: {
         fill: "--cui-button-open-background",
         text: "--cui-button-open-foreground",
         boundary: "--cui-button-open-border-color",
@@ -71106,6 +70999,46 @@ export const generatedContrastAnatomy: ContrastAnatomyArtifact = {
       rendersText: false,
       state: false,
       route: "/components/scroll-area",
+    },
+    {
+      knobs: {
+        fill: "--cui-button-group-text-background",
+        text: "--cui-button-group-text-foreground",
+      },
+      anatomy: [
+        {
+          attributes: {
+            "data-control-family": "page-layout",
+            "data-control-ui": "page-layout",
+            "data-scroll": "page",
+            "data-slot": "root",
+            "data-width": "prose",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "button-group",
+            "data-control-ui": "button-group",
+            "data-join": "frame",
+            "data-orientation": "horizontal",
+            "data-slot": "root",
+            "data-track": "hover",
+            role: "group",
+          },
+        },
+        {
+          attributes: {
+            "data-control-family": "button-group",
+            "data-control-ui": "button-group",
+            "data-size": "sm",
+            "data-slot": "text",
+          },
+        },
+      ],
+      recipe: "button-group",
+      rendersText: true,
+      state: false,
+      route: "/components/button-group",
     },
   ),
   uncovered: [

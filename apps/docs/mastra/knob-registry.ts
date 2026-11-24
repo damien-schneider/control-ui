@@ -821,7 +821,7 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="button-group"][data-slot="root"])',
       },
       {
-        name: "--cui-button-group-separator-background",
+        name: "--cui-button-group-separator-color",
         syntax: "<color>",
         defaultValue: "var(--border)",
         selector: ':where([data-control-family="button-group"][data-slot="root"])',

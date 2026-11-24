@@ -132,7 +132,6 @@ export type EmittedStateContract = {
   "button-group:root:data-join": ButtonGroupJoin;
   "button-group:root:data-orientation": "horizontal" | "vertical";
   "button-group:root:data-track": HoverIndicator;
-  "button-group:separator:data-orientation": "horizontal" | "vertical";
   "button-group:text:data-size": ControlSize;
   "chat-composer:root:data-density": ChatDensity;
   "chat-composer:root:data-state": "idle" | "submitting" | "disabled";

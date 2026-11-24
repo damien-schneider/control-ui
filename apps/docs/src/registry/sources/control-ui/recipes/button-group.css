@@ -4,7 +4,7 @@
     --cui-button-group-shadow: inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm);
     --cui-button-group-text-background: var(--control-fill);
     --cui-button-group-text-foreground: var(--muted-foreground);
-    --cui-button-group-separator-background: var(--border);
+    --cui-button-group-separator-color: var(--border);
     position: relative;
     isolation: isolate;
     border-radius: var(--cui-button-group-radius);
@@ -70,18 +70,6 @@
     padding-inline: calc(var(--padding-x) * 1.25);
   }
 
-  :where([data-control-family="button-group"][data-slot="separator"]) {
-    background: var(--cui-button-group-separator-background);
-  }
-
-  :where([data-control-family="button-group"][data-slot="separator"][data-orientation="vertical"]) {
-    inline-size: var(--control-rim-width);
-  }
-
-  :where([data-control-family="button-group"][data-slot="separator"][data-orientation="horizontal"]) {
-    block-size: var(--control-rim-width);
-  }
-
   :where([data-control-family="button-group"][data-slot="root"] > :not([data-control-family="track-highlight"])) {
     position: relative;
   }
@@ -139,21 +127,17 @@
   :where(
     [data-control-family="button-group"][data-slot="root"][data-join="frame"][data-orientation="horizontal"]
       > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
-      ~ :is([data-control-family="button"][data-control="true"], [data-control-family="button-group"][data-slot="text"]):not(
-        [data-slot="separator"] + *
-      )
+      ~ :is([data-control-family="button"][data-control="true"], [data-control-family="button-group"][data-slot="text"])
   ) {
-    border-inline-start: var(--control-rim-width) solid var(--cui-button-group-separator-background);
+    border-inline-start: var(--control-rim-width) solid var(--cui-button-group-separator-color);
   }
 
   :where(
     [data-control-family="button-group"][data-slot="root"][data-join="frame"][data-orientation="vertical"]
       > :not([data-control-family="track-highlight"], [data-base-ui-focus-guard], span[aria-owns])
-      ~ :is([data-control-family="button"][data-control="true"], [data-control-family="button-group"][data-slot="text"]):not(
-        [data-slot="separator"] + *
-      )
+      ~ :is([data-control-family="button"][data-control="true"], [data-control-family="button-group"][data-slot="text"])
   ) {
-    border-block-start: var(--control-rim-width) solid var(--cui-button-group-separator-background);
+    border-block-start: var(--control-rim-width) solid var(--cui-button-group-separator-color);
   }
 
   :where(
@@ -164,13 +148,6 @@
   }
 
   :where([data-control-family="button-group"][data-slot="root"] > :focus-within) {
-    z-index: 1;
-  }
-
-  :where(
-    [data-control-family="button-group"][data-slot="root"][data-join="overlap"]
-      > [data-control-family="button-group"][data-slot="separator"]
-  ) {
     z-index: 1;
   }
 
@@ -192,12 +169,6 @@
     [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"] [data-control-family="button"][data-size]
   )::after {
     block-size: 100%;
-  }
-
-  @media (forced-colors: active) {
-    :where([data-control-family="button-group"][data-slot="separator"]) {
-      background: CanvasText;
-    }
   }
 }
 
@@ -224,7 +195,7 @@
   initial-value: transparent;
 }
 
-@property --cui-button-group-separator-background {
+@property --cui-button-group-separator-color {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
