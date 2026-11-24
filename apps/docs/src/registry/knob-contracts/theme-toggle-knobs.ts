@@ -6,6 +6,8 @@ export const themeToggleKnobs = [
   "--cui-theme-toggle-background",
   "--cui-theme-toggle-shadow",
   "--cui-theme-toggle-indicator-background",
+  "--cui-theme-toggle-foreground",
+  "--cui-theme-toggle-selected-foreground",
   "--cui-theme-toggle-indicator-shadow",
 ] as const;
 export type ThemeToggleKnobStyle = Partial<Record<(typeof themeToggleKnobs)[number], string>>;

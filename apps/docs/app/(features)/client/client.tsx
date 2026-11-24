@@ -19,13 +19,12 @@ import { DocsSidebarContent } from "@/app/(features)/sidebar/sidebar";
 import { ControlEffectsRuntime } from "@/components/control-ui/extensions/control-effects-root";
 import { cn } from "@/components/control-ui/lib/cn";
 import { AppShell, AppShellContent } from "@/components/control-ui/ui/app-shell";
-import { PageActions, PageBody, PageHeader, PageLayout, usePageScroll } from "@/components/control-ui/ui/page-layout";
-import { SidebarMobileNav, SidebarMobileTrigger, SidebarTrigger, useSidebar } from "@/components/control-ui/ui/sidebar";
+import { PageBody, PageLayout, usePageScroll } from "@/components/control-ui/ui/page-layout";
 import { TableOfContents } from "@/components/control-ui/ui/table-of-contents";
 import { isThemeCategoryPath, SKIN_CATEGORY, THEME_EDITOR_PATH, themeCategoryForPath } from "@/components/theme-drawer/theme-categories";
-import { DocsGithubLink } from "./github-link";
 import type { PageOutline } from "./page-links";
 import { updateDocsSetupPreference, useDocsSetupIntegration } from "./setup-preference";
+import { DocsBottomCorners, DocsTopCorners } from "./shell-corners";
 
 const ThemeEditorAside = dynamic(() => import("@/components/theme-drawer/theme-editor-aside").then((module) => module.ThemeEditorAside));
 
@@ -59,22 +58,6 @@ function activePageForPathname(pathname: string, searchItems: SearchItem[]): Act
 }
 
 const unlistedPageOutline: PageOutline = { width: "wide", links: [] };
-
-function DocsSidebarTrigger({ scrollsPage }: { scrollsPage: boolean }) {
-  const { state } = useSidebar();
-  return (
-    <div
-      data-docs-sidebar-trigger=""
-      className={cn(
-        "pointer-events-none inset-x-0 top-0 z-20 mx-auto flex w-full max-w-7xl justify-start px-2 pt-3",
-        state === "expanded" && "sidebar:hidden",
-        scrollsPage ? "fixed" : "absolute",
-      )}
-    >
-      <SidebarTrigger className="pointer-events-auto" />
-    </div>
-  );
-}
 
 export function DocsShell(props: DocsShellViewProps) {
   const integration = useDocsSetupIntegration();
@@ -116,6 +99,8 @@ function DocsShellContent({
   updateSetupPreference,
 }: DocsShellContentProps) {
   const pathname = usePathname();
+  const [sidebarRootPathname, setSidebarRootPathname] = useState<string | null>(null);
+  if (sidebarRootPathname !== null && sidebarRootPathname !== pathname) setSidebarRootPathname(null);
   const skinScroll = usePageScroll();
   // Page and inset scroll mount different PageLayout trees; home pins one so a skin switch keeps its place and state.
   const scroll = normalizePathname(pathname) === "/" ? "page" : skinScroll;
@@ -132,6 +117,8 @@ function DocsShellContent({
     </DocsPageIntegrationProvider>
   );
 
+  const editTheme = () => setSidebarRootPathname(null);
+
   return (
     <AppShell
       scroll={scroll}
@@ -144,20 +131,21 @@ function DocsShellContent({
       maxWidth={DOCS_SIDEBAR_MAX_WIDTH}
     >
       <DocsSidebarSearchProvider items={searchItems}>
-        <DocsSidebarContent active={activePage} searchItems={searchItems} {...nav} />
+        <DocsTopCorners githubStars={githubStars} onEditTheme={editTheme} />
+        <DocsSidebarContent
+          active={activePage}
+          searchItems={searchItems}
+          showRoot={sidebarRootPathname === pathname}
+          onShowRoot={() => setSidebarRootPathname(pathname)}
+          {...nav}
+        />
         <AppShellContent data-docs-inset="" className="min-h-0">
           <div
             data-docs-content=""
             data-surface="panel"
             className={cn("relative flex min-h-0 flex-1 flex-col", !scrollsPage && "overflow-hidden")}
           >
-            <DocsSidebarTrigger scrollsPage={scrollsPage} />
             <PageLayout width={outline.width}>
-              <PageHeader variant="floating">
-                <PageActions>
-                  <DocsGithubLink stars={githubStars} />
-                </PageActions>
-              </PageHeader>
               {activePage ? (
                 <PageBody
                   asideWidth={themeEditorCategory && themeEditorCategory !== SKIN_CATEGORY ? "wide" : "narrow"}
@@ -179,9 +167,7 @@ function DocsShellContent({
             </PageLayout>
           </div>
         </AppShellContent>
-        <SidebarMobileNav variant="floating" aria-label="Documentation mobile navigation">
-          <SidebarMobileTrigger />
-        </SidebarMobileNav>
+        <DocsBottomCorners onEditTheme={editTheme} />
       </DocsSidebarSearchProvider>
     </AppShell>
   );

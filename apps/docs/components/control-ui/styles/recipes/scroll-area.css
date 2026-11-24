@@ -2,17 +2,24 @@
   :where([data-control-family="scroll-area"][data-slot="root"]) {
     --cui-scroll-area-thumb-radius: 9999px;
     --cui-scroll-area-thumb-background: oklch(from var(--foreground) l c h / 0.4);
+    --cui-scroll-area-thumb-background-image: none;
+    --cui-scroll-area-button-background: transparent;
+    --cui-scroll-area-button-hover-background: var(--hover-fill);
+    --cui-scroll-area-button-background-image: none;
+    --cui-scroll-area-button-foreground: var(--muted-foreground);
     --cui-scroll-area-corner-background: transparent;
     --cui-scroll-area-scrollbar-size: calc(var(--spacing) * 1.5);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
   }
 
   :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"]) {
-    display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: minmax(0, 1fr) auto;
   }
 
-  :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-scroll-area-viewport]),
+  :where([data-control-family="scroll-area"][data-slot="root"] > [data-scroll-area-viewport]),
   :where([data-control-family="scroll-area"][data-slot="root"][data-scrollbar-gutter="stable"] > [data-control-family="progressive-blur"]) {
     grid-area: 1 / 1;
     min-inline-size: 0;
@@ -191,6 +198,80 @@
     block-size: var(--cui-scroll-area-scrollbar-size);
   }
 
+  :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"][data-buttons]) {
+    padding-block: var(--cui-scroll-area-scrollbar-size) calc(var(--cui-scroll-area-scrollbar-size) + var(--scroll-area-inset-end, 0px));
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"][data-buttons]) {
+    padding-inline: var(--cui-scroll-area-scrollbar-size);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"]) {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border-radius: var(--cui-scroll-area-thumb-radius);
+    background-color: var(--cui-scroll-area-button-background);
+    background-image: var(--cui-scroll-area-button-background-image);
+    color: var(--cui-scroll-area-button-foreground);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"]:hover) {
+    background-color: var(--cui-scroll-area-button-hover-background);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"] > svg) {
+    inline-size: 50%;
+    block-size: 50%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="vertical"]) {
+    inset-inline: 0;
+    block-size: var(--cui-scroll-area-scrollbar-size);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="vertical"][data-edge="start"]) {
+    inset-block-start: 0;
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="vertical"][data-edge="end"]) {
+    inset-block-end: var(--scroll-area-inset-end, 0px);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="vertical"][data-edge="end"] > svg) {
+    rotate: 180deg;
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"]) {
+    inset-block: 0;
+    inline-size: var(--cui-scroll-area-scrollbar-size);
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"][data-edge="start"]) {
+    inset-inline-start: 0;
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"][data-edge="end"]) {
+    inset-inline-end: 0;
+  }
+
+  :where(
+    [data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"][data-edge="start"]:dir(ltr) > svg
+  ),
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"][data-edge="end"]:dir(rtl) > svg) {
+    rotate: -90deg;
+  }
+
+  :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"][data-edge="end"]:dir(ltr) > svg),
+  :where(
+    [data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="horizontal"][data-edge="start"]:dir(rtl) > svg
+  ) {
+    rotate: 90deg;
+  }
+
   :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
     z-index: 1;
     opacity: 0;
@@ -212,6 +293,7 @@
   :where([data-control-family="scroll-area"][data-slot="thumb"]) {
     border-radius: var(--cui-scroll-area-thumb-radius);
     background: var(--cui-scroll-area-thumb-background);
+    background-image: var(--cui-scroll-area-thumb-background-image);
   }
 
   :where([data-control-family="scroll-area"][data-slot="corner"]) {
@@ -262,6 +344,34 @@
 }
 
 @property --cui-scroll-area-thumb-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-scroll-area-thumb-background-image {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-scroll-area-button-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-scroll-area-button-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-scroll-area-button-background-image {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-scroll-area-button-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

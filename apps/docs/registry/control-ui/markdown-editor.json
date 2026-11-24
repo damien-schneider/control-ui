@@ -6,15 +6,15 @@
   "description": "Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine.",
   "dependencies": [
     "@base-ui/react@^1.9.0",
-    "@tiptap/core@3.31.4",
-    "@tiptap/extension-image@3.31.4",
-    "@tiptap/extension-list@3.31.4",
-    "@tiptap/extension-paragraph@3.31.4",
-    "@tiptap/extension-table@3.31.4",
-    "@tiptap/markdown@3.31.4",
-    "@tiptap/pm@3.31.4",
-    "@tiptap/react@3.31.4",
-    "@tiptap/starter-kit@3.31.4"
+    "@tiptap/core@3.35.0",
+    "@tiptap/extension-image@3.35.0",
+    "@tiptap/extension-list@3.35.0",
+    "@tiptap/extension-paragraph@3.35.0",
+    "@tiptap/extension-table@3.35.0",
+    "@tiptap/markdown@3.35.0",
+    "@tiptap/pm@3.35.0",
+    "@tiptap/react@3.35.0",
+    "@tiptap/starter-kit@3.35.0"
   ],
   "registryDependencies": [
     "checkbox",

@@ -16,6 +16,7 @@ const nextConfig = {
   transpilePackages: ["@control-ui/skills"],
   reactCompiler: true,
   cacheComponents: true,
+  partialPrefetching: false,
   // Matching UAs skip the prerendered page for a full server render; prerendered pages already ship metadata in <head>.
   htmlLimitedBots: /^$/,
   experimental: {

@@ -1,0 +1,40 @@
+@layer components {
+  [data-skin="xp"] :where([data-control-family="app-shell-corner"][data-slot="corner"]) {
+    --cui-app-shell-corner-background: var(--xp-title-blue);
+    --cui-app-shell-corner-shadow: inset 0 1px oklch(from var(--xp-white) l c h / 0.35);
+    --cui-app-shell-corner-foreground: var(--xp-white);
+    --cui-app-shell-corner-border-color: var(--xp-title-shadow);
+    --cui-app-shell-corner-radius: 8px;
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="app-shell-corner"][data-slot="corner"]
+        [data-control-family="button"][data-control="true"]:not([data-variant="surface"], [data-variant="solid"], [data-variant="scrim"])
+    ) {
+    --cui-button-foreground: var(--xp-white);
+    --cui-button-hover-foreground: var(--xp-white);
+    --cui-button-active-foreground: var(--xp-white);
+    --cui-button-active-background: oklch(from var(--xp-white) l c h / 0.18);
+    --cui-button-active-hover-background: oklch(from var(--xp-white) l c h / 0.18);
+    --cui-button-hover-shadow: inset 1px 1px oklch(from var(--xp-white) l c h / 0.45), inset -1px -1px var(--xp-title-shadow);
+    --cui-button-press-shadow: inset 1px 1px var(--xp-title-shadow), inset -1px -1px oklch(from var(--xp-white) l c h / 0.45);
+    text-shadow: 1px 1px var(--xp-title-shadow);
+  }
+  [data-skin="xp"] :where([data-control-family="app-shell-corner"][data-slot="corner"] [data-control-family="kbd"][data-slot="root"]) {
+    --cui-kbd-foreground: oklch(from var(--xp-white) l c h / 0.85);
+  }
+  [data-skin="xp"] :where([data-control-family="app-shell-corner"][data-slot="corner"] [data-control-family="badge"][data-slot="root"]) {
+    --cui-badge-background: var(--xp-white);
+    --cui-badge-foreground: var(--xp-title-blue);
+  }
+  [data-skin="xp"]
+    :where([data-control-family="app-shell-corner"][data-slot="corner"] [data-control-family="theme-toggle"][data-slot="root"]) {
+    --cui-theme-toggle-radius: 3px;
+    --cui-theme-toggle-background: var(--xp-start);
+    --cui-theme-toggle-shadow: inset 1px 1px oklch(from var(--xp-white) l c h / 0.35), inset -1px -1px oklch(0 0 0 / 0.3);
+    --cui-theme-toggle-indicator-background: var(--xp-start-pressed);
+    --cui-theme-toggle-indicator-shadow: inset 1px 1px oklch(0 0 0 / 0.35);
+    --cui-theme-toggle-foreground: var(--xp-white);
+    --cui-theme-toggle-selected-foreground: var(--xp-white);
+  }
+}

@@ -542,13 +542,17 @@ export const componentEntries = [
     kind: "Component",
     status: "beta",
     name: "App shell",
-    summary: "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
+    summary:
+      "The application container: persistent navigation, header, and screen-corner chrome around changing page content, with one shared scroll policy.",
     paths: {
       registry: {
         target: "components/control-ui/ui/app-shell.tsx",
         example: sourceFile("App shell preview", "src/registry/examples/control-ui/primitives/app-shell.tsx", "example"),
         source: sourceFile("App shell", "src/registry/sources/control-ui/ui/app-shell.tsx", "component"),
-        supportFiles: [sourceFile("App shell recipe", "src/registry/sources/control-ui/recipes/app-shell-header.css", "recipe-css")],
+        supportFiles: [
+          sourceFile("App shell header recipe", "src/registry/sources/control-ui/recipes/app-shell-header.css", "recipe-css"),
+          sourceFile("App shell corner recipe", "src/registry/sources/control-ui/recipes/app-shell-corner.css", "recipe-css"),
+        ],
         registryKind: "app-shell",
       },
     },
@@ -572,6 +576,20 @@ export const componentEntries = [
           () =>
             import("@/src/registry/examples/control-ui/primitives/app-shell-collapsed").then((mod) => ({
               default: mod.PrimitiveAppShellCollapsedExample,
+            })),
+          { layout: "contained" },
+        ),
+      },
+      {
+        id: "corners",
+        title: "Screen corners",
+        description:
+          "Pin chrome to the corners of the shell. The corners stay put when the sidebar collapses; while it is open, the start corners span its column and the column starts and ends between them.",
+        source: sourceFile("App shell corners example", "src/registry/examples/control-ui/primitives/app-shell-corners.tsx", "example"),
+        preview: preview(
+          () =>
+            import("@/src/registry/examples/control-ui/primitives/app-shell-corners").then((mod) => ({
+              default: mod.PrimitiveAppShellCornersExample,
             })),
           { layout: "contained" },
         ),

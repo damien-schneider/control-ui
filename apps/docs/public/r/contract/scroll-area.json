@@ -25,6 +25,36 @@
       "defaultValue": "oklch(from var(--foreground) l c h / 0.4)"
     },
     {
+      "name": "--cui-scroll-area-thumb-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-scroll-area-button-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "transparent"
+    },
+    {
+      "name": "--cui-scroll-area-button-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--hover-fill)"
+    },
+    {
+      "name": "--cui-scroll-area-button-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-scroll-area-button-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
       "name": "--cui-scroll-area-corner-background",
       "syntax": "<color>",
       "initialValue": "transparent",
@@ -178,6 +208,12 @@
         ],
         "states": [
           {
+            "attribute": "data-buttons",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-has-overflow-x",
             "source": "external",
             "valueKind": "presence",
@@ -242,6 +278,32 @@
               "always",
               "hover",
               "scroll"
+            ]
+          }
+        ]
+      },
+      "scrollbar-button": {
+        "family": "scroll-area",
+        "registryItems": [
+          "scroll-area"
+        ],
+        "states": [
+          {
+            "attribute": "data-edge",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "end",
+              "start"
+            ]
+          },
+          {
+            "attribute": "data-orientation",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "horizontal",
+              "vertical"
             ]
           }
         ]
@@ -328,6 +390,10 @@
     }
   },
   "adornments": {},
-  "uncovered": [],
+  "uncovered": [
+    "--cui-scroll-area-button-background",
+    "--cui-scroll-area-button-foreground",
+    "--cui-scroll-area-button-hover-background"
+  ],
   "contrast": "/r/contract/scroll-area.contrast.json"
 }

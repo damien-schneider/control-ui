@@ -1,6 +1,7 @@
 "use client";
 
-import { MastraReactProvider, MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers, useChat } from "@mastra/react";
+import { MastraReactProvider, useChat } from "@mastra/react";
+import { MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers } from "@mastra/react/ui";
 import { type ReactNode, useState } from "react";
 import { ActionBar, ActionBarCopy } from "@/components/control-ui/action-bar";
 import { Activity, ActivityContent, ActivityIcon, ActivityTitle, ActivityTrigger } from "@/components/control-ui/activity";
@@ -84,14 +85,14 @@ function renderMastraTurn(from: "user" | "assistant", children: ReactNode, state
   );
 }
 
+const renderUserTurn = ({ children }: MessageRoleRendererProps) => renderMastraTurn("user", children);
+const renderSignalTurn = ({ children }: MessageRoleRendererProps) => renderMastraTurn("assistant", children);
+const renderNothing = () => null;
+
 function mastraMessageRoles(streamingMessageId: string | undefined): MessageRoleRenderers {
-  return {
-    User: ({ children }: MessageRoleRendererProps) => renderMastraTurn("user", children),
-    Assistant: ({ children, message }: MessageRoleRendererProps) =>
-      renderMastraTurn("assistant", children, message.id === streamingMessageId ? "streaming" : "idle"),
-    System: () => null,
-    Signal: ({ children }: MessageRoleRendererProps) => renderMastraTurn("assistant", children),
-  };
+  const renderAssistantTurn = ({ children, message }: MessageRoleRendererProps) =>
+    renderMastraTurn("assistant", children, message.id === streamingMessageId ? "streaming" : "idle");
+  return { User: renderUserTurn, Assistant: renderAssistantTurn, System: renderNothing, Signal: renderSignalTurn };
 }
 
 function PreviewConversation() {

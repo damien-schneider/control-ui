@@ -34,7 +34,7 @@ for (const width of [390, 1440]) {
     await page.goto("/get-started");
     await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
     if (width < 768) {
-      const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
+      const sidebarTrigger = page.getByRole("button", { name: "Menu", exact: true });
       await waitForReactHydration(sidebarTrigger);
       await sidebarTrigger.press("Enter");
     }

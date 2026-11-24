@@ -110,6 +110,19 @@ export const displayCompositions = {
       ),
       "AppShell includes SidebarProvider. Set scroll once: page uses the document, inset lets PageLayout scroll, and none lets workspace panes own scrolling. Keep the shell mounted while route content loads.",
     ),
+    example(
+      "Screen corners",
+      part(
+        "AppShell",
+        content('placement="top-start"', part("AppShellCorner", part("SidebarTrigger"))),
+        content('placement="top-end"', part("AppShellCorner")),
+        part("Sidebar", part("SidebarContent")),
+        part("AppShellContent", content("route content")),
+        content('placement="bottom-start"', part("AppShellCorner")),
+        content('placement="bottom-end"', part("AppShellCorner")),
+      ),
+      "Each AppShellCorner pins a tab of chrome to one screen corner, and the skin paints it. Corners stay visible when the sidebar collapses. While the sidebar is open, the start corners span its column and the column sits between them. Place corners in the DOM where they belong in the tab order. Hide one below the sidebar breakpoint with className when the page has no room for it.",
+    ),
   ],
   "page-layout": [
     example(

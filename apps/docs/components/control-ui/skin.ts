@@ -35,8 +35,10 @@ export type ControlUiSkin = {
   scrollAreaBlur?: boolean;
   scrollAreaScrollbarVisibility?: "scroll" | "hover" | "always";
   scrollAreaScrollbarGutter?: "auto" | "stable";
+  scrollAreaScrollbarButtons?: boolean;
   selectAlignItemWithTrigger?: boolean;
   calendarShowOutsideDays?: boolean;
+  buttonGroupJoin?: ButtonGroupJoin;
   indicators?: SkinIndicators;
 
   effects?: readonly ControlEffect[];
@@ -48,6 +50,8 @@ export type ControlUiSkin = {
 };
 
 export type SidebarLayout = "sidebar" | "floating" | "inset" | "page";
+
+export type ButtonGroupJoin = "frame" | "overlap";
 
 export type ControlEffect = "top-shine" | "ripple" | "hover-circle";
 

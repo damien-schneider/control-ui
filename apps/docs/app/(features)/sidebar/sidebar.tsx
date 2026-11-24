@@ -1,20 +1,10 @@
 "use client";
 
-import { CustomizeIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { ControlUiLogo } from "@/app/(features)/brand/control-ui-logo";
+import { DocsBrand } from "@/app/(features)/brand/docs-brand";
+import { DocsBylineLink, DocsResourceLinks } from "@/app/(features)/client/site-links";
 import type { ActivePageId } from "@/app/(features)/model/types";
-import { Badge } from "@/components/control-ui/ui/badge";
-import { ButtonLink } from "@/components/control-ui/ui/button";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/control-ui/ui/sidebar";
-import { Text, TextLink } from "@/components/control-ui/ui/typography";
-import { SkinPresetControls } from "@/components/theme-drawer/skin-preset-controls";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, useSidebar } from "@/components/control-ui/ui/sidebar";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
-import { siteConfig } from "@/lib/site-config";
 import { catalogNavGroupIcons, sidebarDoors, templateKindSidebarIcons, themeEditorDoor } from "./icons";
 import { DocsNavGroup, SidebarDoorMenu, SidebarDoorPane, SkillConcernNavGroups } from "./nav-groups";
 import { catalogNavGroups, type GuideNavGroup, getTemplateNavGroups, guideNavSections, sidebarPaneForActivePage } from "./nav-items";
@@ -85,63 +75,29 @@ export function DocsSidebarContent({
   utils,
   extensions,
   searchItems,
+  showRoot,
+  onShowRoot,
 }: DocsSidebarContentProps) {
+  const { isMobile } = useSidebar();
   const closeSidebar = useCloseMobileSidebar();
-  const pathname = usePathname();
   const guideSections = guideNavSections(guides);
   const startGroup = guideSections.top.find((group) => group.id === "start");
   const pane = sidebarPaneForActivePage(active, searchItems, guideSections.reference);
-  const [navigation, setNavigation] = useState({ pathname, showRoot: false });
-  if (navigation.pathname !== pathname) setNavigation({ pathname, showRoot: false });
-  const showRoot = navigation.pathname === pathname && navigation.showRoot;
   const openDoor = showRoot ? undefined : [...sidebarDoors, themeEditorDoor].find((door) => door.id === pane);
-
-  function openThemeEditor() {
-    setNavigation({ pathname, showRoot: false });
-    closeSidebar();
-  }
 
   return (
     <Sidebar data-docs-sidebar-navigation="" mobileVariant="drawer" collapsible={DOCS_SIDEBAR_COLLAPSIBLE}>
-      <SidebarHeader>
-        <div className="flex items-center justify-between gap-2">
-          <div className="relative flex min-w-0 items-center">
-            <Link href="/" onClick={closeSidebar} className="flex min-w-0 items-center gap-1.5">
-              <ControlUiLogo />
-              <Text size="heading-4" className="block truncate">
-                {siteConfig.name}
-              </Text>
-            </Link>
-            <Badge size="sm" className="absolute -top-0.5 left-full ml-1">
-              alpha
-            </Badge>
+      {isMobile ? (
+        <SidebarHeader>
+          <div className="flex items-center justify-between gap-2">
+            <DocsBrand onNavigate={closeSidebar} />
+            <DocsSearchTrigger />
           </div>
-          <DocsSearchTrigger />
-        </div>
-        {/* biome-ignore lint/a11y/useSemanticElements: a labelled row of sidebar controls, not a form fieldset. */}
-        <div role="group" aria-label="Documentation controls" className="flex items-center gap-1.5">
-          <SkinPresetControls className="min-w-0 flex-1 justify-between" onNavigate={openThemeEditor} />
-          <ButtonLink
-            render={<Link href="/theme-editor" onClick={openThemeEditor} />}
-            variant="surface"
-            size="sm"
-            iconOnly
-            aria-label="Edit theme"
-            title="Edit theme"
-            aria-current={active === "theme-editor" ? "page" : undefined}
-          >
-            <HugeiconsIcon aria-hidden icon={CustomizeIcon} size={16} strokeWidth={1.7} />
-          </ButtonLink>
-        </div>
-      </SidebarHeader>
+        </SidebarHeader>
+      ) : null}
       <SidebarContent>
         {openDoor ? (
-          <SidebarDoorPane
-            door={openDoor}
-            active={active}
-            onNavigate={closeSidebar}
-            onBack={() => setNavigation({ pathname, showRoot: true })}
-          >
+          <SidebarDoorPane door={openDoor} active={active} onNavigate={closeSidebar} onBack={onShowRoot}>
             <DoorNavGroups
               doorId={openDoor.id}
               referenceGroups={guideSections.reference}
@@ -169,17 +125,17 @@ export function DocsSidebarContent({
         )}
       </SidebarContent>
 
-      <SidebarFooter>
-        <div className="flex items-center justify-between gap-2">
-          <ThemeModeSwitch />
-          <Text as="p" size="micro" tone="muted" className="text-right">
-            by{" "}
-            <TextLink href={siteConfig.author.href} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
-              {siteConfig.author.name}
-            </TextLink>
-          </Text>
-        </div>
-      </SidebarFooter>
+      {isMobile ? (
+        <SidebarFooter>
+          <div className="flex items-center justify-between gap-2">
+            <ThemeModeSwitch />
+            <DocsBylineLink />
+          </div>
+          <div className="flex items-center gap-1">
+            <DocsResourceLinks />
+          </div>
+        </SidebarFooter>
+      ) : null}
 
       <SidebarRail />
     </Sidebar>

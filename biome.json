@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
   "files": {
     "includes": [
       "**",
@@ -130,6 +130,11 @@
       "tailwindDirectives": true
     }
   },
+  "markdown": {
+    "formatter": {
+      "enabled": false
+    }
+  },
   "overrides": [
     {
       "includes": ["packages/skills/src/index.ts"],
@@ -137,6 +142,26 @@
         "rules": {
           "performance": {
             "noBarrelFile": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.test.tsx"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noComponentHookFactories": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["apps/docs/e2e/**"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "useDomNodeTextContent": "off"
           }
         }
       }

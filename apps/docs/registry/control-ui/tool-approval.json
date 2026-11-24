@@ -6,7 +6,7 @@
   "description": "Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.",
   "dependencies": [
     "@base-ui/react@^1.9.0",
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "badge",

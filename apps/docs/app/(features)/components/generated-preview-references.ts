@@ -45,6 +45,7 @@ import { PrimitiveAlertExample } from "@/src/registry/examples/control-ui/primit
 import { PrimitiveAlertDialogExample } from "@/src/registry/examples/control-ui/primitives/alert-dialog";
 import { PrimitiveAppShellExample } from "@/src/registry/examples/control-ui/primitives/app-shell";
 import { PrimitiveAppShellCollapsedExample } from "@/src/registry/examples/control-ui/primitives/app-shell-collapsed";
+import { PrimitiveAppShellCornersExample } from "@/src/registry/examples/control-ui/primitives/app-shell-corners";
 import { AspectRatioRuntimeExample, PrimitiveAspectRatioExample } from "@/src/registry/examples/control-ui/primitives/aspect-ratio";
 import { PrimitiveAutocompleteExample } from "@/src/registry/examples/control-ui/primitives/autocomplete";
 import { PrimitiveAutocompleteInputGroupExample } from "@/src/registry/examples/control-ui/primitives/autocomplete-input-group";
@@ -235,6 +236,7 @@ export const previewReferences: LoadedPreviews = {
   "component/sidebar/double-sidebar-content": PrimitiveSidebarDoubleContentExample,
   "component/app-shell": PrimitiveAppShellExample,
   "component/app-shell/collapsed": PrimitiveAppShellCollapsedExample,
+  "component/app-shell/corners": PrimitiveAppShellCornersExample,
   "component/page-layout": PrimitivePageLayoutExample,
   "component/scroll-area": PrimitiveScrollAreaExample,
   "component/scroll-area/stable-gutter": ScrollAreaGutterExample,

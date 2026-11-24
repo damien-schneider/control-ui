@@ -1,6 +1,8 @@
 @import "../retro-system-font.css";
 
 @import "./xp-controls.css";
+@import "./xp-corners.css";
+@import "./xp-scroll.css";
 
 [data-skin="xp"] {
   --xp-white: oklch(1 0 0);
@@ -30,10 +32,11 @@
     inset -1px -1px oklch(0.3054 0.1896 264.19), inset 1px 1px oklch(0.4393 0.2509 264.572), inset -2px -2px oklch(0.3447 0.2038 264.074), inset 2px 2px oklch(
       0.5593 0.2133 260.155
     ), inset -3px -3px oklch(0.4535 0.2436 263.553), inset 3px 3px oklch(0.5021 0.2181 261.634);
+  --xp-title-blue: oklch(0.5082 0.2451 262.523);
   --xp-titlebar: linear-gradient(
     oklch(0.6652 0.1851 249.79),
     oklch(0.5134 0.2418 262.234) 8%,
-    oklch(0.5082 0.2451 262.523) 40%,
+    var(--xp-title-blue) 40%,
     oklch(0.5635 0.2408 260.818) 88%,
     oklch(0.5435 0.2531 262.093) 95%,
     oklch(0.4534 0.2381 263.377) 96%
@@ -55,14 +58,17 @@
   --xp-tab-orange: oklch(0.8575 0.1584 85.332);
   --xp-check: oklch(0.619 0.1943 142.776);
   --xp-progress: oklch(0.6725 0.1979 143.721);
+  --xp-start: oklch(0.58 0.165 142.5);
+  --xp-start-pressed: oklch(0.45 0.13 142.5);
   --xp-tooltip: oklch(0.9922 0.039 107.089);
-  --xp-scroll: linear-gradient(
-    90deg,
-    oklch(1 0 0),
-    oklch(0.8767 0.0568 267.632) 20%,
-    oklch(0.8316 0.0679 264.509) 80%,
-    oklch(0.8723 0.0576 265.652)
-  );
+  --xp-scroll-stops: oklch(1 0 0), oklch(0.8767 0.0568 267.632) 20%, oklch(0.8316 0.0679 264.509) 80%, oklch(0.8723 0.0576 265.652);
+  --xp-scroll: linear-gradient(90deg, var(--xp-scroll-stops));
+  --xp-scroll-track: oklch(0.9962 0.0039 106.47);
+  --xp-scroll-track-edge: oklch(0.9447 0.0107 100.83);
+  --xp-scroll-rim: oklch(0.8334 0.0684 266.52);
+  --xp-scroll-edge: oklch(0.6966 0.0862 258.11);
+  --xp-scroll-grip: oklch(0.759 0.1115 263.57);
+  --xp-scroll-grip-light: oklch(0.9655 0.0149 260.73);
 }
 
 :where(.dark) [data-skin="xp"],
@@ -84,7 +90,13 @@
   --xp-tab-border: var(--input);
   --xp-check: oklch(0.75 0.17 145);
   --xp-tooltip: oklch(0.31 0.025 95);
-  --xp-scroll: linear-gradient(90deg, oklch(0.45 0.04 257), oklch(0.33 0.04 260));
+  --xp-scroll-stops: oklch(0.45 0.04 257), oklch(0.33 0.04 260);
+  --xp-scroll-track: oklch(0.29 0.01 257);
+  --xp-scroll-track-edge: oklch(0.24 0.01 255);
+  --xp-scroll-rim: oklch(0.52 0.04 257);
+  --xp-scroll-edge: oklch(0.2 0.01 255);
+  --xp-scroll-grip: oklch(0.27 0.03 260);
+  --xp-scroll-grip-light: oklch(0.62 0.04 257);
 }
 
 @layer components {
@@ -272,42 +284,6 @@
     --cui-chat-message-border-color: var(--xp-field);
     --cui-chat-message-border-width: 1px;
     --cui-chat-message-shadow: inset 0 1px var(--xp-light);
-  }
-  [data-skin="xp"]
-    :where(
-      [data-control-family="scroll-area"][data-slot="root"],
-      [data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]
-    ) {
-    scrollbar-color: auto;
-    scrollbar-width: auto;
-  }
-  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="root"]) {
-    --cui-scroll-area-thumb-radius: 2px;
-    --cui-scroll-area-thumb-background: var(--xp-scroll);
-    --cui-scroll-area-corner-background: var(--secondary);
-    --cui-scroll-area-scrollbar-size: 16px;
-  }
-  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="scrollbar"]) {
-    background: var(--secondary);
-  }
-  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="thumb"]) {
-    border: 1px solid var(--xp-field);
-    box-shadow:
-      inset 1px 1px var(--xp-light),
-      inset -1px -1px var(--xp-shadow);
-  }
-  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
-  }
-  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-track {
-    background: var(--secondary);
-    box-shadow: inset 1px 0 var(--xp-shadow);
-  }
-  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-thumb {
-    border: 1px solid var(--xp-field);
-    border-radius: 2px;
-    background: var(--xp-scroll);
   }
   @media (pointer: coarse) {
     [data-skin="xp"] :where([data-control-family="button"][data-control="true"], [data-control-family="field"][data-control="true"]) {

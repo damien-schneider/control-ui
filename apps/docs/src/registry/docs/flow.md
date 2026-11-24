@@ -18,8 +18,8 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `@xyflow/react@^12.12.0`
-- `lucide-react@^1.47.0`
+- `@xyflow/react@^13.0.3`
+- `lucide-react@^1.78.0`
 
 ## Registry dependencies
 
@@ -140,7 +140,7 @@ const edges: StepEdge[] = [
   { id: "answer-respond", type: "step", source: "answer", target: "respond", data: { dashed: true } },
 ];
 
-const FIT_VIEW_OPTIONS = { padding: 0.2 };
+const FIT_VIEW_OPTIONS = { padding: "8%" } as const;
 
 export function PrimitiveFlowExample() {
   return (

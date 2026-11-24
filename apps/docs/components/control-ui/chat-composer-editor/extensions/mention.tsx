@@ -354,6 +354,7 @@ export function mentionExtension<Item extends TriggerMenuItemData = TriggerMenuI
     nodes: { mention: mentionNode },
     keymap: () => ({ Backspace: deleteMentionBackward, Delete: deleteMentionForward }),
     submitPayload: (doc) => ({ mentions: collectMentions(doc) }),
+    // biome-ignore lint/correctness/noComponentHookFactories: ChatComposerEditor reads extensions once at mount, so each Overlay keeps one identity
     Overlay: ({ editor }) => (
       <MentionOverlay editor={editor} triggers={triggers} side={side} align={align} emptyLabel={emptyLabel} resultsLabel={resultsLabel} />
     ),

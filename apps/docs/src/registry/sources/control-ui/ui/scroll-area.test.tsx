@@ -38,6 +38,26 @@ test("skins can reserve visible tracks and instances can override either default
   expect(overrideGutter).not.toContain('data-slot="scrollbar"');
 });
 
+test("skins can add stepping buttons to each track and instances can opt out", () => {
+  const skin = { scrollAreaScrollbarGutter: "stable", scrollAreaScrollbarButtons: true } as const;
+  const html = renderToStaticMarkup(
+    <SkinProvider skin={skin}>
+      <ScrollArea lockAxis="x">Content</ScrollArea>
+    </SkinProvider>,
+  );
+  expect(html).toContain("data-buttons");
+  expect(html.match(/data-slot="scrollbar-button"/g)).toHaveLength(2);
+
+  const optOut = renderToStaticMarkup(
+    <SkinProvider skin={skin}>
+      <ScrollArea lockAxis="x" scrollbarButtons={false}>
+        Content
+      </ScrollArea>
+    </SkinProvider>,
+  );
+  expect(optOut).not.toContain('data-slot="scrollbar-button"');
+});
+
 test("root style stays on the root so it cannot override the computed thumb size", () => {
   const html = renderToStaticMarkup(
     <ScrollArea scrollbarGutter="stable" style={{ height: 240 }}>

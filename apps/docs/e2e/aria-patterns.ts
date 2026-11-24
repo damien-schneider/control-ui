@@ -197,7 +197,7 @@ class Check {
   }
 
   fail(subject: Info | string, message: string, { policy = false } = {}) {
-    const label = typeof subject === "string" ? subject : describe(subject);
+    const label = typeof subject === "string" ? subject : describeElement(subject);
     this.problems.push({ subject: label, message, policy });
   }
 
@@ -256,9 +256,13 @@ class Check {
       (current) => current !== null && keys.has(current.key),
     );
     if (!active || !keys.has(active.key)) {
-      this.fail(context, `${key} should move focus to ${expected.map(describe).join(" or ")}, focus is on ${describeFocus(active)}`, {
-        policy,
-      });
+      this.fail(
+        context,
+        `${key} should move focus to ${expected.map(describeElement).join(" or ")}, focus is on ${describeFocus(active)}`,
+        {
+          policy,
+        },
+      );
     }
     return active;
   }
@@ -271,7 +275,7 @@ class Check {
       (current) => current?.key === expected.key,
     );
     if (active?.key === expected.key) return true;
-    this.fail(subject, `${action} should focus ${describe(expected)}, focus is on ${describeFocus(active)}`);
+    this.fail(subject, `${action} should focus ${describeElement(expected)}, focus is on ${describeFocus(active)}`);
     return false;
   }
 
@@ -287,12 +291,12 @@ function visibleOnly(infos: Info[]) {
   return infos.filter((info) => info.visible);
 }
 
-function describe(info: Info) {
+function describeElement(info: Info) {
   return `${info.role || info.tag}${info.name ? ` "${info.name.slice(0, 40)}"` : ""}`;
 }
 
 function describeFocus(active: Info | null) {
-  return active ? describe(active) : "the page";
+  return active ? describeElement(active) : "the page";
 }
 
 const isTrue = (value: string | null) => value === "true";
@@ -423,7 +427,8 @@ async function checkTabList(check: Check, list: Info) {
     ':is(button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])):not([aria-hidden="true"], [aria-hidden="true"] *)',
     '[role="tablist"]',
   ).then((infos) => infos.filter((info) => info.role !== "tab"));
-  for (const stray of strays) check.fail(stray, `sits inside tablist ${describe(list)} but isn't a tab; a tablist may only own tabs`);
+  for (const stray of strays)
+    check.fail(stray, `sits inside tablist ${describeElement(list)} but isn't a tab; a tablist may only own tabs`);
   const tabs = await owned(check, list, "tab", '[role="tablist"]');
   if (tabs.length === 0) {
     check.fail(list, "owns no tabs");
@@ -444,14 +449,14 @@ async function checkTabPanel(check: Check, tab: Info) {
     check.fail(tab, "is selected but aria-controls doesn't reference a rendered tabpanel");
     return;
   }
-  if (panel.role !== "tabpanel") check.fail(panel, `is controlled by ${describe(tab)} but has role "${panel.role}"`);
+  if (panel.role !== "tabpanel") check.fail(panel, `is controlled by ${describeElement(tab)} but has role "${panel.role}"`);
   if (!panel.name) check.fail(panel, "has no accessible name; label it with aria-labelledby pointing at its tab");
 }
 
 async function checkTabKeys(check: Check, list: Info, stops: Info[], current: Info) {
   if (stops.length < 2) return;
   const { next, previous } = nextKeys(list, orientationOf(list, "horizontal"));
-  const context = `tablist ${describe(list)}`;
+  const context = `tablist ${describeElement(list)}`;
   const start = Math.max(
     0,
     stops.findIndex((tab) => tab.key === current.key),
@@ -488,7 +493,7 @@ async function checkRadios(check: Check, group: Info) {
   if (stops.length !== 1 || (expectedStop && stops[0].key !== expectedStop.key)) {
     check.fail(
       group,
-      `tab sequence holds ${stops.map(describe).join(", ") || "no radio"}, expected only ${expectedStop ? describe(expectedStop) : "one radio"}`,
+      `tab sequence holds ${stops.map(describeElement).join(", ") || "no radio"}, expected only ${expectedStop ? describeElement(expectedStop) : "one radio"}`,
     );
   }
   if (enabled.length < 2 || !expectedStop) return;
@@ -497,7 +502,7 @@ async function checkRadios(check: Check, group: Info) {
 }
 
 async function checkRadioKeys(check: Check, group: Info, enabled: Info[], start: Info) {
-  const context = `radiogroup ${describe(group)}`;
+  const context = `radiogroup ${describeElement(group)}`;
   const ltr = group.dir !== "rtl";
   let index = enabled.findIndex((radio) => radio.key === start.key);
   await check.focus(start);
@@ -641,14 +646,14 @@ async function checkToolbarControls(check: Check, toolbar: Info, { nameIsPolicy 
   );
   const tabbable = items.filter((item) => item.tabbable);
   if (tabbable.length !== 1)
-    check.fail(toolbar, `has ${tabbable.length} controls in the tab sequence, expected 1 (${tabbable.map(describe).join(", ")})`);
+    check.fail(toolbar, `has ${tabbable.length} controls in the tab sequence, expected 1 (${tabbable.map(describeElement).join(", ")})`);
   // Arrow keys inside a text field move the caret, so navigation ends at the first one.
   const stops = focusStops(items);
   const firstTextField = stops.findIndex(isTextField);
   const navigable = firstTextField === -1 ? stops : stops.slice(0, firstTextField + 1);
   if (navigable.length < 2) return;
   const { next, previous } = nextKeys(toolbar, orientationOf(toolbar, "horizontal"));
-  const context = `toolbar ${describe(toolbar)}`;
+  const context = `toolbar ${describeElement(toolbar)}`;
   await check.focus(navigable[0]);
   if (await walk(check, navigable, 0, next, context, { wrap: false })) {
     await check.expectFocusAfter(previous, [navigable[navigable.length - 2]], context);
@@ -706,7 +711,7 @@ async function checkSubmenu(check: Check, menu: Info, owner: Info, trigger: Info
     return;
   }
   await check.expectFocusOn(trigger, focusStops(await menuItems(check, submenu))[0], `${next} into its submenu`);
-  await check.expectFocusAfter(previous, [trigger], `submenu of ${describe(trigger)}`);
+  await check.expectFocusAfter(previous, [trigger], `submenu of ${describeElement(trigger)}`);
 }
 
 async function checkMenuButton(check: Check, root: Locator) {
@@ -722,7 +727,7 @@ async function checkMenuTrigger(check: Check, trigger: Info) {
   if (!["true", "menu"].includes(trigger.attrs["aria-haspopup"] ?? ""))
     check.fail(trigger, `aria-haspopup is "${trigger.attrs["aria-haspopup"]}", expected menu`);
   if (isTrue(trigger.attrs["aria-expanded"])) check.fail(trigger, 'has aria-expanded="true" while its menu is closed');
-  const context = `menu of ${describe(trigger)}`;
+  const context = `menu of ${describeElement(trigger)}`;
   for (const key of ["Enter", "Space"]) {
     const menu = await openPopup(check, trigger, key, "menu");
     if (!menu) {
@@ -747,7 +752,7 @@ async function checkMenubarItems(check: Check, bar: Info) {
   if (tabbable.length !== 1) check.fail(bar, `has ${tabbable.length} items in the tab sequence, expected 1`);
   if (items.length === 0) return;
   const { next, previous } = nextKeys(bar, orientationOf(bar, "horizontal"));
-  const context = `menubar ${describe(bar)}`;
+  const context = `menubar ${describeElement(bar)}`;
   await check.focus(items[0]);
   if (await walk(check, items, 0, next, context)) await check.expectFocusAfter(previous, [items[items.length - 1]], context);
   await check.focus(items[0]);
@@ -757,7 +762,7 @@ async function checkMenubarItems(check: Check, bar: Info) {
 }
 
 async function checkMenubarMenu(check: Check, trigger: Info) {
-  const context = `menu of ${describe(trigger)}`;
+  const context = `menu of ${describeElement(trigger)}`;
   for (const key of ["Enter", "ArrowDown"]) {
     const menu = await openPopup(check, trigger, key, "menu");
     if (!menu) {
@@ -828,7 +833,7 @@ async function checkListboxKeys(check: Check, combobox: Info, listbox: Info, con
     if (indexOf(state) !== expected)
       check.fail(
         context,
-        `${key} should make ${describe(enabled[expected])} the active option, it's ${state.active ? describe(state.active) : "none"}`,
+        `${key} should make ${describeElement(enabled[expected])} the active option, it's ${state.active ? describeElement(state.active) : "none"}`,
         { policy },
       );
   }
@@ -858,9 +863,9 @@ async function checkSelectTrigger(check: Check, trigger: Info) {
   if (selected && state.active?.key !== selected.key)
     check.fail(
       trigger,
-      `opening should make the selected option ${describe(selected)} active, it's ${state.active ? describe(state.active) : "none"}`,
+      `opening should make the selected option ${describeElement(selected)} active, it's ${state.active ? describeElement(state.active) : "none"}`,
     );
-  const context = `listbox of ${describe(trigger)}`;
+  const context = `listbox of ${describeElement(trigger)}`;
   await checkListboxKeys(check, trigger, listbox, context, { editable: false });
   await expectEscapeCloses(check, trigger, listbox, context);
 }
@@ -882,7 +887,7 @@ async function checkComboboxInput(check: Check, input: Info) {
   const opened = await check.inspect(input);
   if (!isTrue(opened.attrs["aria-expanded"])) check.fail(input, 'doesn\'t set aria-expanded="true" while its listbox is open');
   if (opened.attrs["aria-controls"] !== listbox.attrs.id) check.fail(input, "aria-controls doesn't reference the open listbox");
-  const context = `listbox of ${describe(input)}`;
+  const context = `listbox of ${describeElement(input)}`;
   await checkListboxKeys(check, input, listbox, context, { editable: true });
   if (!alwaysOpen) await expectEscapeCloses(check, input, listbox, context);
 }
@@ -926,7 +931,7 @@ async function checkDialog(check: Check, { trigger }: CheckPatternOptions, role:
     check.fail(dialog, 'has no aria-modal="true" and leaves the page outside it exposed to assistive technology');
   }
   await checkFocusContained(check, dialog);
-  await expectEscapeCloses(check, opener, dialog, `${role} ${describe(dialog)}`);
+  await expectEscapeCloses(check, opener, dialog, `${role} ${describeElement(dialog)}`);
 }
 
 async function checkFocusContained(check: Check, dialog: Info) {
@@ -965,7 +970,7 @@ async function checkTreeItems(check: Check, tree: Info) {
   for (const item of items) requireName(check, item);
   const tabbable = items.filter((item) => item.tabbable);
   if (tabbable.length !== 1) check.fail(tree, `has ${tabbable.length} items in the tab sequence, expected 1`);
-  const context = `tree ${describe(tree)}`;
+  const context = `tree ${describeElement(tree)}`;
   const stops = focusStops(items);
   await check.focus(stops[0]);
   await walk(check, stops, 0, "ArrowDown", context, { wrap: false });

@@ -115,7 +115,7 @@
           [data-field-kind="number-field"]
         ):hover:not(:disabled, [data-disabled], [aria-disabled="true"])
       ) {
-      background: var(--cui-field-hover-background);
+      background: linear-gradient(var(--cui-field-hover-background), var(--cui-field-hover-background)), var(--cui-field-background);
     }
 
     :where(

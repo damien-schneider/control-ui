@@ -5,7 +5,7 @@
   "title": "Markdown editor parts",
   "description": "The engine contract, document state, toolbar, bubble menu, suggestions, drag handle and table controls every Markdown editor alternative shares.",
   "dependencies": [
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "https://control-ui.dev/r/button.json",

@@ -29,14 +29,14 @@
     "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc,css}": "biome check --write --no-errors-on-unmatched"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.14",
+    "@biomejs/biome": "^2.6.8",
     "husky": "9.1.7",
-    "lint-staged": "17.5.1",
-    "react-doctor": "^0.9.14",
-    "turbo": "^2.10.13",
+    "lint-staged": "17.6.2",
+    "react-doctor": "^0.9.23",
+    "turbo": "^2.11.13",
     "typescript": "^7.0.2"
   },
   "overrides": {
-    "prosemirror-view": "^1.42.2"
+    "prosemirror-view": "^1.43.1"
   }
 }

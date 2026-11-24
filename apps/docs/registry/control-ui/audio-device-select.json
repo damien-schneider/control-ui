@@ -5,7 +5,7 @@
   "title": "AudioDeviceSelect",
   "description": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
   "dependencies": [
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "button",

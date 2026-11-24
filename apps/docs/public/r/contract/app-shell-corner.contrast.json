@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "family": "app-shell-corner",
+  "anatomies": [
+    [
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-start",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "top-start",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-end",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-start",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "top-end",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "top-start",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-id": "base-ui-_R_4mql99bn5ritlmlilb_-viewport",
+          "data-scroll-area-viewport": "",
+          "data-slot": "viewport",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-end",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-id": "base-ui-_R_4mql99bn5ritlmlilb_-viewport",
+          "data-scroll-area-viewport": "",
+          "data-slot": "viewport",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-start",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-id": "base-ui-_R_4mql99bn5ritlmlilb_-viewport",
+          "data-scroll-area-viewport": "",
+          "data-slot": "viewport",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "top-end",
+          "data-slot": "corner"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "inset",
+          "data-slot": "root",
+          "data-width": "content"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "scroll-area",
+          "data-control-ui": "scroll-area",
+          "data-id": "base-ui-_R_4mql99bn5ritlmlilb_-viewport",
+          "data-scroll-area-viewport": "",
+          "data-slot": "viewport",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "top-start",
+          "data-slot": "corner"
+        }
+      }
+    ]
+  ],
+  "probes": [
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 0,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 1,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 2,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 4,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 5,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 6,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 7,
+      "rendersText": true,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 8,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-app-shell-corner-background",
+        "text": "--cui-app-shell-corner-foreground"
+      },
+      "anatomy": 9,
+      "rendersText": true,
+      "state": false
+    }
+  ]
+}

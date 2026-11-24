@@ -32,6 +32,13 @@
       "knobs": 15,
       "probes": 6
     },
+    "app-shell-corner": {
+      "registryItems": [
+        "app-shell"
+      ],
+      "knobs": 12,
+      "probes": 10
+    },
     "app-shell-header": {
       "registryItems": [
         "app-shell"
@@ -106,7 +113,7 @@
       "registryItems": [
         "button-group"
       ],
-      "knobs": 4,
+      "knobs": 5,
       "probes": 2
     },
     "calendar": {
@@ -491,7 +498,7 @@
       "registryItems": [
         "scroll-area"
       ],
-      "knobs": 4,
+      "knobs": 9,
       "probes": 48
     },
     "separator": {
@@ -588,8 +595,8 @@
       "registryItems": [
         "theme-toggle-block"
       ],
-      "knobs": 7,
-      "probes": 3
+      "knobs": 9,
+      "probes": 8
     },
     "thinking-level": {
       "registryItems": [

@@ -13,7 +13,7 @@
       "path": "src/registry/skin-packs/rig/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
       "type": "registry:lib",
-      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\n/*\n * \"Rig\" is THEME skin: brand lives in theme.css tokens (coral/near-black, core-default square radius, grotesque)\n * + presentational skin.css. Config only names id, which scopes theme.css/skin.css — no per-slot\n * classes needed.\n */\nexport const skin: ControlUiSkin = { id: \"rig\" };\n"
+      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = { id: \"rig\", buttonGroupJoin: \"overlap\" };\n"
     },
     {
       "path": "src/registry/skin-packs/rig/skin.css",

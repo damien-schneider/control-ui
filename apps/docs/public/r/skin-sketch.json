@@ -32,7 +32,7 @@
       "path": "src/registry/skin-packs/sketch/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
       "type": "registry:lib",
-      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = { id: \"sketch\" };\n"
+      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\nexport const skin: ControlUiSkin = { id: \"sketch\", buttonGroupJoin: \"overlap\" };\n"
     },
     {
       "path": "src/registry/skin-packs/sketch/skin.css",

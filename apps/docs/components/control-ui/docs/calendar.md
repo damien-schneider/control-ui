@@ -16,7 +16,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `react-day-picker@^10.0.1`
+- `react-day-picker@^10.0.2`
 
 ## Registry dependencies
 

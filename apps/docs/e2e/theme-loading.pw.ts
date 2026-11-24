@@ -71,25 +71,33 @@ test("homepage applies a shared skin preset", async ({ page }) => {
 
 test("homepage skin picker repaints the site in place and stays put while scrolling", async ({ page }) => {
   await page.goto("/");
-  const picker = page.getByRole("group", { name: "Skin for this site" });
+  const picker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(picker);
   const readingPosition = 1500;
   await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), readingPosition);
   await expect(picker).toBeInViewport();
-  const startBottom = await picker.evaluate((element) => element.getBoundingClientRect().bottom);
-  const pickerDrift = async () => Math.abs((await picker.evaluate((element) => element.getBoundingClientRect().bottom)) - startBottom);
   for (const skin of ["windows-98", DEFAULT_SKIN_ID] as const) {
-    const option = picker.getByRole("button", { name: SKIN_META_BY_ID[skin].label, exact: true });
-    await option.click();
+    await picker.click();
+    const option = page.getByRole("option", { name: SKIN_META_BY_ID[skin].label, exact: true });
+    await expect(option).toBeInViewport();
+    const box = await option.boundingBox();
+    if (!box) throw new Error(`${skin} option has no layout box`);
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await expect(option).toHaveAttribute("data-highlighted", "");
+    await page.mouse.down();
+    await page.mouse.up();
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
-    await expect(option).toHaveAttribute("aria-pressed", "true");
-    await expect(option).toBeFocused();
-    await expect.poll(pickerDrift).toBeLessThanOrEqual(1);
+    await expect(picker).toHaveText(SKIN_META_BY_ID[skin].label);
+    await expect(picker).toBeFocused();
+    await expect(picker).toBeInViewport();
     expect(await page.evaluate(() => window.scrollY)).toBe(readingPosition);
   }
+  const readingTop = await picker.evaluate((element) => element.getBoundingClientRect().top);
   await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
   await expect(picker).toBeInViewport();
-  await expect.poll(pickerDrift).toBeLessThanOrEqual(1);
+  await expect
+    .poll(async () => Math.abs((await picker.evaluate((element) => element.getBoundingClientRect().top)) - readingTop))
+    .toBeLessThanOrEqual(1);
 });
 
 test("unknown skin query preserves saved edits", async ({ page }) => {
@@ -180,7 +188,7 @@ test("Liquid Metal effects activate on selection and clean up when leaving", asy
   await picker.press("Enter");
   await page.getByRole("option", { name: "Liquid metal", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "liquid-metal");
-  await expect(page.locator('[data-liquid-metal="active"]').first()).toBeVisible();
+  await expect(page.locator('[data-liquid-metal="active"]').filter({ visible: true }).first()).toBeVisible();
   await picker.click();
   await page.getByRole("option", { name: "Refined", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");

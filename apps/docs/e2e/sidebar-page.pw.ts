@@ -48,7 +48,7 @@ test("the page layout frame reaches the first paint, before any hydration", asyn
 test("mobile page scrolling resumes after closing the navigation drawer", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/components/button");
-  const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
+  const trigger = page.getByRole("button", { name: "Menu", exact: true });
   await waitForReactHydration(trigger);
   await page.mouse.move(280, 600);
   await page.mouse.wheel(0, 600);

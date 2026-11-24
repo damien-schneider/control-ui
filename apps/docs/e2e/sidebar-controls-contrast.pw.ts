@@ -35,13 +35,16 @@ async function glyphRegions(controls: Locator): Promise<GlyphRegion[]> {
       glyph.getAttribute("fill") === "currentColor" ||
       glyph.querySelector('[stroke="currentColor"], [fill="currentColor"]') !== null;
 
+    const boxedAncestor = (element: Element): Element =>
+      getComputedStyle(element).display === "contents" && element.parentElement ? boxedAncestor(element.parentElement) : element;
+
     const textGlyphs = (element: HTMLElement) => {
       const glyphs: { rect: DOMRect; color: string; hasText: boolean }[] = [];
       const textNodes = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
       while (textNodes.nextNode()) {
         const node = textNodes.currentNode;
         const parent = node.parentElement;
-        if (!(node.textContent?.trim() && parent && isMeasurable(parent))) continue;
+        if (!(node.textContent?.trim() && parent && isMeasurable(boxedAncestor(parent)))) continue;
         const range = document.createRange();
         range.selectNode(node);
         glyphs.push({ rect: range.getBoundingClientRect(), color: getComputedStyle(parent).color, hasText: true });
@@ -78,7 +81,7 @@ async function minimumContrasts(controls: Locator, regions: GlyphRegion[]): Prom
       if (icon instanceof SVGElement) icon.style.visibility = "hidden";
     }
   });
-  const shot = await controls.screenshot({ animations: "disabled" });
+  const shot = await controls.screenshot({ animations: "disabled", style: "nextjs-portal { display: none !important; }" });
   await controls.evaluate((controlsElement) => {
     for (const element of controlsElement.querySelectorAll("button, a, button *, a *")) {
       if (element instanceof HTMLElement) element.style.removeProperty("color");
@@ -169,13 +172,14 @@ async function minimumContrasts(controls: Locator, regions: GlyphRegion[]): Prom
   );
 }
 
-test("sidebar header controls keep rendered contrast across every skin and mode", async ({ page }) => {
+test("shell corner controls keep rendered contrast across every skin and mode", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/theme-editor");
   await waitForReactHydration(page.getByRole("combobox", { name: "Skin", exact: true }));
   await page.evaluate(() => document.fonts.ready);
 
-  const controls = page.locator('[data-docs-sidebar-navigation] [data-control-ui="sidebar"][data-slot="header"]');
+  const corners = page.locator('[data-control-family="app-shell-corner"]');
+  await expect(corners).toHaveCount(4);
   const violations: string[] = [];
 
   for (const skin of SKINS) {
@@ -183,7 +187,6 @@ test("sidebar header controls keep rendered contrast across every skin and mode"
     await page.getByRole("option", { name: skin.label, exact: true }).click();
     await page.mouse.move(0, 0);
     await expect(page.locator("html")).toHaveAttribute("data-skin", skin.id);
-    await expect(controls).toHaveCSS("opacity", "1");
 
     for (const mode of MODES) {
       await page.evaluate((activeMode) => {
@@ -193,15 +196,20 @@ test("sidebar header controls keep rendered contrast across every skin and mode"
 
       await page.waitForTimeout(400);
 
-      const regions = await glyphRegions(controls);
-      expect(regions.length).toBeGreaterThan(0);
-      const ratios = await minimumContrasts(controls, regions);
-      regions.forEach((region, index) => {
-        const threshold = region.hasText ? TEXT_THRESHOLD : ICON_THRESHOLD;
-        if (ratios[index] < threshold) {
-          violations.push(`${skin.id} ${mode} "${region.name}": ${ratios[index].toFixed(2)}:1 (needs ${threshold}:1)`);
-        }
-      });
+      for (const corner of await corners.all()) {
+        await expect(corner).toBeVisible();
+        await expect(corner).toHaveCSS("opacity", "1");
+        const placement = await corner.getAttribute("data-placement");
+        const regions = await glyphRegions(corner);
+        expect(regions.length, `${placement} corner has no measurable controls`).toBeGreaterThan(0);
+        const ratios = await minimumContrasts(corner, regions);
+        regions.forEach((region, index) => {
+          const threshold = region.hasText ? TEXT_THRESHOLD : ICON_THRESHOLD;
+          if (ratios[index] < threshold) {
+            violations.push(`${skin.id} ${mode} ${placement} "${region.name}": ${ratios[index].toFixed(2)}:1 (needs ${threshold}:1)`);
+          }
+        });
+      }
     }
   }
 

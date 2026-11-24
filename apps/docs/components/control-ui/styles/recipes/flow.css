@@ -50,6 +50,7 @@
     --xy-minimap-node-background-color: oklch(from var(--foreground) l c h / 0.15);
     --xy-resize-background-color: var(--cui-flow-node-selected-border-color);
     background-color: var(--cui-flow-background);
+    color-scheme: inherit;
     color: var(--foreground);
   }
 

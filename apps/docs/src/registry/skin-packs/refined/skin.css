@@ -98,7 +98,20 @@
   }
 
   [data-skin="refined"] :where([data-control-family="button"][data-variant="solid"]) {
+    --refined-solid-highlight: inset 0 calc(1px * min(var(--shadow-size), 1))
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * 0.25 * var(--shadow-opacity)));
+    --cui-button-background-image: linear-gradient(
+      to bottom,
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * 0.15 * var(--shadow-opacity))),
+      transparent
+    );
+    --cui-button-hover-background-image: linear-gradient(
+      to bottom,
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * 0.25 * var(--shadow-opacity))),
+      oklch(from var(--shadow-highlight) l c h / calc(alpha * 0.05 * var(--shadow-opacity)))
+    );
     --cui-button-shadow:
+      var(--refined-solid-highlight),
       0 0 0 var(--control-rim-width) oklch(from var(--shadow-color) l c h / calc(0.6 * var(--ring-opacity))),
       0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
       oklch(from var(--shadow-color) l c h / calc(0.4 * var(--shadow-opacity))),
@@ -113,6 +126,7 @@
 
   [data-skin="refined"] :where([data-control-family="button"][data-tone="danger"][data-variant="solid"]) {
     --cui-button-shadow:
+      var(--refined-solid-highlight),
       0 0 0 var(--control-rim-width) oklch(from var(--destructive) l c h / calc(0.25 * var(--ring-opacity))),
       0 calc(1px * var(--shadow-size)) calc(2px * var(--shadow-size)) calc(-1px * var(--shadow-size))
       oklch(from var(--destructive) l c h / calc(0.18 * var(--shadow-opacity))),
@@ -207,6 +221,12 @@
 
   [data-skin="refined"] :where([data-control-family="sidebar"][data-slot="wrapper"]) {
     --cui-sidebar-inset-shadow: none;
+  }
+
+  [data-skin="refined"] :where([data-control-family="app-shell-corner"][data-slot="corner"]) {
+    --cui-app-shell-corner-background: var(--muted);
+    --cui-app-shell-corner-border-width: 0px;
+    --cui-app-shell-corner-shadow: var(--refined-surface-shadow);
   }
 
   :is(.dark [data-skin="refined"], [data-skin="refined"].dark) :where([data-control-family="button"][data-variant="solid"]) {

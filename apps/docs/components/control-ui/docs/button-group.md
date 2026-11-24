@@ -45,10 +45,12 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ```tsx
 "use client";
 
+import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/control-ui/ui/button";
 import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from "@/components/control-ui/ui/button-group";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/control-ui/ui/dropdown-menu";
 
 export function PrimitiveButtonGroupExample() {
   const [alignment, setAlignment] = useState<"left" | "center" | "right">("center");
@@ -70,6 +72,19 @@ export function PrimitiveButtonGroupExample() {
         <Button variant="surface" active={alignment === "right"} aria-pressed={alignment === "right"} onClick={() => setAlignment("right")}>
           Right
         </Button>
+      </ButtonGroup>
+
+      <ButtonGroup aria-label="Merge pull request">
+        <Button variant="solid">Merge</Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger variant="solid" iconOnly aria-label="More merge options">
+            <ChevronDownIcon aria-hidden />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>Squash and merge</DropdownMenuItem>
+            <DropdownMenuItem>Rebase and merge</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </ButtonGroup>
 
       <ButtonGroup aria-label="Share link">
@@ -101,7 +116,7 @@ export function PrimitiveButtonGroupExample() {
 Scopes, their parts, and the state attributes each part carries. Selector pattern: `[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])`.
 
 - `button-group`
-  - `root`: `data-orientation` (`horizontal` | `vertical`), `data-track` (`hover` | `none`)
+  - `root`: `data-join` (`frame` | `overlap`), `data-orientation` (`horizontal` | `vertical`), `data-track` (`hover` | `none`)
   - `separator`: `data-orientation` (`horizontal` | `vertical`)
   - `text`: `data-size` (`lg` | `md` | `sm` | `xs`)
 
@@ -111,7 +126,8 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 
 ### button-group
 
-- `--cui-button-group-text-radius`: `var(--radius-control)`
+- `--cui-button-group-radius`: `var(--nest-radius, var(--radius-control))`
+- `--cui-button-group-shadow`: `inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm)`
 - `--cui-button-group-text-background`: `var(--control-fill)`
 - `--cui-button-group-text-foreground`: `var(--muted-foreground)`
 - `--cui-button-group-separator-background`: `var(--border)`

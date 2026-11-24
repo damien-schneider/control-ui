@@ -7,6 +7,8 @@
     --cui-theme-toggle-shadow: var(--shadow-inset);
     --cui-theme-toggle-indicator-background: var(--background);
     --cui-theme-toggle-indicator-shadow: var(--shadow-sm);
+    --cui-theme-toggle-foreground: var(--muted-foreground);
+    --cui-theme-toggle-selected-foreground: var(--foreground);
     --_theme-toggle-padding: calc(var(--spacing) * 0.5);
     --_theme-toggle-radius: min(var(--cui-theme-toggle-radius), calc(var(--cui-theme-toggle-height) / 2));
     border: var(--cui-theme-toggle-border-width) solid var(--control-rim);
@@ -17,7 +19,7 @@
     padding: var(--_theme-toggle-padding);
     background: var(--cui-theme-toggle-background);
     box-shadow: var(--cui-theme-toggle-shadow);
-    color: var(--muted-foreground);
+    color: var(--cui-theme-toggle-foreground);
   }
 
   :where([data-control-family="theme-toggle"][data-slot="indicator"]) {
@@ -41,12 +43,12 @@
   }
 
   :where([data-control-family="theme-toggle"][data-slot="option"][data-selected]) {
-    color: var(--foreground);
+    color: var(--cui-theme-toggle-selected-foreground);
   }
 
   @media (hover: hover) {
     :where([data-control-family="theme-toggle"][data-slot="option"]:hover:not([data-disabled])) {
-      color: var(--foreground);
+      color: var(--cui-theme-toggle-selected-foreground);
     }
   }
 
@@ -98,6 +100,18 @@
 }
 
 @property --cui-theme-toggle-indicator-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-theme-toggle-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-theme-toggle-selected-foreground {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

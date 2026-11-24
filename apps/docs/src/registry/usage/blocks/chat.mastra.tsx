@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  MastraReactProvider,
-  MessageFactory,
-  type MessageRoleRendererProps,
-  type MessageRoleRenderers,
-  type ToolInvocationPart,
-  useChat,
-} from "@mastra/react";
+import { MastraReactProvider, useChat } from "@mastra/react";
+import { MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers, type ToolInvocationPart } from "@mastra/react/ui";
 import type { ReactNode } from "react";
 import type { ActivityState } from "@/components/control-ui/activity";
 import {

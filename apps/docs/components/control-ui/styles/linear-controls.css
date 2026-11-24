@@ -103,14 +103,6 @@
   }
 
   [data-skin="linear"] :where([data-control-family="button-group"][data-slot="root"][data-orientation="horizontal"]) {
-    --cui-button-group-text-radius: 9999px;
-  }
-
-  [data-skin="linear"]
-    :where(
-      [data-control-family="button-group"][data-slot="root"][data-orientation="vertical"]
-        [data-control-family="button"][data-control="true"]
-    ) {
-    --cui-button-radius: var(--nest-radius, var(--radius-control));
+    --cui-button-group-radius: var(--nest-radius, 9999px);
   }
 }

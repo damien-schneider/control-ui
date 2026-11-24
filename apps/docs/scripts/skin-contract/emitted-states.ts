@@ -21,6 +21,7 @@ import type { TaskStatus } from "../../src/registry/sources/control-ui/task-list
 import type { ToolApprovalRiskLevel, ToolApprovalState } from "../../src/registry/sources/control-ui/tool-approval";
 import type { ChatTone } from "../../src/registry/sources/control-ui/transcript-divider";
 import type { AlertTone } from "../../src/registry/sources/control-ui/ui/alert";
+import type { AppShellCornerPlacement } from "../../src/registry/sources/control-ui/ui/app-shell";
 import type { AvatarBadgeStatus } from "../../src/registry/sources/control-ui/ui/avatar";
 import type { BadgeColor, BadgeSize, BadgeVariant } from "../../src/registry/sources/control-ui/ui/badge";
 import type { ButtonLayout, ButtonShape, ButtonTone, ButtonVariant } from "../../src/registry/sources/control-ui/ui/button";
@@ -86,6 +87,7 @@ export type EmittedStateContract = {
   "filter-bar:root:data-readonly": true;
   "filter-bar:chip:data-draft": true;
   "switch:root:data-drag-checked": boolean;
+  "app-shell:corner:data-placement": AppShellCornerPlacement;
   "activity:root:data-activity-kind": ActivityKind;
   "activity:root:data-activity-name": string;
   "activity:root:data-activity-state": ActivityState;
@@ -291,6 +293,9 @@ export type EmittedStateContract = {
   "select:trigger:data-size": ControlSize;
   "spinner:indicator:data-size": ControlSize;
   "scroll-area:scrollbar:data-visibility": ScrollAreaScrollbarVisibility;
+  "scroll-area:scrollbar:data-buttons": true;
+  "scroll-area:scrollbar-button:data-orientation": "vertical" | "horizontal";
+  "scroll-area:scrollbar-button:data-edge": "start" | "end";
   "scroll-area:root:data-mask": true;
   "scroll-area:root:data-blur": true;
   "scroll-area:root:data-lock-axis": ScrollAreaLockAxis;

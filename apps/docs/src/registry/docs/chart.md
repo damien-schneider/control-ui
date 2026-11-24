@@ -16,7 +16,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `@tanstack/charts@^1.1.0`
+- `@tanstack/charts@^1.5.0`
 
 ## Registry dependencies
 

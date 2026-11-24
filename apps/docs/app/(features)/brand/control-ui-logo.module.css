@@ -2,19 +2,10 @@
   position: relative;
   display: block;
   flex: none;
-  color: var(--sidebar-primary);
-}
-
-.strand,
-.cutout {
-  position: absolute;
-  corner-shape: var(--corner-shape);
 }
 
 .strand {
+  position: absolute;
+  corner-shape: var(--corner-shape);
   background: currentColor;
-}
-
-.cutout {
-  background: var(--sidebar);
 }

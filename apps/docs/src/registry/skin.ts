@@ -35,6 +35,7 @@ export type ControlUiSkin = {
   scrollAreaBlur?: boolean;
   scrollAreaScrollbarVisibility?: "scroll" | "hover" | "always";
   scrollAreaScrollbarGutter?: "auto" | "stable";
+  scrollAreaScrollbarButtons?: boolean;
   selectAlignItemWithTrigger?: boolean;
   calendarShowOutsideDays?: boolean;
   buttonGroupJoin?: ButtonGroupJoin;

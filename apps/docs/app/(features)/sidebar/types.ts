@@ -30,6 +30,8 @@ export type DocsNavCatalog = {
 export type DocsSidebarContentProps = DocsNavCatalog & {
   active: ActivePageId | undefined;
   searchItems: SearchItem[];
+  showRoot: boolean;
+  onShowRoot: () => void;
 };
 
 export type CatalogNavGroupId = CatalogCategoryId | "hooks" | "utils" | "extensions";

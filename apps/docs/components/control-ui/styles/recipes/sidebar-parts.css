@@ -267,7 +267,7 @@
       min-block-size: var(--touch-target);
     }
 
-    :where([data-control-family="button"][data-sidebar-trigger]) {
+    :where([data-control-family="button"][data-sidebar-trigger][data-slot="trigger"]) {
       min-inline-size: var(--touch-target);
       min-block-size: var(--touch-target);
     }

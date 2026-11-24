@@ -783,7 +783,6 @@
         ]
       },
       "mobile-trigger": {
-        "family": "sidebar",
         "registryItems": [
           "sidebar"
         ],

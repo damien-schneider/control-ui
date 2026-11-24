@@ -74,7 +74,9 @@ export function AppTheme({ children }: { children: ReactNode }) {
   Set `scrollAreaScrollbarVisibility: "always"` and `scrollAreaScrollbarGutter: "stable"` in the skin config for
   persistent scrollbar tracks that reserve layout space, as in Windows XP. ScrollArea's `scrollbarVisibility` and
   `scrollbarGutter` props override these defaults for individual instances. The neutral defaults are `"hover"` and
-  `"auto"`, which use overlay scrollbars.
+  `"auto"`, which use overlay scrollbars. Set `scrollAreaScrollbarButtons: true` for arrow buttons at both ends of each
+  track that step the content and repeat while held, also as in Windows XP; the `scrollbarButtons` prop overrides it
+  per instance.
 
   Set `selectAlignItemWithTrigger: true` to open Select menus over the trigger with the selected item aligned to it,
   as macOS pop-up buttons do. SelectContent's `alignItemWithTrigger` prop overrides it per instance; the neutral

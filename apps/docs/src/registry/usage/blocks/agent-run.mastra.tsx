@@ -1,6 +1,7 @@
 "use client";
 
-import { MastraReactProvider, type TaskItem, type ToolInvocationPart, useChat } from "@mastra/react";
+import { MastraReactProvider, type TaskItem, useChat } from "@mastra/react";
+import type { ToolInvocationPart } from "@mastra/react/ui";
 import type { ActivityState } from "@/components/control-ui/activity";
 import type { AgentRunStatus } from "@/components/control-ui/blocks/agent-run";
 import {

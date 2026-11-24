@@ -89,7 +89,7 @@ export function guideCodeForKind(code: GuideSection["code"], integration: "mastr
   if (code === "component-usage") {
     return integration === "mastra"
       ? `import type { MastraDBMessage } from "@mastra/core/agent/message-list";
-import { MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers } from "@mastra/react";
+import { MessageFactory, type MessageRoleRendererProps, type MessageRoleRenderers } from "@mastra/react/ui";
 import { ChatMessage, ChatMessageBody, ChatMessageContent, ChatMessageRow } from "@/components/control-ui/chat-message";
 
 function MessageFrame({ from, children }: MessageRoleRendererProps & { from: "user" | "assistant" | "system" }) {

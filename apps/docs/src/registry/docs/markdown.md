@@ -16,7 +16,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `streamdown@^2.6.0`
+- `streamdown@^2.8.0`
 
 ## Registry dependencies
 

@@ -29,7 +29,7 @@ test("Templates stays single-column on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/templates");
 
-  const sidebarTrigger = page.getByRole("button", { name: "Toggle Sidebar" });
+  const sidebarTrigger = page.getByRole("button", { name: "Menu", exact: true });
   await expect(sidebarTrigger).toBeVisible();
   await sidebarTrigger.click();
 

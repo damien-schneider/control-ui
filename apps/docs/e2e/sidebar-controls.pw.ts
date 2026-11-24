@@ -2,22 +2,21 @@ import { expect, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test("sidebar header carries the skin picker and the theme editor link", async ({ page }) => {
+test("top-start corner carries the skin picker with a theme editor entry", async ({ page }) => {
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "xp" }));
   }, THEME_EDITOR_STORAGE_KEY);
   await page.goto("/components/button");
 
-  const header = page.locator('[data-control-ui="sidebar"][data-slot="header"]');
-  const skinSelect = header.getByRole("combobox", { name: "Skin" });
+  const corner = page.locator('[data-control-family="app-shell-corner"][data-placement="top-start"]');
+  const skinSelect = corner.getByRole("combobox", { name: "Skin" });
   await waitForReactHydration(skinSelect);
 
-  await expect(header.getByRole("link", { name: "Edit theme" })).toBeVisible();
   await expect(skinSelect).toHaveText("Windows XP");
 
   await skinSelect.click();
   const skinOptions = page.getByRole("listbox");
-  for (const label of ["Refined", "Rig", "No skin", "Windows XP", "Liquid metal", "macOS", "Cuicui", "Linear"]) {
+  for (const label of ["Refined", "Rig", "No skin", "Windows XP", "Liquid metal", "macOS", "Cuicui", "Linear", "Edit theme…"]) {
     await expect(skinOptions.getByRole("option", { name: label })).toBeVisible();
   }
   await expect(skinOptions.getByRole("option", { name: "Windows XP" })).toHaveAttribute("aria-selected", "true");
@@ -64,7 +63,7 @@ test("command+k opens search and escape closes it", async ({ page }) => {
 test("search shortcut still works when the sidebar collapses into its sheet", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/components/button");
-  await waitForReactHydration(page.getByRole("button", { name: "Toggle Sidebar" }));
+  await waitForReactHydration(page.getByRole("button", { name: "Menu", exact: true }));
 
   await page.keyboard.press("ControlOrMeta+k");
   const dialog = page.getByRole("dialog");
@@ -107,7 +106,7 @@ test("integration-dependent block usage and guide code carry the selector", asyn
   const guideIntegration = page.getByTestId("integration-select");
   await waitForReactHydration(guideIntegration);
   const guideCode = page.locator('#compose [data-slot="grid"]').first();
-  await expect(guideCode).toContainText('from "@mastra/react"');
+  await expect(guideCode).toContainText('from "@mastra/react/ui"');
 
   await guideIntegration.click();
   await page.getByRole("listbox").getByRole("option", { name: "AI SDK" }).click();

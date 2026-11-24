@@ -70,6 +70,8 @@ export const skinMetas = [
     paths: skinPackFiles("xp", [
       retroSystemFont,
       sourceFile("xp-controls.css — buttons, fields, choices, and ranges", "src/registry/skin-packs/xp/xp-controls.css", "controls"),
+      sourceFile("xp-corners.css — title bar screen corners and their controls", "src/registry/skin-packs/xp/xp-corners.css", "corners"),
+      sourceFile("xp-scroll.css — Luna scrollbar thumb gripper and arrow buttons", "src/registry/skin-packs/xp/xp-scroll.css", "scroll"),
     ]),
   },
   {

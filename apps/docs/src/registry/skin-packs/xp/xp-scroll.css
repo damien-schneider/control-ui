@@ -1,0 +1,90 @@
+@layer components {
+  [data-skin="xp"]
+    :where(
+      [data-control-family="scroll-area"][data-slot="root"],
+      [data-control-family="sidebar"][data-slot="inner"] [data-control-family="scroll-area"][data-slot="root"]
+    ) {
+    scrollbar-color: auto;
+    scrollbar-width: auto;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="root"]) {
+    --cui-scroll-area-thumb-radius: 3px;
+    --cui-scroll-area-corner-background: var(--secondary);
+    --cui-scroll-area-scrollbar-size: 17px;
+    --cui-scroll-area-button-foreground: var(--xp-glyph);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
+    --cui-scroll-area-button-background-image: var(--xp-scroll);
+    --cui-scroll-area-thumb-background-image:
+      repeating-linear-gradient(var(--xp-scroll-grip-light) 0 1px, transparent 0 2px),
+      repeating-linear-gradient(var(--xp-scroll-grip) 0 1px, transparent 0 2px), var(--xp-scroll);
+    background: linear-gradient(90deg, var(--xp-scroll-track-edge), var(--xp-scroll-track));
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
+    --cui-scroll-area-button-background-image: linear-gradient(to bottom, var(--xp-scroll-stops));
+    --cui-scroll-area-thumb-background-image:
+      repeating-linear-gradient(90deg, var(--xp-scroll-grip-light) 0 1px, transparent 0 2px),
+      repeating-linear-gradient(90deg, var(--xp-scroll-grip) 0 1px, transparent 0 2px), linear-gradient(to bottom, var(--xp-scroll-stops));
+    background: linear-gradient(var(--xp-scroll-track-edge), var(--xp-scroll-track));
+  }
+  [data-skin="xp"]
+    :where([data-control-family="scroll-area"][data-slot="thumb"], [data-control-family="scroll-area"][data-slot="scrollbar-button"]) {
+    border: 1px solid;
+    border-color: var(--xp-light) var(--xp-scroll-edge) var(--xp-scroll-edge) var(--xp-light);
+    box-shadow:
+      inset -1px -1px var(--xp-light),
+      inset 1px 1px var(--xp-scroll-rim),
+      inset -2px -2px var(--xp-scroll-rim);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="thumb"]) {
+    background-position:
+      calc(50% - 0.5px) calc(50% - 0.5px),
+      calc(50% + 0.5px) calc(50% + 0.5px),
+      0 0;
+    background-repeat: no-repeat;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="thumb"][data-orientation="vertical"]) {
+    background-size:
+      6px 7px,
+      6px 7px,
+      100% 100%;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"][data-slot="thumb"][data-orientation="horizontal"]) {
+    background-size:
+      7px 6px,
+      7px 6px,
+      100% 100%;
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="scroll-area"][data-slot="thumb"]:hover,
+      [data-control-family="scroll-area"][data-slot="scrollbar-button"]:hover
+    ) {
+    filter: brightness(1.04);
+  }
+  [data-skin="xp"]
+    :where(
+      [data-control-family="scroll-area"][data-slot="thumb"]:active,
+      [data-control-family="scroll-area"][data-slot="scrollbar-button"]:active
+    ) {
+    filter: brightness(0.94);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar {
+    width: 17px;
+    height: 17px;
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-track {
+    background: var(--xp-scroll-track);
+    box-shadow: inset 1px 0 var(--xp-scroll-track-edge);
+  }
+  [data-skin="xp"] :where([data-control-family="scroll-area"], [data-control-family="sidebar"])::-webkit-scrollbar-thumb {
+    border: 1px solid;
+    border-color: var(--xp-light) var(--xp-scroll-edge) var(--xp-scroll-edge) var(--xp-light);
+    border-radius: 3px;
+    background: var(--xp-scroll);
+    box-shadow:
+      inset -1px -1px var(--xp-light),
+      inset 1px 1px var(--xp-scroll-rim),
+      inset -2px -2px var(--xp-scroll-rim);
+  }
+}

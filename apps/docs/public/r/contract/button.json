@@ -374,6 +374,7 @@
             "valueKind": "enum",
             "values": [
               "ghost",
+              "solid",
               "surface"
             ]
           }

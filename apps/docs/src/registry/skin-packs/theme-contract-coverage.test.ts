@@ -85,7 +85,8 @@ function coreContractDeclarationIsAllowed(declaration: Declaration): boolean {
   }
 
   const reducedMotionTokens = new Set(["--duration-fast", "--duration-base", "--duration-slow"]);
-  const isReducedMotionOverride = reducedMotionTokens.has(declaration.prop) && declaration.value.trim() === "0ms" && declaration.important;
+  const isReducedMotionOverride =
+    reducedMotionTokens.has(declaration.prop) && declaration.value.trim() === "0ms" && declaration.important === true;
   if (
     isReducedMotionOverride &&
     atRules.some((atRule) => atRule.name === "media" && /prefers-reduced-motion\s*:\s*reduce/.test(atRule.params))

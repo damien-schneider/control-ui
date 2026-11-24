@@ -2,7 +2,7 @@
 
 # App shell
 
-> The application container: persistent navigation and header around changing page content, with one shared scroll policy.
+> The application container: persistent navigation, header, and screen-corner chrome around changing page content, with one shared scroll policy.
 
 Status: beta.
 
@@ -24,8 +24,9 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## Exports
 
+- `@/components/control-ui/knob-contracts/app-shell-corner-knobs`: `appShellCornerKnobs`, types `AppShellCornerKnobStyle`
 - `@/components/control-ui/knob-contracts/app-shell-header-knobs`: `appShellHeaderKnobs`, types `AppShellHeaderKnobStyle`
-- `@/components/control-ui/ui/app-shell`: `AppShell`, `AppShellContent`, `AppShellHeader`, types `AppShellProps`, `AppShellHeaderProps`
+- `@/components/control-ui/ui/app-shell`: `AppShell`, `AppShellContent`, `AppShellHeader`, `appShellCornerPlacements`, `AppShellCorner`, types `AppShellProps`, `AppShellHeaderProps`, `AppShellCornerPlacement`, `AppShellCornerProps`
 
 ## Composition
 
@@ -52,6 +53,31 @@ AppShell includes SidebarProvider. Set scroll once: page uses the document, inse
       </PageBody>
     </PageLayout>
   </AppShellContent>
+</AppShell>
+```
+
+### Screen corners
+
+Each AppShellCorner pins a tab of chrome to one screen corner, and the skin paints it. Corners stay visible when the sidebar collapses. While the sidebar is open, the start corners span its column and the column sits between them. Place corners in the DOM where they belong in the tab order. Hide one below the sidebar breakpoint with className when the page has no room for it.
+
+```tsx
+<AppShell>
+  placement="top-start"
+    <AppShellCorner>
+      <SidebarTrigger />
+    </AppShellCorner>
+  placement="top-end"
+    <AppShellCorner />
+  <Sidebar>
+    <SidebarContent />
+  </Sidebar>
+  <AppShellContent>
+    route content
+  </AppShellContent>
+  placement="bottom-start"
+    <AppShellCorner />
+  placement="bottom-end"
+    <AppShellCorner />
 </AppShell>
 ```
 
@@ -156,11 +182,27 @@ export function PrimitiveAppShellExample() {
 Scopes, their parts, and the state attributes each part carries. Selector pattern: `[data-skin="{skin}"] :where([data-slot="{part}"][data-control-family="{family}"])`.
 
 - `app-shell`
+  - `corner`: `data-placement` (`bottom-end` | `bottom-start` | `top-end` | `top-start`)
   - `root`
 
 ## Knobs
 
 Registered `--cui-*` custom properties with their recipe defaults. Set them through the component's `style` prop or a skin.
+
+### app-shell-corner
+
+- `--cui-app-shell-corner-size`: `calc(var(--control-h-md) + var(--spacing) * 3)`
+- `--cui-app-shell-corner-inset`: `0px`
+- `--cui-app-shell-corner-padding-inline`: `calc(var(--spacing) * 2)`
+- `--cui-app-shell-corner-gap`: `calc(var(--spacing) * 2)`
+- `--cui-app-shell-corner-background`: `var(--sidebar)`
+- `--cui-app-shell-corner-background-image`: `none`
+- `--cui-app-shell-corner-foreground`: `var(--sidebar-foreground)`
+- `--cui-app-shell-corner-border-color`: `var(--sidebar-border)`
+- `--cui-app-shell-corner-border-width`: `1px`
+- `--cui-app-shell-corner-radius`: `min(var(--radius-panel), calc(var(--cui-app-shell-corner-size) / 2))`
+- `--cui-app-shell-corner-shadow`: `0 0 transparent`
+- `--cui-app-shell-corner-backdrop-filter`: `none`
 
 ### app-shell-header
 
@@ -173,4 +215,5 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 ## Links
 
 - Online docs (latest release): https://control-ui.dev/components/app-shell
+- Anatomy contract: https://control-ui.dev/r/contract/app-shell-corner.json
 - Anatomy contract: https://control-ui.dev/r/contract/app-shell-header.json

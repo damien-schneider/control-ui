@@ -60,7 +60,7 @@
   [data-skin="modern-apple"] :where([data-control-family="field"][data-control="true"]) {
     --cui-field-radius: var(--nest-radius, var(--radius-control));
     --cui-field-background: var(--apple-field-fill);
-    --cui-field-hover-background: var(--apple-field-fill);
+    --cui-field-hover-background: transparent;
     --cui-field-foreground: var(--foreground);
     --cui-field-border-color: var(--input);
     --cui-field-border-width: 1px;
@@ -92,7 +92,6 @@
   [data-skin="modern-apple"]
     :where([data-control-family="field"][data-control="true"]:is([data-field-kind="select"], [data-field-kind="native-select"])) {
     --cui-field-background: var(--apple-fill);
-    --cui-field-hover-background: var(--apple-fill);
     --cui-field-border-width: 0px;
     --cui-field-padding-inline: 0.6875rem;
     --cui-field-affordance-background: transparent;

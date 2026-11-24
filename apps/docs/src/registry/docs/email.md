@@ -18,7 +18,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `react-email@^6.9.5`
+- `react-email@^6.11.16`
 
 ## Registry dependencies
 

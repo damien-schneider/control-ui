@@ -9,7 +9,7 @@ import {
   componentGalleryGroups,
   kitGalleryGroups,
 } from "@/app/(features)/model/catalog-gallery";
-import type { BlockId, ComponentId, KitId, SkinMetaId } from "@/app/(features)/model/types";
+import type { BlockId, ComponentId, KitId } from "@/app/(features)/model/types";
 
 const componentsMissingFromShadcnIds = [
   "color-picker",
@@ -25,17 +25,6 @@ const heroSceneIds = ["team-chat", "file-explorer", "coding-agent", "design-canv
 export const defaultHeroSceneId = heroSceneIds[0];
 
 const chatKitIds = ["chat-message", "chat-composer", "activity"] as const satisfies readonly KitId[];
-
-export const tryoutSkinIds = [
-  "refined",
-  "none",
-  "windows-98",
-  "xp",
-  "modern-apple",
-  "linear",
-  "sketch",
-  "rig",
-] as const satisfies readonly SkinMetaId[];
 
 export const landingWidthClassName = "mx-auto w-full max-w-6xl px-5 md:px-8";
 

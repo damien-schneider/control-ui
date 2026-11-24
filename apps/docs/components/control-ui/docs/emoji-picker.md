@@ -20,7 +20,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 - `@base-ui/react@^1.9.0`
 - `frimousse@^0.4.0`
-- `lucide-react@^1.47.0`
+- `lucide-react@^1.78.0`
 
 ## Registry dependencies
 

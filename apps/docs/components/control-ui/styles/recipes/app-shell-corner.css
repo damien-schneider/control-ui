@@ -1,0 +1,213 @@
+@layer components {
+  :where([data-control-family="sidebar"][data-slot="wrapper"]) {
+    --cui-app-shell-corner-size: calc(var(--control-h-md) + var(--spacing) * 3);
+    --cui-app-shell-corner-inset: 0px;
+  }
+
+  :where([data-control-family="app-shell-corner"][data-slot="corner"]) {
+    --cui-app-shell-corner-padding-inline: calc(var(--spacing) * 2);
+    --cui-app-shell-corner-gap: calc(var(--spacing) * 2);
+    --cui-app-shell-corner-background: var(--sidebar);
+    --cui-app-shell-corner-background-image: none;
+    --cui-app-shell-corner-foreground: var(--sidebar-foreground);
+    --cui-app-shell-corner-border-color: var(--sidebar-border);
+    --cui-app-shell-corner-border-width: 1px;
+    --cui-app-shell-corner-radius: min(var(--radius-panel), calc(var(--cui-app-shell-corner-size) / 2));
+    --cui-app-shell-corner-shadow: 0 0 transparent;
+    --cui-app-shell-corner-backdrop-filter: none;
+    --nest-radius: max(
+      0px,
+      calc(var(--cui-app-shell-corner-radius) - var(--cui-app-shell-corner-border-width) - var(--cui-app-shell-corner-padding-inline))
+    );
+    --_app-shell-corner-viewport-edge-border-width: clamp(
+      0px,
+      calc(var(--cui-app-shell-corner-inset) * 1000),
+      var(--cui-app-shell-corner-border-width)
+    );
+    --_app-shell-corner-viewport-edge-radius: clamp(
+      0px,
+      calc(var(--cui-app-shell-corner-inset) * 1000),
+      var(--cui-app-shell-corner-radius)
+    );
+    box-sizing: border-box;
+    block-size: var(--cui-app-shell-corner-size);
+    gap: var(--cui-app-shell-corner-gap);
+    padding-inline: var(--cui-app-shell-corner-padding-inline);
+    border: var(--_app-shell-corner-viewport-edge-border-width) solid var(--cui-app-shell-corner-border-color);
+    border-radius: var(--_app-shell-corner-viewport-edge-radius);
+    background-color: var(--cui-app-shell-corner-background);
+    background-image: var(--cui-app-shell-corner-background-image);
+    color: var(--cui-app-shell-corner-foreground);
+    box-shadow: var(--cui-app-shell-corner-shadow);
+    -webkit-backdrop-filter: var(--cui-app-shell-corner-backdrop-filter);
+    backdrop-filter: var(--cui-app-shell-corner-backdrop-filter);
+    transition: min-inline-size var(--duration-base) var(--ease-standard);
+  }
+
+  :where([data-control-family="app-shell-corner"][data-slot="corner"][data-placement="top-start"]) {
+    inset-block-start: var(--cui-app-shell-corner-inset);
+    inset-inline-start: var(--cui-app-shell-corner-inset);
+    border-block-end-width: var(--cui-app-shell-corner-border-width);
+    border-inline-end-width: var(--cui-app-shell-corner-border-width);
+    border-end-end-radius: var(--cui-app-shell-corner-radius);
+  }
+
+  :where([data-control-family="app-shell-corner"][data-slot="corner"][data-placement="top-end"]) {
+    inset-block-start: var(--cui-app-shell-corner-inset);
+    inset-inline-end: var(--cui-app-shell-corner-inset);
+    border-block-end-width: var(--cui-app-shell-corner-border-width);
+    border-inline-start-width: var(--cui-app-shell-corner-border-width);
+    border-end-start-radius: var(--cui-app-shell-corner-radius);
+  }
+
+  :where([data-control-family="app-shell-corner"][data-slot="corner"][data-placement="bottom-start"]) {
+    inset-block-end: var(--cui-app-shell-corner-inset);
+    inset-inline-start: var(--cui-app-shell-corner-inset);
+    border-block-start-width: var(--cui-app-shell-corner-border-width);
+    border-inline-end-width: var(--cui-app-shell-corner-border-width);
+    border-start-end-radius: var(--cui-app-shell-corner-radius);
+  }
+
+  :where([data-control-family="app-shell-corner"][data-slot="corner"][data-placement="bottom-end"]) {
+    inset-block-end: var(--cui-app-shell-corner-inset);
+    inset-inline-end: var(--cui-app-shell-corner-inset);
+    border-block-start-width: var(--cui-app-shell-corner-border-width);
+    border-inline-start-width: var(--cui-app-shell-corner-border-width);
+    border-start-start-radius: var(--cui-app-shell-corner-radius);
+  }
+
+  @variant sidebar {
+    :where([data-control-family="sidebar"][data-slot="wrapper"]) {
+      --_app-shell-corner-clearance: calc(var(--cui-app-shell-corner-size) + var(--cui-app-shell-corner-inset));
+      --_app-shell-corner-left-block-start: 0px;
+      --_app-shell-corner-left-block-end: 0px;
+      --_app-shell-corner-right-block-start: 0px;
+      --_app-shell-corner-right-block-end: 0px;
+      --_app-shell-corner-start-expanded: 0;
+      --_app-shell-corner-end-expanded: 0;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-control-family="app-shell-corner"][data-placement="top-start"])
+      ) {
+      --_app-shell-corner-left-block-start: var(--_app-shell-corner-clearance);
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-control-family="app-shell-corner"][data-placement="bottom-start"])
+      ) {
+      --_app-shell-corner-left-block-end: var(--_app-shell-corner-clearance);
+    }
+
+    :where([data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-control-family="app-shell-corner"][data-placement="top-end"])) {
+      --_app-shell-corner-right-block-start: var(--_app-shell-corner-clearance);
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(> [data-control-family="app-shell-corner"][data-placement="bottom-end"])
+      ) {
+      --_app-shell-corner-right-block-end: var(--_app-shell-corner-clearance);
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(
+          > [data-control-family="sidebar"][data-slot="root"][data-side="left"][data-state="expanded"]
+        )
+      ) {
+      --_app-shell-corner-start-expanded: 1;
+    }
+
+    :where(
+        [data-control-family="sidebar"][data-slot="wrapper"]:has(
+          > [data-control-family="sidebar"][data-slot="root"][data-side="right"][data-state="expanded"]
+        )
+      ) {
+      --_app-shell-corner-end-expanded: 1;
+    }
+
+    :where([data-control-family="sidebar"][data-slot="root"][data-side="left"] > [data-slot="container"] > [data-slot="inner"]) {
+      margin-block: var(--_app-shell-corner-left-block-start, 0px) var(--_app-shell-corner-left-block-end, 0px);
+    }
+
+    :where([data-control-family="sidebar"][data-slot="root"][data-side="right"] > [data-slot="container"] > [data-slot="inner"]) {
+      margin-block: var(--_app-shell-corner-right-block-start, 0px) var(--_app-shell-corner-right-block-end, 0px);
+    }
+
+    :where([data-control-family="app-shell-corner"][data-slot="corner"]:is([data-placement="top-start"], [data-placement="bottom-start"])) {
+      min-inline-size: calc((var(--sidebar-width) - var(--cui-app-shell-corner-inset)) * var(--_app-shell-corner-start-expanded, 0));
+    }
+
+    :where([data-control-family="app-shell-corner"][data-slot="corner"]:is([data-placement="top-end"], [data-placement="bottom-end"])) {
+      min-inline-size: calc((var(--sidebar-width) - var(--cui-app-shell-corner-inset)) * var(--_app-shell-corner-end-expanded, 0));
+    }
+  }
+}
+
+@property --cui-app-shell-corner-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-app-shell-corner-inset {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-app-shell-corner-padding-inline {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-app-shell-corner-gap {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-app-shell-corner-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-app-shell-corner-background-image {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-app-shell-corner-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-app-shell-corner-border-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-app-shell-corner-border-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-app-shell-corner-radius {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-app-shell-corner-shadow {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --cui-app-shell-corner-backdrop-filter {
+  syntax: "*";
+  inherits: true;
+}

@@ -5,7 +5,7 @@
   "title": "Agent run",
   "description": "One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced.",
   "dependencies": [
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "activity",

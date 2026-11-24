@@ -105,7 +105,7 @@
     border: 1px solid var(--xp-field);
     border-radius: 2px;
     background: var(--xp-scroll);
-    rotate: 0deg;
+    rotate: none;
   }
   [data-skin="xp"]
     :where(

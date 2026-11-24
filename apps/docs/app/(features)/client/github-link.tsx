@@ -1,5 +1,4 @@
 import { ButtonLink } from "@/components/control-ui/ui/button";
-import { Separator } from "@/components/control-ui/ui/separator";
 import { Text } from "@/components/control-ui/ui/typography";
 import { siteConfig } from "@/lib/site-config";
 
@@ -65,17 +64,14 @@ export function DocsGithubLink({ stars }: { stars: number | null }) {
       size="sm"
     >
       <GithubMark />
-      <span>GitHub</span>
+      <span className="max-sm:hidden">GitHub</span>
       {formattedStars == null ? null : (
-        <>
-          <Separator orientation="vertical" />
-          <span className="inline-flex items-center gap-1">
-            <Text size="caption" mono numeric>
-              {formattedStars}
-            </Text>
-            <StarMark />
-          </span>
-        </>
+        <span className="ms-1 inline-flex items-center gap-1">
+          <Text size="caption" mono numeric>
+            {formattedStars}
+          </Text>
+          <StarMark />
+        </span>
       )}
     </ButtonLink>
   );

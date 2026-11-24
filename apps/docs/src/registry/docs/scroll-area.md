@@ -131,7 +131,8 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `content`: `data-has-overflow-x`, `data-has-overflow-y`, `data-overflow-x-end`, `data-overflow-x-start`, `data-overflow-y-end`, `data-overflow-y-start`, `data-scrolling`
   - `corner`
   - `root`: `data-blur`, `data-has-overflow-x`, `data-has-overflow-y`, `data-lock-axis` (`both` | `x` | `y`), `data-mask`, `data-overflow-x-end`, `data-overflow-x-start`, `data-overflow-y-end`, `data-overflow-y-start`, `data-scrollbar-gutter` (`auto` | `stable`), `data-scrolling`
-  - `scrollbar`: `data-has-overflow-x`, `data-has-overflow-y`, `data-hovering`, `data-orientation` (`horizontal` | `vertical`), `data-overflow-x-end`, `data-overflow-x-start`, `data-overflow-y-end`, `data-overflow-y-start`, `data-scrolling`, `data-visibility` (`always` | `hover` | `scroll`)
+  - `scrollbar`: `data-buttons`, `data-has-overflow-x`, `data-has-overflow-y`, `data-hovering`, `data-orientation` (`horizontal` | `vertical`), `data-overflow-x-end`, `data-overflow-x-start`, `data-overflow-y-end`, `data-overflow-y-start`, `data-scrolling`, `data-visibility` (`always` | `hover` | `scroll`)
+  - `scrollbar-button`: `data-edge` (`end` | `start`), `data-orientation` (`horizontal` | `vertical`)
   - `thumb`: `data-orientation` (`horizontal` | `vertical`), `data-scrolling`
   - `viewport`: `data-has-overflow-x`, `data-has-overflow-y`, `data-overflow-x-end`, `data-overflow-x-start`, `data-overflow-y-end`, `data-overflow-y-start`, `data-scroll-area-viewport`, `data-scrolling`
 
@@ -144,6 +145,11 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-scroll-area-scrollbar-size`: `calc(var(--spacing) * 1.5)`
 - `--cui-scroll-area-thumb-radius`: `9999px`
 - `--cui-scroll-area-thumb-background`: `oklch(from var(--foreground) l c h / 0.4)`
+- `--cui-scroll-area-thumb-background-image`: `none`
+- `--cui-scroll-area-button-background`: `transparent`
+- `--cui-scroll-area-button-hover-background`: `var(--hover-fill)`
+- `--cui-scroll-area-button-background-image`: `none`
+- `--cui-scroll-area-button-foreground`: `var(--muted-foreground)`
 - `--cui-scroll-area-corner-background`: `transparent`
 
 ## Links

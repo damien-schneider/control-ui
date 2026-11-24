@@ -6,7 +6,7 @@
   "description": "Location trail with links, the current page, and collapsed levels.",
   "dependencies": [
     "@base-ui/react@^1.9.0",
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "core"

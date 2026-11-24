@@ -1,8 +1,13 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY } from "@/components/theme";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test("theme navigation reopens after browsing the catalog and stays in context for the audit", async ({ page }) => {
+async function chooseEditTheme(page: Page) {
+  await page.getByRole("combobox", { name: "Skin", exact: true }).click();
+  await page.getByRole("option", { name: "Edit theme…", exact: true }).click();
+}
+
+test("theme navigation reopens after browsing the catalog", async ({ page }) => {
   await page.goto("/theme-editor");
   const sidebar = page.locator("[data-docs-sidebar-navigation]");
   await waitForReactHydration(sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }));
@@ -12,9 +17,25 @@ test("theme navigation reopens after browsing the catalog and stays in context f
 
   await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
   await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toBeHidden();
-  await sidebar.getByRole("link", { name: "Edit theme", exact: true }).click();
+  await sidebar.getByRole("link", { name: "Button", exact: true }).click();
+  await expect(page).toHaveURL(/\/components\/button$/);
+  await page.goBack();
   await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).toHaveAttribute("aria-current", "page");
+  await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
+  await chooseEditTheme(page);
+  await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).toHaveAttribute("aria-current", "page");
+  await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
+  await sidebar.getByRole("link", { name: "Button", exact: true }).click();
+  await expect(page).toHaveURL(/\/components\/button$/);
+  await chooseEditTheme(page);
+  await expect(page).toHaveURL(/\/theme-editor$/);
+  await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).toHaveAttribute("aria-current", "page");
+});
 
+test("theme navigation stays in context for the audit", async ({ page }) => {
+  await page.goto("/theme-editor");
+  const sidebar = page.locator("[data-docs-sidebar-navigation]");
+  await waitForReactHydration(sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }));
   await sidebar.getByRole("link", { name: "Accessibility audit", exact: true }).click();
   await expect(page).toHaveURL(/\/theme-accessibility$/);
   await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toHaveAttribute("aria-current", "page");
@@ -23,11 +44,6 @@ test("theme navigation reopens after browsing the catalog and stays in context f
   await expect(page).toHaveURL(/\/theme-editor\/radius$/);
   await page.goBack();
   await expect(sidebar.getByRole("link", { name: "Accessibility audit", exact: true })).toHaveAttribute("aria-current", "page");
-
-  await sidebar.getByRole("button", { name: "Leave Theme editor", exact: true }).click();
-  await sidebar.getByRole("link", { name: "Button", exact: true }).click();
-  await sidebar.getByRole("link", { name: "Edit theme", exact: true }).click();
-  await expect(sidebar.getByRole("link", { name: "Skin", exact: true })).toHaveAttribute("aria-current", "page");
 });
 
 for (const width of [360, 1280]) {
@@ -58,7 +74,7 @@ for (const width of [360, 1280]) {
 test("theme generation opens from the mobile sidebar", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/theme-editor");
-  const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
+  const sidebarTrigger = page.getByRole("button", { name: "Menu", exact: true });
   await waitForReactHydration(sidebarTrigger);
   await sidebarTrigger.click();
   await page.getByRole("button", { name: "Generate a theme", exact: true }).click();
@@ -79,23 +95,8 @@ for (const { name, width, height, reducedMotion } of [
     await page.goto("/components/code-diff");
     await waitForReactHydration(page.locator("[data-docs-content]"));
 
-    const toolbar = page.getByRole("group", { name: "Documentation controls" });
-    const editTheme = toolbar.getByRole("link", { name: "Edit theme" });
-    const openSidebarOnNarrowViewports = async () => {
-      if (width >= 1024) return;
-      if (await editTheme.isVisible()) return;
-      const trigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
-      await expect(trigger).toHaveAttribute("aria-expanded", "false");
-      await trigger.click();
-      await expect(editTheme).toBeVisible();
-    };
-
-    await openSidebarOnNarrowViewports();
-    await expect(editTheme).toHaveAttribute("href", "/theme-editor");
-    await toolbar.getByRole("combobox", { name: "Skin", exact: true }).click();
-    await expect(page.getByRole("listbox")).toBeVisible();
-    await page.keyboard.press("Escape");
-    await editTheme.press("Enter");
+    const skinSelect = page.getByRole("combobox", { name: "Skin", exact: true });
+    await chooseEditTheme(page);
 
     await expect(page).toHaveURL(/\/theme-editor$/);
     await expect(page.getByRole("heading", { name: "Theme editor", level: 1 })).toBeVisible();
@@ -103,9 +104,8 @@ for (const { name, width, height, reducedMotion } of [
     await expect(page.getByRole("region", { name: "Skin workspace", exact: true })).toBeVisible();
     await expect(page.getByRole("tablist", { name: "Skin views" })).toBeVisible();
     await expect(page.getByRole("region", { name: "Buttons", exact: true })).toBeVisible();
-    await openSidebarOnNarrowViewports();
-    await expect(editTheme).toHaveAttribute("aria-current", "page");
-    await expect(toolbar.getByRole("combobox", { name: "Skin", exact: true })).toBeVisible();
+    await expect(skinSelect).toBeVisible();
+    if (width < 1024) await page.getByRole("button", { name: "Menu", exact: true }).click();
     await expect(page.getByRole("link", { name: /^Radius & corners/ })).toBeVisible();
     await expect
       .poll(() =>
@@ -363,13 +363,13 @@ for (const width of [360, 1280]) {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.goto("/theme-editor?view=source");
     const workspace = page.getByRole("region", { name: "Skin workspace", exact: true });
-    const controls = width < 1024 ? workspace : page.locator("[data-docs-sidebar-navigation]");
-    const skinPicker = controls.getByRole("combobox", { name: width < 1024 ? "Skin preset" : "Skin", exact: true });
+    const modeControls = width < 1024 ? workspace : page.locator('[data-control-family="app-shell-corner"]');
+    const skinPicker = page.getByRole("combobox", { name: "Skin", exact: true });
     await waitForReactHydration(skinPicker);
     await skinPicker.click();
     await page.getByRole("option", { name: "Refined", exact: true }).click();
     await expect(page.locator("html")).toHaveAttribute("data-skin", "refined");
-    await controls.getByRole("radio", { name: "Dark", exact: true }).press("Space");
+    await modeControls.getByRole("radio", { name: "Dark", exact: true }).press("Space");
     await expect(page.locator("html")).toHaveClass(/dark/);
 
     const source = workspace.getByRole("region", { name: "Refined source", exact: true });

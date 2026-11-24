@@ -11,7 +11,7 @@
       "description": "Stacked disclosure rows with measured panel animation.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -51,7 +51,7 @@
       "description": "Reusable hover actions for message and response controls.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -93,7 +93,7 @@
       "title": "Activity",
       "description": "Shared static and collapsible activity anatomy with bounded, scrollable detail content.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/collapsible.json",
@@ -136,7 +136,7 @@
       "title": "Agent run",
       "description": "One autonomous agent run: its plan step by step, the tool calls behind each step, approvals it waits on, and what it produced.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/activity.json",
@@ -1803,7 +1803,7 @@
       "name": "app-shell",
       "type": "registry:ui",
       "title": "App shell",
-      "description": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
+      "description": "The application container: persistent navigation, header, and screen-corner chrome around changing page content, with one shared scroll policy.",
       "dependencies": [],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -1817,9 +1817,19 @@
           "type": "registry:file"
         },
         {
+          "path": "src/registry/knob-contracts/app-shell-corner-knobs.ts",
+          "target": "@components/control-ui/knob-contracts/app-shell-corner-knobs.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/registry/knob-contracts/app-shell-header-knobs.ts",
           "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
           "type": "registry:component"
+        },
+        {
+          "path": "src/registry/sources/control-ui/recipes/app-shell-corner.css",
+          "target": "@components/control-ui/styles/recipes/app-shell-corner.css",
+          "type": "registry:file"
         },
         {
           "path": "src/registry/sources/control-ui/recipes/app-shell-header.css",
@@ -1833,6 +1843,7 @@
         }
       ],
       "css": {
+        "@import \"../components/control-ui/styles/recipes/app-shell-corner.css\"": {},
         "@import \"../components/control-ui/styles/recipes/app-shell-header.css\"": {}
       }
     },
@@ -1866,7 +1877,7 @@
       "title": "AudioDeviceSelect",
       "description": "Composable audio input selector with permission, loading, default-device, and disconnected states.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -1907,7 +1918,7 @@
       "title": "AudioRecorder",
       "description": "Voice recorder with realtime waveform, duration, cancel, and submit controls.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/audio-visualizer.json",
@@ -2235,7 +2246,7 @@
       "description": "Location trail with links, the current page, and collapsed levels.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2355,7 +2366,7 @@
       "title": "Calendar",
       "description": "Date selection grid built on react-day-picker and themed through tokens.",
       "dependencies": [
-        "react-day-picker@^10.0.1"
+        "react-day-picker@^10.0.2"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -2467,7 +2478,7 @@
       "title": "Chart",
       "description": "Gradient-first charts on TanStack Charts: themed host, presets that return real definitions, and the full grammar.",
       "dependencies": [
-        "@tanstack/charts@^1.1.0"
+        "@tanstack/charts@^1.5.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -2593,13 +2604,13 @@
       "title": "ChatComposer",
       "description": "Message composer with controlled text, Enter or ⌘ Enter submit, caret text insertion, and trigger-menu support.",
       "dependencies": [
-        "lucide-react@^1.47.0",
+        "lucide-react@^1.78.0",
         "prosemirror-commands@^1.7.2",
-        "prosemirror-history@^1.5.0",
+        "prosemirror-history@^1.5.2",
         "prosemirror-keymap@^1.2.3",
-        "prosemirror-model@^1.25.11",
+        "prosemirror-model@^1.25.13",
         "prosemirror-state@^1.4.4",
-        "prosemirror-view@^1.42.3"
+        "prosemirror-view@^1.43.1"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -2693,7 +2704,7 @@
       "title": "ChatComposerAttachment",
       "description": "Composer attachment rail with file previews, upload progress, and removal.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -2742,7 +2753,7 @@
       "description": "A scrolling conversation with a pinned header, message turns, and a floating composer dock.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -2851,7 +2862,7 @@
       "title": "ChatWorkspace",
       "description": "A chat that floats as an island over the content or pins beside it as a resizable column, without remounting.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -2966,9 +2977,9 @@
       "title": "Code",
       "description": "Shared code surface: Shiki-highlighted lines, gutter, clean copy, editable content, and virtualization for large files.",
       "dependencies": [
-        "@tanstack/react-virtual@^3.14.13",
-        "lucide-react@^1.47.0",
-        "shiki@^4.4.3"
+        "@tanstack/react-virtual@^3.14.28",
+        "lucide-react@^1.78.0",
+        "shiki@^4.6.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -3023,7 +3034,7 @@
       "title": "Code Diff",
       "description": "Unified or split diff from a git patch or a before/after pair, with word-level intra-line highlighting.",
       "dependencies": [
-        "@tanstack/react-virtual@^3.14.13",
+        "@tanstack/react-virtual@^3.14.28",
         "diff@^9.0.0"
       ],
       "registryDependencies": [
@@ -3069,7 +3080,7 @@
       "title": "Coding agent",
       "description": "Desktop coding workspace with project tasks, a focused conversation, and a persistent controlled composer.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/app-shell.json",
@@ -3451,7 +3462,7 @@
       "title": "Context",
       "description": "Compact context-window usage with an automatically derived token graph and anchored detail inspector.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -3591,7 +3602,7 @@
       "title": "Design canvas",
       "description": "Figma-style editor with layers, an infinite canvas, a floating tool bar, and scrubbable property inputs.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/badge.json",
@@ -3703,7 +3714,7 @@
       "title": "Discussion",
       "description": "Comment thread with ⌘ Enter posting, nested replies, inline editing, and hover actions.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -3931,7 +3942,7 @@
       "title": "Dropzone",
       "description": "Composable file intake with validation, managed selection, and drag-activated overlays.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -4060,7 +4071,7 @@
       "title": "Email",
       "description": "React Email compositions with Control UI colors and typography: contained or plain surfaces, column layouts, themed markdown and code, and a footer with social icons, address, and unsubscribe parts.",
       "dependencies": [
-        "react-email@^6.9.5"
+        "react-email@^6.11.16"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -4122,7 +4133,7 @@
       "dependencies": [
         "@base-ui/react@^1.9.0",
         "frimousse@^0.4.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -4255,7 +4266,7 @@
       "title": "File explorer",
       "description": "Finder-inspired file browser with locations, search, resizable columns, breadcrumbs, and an item preview.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/breadcrumb.json",
@@ -4299,7 +4310,7 @@
       "description": "Build editable field, operator, and value filters with a button or inline search.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -4372,8 +4383,8 @@
       "title": "Flow",
       "description": "Node graph editor parts that skin React Flow with Control UI tokens.",
       "dependencies": [
-        "@xyflow/react@^12.12.0",
-        "lucide-react@^1.47.0"
+        "@xyflow/react@^13.0.3",
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -4537,7 +4548,7 @@
       "description": "Pan-and-zoom spatial workspace for arranging content without fixed bounds.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -4630,7 +4641,7 @@
       "title": "InlineCitation",
       "description": "Inline multi-source citation with a keyboard-accessible preview and source navigation.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -4971,7 +4982,7 @@
       "title": "Markdown",
       "description": "Rendered agent markdown (GFM) whose code fences compose Code, and diff fences compose CodeDiff.",
       "dependencies": [
-        "streamdown@^2.6.0"
+        "streamdown@^2.8.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/checkbox.json",
@@ -5065,15 +5076,15 @@
       "description": "Compose Markdown with draggable blocks, tables, slash commands, people mentions, formatting, and application-owned image uploads. Choose a rich-text or live-preview engine.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "@tiptap/core@3.31.4",
-        "@tiptap/extension-image@3.31.4",
-        "@tiptap/extension-list@3.31.4",
-        "@tiptap/extension-paragraph@3.31.4",
-        "@tiptap/extension-table@3.31.4",
-        "@tiptap/markdown@3.31.4",
-        "@tiptap/pm@3.31.4",
-        "@tiptap/react@3.31.4",
-        "@tiptap/starter-kit@3.31.4"
+        "@tiptap/core@3.35.0",
+        "@tiptap/extension-image@3.35.0",
+        "@tiptap/extension-list@3.35.0",
+        "@tiptap/extension-paragraph@3.35.0",
+        "@tiptap/extension-table@3.35.0",
+        "@tiptap/markdown@3.35.0",
+        "@tiptap/pm@3.35.0",
+        "@tiptap/react@3.35.0",
+        "@tiptap/starter-kit@3.35.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/checkbox.json",
@@ -5675,7 +5686,7 @@
       "description": "Page navigation for long lists and result sets.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -5713,9 +5724,9 @@
       "title": "Phone input",
       "description": "International phone field with country search, E.164 values, and Zod validation helpers.",
       "dependencies": [
-        "libphonenumber-js@^1.13.13",
+        "libphonenumber-js@^1.13.17",
         "react-phone-number-input@^3.4.18",
-        "zod@^4.6.5"
+        "zod@^4.6.7"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/command.json",
@@ -5936,7 +5947,7 @@
       "title": "Resizable",
       "description": "Accessible resizable panel groups and split layouts with keyboard support.",
       "dependencies": [
-        "react-resizable-panels@^4.12.4"
+        "react-resizable-panels@^4.24.1"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -6075,7 +6086,7 @@
       "description": "Persistent anchored tip for onboarding tours, walkthroughs, and new-feature announcements — dismissible, with optional media and step counter.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -6342,7 +6353,7 @@
       "title": "Settings",
       "description": "Searchable multi-page settings shell with responsive navigation and accessible control groups.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -6383,7 +6394,7 @@
       "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -6608,7 +6619,7 @@
       "title": "Liquid metal skin",
       "description": "Polished metal skin with a WebGL shader control surface.",
       "dependencies": [
-        "metal-fx@^2.0.10"
+        "metal-fx@^2.0.11"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -6919,12 +6930,24 @@
           "path": "src/registry/skin-packs/xp/xp-controls.css",
           "target": "@components/control-ui/styles/xp-controls.css",
           "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/xp/xp-corners.css",
+          "target": "@components/control-ui/styles/xp-corners.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/registry/skin-packs/xp/xp-scroll.css",
+          "target": "@components/control-ui/styles/xp-scroll.css",
+          "type": "registry:file"
         }
       ],
       "css": {
         "@import \"../components/control-ui/styles/skin-theme.css\"": {},
         "@import \"../components/control-ui/styles/skin.css\"": {},
-        "@import \"../components/control-ui/styles/xp-controls.css\"": {}
+        "@import \"../components/control-ui/styles/xp-controls.css\"": {},
+        "@import \"../components/control-ui/styles/xp-corners.css\"": {},
+        "@import \"../components/control-ui/styles/xp-scroll.css\"": {}
       }
     },
     {
@@ -6978,7 +7001,7 @@
       "title": "SourceBadge",
       "description": "Linked source badge with an automatic same-origin favicon, derived hostname, and resilient fallback.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/avatar.json",
@@ -7023,7 +7046,7 @@
       "title": "Spinner",
       "description": "Accessible loading indicator for pending buttons, panels, and inline waits.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -7062,7 +7085,7 @@
       "title": "Stepper",
       "description": "Static and interactive workflow steps with horizontal and vertical layouts.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json"
@@ -7255,7 +7278,7 @@
       "description": "Segmented and browser-style navigation with a stable active indicator.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -7306,7 +7329,7 @@
       "title": "TaskList",
       "description": "Floating agent task progress pill above the composer that expands into the full task list.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/collapsible.json",
@@ -7421,7 +7444,7 @@
       "title": "Theme toggle",
       "description": "Controlled theme controls with a three-value switch, binary switch, cycle button, and dropdown.",
       "dependencies": [
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -7534,7 +7557,7 @@
       "description": "Transient notifications with a callable toast API and single Toaster mount.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",
@@ -7641,7 +7664,7 @@
       "description": "Inline approve or deny card for an agent action, with risk, a preview of what will run, and keyboard shortcuts.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/badge.json",
@@ -7885,7 +7908,7 @@
       "description": "Accessible tree view with roving keyboard navigation, single/multi selection, and animated disclosure.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/core.json",
@@ -8158,7 +8181,7 @@
       "description": "Keyboard-first agent question panel that temporarily replaces the chat composer inside its container.",
       "dependencies": [
         "@base-ui/react@^1.9.0",
-        "lucide-react@^1.47.0"
+        "lucide-react@^1.78.0"
       ],
       "registryDependencies": [
         "https://control-ui.dev/r/button.json",

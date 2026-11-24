@@ -161,8 +161,10 @@ Install a peer only when you import the component that needs it.
 | `chat-composer` | `prosemirror-*` |
 | `email/email`, `email/templates` | `react-email` |
 
-`ui/flow` also needs the React Flow structural stylesheet, loaded under the recipes:
+`ui/flow` also needs the React Flow structural stylesheet. It ships in an `xyflow` layer, so declare that layer after Tailwind's `base` and before the recipes:
 
 ```css
-@import "@xyflow/react/dist/base.css" layer(base);
+@layer theme, base, xyflow, components, utilities;
+@import "tailwindcss";
+@import "@xyflow/react/dist/base.css";
 ```

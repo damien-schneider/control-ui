@@ -14,7 +14,7 @@ test("mobile docs sidebar slides, restores focus, and respects reduced motion", 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/components/button");
-  const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true, includeHidden: true });
+  const trigger = page.locator('[data-control-ui="sidebar"][data-slot="mobile-trigger"]');
   await waitForReactHydration(trigger);
   await trigger.focus();
   await trigger.press("Enter");
@@ -131,7 +131,7 @@ test.describe("touch navigation", () => {
 
   test("mobile categories and links have usable touch targets", async ({ page }) => {
     await page.goto("/components/button");
-    const trigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
+    const trigger = page.getByRole("button", { name: "Menu", exact: true });
     await waitForReactHydration(trigger);
     await trigger.tap();
     const popup = page.locator(sidebarPopup);

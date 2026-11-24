@@ -30,12 +30,24 @@
       "path": "src/registry/skin-packs/xp/xp-controls.css",
       "target": "@components/control-ui/styles/xp-controls.css",
       "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/xp/xp-corners.css",
+      "target": "@components/control-ui/styles/xp-corners.css",
+      "type": "registry:file"
+    },
+    {
+      "path": "src/registry/skin-packs/xp/xp-scroll.css",
+      "target": "@components/control-ui/styles/xp-scroll.css",
+      "type": "registry:file"
     }
   ],
   "css": {
     "@import \"../components/control-ui/styles/skin-theme.css\"": {},
     "@import \"../components/control-ui/styles/skin.css\"": {},
-    "@import \"../components/control-ui/styles/xp-controls.css\"": {}
+    "@import \"../components/control-ui/styles/xp-controls.css\"": {},
+    "@import \"../components/control-ui/styles/xp-corners.css\"": {},
+    "@import \"../components/control-ui/styles/xp-scroll.css\"": {}
   },
   "meta": {
     "sourceManifestPath": "registry/xp/skin.json"

@@ -5,7 +5,7 @@
   "title": "Liquid metal skin",
   "description": "Polished metal skin with a WebGL shader control surface.",
   "dependencies": [
-    "metal-fx@^2.0.10"
+    "metal-fx@^2.0.11"
   ],
   "registryDependencies": [
     "https://control-ui.dev/r/core.json",
@@ -22,7 +22,7 @@
       "path": "src/registry/skin-packs/liquid-metal/skin.config.tsx",
       "target": "@components/control-ui/skin.config.tsx",
       "type": "registry:lib",
-      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\n/*\n * ADVANCED skin, no cva slots here: metal surface via skin.css + root-mounted WebGL\n * extension (liquid-metal-runtime.tsx) injecting metal-fx <canvas> per data-control node.\n * Mount <LiquidMetalSkinRuntime/> at app root (ControlEffectsRuntime-style) or shader stays off.\n */\nexport const skin: ControlUiSkin = { id: \"liquid-metal\" };\n"
+      "content": "import type { ControlUiSkin } from \"@/components/control-ui/skin\";\n\n/*\n * ADVANCED skin, no cva slots here: metal surface via skin.css + root-mounted WebGL\n * extension (liquid-metal-runtime.tsx) injecting metal-fx <canvas> per data-control node.\n * Mount <LiquidMetalSkinRuntime/> at app root (ControlEffectsRuntime-style) or shader stays off.\n */\nexport const skin: ControlUiSkin = { id: \"liquid-metal\", buttonGroupJoin: \"overlap\" };\n"
     },
     {
       "path": "src/registry/skin-packs/liquid-metal/skin.css",

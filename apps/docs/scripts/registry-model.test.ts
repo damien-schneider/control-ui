@@ -1,4 +1,6 @@
 import { describe, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { blockEntries } from "@/app/(features)/catalog/blocks";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { extensionEntries } from "@/app/(features)/catalog/extensions";
@@ -96,5 +98,37 @@ describe("recipe cascade order", () => {
       '@import "../components/control-ui/styles/recipes/dynamic-notification-input.css"',
       '@import "../components/control-ui/styles/recipes/dynamic-notification-motion.css"',
     ]);
+  });
+});
+
+function installedTargets(name: string, seen = new Set<string>()): Set<string> {
+  if (seen.has(name)) return new Set();
+  seen.add(name);
+  const item = registryItem(name);
+  const targets = new Set(item.files.flatMap((file) => (file.target ? [file.target] : [])));
+  for (const dependency of item.registryDependencies ?? []) {
+    for (const target of installedTargets(dependency, seen)) targets.add(target);
+  }
+  return targets;
+}
+
+describe("skin packs", () => {
+  test("every relative stylesheet import resolves to a file the install writes", () => {
+    const appRoot = path.join(import.meta.dir, "..");
+    const unresolved = registryItems
+      .filter((item) => item.name.startsWith("skin-"))
+      .flatMap((item) => {
+        const targets = installedTargets(item.name);
+        return item.files
+          .filter((file) => file.target?.endsWith(".css"))
+          .flatMap((file) =>
+            [...readFileSync(path.join(appRoot, file.path), "utf8").matchAll(/@import\s+["'](\.{1,2}\/[^"']+)["']/g)]
+              .map(([, specifier]) => path.posix.join(path.posix.dirname(file.target ?? ""), specifier))
+              .filter((resolved) => !targets.has(resolved))
+              .map((resolved) => `${item.name}: ${file.target} imports missing ${resolved}`),
+          );
+      });
+
+    expect(unresolved).toEqual([]);
   });
 });

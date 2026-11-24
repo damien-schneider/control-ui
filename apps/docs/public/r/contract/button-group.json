@@ -7,10 +7,16 @@
   ],
   "knobs": [
     {
-      "name": "--cui-button-group-text-radius",
+      "name": "--cui-button-group-radius",
       "syntax": "<length-percentage>",
       "initialValue": "0px",
-      "defaultValue": "var(--radius-control)"
+      "defaultValue": "var(--nest-radius, var(--radius-control))"
+    },
+    {
+      "name": "--cui-button-group-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm)"
     },
     {
       "name": "--cui-button-group-text-background",
@@ -39,6 +45,15 @@
           "button-group"
         ],
         "states": [
+          {
+            "attribute": "data-join",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "frame",
+              "overlap"
+            ]
+          },
           {
             "attribute": "data-orientation",
             "source": "control-ui",

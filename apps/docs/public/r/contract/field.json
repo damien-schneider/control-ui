@@ -2632,8 +2632,7 @@
   "adornments": {},
   "uncovered": [
     "--cui-field-affordance-hover-background",
-    "--cui-field-focus-border-color",
-    "--cui-field-hover-background"
+    "--cui-field-focus-border-color"
   ],
   "contrast": "/r/contract/field.contrast.json"
 }

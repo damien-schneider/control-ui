@@ -265,7 +265,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `sub-content`
   - `sub-trigger`: `data-disabled`, `data-highlighted`, `data-inset`, `data-popup-open`
   - `sub-trigger-indicator`: `data-icon-dir` (`inline`)
-  - `trigger`: `data-disabled`, `data-icon-only`, `data-popup-open`, `data-pressed`, `data-shape` (`default`), `data-size` (`lg` | `md` | `sm` | `xs`), `data-tone` (`neutral`), `data-variant` (`ghost` | `surface`)
+  - `trigger`: `data-disabled`, `data-icon-only`, `data-popup-open`, `data-pressed`, `data-shape` (`default`), `data-size` (`lg` | `md` | `sm` | `xs`), `data-tone` (`neutral`), `data-variant` (`ghost` | `solid` | `surface`)
 
 ## Knobs
 

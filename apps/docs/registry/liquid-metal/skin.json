@@ -5,7 +5,7 @@
   "title": "Liquid metal skin",
   "description": "Polished metal skin with a WebGL shader control surface.",
   "dependencies": [
-    "metal-fx@^2.0.10"
+    "metal-fx@^2.0.11"
   ],
   "registryDependencies": [
     "core",

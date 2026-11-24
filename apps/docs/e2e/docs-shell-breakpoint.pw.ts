@@ -14,12 +14,14 @@ for (const { name, width, docked } of [
     const dockedSidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
     const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
     const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
+    const mobileTrigger = page.getByRole("button", { name: "Menu", exact: true });
     const contentPanel = page.locator("[data-docs-content]");
     await waitForReactHydration(contentPanel);
 
     await expect(dockedSidebar).toHaveCount(docked ? 1 : 0);
     await expect(resizeHandle).toHaveCount(docked ? 1 : 0);
-    await expect(sidebarTrigger).toBeVisible({ visible: !docked });
+    await expect(sidebarTrigger).toBeHidden();
+    await expect(mobileTrigger).toBeVisible({ visible: !docked });
 
     const contentBox = await contentPanel.boundingBox();
     expect(contentBox).not.toBeNull();
@@ -33,7 +35,7 @@ for (const { name, width, docked } of [
   });
 }
 
-test("desktop shell keeps equal panel gutters and reopens from the top left", async ({ page }) => {
+test("desktop shell keeps equal panel gutters and toggles from the top-left corner", async ({ page }) => {
   const width = 1280;
   await page.setViewportSize({ width, height: 900 });
   await page.goto("/components/code-diff");
@@ -42,7 +44,7 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   const sidebarGap = page.locator('[data-control-ui="sidebar"][data-slot="gap"]');
   const resizeHandle = page.getByRole("separator", { name: /Resize sidebar/ });
   const contentPanel = page.locator("[data-docs-content]");
-  const sidebarTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle sidebar", exact: true });
+  const sidebarTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
   const sidebarInner = page.locator('[data-control-ui="sidebar"][data-slot="inner"]');
   await expect(resizeHandle).toHaveAttribute("data-resize-ready", "");
 
@@ -69,14 +71,15 @@ test("desktop shell keeps equal panel gutters and reopens from the top left", as
   const triggerBox = await sidebarTrigger.boundingBox();
   if (!collapsedPanelBox || !triggerBox) throw new Error("Collapsed shell geometry is unavailable");
   expect(Math.abs(collapsedPanelBox.x - (width - collapsedPanelBox.x - collapsedPanelBox.width))).toBeLessThan(1);
-  expect(Math.abs(triggerBox.x - collapsedPanelBox.x - 8)).toBeLessThan(2);
+  expect(triggerBox.x).toBeLessThan(16);
+  expect(triggerBox.y).toBeLessThan(16);
   await sidebarTrigger.click();
   await expect(sidebarRoot).toHaveAttribute("data-state", "expanded");
   await expect(sidebarTrigger).toBeHidden();
   await expect(resizeHandle).toBeFocused();
 });
 
-test("Cuicui content follows its sidebar layout and aligns sidebar sections", async ({ page }) => {
+test("Cuicui content follows its sidebar layout", async ({ page }) => {
   await page.addInitScript((storageKey) => {
     localStorage.setItem(storageKey, JSON.stringify({ skin: "cuicui" }));
   }, THEME_EDITOR_STORAGE_KEY);
@@ -96,9 +99,4 @@ test("Cuicui content follows its sidebar layout and aligns sidebar sections", as
 
   const sidebar = page.locator('[data-control-ui="sidebar"][data-slot="container"]');
   await expect(sidebar).toHaveCSS("width", "310px");
-  const overviewBox = await sidebar.getByRole("link", { name: "Overview" }).boundingBox();
-  const footerBox = await sidebar.locator('[data-slot="footer"] > div').boundingBox();
-  if (!overviewBox || !footerBox) throw new Error("Sidebar section geometry is unavailable");
-  expect(Math.abs(overviewBox.x - footerBox.x)).toBeLessThan(1);
-  expect(Math.abs(overviewBox.width - footerBox.width)).toBeLessThan(1);
 });

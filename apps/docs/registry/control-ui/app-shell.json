@@ -3,7 +3,7 @@
   "name": "app-shell",
   "type": "registry:ui",
   "title": "App shell",
-  "description": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
+  "description": "The application container: persistent navigation, header, and screen-corner chrome around changing page content, with one shared scroll policy.",
   "dependencies": [],
   "registryDependencies": [
     "core",
@@ -17,9 +17,19 @@
       "type": "registry:file"
     },
     {
+      "path": "src/registry/knob-contracts/app-shell-corner-knobs.ts",
+      "target": "@components/control-ui/knob-contracts/app-shell-corner-knobs.ts",
+      "type": "registry:component"
+    },
+    {
       "path": "src/registry/knob-contracts/app-shell-header-knobs.ts",
       "target": "@components/control-ui/knob-contracts/app-shell-header-knobs.ts",
       "type": "registry:component"
+    },
+    {
+      "path": "src/registry/sources/control-ui/recipes/app-shell-corner.css",
+      "target": "@components/control-ui/styles/recipes/app-shell-corner.css",
+      "type": "registry:file"
     },
     {
       "path": "src/registry/sources/control-ui/recipes/app-shell-header.css",
@@ -33,6 +43,7 @@
     }
   ],
   "css": {
+    "@import \"../components/control-ui/styles/recipes/app-shell-corner.css\"": {},
     "@import \"../components/control-ui/styles/recipes/app-shell-header.css\"": {}
   },
   "meta": {

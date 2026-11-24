@@ -6,7 +6,7 @@ CssGenericProperty(name=$name, value=$value) as $declaration where {
     $value <: r"(?s).*var\(\s*--cui-.*",
     and {
       not $name <: r"--.*",
-      $declaration <: within CssQualifiedRule(prelude=$selector) ,
+      $declaration <: within CssQualifiedRule(prelude=$selector),
       $selector <: r"(?s).*\[data-(?:control-family|control-ui|slot)\b[^\s>+~]*\s*"
     }
   },

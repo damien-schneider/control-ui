@@ -1,5 +1,6 @@
+@layer theme, base, xyflow, components, utilities;
 @import "tailwindcss";
-@import "@xyflow/react/dist/base.css" layer(base);
+@import "@xyflow/react/dist/base.css";
 
 @import "../src/registry/sources/control-ui/theme.css";
 @import "../src/registry/sources/control-ui/recipes/button.css";
@@ -56,6 +57,7 @@
 @import "../src/registry/sources/control-ui/recipes/sidebar-mobile.css";
 @import "../src/registry/sources/control-ui/recipes/page-layout.css";
 @import "../src/registry/sources/control-ui/recipes/app-shell-header.css";
+@import "../src/registry/sources/control-ui/recipes/app-shell-corner.css";
 @import "../src/registry/sources/control-ui/recipes/table-of-contents.css";
 @import "../src/registry/sources/control-ui/recipes/popup-drawer.css";
 @import "../src/registry/sources/control-ui/recipes/phone-input.css";

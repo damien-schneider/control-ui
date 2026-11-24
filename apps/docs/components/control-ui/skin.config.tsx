@@ -6,6 +6,8 @@ export const skin: ControlUiSkin = {
   sidebarLayout: "sidebar",
   scrollAreaScrollbarVisibility: "always",
   scrollAreaScrollbarGutter: "stable",
+  scrollAreaScrollbarButtons: true,
+  buttonGroupJoin: "overlap",
   indicators: { sidebar: "none", tree: "none" },
   adornments: {
     "chat-layout": {

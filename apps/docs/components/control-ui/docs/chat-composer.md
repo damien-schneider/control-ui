@@ -16,13 +16,13 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `lucide-react@^1.47.0`
+- `lucide-react@^1.78.0`
 - `prosemirror-commands@^1.7.2`
-- `prosemirror-history@^1.5.0`
+- `prosemirror-history@^1.5.2`
 - `prosemirror-keymap@^1.2.3`
-- `prosemirror-model@^1.25.11`
+- `prosemirror-model@^1.25.13`
 - `prosemirror-state@^1.4.4`
-- `prosemirror-view@^1.42.3`
+- `prosemirror-view@^1.43.1`
 
 ## Registry dependencies
 

@@ -77,7 +77,7 @@ const edges: StepEdge[] = [
   { id: "answer-respond", type: "step", source: "answer", target: "respond", data: { dashed: true } },
 ];
 
-const FIT_VIEW_OPTIONS = { padding: 0.2 };
+const FIT_VIEW_OPTIONS = { padding: "8%" } as const;
 
 export function PrimitiveFlowExample() {
   return (

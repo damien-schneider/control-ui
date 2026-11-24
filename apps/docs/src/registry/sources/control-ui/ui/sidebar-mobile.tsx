@@ -75,7 +75,6 @@ export function SidebarMobileTrigger({ render, children, onClick, ref, ...props 
       type: "button",
       ...props,
       "data-control-ui": "sidebar",
-      "data-control-family": "sidebar",
       "data-slot": "mobile-trigger",
       "data-mobile-nav-item": "",
       "data-sidebar-trigger": "",

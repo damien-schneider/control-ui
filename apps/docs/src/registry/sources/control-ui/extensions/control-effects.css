@@ -113,7 +113,7 @@
 
   /* Same disabled guard as the ripple's JS check and the recipes: Base UI stamps a bare data-disabled, so presence is the test. */
   [data-effects~="hover-circle"]
-  :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled]))::after {
+    :where([data-control-ui][data-control="true"]:hover:not(:disabled, [aria-disabled="true"], [data-disabled]))::after {
     --cui-hover-circle-scale: 1;
   }
 }

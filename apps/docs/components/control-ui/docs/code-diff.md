@@ -16,7 +16,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `@tanstack/react-virtual@^3.14.13`
+- `@tanstack/react-virtual@^3.14.28`
 - `diff@^9.0.0`
 
 ## Registry dependencies

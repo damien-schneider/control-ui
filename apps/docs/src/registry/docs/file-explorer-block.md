@@ -18,7 +18,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `lucide-react@^1.47.0`
+- `lucide-react@^1.78.0`
 
 ## Registry dependencies
 

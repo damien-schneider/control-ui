@@ -5,7 +5,7 @@
   "title": "ChatWorkspace",
   "description": "A chat that floats as an island over the content or pins beside it as a resizable column, without remounting.",
   "dependencies": [
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "button",

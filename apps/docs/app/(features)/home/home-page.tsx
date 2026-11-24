@@ -19,7 +19,6 @@ import {
   shadcnComparisonGuide,
 } from "./showcase";
 import { CatalogItemShowcaseCard } from "./showcase-cards";
-import { SkinPicker } from "./skin-picker";
 
 const cardGridClassName = "grid min-w-0 gap-x-4 gap-y-8 @2xl/home:grid-cols-2 @5xl/home:grid-cols-3";
 
@@ -63,8 +62,8 @@ function Hero() {
         App components for shadcn/ui, in any skin
       </Heading>
       <Text as="p" size="body-lg" tone="muted" className="max-w-2xl text-pretty">
-        Pickers, trees, editors, AI chat, and whole app screens, installed with the shadcn CLI as source you own. Switch the skin at the
-        bottom of the screen and the whole page repaints.
+        Pickers, trees, editors, AI chat, and whole app screens, installed with the shadcn CLI as source you own. Switch the skin at the top
+        of the screen and the whole page repaints.
       </Text>
       <StartButtons />
       {installCommand ? (
@@ -161,7 +160,6 @@ export function HomePage() {
         </LandingSection>
         <CatalogClosing />
       </div>
-      <SkinPicker />
     </div>
   );
 }

@@ -31,7 +31,9 @@ for (const width of [390, 795, 1440]) {
       ["Frequency bars", "bar"],
       ["Waveform", "bars"],
     ]) {
-      await page.getByRole("radio", { name: label, exact: true }).check();
+      const alternative = page.getByRole("radio", { name: label, exact: true });
+      await alternative.click();
+      await expect(alternative).toBeChecked();
       const visualizer = preview.locator(`[data-control-ui="audio-visualizer"][data-slot="root"][data-variant="${variant}"]`).first();
       await expect(visualizer).toBeVisible();
       await expectCentered(panel, content);

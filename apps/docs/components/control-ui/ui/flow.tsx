@@ -13,8 +13,9 @@ import {
   Panel,
   ReactFlow,
   type ReactFlowProps,
+  useOptionsStore,
   useReactFlow,
-  useStore,
+  useViewportStore,
 } from "@xyflow/react";
 import { MaximizeIcon, MinusIcon, PlusIcon } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
@@ -26,7 +27,7 @@ import { Button } from "@/components/control-ui/ui/button";
 
 export type FlowProps<NodeType extends Node = Node, EdgeType extends Edge = Edge> = Omit<
   ReactFlowProps<NodeType, EdgeType>,
-  "colorMode" | "style"
+  "forceColorMode" | "style"
 > & { style?: CSSProperties & FlowKnobStyle };
 
 export type FlowBackgroundProps = { id?: string; className?: string };
@@ -93,8 +94,10 @@ export function FlowControls({
   ...props
 }: FlowControlsProps) {
   const { zoomIn, zoomOut, fitView } = useReactFlow();
-  const atMinZoom = useStore((state) => state.transform[2] <= state.minZoom);
-  const atMaxZoom = useStore((state) => state.transform[2] >= state.maxZoom);
+  const minZoom = useOptionsStore((state) => state.minZoom);
+  const maxZoom = useOptionsStore((state) => state.maxZoom);
+  const atMinZoom = useViewportStore((state) => state.transform[2] <= minZoom);
+  const atMaxZoom = useViewportStore((state) => state.transform[2] >= maxZoom);
   return (
     <Panel
       role="group"

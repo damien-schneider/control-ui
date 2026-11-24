@@ -86,7 +86,7 @@ test("dragging a panel handle with a pointer focuses it without a keyboard focus
   await expect(handle).toHaveCSS("outline-style", "none");
 });
 
-test("a split handle keeps pointer focus but drops its focus paint once the pointer leaves", async ({ page }) => {
+test("a clicked split handle keeps pointer focus but drops its focus paint once the pointer leaves", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/components/resizable");
   const handle = page.getByRole("separator", { name: "Resize panel", exact: true }).first();
@@ -97,7 +97,6 @@ test("a split handle keeps pointer focus but drops its focus paint once the poin
   const resting = await handle.evaluate((node) => getComputedStyle(node).backgroundColor);
   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
   await page.mouse.down();
-  await page.mouse.move(box.x + box.width / 2 - 30, box.y + box.height / 2, { steps: 3 });
   await page.mouse.up();
   await page.mouse.move(box.x + 300, box.y + box.height / 2);
 

@@ -5,8 +5,8 @@
   "title": "Flow",
   "description": "Node graph editor parts that skin React Flow with Control UI tokens.",
   "dependencies": [
-    "@xyflow/react@^12.12.0",
-    "lucide-react@^1.47.0"
+    "@xyflow/react@^13.0.3",
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "button",

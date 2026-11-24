@@ -107,10 +107,9 @@ test("floating menus open from the bottom and close with their visible close but
   await expect(menu).toBeFocused();
 });
 
-test("the docs floating menu stays reachable after scrolling and navigates with router links", async ({ page }) => {
+test("the docs corner menu stays reachable after scrolling and navigates with router links", async ({ page }) => {
   await page.goto("/components/button");
-  const nav = page.getByRole("navigation", { name: "Documentation mobile navigation" });
-  const menu = nav.getByRole("button", { name: "Menu", exact: true });
+  const menu = page.getByRole("button", { name: "Menu", exact: true });
   await waitForReactHydration(menu);
   await page.mouse.move(200, 400);
   await page.mouse.wheel(0, 700);
@@ -121,4 +120,16 @@ test("the docs floating menu stays reachable after scrolling and navigates with 
   await expect(page).toHaveURL(/\/components\/tabs$/);
   await expect(drawer).toHaveCount(0);
   await expect(menu).toBeInViewport();
+});
+
+test("the docs menu wheels down to its last destination inside the height-capped drawer", async ({ page }) => {
+  await page.goto("/components/button");
+  const menu = page.getByRole("button", { name: "Menu", exact: true });
+  await waitForReactHydration(menu);
+  await menu.tap();
+  const destinations = page.locator(drawerSelector).locator("[data-scroll-area-viewport] a");
+  await destinations.first().hover();
+  await expect(destinations.last()).not.toBeInViewport();
+  await page.mouse.wheel(0, 20_000);
+  await expect(destinations.last()).toBeInViewport();
 });

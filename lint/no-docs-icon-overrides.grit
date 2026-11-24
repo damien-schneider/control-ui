@@ -5,11 +5,11 @@ JsxSelfClosingElement(name=$icon, attributes=$iconAttributes) as $iconElement wh
   $iconAttributes <: some JsxAttribute(name=`className`) as $attr where {
     $attr <: r"(?s).*(?:^|[\s\"'\x60])(?:size-|w-|h-|text-(?:muted-foreground|foreground|primary|destructive|success|warning|info|(?:red|green|blue|amber|emerald|yellow|orange|zinc|neutral|gray|slate|sky|violet|purple|pink|rose|teal|cyan|lime|indigo|fuchsia|stone)-\d)).*"
   },
-  $iconElement <: within JsxElement() as $parent ,
+  $iconElement <: within JsxElement() as $parent,
   $parent <: JsxElement(opening_element=JsxOpeningElement(name=$name)),
   $name <: r"([A-Z]\w*)(?:\.[\w.]+)?"($component),
   not $component <: r"(?:Text|Heading|TextLink)",
-  $iconElement <: within JsModule() as $module ,
+  $iconElement <: within JsModule() as $module,
   $module <: contains JsImport() as $import where {
     $import <: r"(?s).*(?:from\s+['\"](?:(?:@ctrl-ui/react|[^'\"]*components/control-ui)/)).*",
     $import <: contains JsIdentifierBinding() as $binding where { $binding <: $component }

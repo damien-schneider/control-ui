@@ -16,9 +16,9 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `libphonenumber-js@^1.13.13`
+- `libphonenumber-js@^1.13.17`
 - `react-phone-number-input@^3.4.18`
-- `zod@^4.6.5`
+- `zod@^4.6.7`
 
 ## Registry dependencies
 

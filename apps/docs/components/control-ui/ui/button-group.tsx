@@ -46,6 +46,7 @@ export function ButtonGroup({ orientation = "horizontal", indicator, className, 
           data-control-family="button-group"
           data-slot="root"
           data-orientation={orientation}
+          data-join={skin.buttonGroupJoin ?? "frame"}
           data-track={resolvedIndicator}
           className={cn(buttonTrackStructureClasses, "inline-flex w-fit items-stretch data-[orientation=vertical]:flex-col", className)}
           {...props}
@@ -81,7 +82,7 @@ export function ButtonGroupSeparator({ orientation, className, ...props }: Butto
       data-control-family="button-group"
       data-slot="separator"
       data-orientation={resolvedOrientation}
-      className={cn("shrink-0 self-stretch", resolvedOrientation === "vertical" ? "w-px" : "h-px w-full", className)}
+      className={cn("shrink-0 self-stretch", className)}
       {...props}
     />
   );

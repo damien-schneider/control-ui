@@ -1,10 +1,17 @@
 "use client";
 
 import type { ComponentProps, CSSProperties } from "react";
+import type { AppShellCornerKnobStyle } from "@/components/control-ui/knob-contracts/app-shell-corner-knobs";
 import type { AppShellHeaderKnobStyle } from "@/components/control-ui/knob-contracts/app-shell-header-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type PageScroll, PageScrollContext, usePageScroll } from "@/components/control-ui/ui/page-layout";
-import { SidebarInset, type SidebarInsetProps, SidebarProvider, type SidebarProviderProps } from "@/components/control-ui/ui/sidebar";
+import {
+  SidebarInset,
+  type SidebarInsetProps,
+  SidebarProvider,
+  type SidebarProviderProps,
+  useSidebar,
+} from "@/components/control-ui/ui/sidebar";
 
 export type AppShellProps = SidebarProviderProps & { scroll?: PageScroll };
 
@@ -39,6 +46,29 @@ export function AppShellHeader({ className, ...props }: AppShellHeaderProps) {
       data-control-family="app-shell-header"
       data-slot="root"
       className={cn("sticky top-0 z-(--z-nav) flex shrink-0 items-center gap-2", className)}
+      {...props}
+    />
+  );
+}
+
+export const appShellCornerPlacements = ["top-start", "top-end", "bottom-start", "bottom-end"] as const;
+
+export type AppShellCornerPlacement = (typeof appShellCornerPlacements)[number];
+
+export type AppShellCornerProps = Omit<ComponentProps<"div">, "style"> & {
+  placement: AppShellCornerPlacement;
+  style?: CSSProperties & AppShellCornerKnobStyle;
+};
+
+export function AppShellCorner({ placement, className, ...props }: AppShellCornerProps) {
+  const { layout } = useSidebar();
+  return (
+    <div
+      data-control-ui="app-shell"
+      data-control-family="app-shell-corner"
+      data-slot="corner"
+      data-placement={placement}
+      className={cn(layout === "contained" ? "absolute" : "fixed", "z-(--z-nav) flex items-center", className)}
       {...props}
     />
   );

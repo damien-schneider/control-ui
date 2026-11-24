@@ -16,9 +16,9 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `@tanstack/react-virtual@^3.14.13`
-- `lucide-react@^1.47.0`
-- `shiki@^4.4.3`
+- `@tanstack/react-virtual@^3.14.28`
+- `lucide-react@^1.78.0`
+- `shiki@^4.6.0`
 
 ## Registry dependencies
 

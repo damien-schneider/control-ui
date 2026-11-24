@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "family": "app-shell-corner",
+  "selectorPattern": "[data-skin=\"{skin}\"] :where([data-slot=\"{part}\"][data-control-family=\"{family}\"])",
+  "registryItems": [
+    "app-shell"
+  ],
+  "knobs": [
+    {
+      "name": "--cui-app-shell-corner-size",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--control-h-md) + var(--spacing) * 3)"
+    },
+    {
+      "name": "--cui-app-shell-corner-inset",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "0px"
+    },
+    {
+      "name": "--cui-app-shell-corner-padding-inline",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-app-shell-corner-gap",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "calc(var(--spacing) * 2)"
+    },
+    {
+      "name": "--cui-app-shell-corner-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar)"
+    },
+    {
+      "name": "--cui-app-shell-corner-background-image",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    },
+    {
+      "name": "--cui-app-shell-corner-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-foreground)"
+    },
+    {
+      "name": "--cui-app-shell-corner-border-color",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--sidebar-border)"
+    },
+    {
+      "name": "--cui-app-shell-corner-border-width",
+      "syntax": "<length>",
+      "initialValue": "0px",
+      "defaultValue": "1px"
+    },
+    {
+      "name": "--cui-app-shell-corner-radius",
+      "syntax": "<length-percentage>",
+      "initialValue": "0px",
+      "defaultValue": "min(var(--radius-panel), calc(var(--cui-app-shell-corner-size) / 2))"
+    },
+    {
+      "name": "--cui-app-shell-corner-shadow",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "0 0 transparent"
+    },
+    {
+      "name": "--cui-app-shell-corner-backdrop-filter",
+      "syntax": "*",
+      "initialValue": "",
+      "defaultValue": "none"
+    }
+  ],
+  "parts": {
+    "app-shell": {
+      "corner": {
+        "family": "app-shell-corner",
+        "registryItems": [
+          "app-shell"
+        ],
+        "states": [
+          {
+            "attribute": "data-placement",
+            "source": "control-ui",
+            "valueKind": "enum",
+            "values": [
+              "bottom-end",
+              "bottom-start",
+              "top-end",
+              "top-start"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "adornments": {},
+  "uncovered": [],
+  "contrast": "/r/contract/app-shell-corner.contrast.json"
+}

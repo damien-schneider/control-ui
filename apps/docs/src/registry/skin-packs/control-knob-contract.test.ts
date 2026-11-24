@@ -389,6 +389,10 @@ function invalidPropertySyntaxOffenders(root: Root): string[] {
 }
 
 const FAMILY_ROOT_MARKERS: Record<string, readonly string[]> = {
+  "app-shell-corner": [
+    '[data-control-family="app-shell-corner"][data-slot="corner"]',
+    '[data-control-family="sidebar"][data-slot="wrapper"]',
+  ],
   "audio-recorder": ['[data-control-ui="audio-recorder"][data-slot="root"]'],
   avatar: ['[data-control-family="avatar"][data-slot="favicon"]', '[data-control-family="avatar"][data-slot="source-favicon"]'],
   context: ['[data-control-family="context"][data-slot="content"]'],

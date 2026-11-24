@@ -43,6 +43,18 @@
       "defaultValue": "var(--background)"
     },
     {
+      "name": "--cui-theme-toggle-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--muted-foreground)"
+    },
+    {
+      "name": "--cui-theme-toggle-selected-foreground",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--foreground)"
+    },
+    {
       "name": "--cui-theme-toggle-indicator-shadow",
       "syntax": "*",
       "initialValue": "",

@@ -13,7 +13,6 @@ import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
-import { Kbd } from "@/components/control-ui/ui/kbd";
 import { Text } from "@/components/control-ui/ui/typography";
 import { useCloseMobileSidebar } from "./use-close-mobile-sidebar";
 
@@ -45,29 +44,25 @@ function DocsSearchResult({ item, onSelect }: { item: SearchItem; onSelect: (ite
   );
 }
 
-export function DocsSearchTrigger() {
+export function DocsSearchTrigger({ className }: { className?: string }) {
   const openSearch = use(DocsSearchContext);
   if (!openSearch) throw new Error("DocsSearchTrigger must render inside DocsSearchProvider.");
-  const platformUsesCommandKey = !useIsHydrated() || navigator.userAgent.includes("Mac");
+  const searchShortcut = !useIsHydrated() || navigator.userAgent.includes("Mac") ? "⌘K" : "Ctrl K";
 
   return (
-    <div className="flex items-center gap-1.5">
-      <Kbd variant="ghost" aria-hidden>
-        {platformUsesCommandKey ? "⌘K" : "Ctrl K"}
-      </Kbd>
-      <Button
-        variant="ghost"
-        size="sm"
-        iconOnly
-        aria-label="Search documentation"
-        title="Search documentation"
-        aria-keyshortcuts="Meta+K Control+K /"
-        onClick={openSearch}
-        data-docs-sidebar-search=""
-      >
-        <HugeiconsIcon aria-hidden icon={Search01Icon} size={16} strokeWidth={1.7} />
-      </Button>
-    </div>
+    <Button
+      variant="ghost"
+      size="sm"
+      iconOnly
+      aria-label="Search documentation"
+      title={`Search documentation (${searchShortcut})`}
+      aria-keyshortcuts="Meta+K Control+K /"
+      onClick={openSearch}
+      data-docs-sidebar-search=""
+      className={className}
+    >
+      <HugeiconsIcon aria-hidden icon={Search01Icon} size={16} strokeWidth={1.7} />
+    </Button>
   );
 }
 

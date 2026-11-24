@@ -7,7 +7,7 @@ import {
   type MessageRoleRenderers,
   type MessageStatusRenderers,
   type ToolInvocationPart,
-} from "@mastra/react";
+} from "@mastra/react/ui";
 import type { ReactNode } from "react";
 import type { ActivityState } from "@/components/control-ui/activity";
 import {

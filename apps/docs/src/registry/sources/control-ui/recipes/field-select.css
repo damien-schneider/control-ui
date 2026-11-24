@@ -107,4 +107,15 @@
   ) {
     rotate: 180deg;
   }
+
+  @media (pointer: coarse) {
+    :where([data-control-family="field"][data-field-kind="select"][data-slot="trigger"])::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      translate: -50% -50%;
+      inline-size: 100%;
+      block-size: max(100%, var(--touch-target));
+    }
+  }
 }

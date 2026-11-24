@@ -186,6 +186,83 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     ],
   },
   {
+    id: "app-shell-corner",
+    knobs: [
+      {
+        name: "--cui-app-shell-corner-backdrop-filter",
+        syntax: "*",
+        defaultValue: "none",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-background",
+        syntax: "<color>",
+        defaultValue: "var(--sidebar)",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-background-image",
+        syntax: "*",
+        defaultValue: "none",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-border-color",
+        syntax: "<color>",
+        defaultValue: "var(--sidebar-border)",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-border-width",
+        syntax: "<length>",
+        defaultValue: "1px",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--sidebar-foreground)",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-gap",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-inset",
+        syntax: "<length-percentage>",
+        defaultValue: "0px",
+        selector: ':where([data-control-family="sidebar"][data-slot="wrapper"])',
+      },
+      {
+        name: "--cui-app-shell-corner-padding-inline",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 2)",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "min(var(--radius-panel), calc(var(--cui-app-shell-corner-size) / 2))",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-shadow",
+        syntax: "*",
+        defaultValue: "0 0 transparent",
+        selector: ':where([data-control-family="app-shell-corner"][data-slot="corner"])',
+      },
+      {
+        name: "--cui-app-shell-corner-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--control-h-md) + var(--spacing) * 3)",
+        selector: ':where([data-control-family="sidebar"][data-slot="wrapper"])',
+      },
+    ],
+  },
+  {
     id: "app-shell-header",
     knobs: [
       {
@@ -738,9 +815,21 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "button-group",
     knobs: [
       {
+        name: "--cui-button-group-radius",
+        syntax: "<length-percentage>",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
+        selector: ':where([data-control-family="button-group"][data-slot="root"])',
+      },
+      {
         name: "--cui-button-group-separator-background",
         syntax: "<color>",
         defaultValue: "var(--border)",
+        selector: ':where([data-control-family="button-group"][data-slot="root"])',
+      },
+      {
+        name: "--cui-button-group-shadow",
+        syntax: "*",
+        defaultValue: "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm)",
         selector: ':where([data-control-family="button-group"][data-slot="root"])',
       },
       {
@@ -753,12 +842,6 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-button-group-text-foreground",
         syntax: "<color>",
         defaultValue: "var(--muted-foreground)",
-        selector: ':where([data-control-family="button-group"][data-slot="root"])',
-      },
-      {
-        name: "--cui-button-group-text-radius",
-        syntax: "<length-percentage>",
-        defaultValue: "var(--radius-control)",
         selector: ':where([data-control-family="button-group"][data-slot="root"])',
       },
     ],
@@ -4769,6 +4852,30 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
     id: "scroll-area",
     knobs: [
       {
+        name: "--cui-scroll-area-button-background",
+        syntax: "<color>",
+        defaultValue: "transparent",
+        selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
+      },
+      {
+        name: "--cui-scroll-area-button-background-image",
+        syntax: "*",
+        defaultValue: "none",
+        selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
+      },
+      {
+        name: "--cui-scroll-area-button-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
+      },
+      {
+        name: "--cui-scroll-area-button-hover-background",
+        syntax: "<color>",
+        defaultValue: "var(--hover-fill)",
+        selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
+      },
+      {
         name: "--cui-scroll-area-corner-background",
         syntax: "<color>",
         defaultValue: "transparent",
@@ -4784,6 +4891,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-scroll-area-thumb-background",
         syntax: "<color>",
         defaultValue: "oklch(from var(--foreground) l c h / 0.4)",
+        selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
+      },
+      {
+        name: "--cui-scroll-area-thumb-background-image",
+        syntax: "*",
+        defaultValue: "none",
         selector: ':where([data-control-family="scroll-area"][data-slot="root"])',
       },
       {
@@ -6108,6 +6221,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="theme-toggle"][data-slot="root"])',
       },
       {
+        name: "--cui-theme-toggle-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--muted-foreground)",
+        selector: ':where([data-control-family="theme-toggle"][data-slot="root"])',
+      },
+      {
         name: "--cui-theme-toggle-height",
         syntax: "<length-percentage>",
         defaultValue: "var(--control-h-xs)",
@@ -6129,6 +6248,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         name: "--cui-theme-toggle-radius",
         syntax: "<length-percentage>",
         defaultValue: "var(--radius-control)",
+        selector: ':where([data-control-family="theme-toggle"][data-slot="root"])',
+      },
+      {
+        name: "--cui-theme-toggle-selected-foreground",
+        syntax: "<color>",
+        defaultValue: "var(--foreground)",
         selector: ':where([data-control-family="theme-toggle"][data-slot="root"])',
       },
       {

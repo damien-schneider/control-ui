@@ -18,7 +18,6 @@ import { Toggle } from "@/components/control-ui/ui/toggle";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { ThemeModeSwitch } from "@/components/theme-toggle";
 import { SKIN_META_BY_ID } from "./presets";
-import { SkinPresetControls } from "./skin-preset-controls";
 import type { SkinSourceState } from "./skin-source";
 import { THEME_CATEGORIES } from "./theme-categories";
 import { ThemeExport } from "./theme-export";
@@ -217,19 +216,11 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
 
   return (
     <section aria-label="Skin workspace" className="@container/workspace flex min-w-0 flex-col gap-5">
-      <header className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4 lg:hidden">
-        <div className="flex min-w-0 flex-col gap-2">
-          <Text size="caption" weight="medium" tone="muted">
-            Skin preset
-          </Text>
-          <SkinPresetControls label="Skin preset" className="w-full" />
-        </div>
-        <div className="flex flex-col gap-2">
-          <Text size="caption" weight="medium" tone="muted">
-            Appearance
-          </Text>
-          <ThemeModeSwitch />
-        </div>
+      <header className="flex flex-col gap-2 lg:hidden">
+        <Text size="caption" weight="medium" tone="muted">
+          Appearance
+        </Text>
+        <ThemeModeSwitch />
       </header>
 
       <Tabs value={view} onValueChange={changeView} className="flex min-w-0 flex-col gap-5">

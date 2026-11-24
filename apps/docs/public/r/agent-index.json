@@ -836,7 +836,7 @@
         "id": "app-shell",
         "name": "App shell",
         "kind": "Component",
-        "summary": "The application container: persistent navigation and header around changing page content, with one shared scroll policy.",
+        "summary": "The application container: persistent navigation, header, and screen-corner chrome around changing page content, with one shared scroll policy.",
         "href": "/components/app-shell",
         "status": "beta",
         "install": "npx shadcn@latest add https://control-ui.dev/r/app-shell.json"

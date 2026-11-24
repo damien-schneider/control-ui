@@ -6,7 +6,7 @@
   "description": "Responsive app sidebar with resizing, offcanvas and icon collapse, double sidebar layers, mobile navigation, and nested menus.",
   "dependencies": [
     "@base-ui/react@^1.9.0",
-    "lucide-react@^1.47.0"
+    "lucide-react@^1.78.0"
   ],
   "registryDependencies": [
     "button",

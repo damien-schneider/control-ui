@@ -5,7 +5,7 @@
   "title": "Calendar",
   "description": "Date selection grid built on react-day-picker and themed through tokens.",
   "dependencies": [
-    "react-day-picker@^10.0.1"
+    "react-day-picker@^10.0.2"
   ],
   "registryDependencies": [
     "core"

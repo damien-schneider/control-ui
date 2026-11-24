@@ -212,7 +212,7 @@ test("committed width and collapsed state survive a skin remount", async ({ page
   await expect(page.locator("html")).toHaveAttribute("data-skin", "cuicui");
   await expect(sidebarRoot).toHaveAttribute("data-state", "collapsed");
 
-  const docsTrigger = page.locator("[data-docs-sidebar-trigger]").getByRole("button", { name: "Toggle Sidebar" });
+  const docsTrigger = page.getByRole("button", { name: "Toggle sidebar", exact: true });
   await waitForReactHydration(docsTrigger);
   await docsTrigger.click();
   await expect(sidebarRoot).toHaveAttribute("data-state", "expanded");
@@ -230,7 +230,7 @@ test("persisted desktop collapse leaves the mobile drawer interactive", async ({
 
   await page.setViewportSize({ width: 800, height: 900 });
   await page.reload();
-  const trigger = page.getByRole("button", { name: "Toggle Sidebar" });
+  const trigger = page.getByRole("button", { name: "Menu", exact: true });
   await waitForReactHydration(trigger);
   await expect(trigger).not.toHaveAttribute("aria-controls", /.+/);
   await trigger.click();

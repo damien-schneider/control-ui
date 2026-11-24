@@ -18,7 +18,7 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 
 ## npm dependencies
 
-- `react-resizable-panels@^4.12.4`
+- `react-resizable-panels@^4.24.1`
 
 ## Registry dependencies
 

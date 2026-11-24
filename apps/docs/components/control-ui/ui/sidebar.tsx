@@ -166,7 +166,7 @@ function SidebarSurface({
             data-control-ui="sidebar"
             data-control-family="sidebar"
             data-slot="inner"
-            className="flex h-full w-full"
+            className="flex w-full"
             inert={collapsedMode === "offcanvas"}
           >
             {children}

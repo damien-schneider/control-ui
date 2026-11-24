@@ -9,25 +9,6 @@
           "data-control-ui": "page-layout",
           "data-scroll": "page",
           "data-slot": "root",
-          "data-width": "prose"
-        }
-      },
-      {
-        "attributes": {
-          "data-control-family": "theme-toggle",
-          "data-control-ui": "theme-toggle",
-          "data-slot": "root",
-          "role": "radiogroup"
-        }
-      }
-    ],
-    [
-      {
-        "attributes": {
-          "data-control-family": "page-layout",
-          "data-control-ui": "page-layout",
-          "data-scroll": "page",
-          "data-slot": "root",
           "data-width": "wide"
         }
       },
@@ -66,6 +47,151 @@
           "role": "radiogroup"
         }
       }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-start",
+          "data-slot": "corner"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-start",
+          "data-slot": "corner"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-selected": "true",
+          "data-slot": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "app-shell-corner",
+          "data-control-ui": "app-shell",
+          "data-placement": "bottom-start",
+          "data-slot": "corner"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-selected": "true",
+          "data-slot": "option"
+        }
+      }
+    ],
+    [
+      {
+        "attributes": {
+          "data-control-family": "page-layout",
+          "data-control-ui": "page-layout",
+          "data-scroll": "page",
+          "data-slot": "root",
+          "data-width": "prose"
+        }
+      },
+      {
+        "attributes": {
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "root",
+          "role": "radiogroup"
+        }
+      },
+      {
+        "attributes": {
+          "data-control": "true",
+          "data-control-family": "theme-toggle",
+          "data-control-ui": "theme-toggle",
+          "data-slot": "option"
+        }
+      }
     ]
   ],
   "probes": [
@@ -87,11 +213,53 @@
     },
     {
       "knobs": {
-        "fill": "--cui-theme-toggle-background"
+        "fill": "--cui-theme-toggle-background",
+        "text": "--cui-theme-toggle-foreground"
       },
       "anatomy": 2,
       "rendersText": false,
       "state": false
+    },
+    {
+      "knobs": {
+        "fill": "--cui-theme-toggle-background",
+        "text": "--cui-theme-toggle-foreground"
+      },
+      "anatomy": 3,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-theme-toggle-selected-foreground"
+      },
+      "anatomy": 4,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-theme-toggle-selected-foreground"
+      },
+      "anatomy": 5,
+      "rendersText": false,
+      "state": true
+    },
+    {
+      "knobs": {
+        "text": "--cui-theme-toggle-selected-foreground"
+      },
+      "anatomy": 6,
+      "rendersText": false,
+      "state": false
+    },
+    {
+      "knobs": {
+        "text": "--cui-theme-toggle-selected-foreground"
+      },
+      "anatomy": 7,
+      "rendersText": false,
+      "state": true
     }
   ]
 }

@@ -615,6 +615,18 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["app-shell"],
           states: [],
         },
+        corner: {
+          family: "app-shell-corner",
+          registryItems: ["app-shell"],
+          states: [
+            {
+              attribute: "data-placement",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["bottom-end", "bottom-start", "top-end", "top-start"],
+            },
+          ],
+        },
       },
       registryItems: ["app-shell"],
     },
@@ -1528,6 +1540,12 @@ export const generatedSkinContract: SkinContract = {
           family: "button-group",
           registryItems: ["button-group"],
           states: [
+            {
+              attribute: "data-join",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["frame", "overlap"],
+            },
             {
               attribute: "data-orientation",
               source: "control-ui",
@@ -5918,7 +5936,7 @@ export const generatedSkinContract: SkinContract = {
               attribute: "data-variant",
               source: "control-ui",
               valueKind: "enum",
-              values: ["ghost", "surface"],
+              values: ["ghost", "solid", "surface"],
             },
           ],
         },
@@ -11412,6 +11430,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["scroll-area"],
           states: [
             {
+              attribute: "data-buttons",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-has-overflow-x",
               source: "external",
               valueKind: "presence",
@@ -11470,6 +11494,24 @@ export const generatedSkinContract: SkinContract = {
               source: "control-ui",
               valueKind: "enum",
               values: ["always", "hover", "scroll"],
+            },
+          ],
+        },
+        "scrollbar-button": {
+          family: "scroll-area",
+          registryItems: ["scroll-area"],
+          states: [
+            {
+              attribute: "data-edge",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["end", "start"],
+            },
+            {
+              attribute: "data-orientation",
+              source: "control-ui",
+              valueKind: "enum",
+              values: ["horizontal", "vertical"],
             },
           ],
         },
@@ -12295,7 +12337,6 @@ export const generatedSkinContract: SkinContract = {
           ],
         },
         "mobile-trigger": {
-          family: "sidebar",
           registryItems: ["sidebar"],
           states: [
             {
@@ -15347,6 +15388,80 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "var(--font-weight-medium)",
       },
     ],
+    "app-shell-corner": [
+      {
+        name: "--cui-app-shell-corner-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--control-h-md) + var(--spacing) * 3)",
+      },
+      {
+        name: "--cui-app-shell-corner-inset",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "0px",
+      },
+      {
+        name: "--cui-app-shell-corner-padding-inline",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-app-shell-corner-gap",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 2)",
+      },
+      {
+        name: "--cui-app-shell-corner-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--sidebar)",
+      },
+      {
+        name: "--cui-app-shell-corner-background-image",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
+      },
+      {
+        name: "--cui-app-shell-corner-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--sidebar-foreground)",
+      },
+      {
+        name: "--cui-app-shell-corner-border-color",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--sidebar-border)",
+      },
+      {
+        name: "--cui-app-shell-corner-border-width",
+        syntax: "<length>",
+        initialValue: "0px",
+        defaultValue: "1px",
+      },
+      {
+        name: "--cui-app-shell-corner-radius",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "min(var(--radius-panel), calc(var(--cui-app-shell-corner-size) / 2))",
+      },
+      {
+        name: "--cui-app-shell-corner-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "0 0 transparent",
+      },
+      {
+        name: "--cui-app-shell-corner-backdrop-filter",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
+      },
+    ],
     "app-shell-header": [
       {
         name: "--cui-app-shell-header-height",
@@ -15869,10 +15984,16 @@ export const generatedSkinContract: SkinContract = {
     ],
     "button-group": [
       {
-        name: "--cui-button-group-text-radius",
+        name: "--cui-button-group-radius",
         syntax: "<length-percentage>",
         initialValue: "0px",
-        defaultValue: "var(--radius-control)",
+        defaultValue: "var(--nest-radius, var(--radius-control))",
+      },
+      {
+        name: "--cui-button-group-shadow",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "inset 0 0 0 var(--control-rim-width) var(--control-rim), var(--shadow-sm)",
       },
       {
         name: "--cui-button-group-text-background",
@@ -19663,6 +19784,36 @@ export const generatedSkinContract: SkinContract = {
         defaultValue: "oklch(from var(--foreground) l c h / 0.4)",
       },
       {
+        name: "--cui-scroll-area-thumb-background-image",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
+      },
+      {
+        name: "--cui-scroll-area-button-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "transparent",
+      },
+      {
+        name: "--cui-scroll-area-button-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--hover-fill)",
+      },
+      {
+        name: "--cui-scroll-area-button-background-image",
+        syntax: "*",
+        initialValue: "",
+        defaultValue: "none",
+      },
+      {
+        name: "--cui-scroll-area-button-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
         name: "--cui-scroll-area-corner-background",
         syntax: "<color>",
         initialValue: "transparent",
@@ -20967,6 +21118,18 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--background)",
+      },
+      {
+        name: "--cui-theme-toggle-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--muted-foreground)",
+      },
+      {
+        name: "--cui-theme-toggle-selected-foreground",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--foreground)",
       },
       {
         name: "--cui-theme-toggle-indicator-shadow",
