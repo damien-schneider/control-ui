@@ -284,7 +284,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `anchor-layer`
   - `dock`: `data-scroll-area-pinned`
   - `root`: `data-at-bottom`, `data-chat-layout-kind` (`thread`)
-  - `scroll-anchor`: `data-hidden`
+  - `scroll-anchor`: `data-busy`, `data-hidden`
   - `thread-content`
   - `track`
 - `chat-turn`

@@ -12,11 +12,6 @@
       "syntax": "none | auto"
     },
     {
-      "name": "--_chat-thread-dock-size",
-      "description": "Control UI chat-layout knob — registered syntax <length>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
-      "syntax": "<length>"
-    },
-    {
       "name": "--_dynamic-notification-ink-low",
       "description": "Control UI dynamic-notification-motion knob — registered syntax <color>, fallback oklch(0 0 0 / 0.97). Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"

@@ -2601,6 +2601,12 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["chat-layout"],
           states: [
             {
+              attribute: "data-busy",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-hidden",
               source: "control-ui",
               valueKind: "presence",

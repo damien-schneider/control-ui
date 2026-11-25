@@ -238,20 +238,23 @@
       inset-block-start: calc(var(--spacing) * 0.5);
     }
 
+    :where([data-control-family="chat-message"][data-slot="row"]) {
+      --_chat-message-actions-opacity: 0;
+      --_chat-message-actions-pointer-events: none;
+    }
+
+    :where([data-control-family="chat-message"][data-slot="content"]) {
+      --_chat-message-actions-opacity: initial;
+      --_chat-message-actions-pointer-events: initial;
+    }
+
     :where([data-control-family="chat-message"][data-slot="row"]:hover:not(:has([data-slot="row"]:hover))) {
       --_chat-message-actions-opacity: 1;
       --_chat-message-actions-pointer-events: auto;
     }
 
-    :where([data-control-family="chat-message"][data-slot="row"] > [data-slot="body"]) {
-      --_chat-message-actions-opacity: inherit;
-      --_chat-message-actions-pointer-events: inherit;
-    }
-
     :where([data-control-family="chat-message"][data-slot="row"] > [data-slot="actions"]),
     :where([data-control-family="chat-message"][data-slot="row"] > [data-slot="body"] > [data-slot="actions"]) {
-      --_chat-message-actions-opacity: inherit;
-      --_chat-message-actions-pointer-events: inherit;
       opacity: var(--_chat-message-actions-opacity);
       pointer-events: var(--_chat-message-actions-pointer-events);
     }
@@ -395,12 +398,12 @@
 
 @property --_chat-message-actions-opacity {
   syntax: "<number>";
-  inherits: false;
+  inherits: true;
   initial-value: 0;
 }
 
 @property --_chat-message-actions-pointer-events {
   syntax: "none | auto";
-  inherits: false;
+  inherits: true;
   initial-value: none;
 }

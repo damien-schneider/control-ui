@@ -7,8 +7,8 @@
     --_sidebar-transition-duration: 0s;
   }
 
-  :where([data-control-family="sidebar"]:is([data-slot="gap"], [data-slot="container"], [data-slot="inner"])) {
-    --_sidebar-transition-duration: inherit;
+  :where([data-control-family="sidebar"][data-slot="inner"] > *) {
+    --_sidebar-transition-duration: initial;
   }
 
   :where([data-control-family="sidebar"][data-slot="container"]) {
@@ -370,6 +370,6 @@
 
 @property --_sidebar-transition-duration {
   syntax: "<time>";
-  inherits: false;
+  inherits: true;
   initial-value: 0s;
 }

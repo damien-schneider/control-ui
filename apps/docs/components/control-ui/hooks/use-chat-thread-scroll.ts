@@ -111,7 +111,7 @@ export function useChatThreadScroll() {
     };
 
     const handleResize = () => {
-      rootRef.current?.style.setProperty("--_chat-thread-dock-size", `${dockRef.current?.offsetHeight ?? 0}px`);
+      rootRef.current?.style.setProperty("--scroll-area-inset-end", `${dockRef.current?.offsetHeight ?? 0}px`);
       if (followingRef.current) followEnd();
       else keepAnchorInPlace();
       lastTop = viewport.scrollTop;

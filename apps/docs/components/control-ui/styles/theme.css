@@ -953,6 +953,6 @@
 
 @property --scroll-area-inset-end {
   syntax: "<length>";
-  inherits: false;
+  inherits: true;
   initial-value: 0px;
 }

@@ -90,8 +90,6 @@
   }
 
   :where([data-control-family="chat-layout"][data-chat-layout-kind="thread"][data-slot="root"] > [data-control-family="scroll-area"]) {
-    --_chat-thread-dock-size: inherit;
-    --scroll-area-inset-end: var(--_chat-thread-dock-size);
     display: flex;
     flex-direction: column;
   }
@@ -159,10 +157,9 @@
   }
 
   :where([data-control-family="chat-layout"][data-slot="anchor-layer"]) {
-    --_chat-thread-dock-size: inherit;
     position: absolute;
     inset-inline: 0;
-    inset-block-end: var(--_chat-thread-dock-size);
+    inset-block-end: var(--scroll-area-inset-end);
     z-index: 1;
     pointer-events: none;
   }
@@ -212,6 +209,84 @@
     visibility: hidden;
     transition-duration: var(--duration-fast);
     transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="scroll-glyph"]) {
+    display: grid;
+    place-items: center;
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="scroll-glyph"] > [data-control-family="chat-layout"]) {
+    grid-area: 1 / 1;
+    transition-property: opacity, scale;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  :where([data-control-family="chat-layout"][data-slot="scroll-writing"]) {
+    inline-size: 1.25em;
+    block-size: 1em;
+    opacity: 0;
+    scale: 0.6;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1 1.2;
+    stroke-dashoffset: 1.05;
+  }
+
+  :where(
+    [data-control-family="chat-layout"][data-slot="scroll-anchor"][data-busy] [data-control-family="chat-layout"][data-slot="scroll-arrow"]
+  ) {
+    opacity: 0;
+    scale: 0.6;
+  }
+
+  :where(
+    [data-control-family="chat-layout"][data-slot="scroll-anchor"][data-busy]
+      [data-control-family="chat-layout"][data-slot="scroll-writing"]
+  ) {
+    opacity: 1;
+    scale: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(
+        [data-control-family="chat-layout"][data-slot="scroll-anchor"][data-busy]:not([data-hidden])
+          [data-control-family="chat-layout"][data-slot="scroll-writing"]
+      ) {
+      animation: cui-chat-thread-write calc(var(--duration-loop) * 2) var(--ease-standard) infinite;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(
+        [data-control-family="chat-layout"][data-slot="scroll-anchor"][data-busy]
+          [data-control-family="chat-layout"][data-slot="scroll-writing"]
+      ) {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where([data-control-family="chat-layout"][data-slot="scroll-writing"]) {
+      stroke: CanvasText;
+    }
+  }
+}
+
+@keyframes cui-chat-thread-write {
+  0% {
+    stroke-dashoffset: 1.05;
+  }
+
+  55% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -1.05;
   }
 }
 
@@ -265,12 +340,6 @@
 @property --cui-chat-layout-veil-backdrop-filter {
   syntax: "*";
   inherits: true;
-}
-
-@property --_chat-thread-dock-size {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
 }
 
 @property --cui-chat-layout-scroll-button-gap {

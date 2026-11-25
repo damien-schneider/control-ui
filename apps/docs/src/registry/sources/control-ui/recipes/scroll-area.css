@@ -185,8 +185,8 @@
     --_scroll-area-edge-enter: 0;
   }
 
-  :where([data-control-family="scroll-area"][data-slot="root"] > :is([data-scroll-area-viewport], [data-slot="scrollbar"])) {
-    --scroll-area-inset-end: inherit;
+  :where([data-control-family="scroll-area"][data-slot="content"]) {
+    --scroll-area-inset-end: initial;
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {

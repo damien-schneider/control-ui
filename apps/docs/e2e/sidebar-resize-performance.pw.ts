@@ -81,3 +81,24 @@ test("the sidebar rail drags at frame rate beside a long tree in WebKit, the eng
     await browser.close();
   }
 });
+
+for (const engine of [chromium, webkit]) {
+  test(`the sidebar animates again once a rail drag lets go in ${engine.name()}`, async () => {
+    const browser = await engine.launch();
+    try {
+      const page = await browser.newPage({ viewport });
+      await serveFixture(page, "sidebar-tree", { skin: "refined", search: "?paragraphs=20" });
+      const container = page.locator('[data-control-family="sidebar"][data-slot="container"]');
+      const duration = () => container.evaluate((node) => getComputedStyle(node).transitionDuration);
+      const resting = await duration();
+      expect(resting).not.toMatch(/^0s/);
+      await dragRail(page, 2, async (move) => {
+        await move();
+        expect(await duration()).toMatch(/^0s/);
+      });
+      await expect.poll(duration).toBe(resting);
+    } finally {
+      await browser.close();
+    }
+  });
+}

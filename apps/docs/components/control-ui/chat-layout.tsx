@@ -197,12 +197,16 @@ export function ChatThread({
   );
 }
 
+const PEN_STROKE = "M2 10.5c1.6-4.2 3.4-4.2 3.6-1.4.2 2.6 1.5 3.4 3-.2 1.4-3.5 3-4.4 3.5-1.6.4 2.4 1.6 3.2 2.9.6.8-1.6 1.7-2.6 3-2.9";
+
 export type ChatThreadScrollButtonProps = Omit<ComponentProps<typeof Button>, "children"> & {
   label?: string;
+  busy?: boolean;
 };
 
 export function ChatThreadScrollButton({
   label = "Scroll to latest",
+  busy = false,
   variant = "surface",
   size = "sm",
   shape = "circle",
@@ -227,9 +231,15 @@ export function ChatThreadScrollButton({
       data-control-family="chat-layout"
       data-slot="scroll-anchor"
       data-hidden={scroll.atBottom ? "" : undefined}
+      data-busy={busy ? "" : undefined}
     >
       <Button {...props} type="button" variant={variant} size={size} shape={shape} iconOnly aria-label={label} onClick={handleClick}>
-        <ArrowDown aria-hidden="true" />
+        <span data-control-family="chat-layout" data-slot="scroll-glyph" aria-hidden="true">
+          <ArrowDown data-control-family="chat-layout" data-slot="scroll-arrow" />
+          <svg data-control-family="chat-layout" data-slot="scroll-writing" viewBox="0 0 20 16" fill="none" aria-hidden="true">
+            <path pathLength={1} d={PEN_STROKE} />
+          </svg>
+        </span>
       </Button>
     </div>,
     scroll.anchorLayer,

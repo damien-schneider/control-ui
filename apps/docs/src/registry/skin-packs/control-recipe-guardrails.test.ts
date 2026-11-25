@@ -212,6 +212,26 @@ function listComposedShadowNoneOffenders(root: Root): string[] {
   return offenders;
 }
 
+/** WebKit resolves `inherit` on a non-inheriting registered property once, then keeps that value when the parent's changes. */
+function stalledInheritOffenders(root: Root): string[] {
+  const nonInheriting = new Set<string>();
+  const theme = postcss.parse(readFileSync(path.join(SOURCES_DIR, "theme.css"), "utf8"));
+  for (const sheet of [root, theme]) {
+    sheet.walkAtRules("property", (rule) => {
+      if (rule.nodes?.some((node) => node.type === "decl" && node.prop === "inherits" && node.value.trim() === "false"))
+        nonInheriting.add(rule.params.trim());
+    });
+  }
+  const offenders: string[] = [];
+  root.walkDecls((declaration) => {
+    if (declaration.value.trim() !== "inherit" || !nonInheriting.has(declaration.prop)) return;
+    offenders.push(
+      `${path.basename(declaration.source?.input.file ?? "recipe.css")}:${declaration.source?.start?.line ?? "?"} ${declaration.prop}`,
+    );
+  });
+  return offenders;
+}
+
 const recipeSources = recipePaths.map((recipePath) => ({
   file: path.basename(recipePath),
   source: readFileSync(recipePath, "utf8"),
@@ -234,6 +254,10 @@ describe("recipe hygiene", () => {
 
   test("a shadow knob composed into a list never defaults to none", () => {
     expect(listComposedShadowNoneOffenders(recipes)).toEqual([]);
+  });
+
+  test("a value that changes reaches its readers by inheritance, never by inherit on a non-inheriting property", () => {
+    expect(stalledInheritOffenders(recipes)).toEqual([]);
   });
 });
 

@@ -200,16 +200,16 @@
   }
 
   @media (hover: hover) {
+    :where([data-control-family="sidebar"][data-slot="menu"]) {
+      --_sidebar-menu-focus-visible: 0;
+    }
+
     :where(
         [data-control-family="sidebar"][data-slot="menu"][data-indicator="hover"]:has(
           > [data-slot="menu-item"] > [data-slot="menu-button"]:focus-visible
         )
       ) {
       --_sidebar-menu-focus-visible: 1;
-    }
-
-    :where([data-control-family="sidebar"][data-slot="menu"] > [data-slot="menu-item"]) {
-      --_sidebar-menu-focus-visible: inherit;
     }
 
     @container style(--_sidebar-menu-focus-visible: 1) {
@@ -368,6 +368,6 @@
 
 @property --_sidebar-menu-focus-visible {
   syntax: "<number>";
-  inherits: false;
+  inherits: true;
   initial-value: 0;
 }
