@@ -1,7 +1,7 @@
 "use client";
 
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
+import { ChevronsDownUp, ChevronsUpDown, CircleSlash, MoreHorizontal } from "lucide-react";
 import type { ComponentProps, CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
@@ -9,7 +9,7 @@ import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/c
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
 import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine, diffRunEnd } from "@/components/control-ui/lib/diff";
-import { useSkinIcon } from "@/components/control-ui/skin-provider";
+import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import type { CodeOverflow } from "@/components/control-ui/ui/code";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
@@ -313,7 +313,7 @@ function DiffCode({
         aria-hidden="true"
         className="select-none"
       >
-        ⊘
+        <SkinIcon name="noNewline" fallback={CircleSlash} className="inline size-[1em] align-[-0.125em]" aria-hidden="true" />
       </span>
     ) : null;
   if (line.segments && line.segments.length > 0) {
@@ -523,6 +523,7 @@ function DiffSeparator({
   labels: DiffLabels;
   onExpand: () => void;
 }) {
+  const MoreGlyph = useSkinIcon("more", MoreHorizontal);
   const label = row.label || (row.hidden > 0 ? labels.hidden(row.hidden) : "");
   return (
     <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander" className="flex items-center">
@@ -534,13 +535,15 @@ function DiffSeparator({
           data-slot="expand-button"
           data-control="true"
           onClick={onExpand}
-          className="cursor-pointer"
+          className="inline-flex cursor-pointer items-center"
           aria-label={labels.expand}
         >
-          ⋯
+          <MoreGlyph className="size-3.5" aria-hidden="true" />
         </button>
       ) : (
-        <span aria-hidden="true">⋯</span>
+        <span aria-hidden="true" className="inline-flex">
+          <MoreGlyph className="size-3.5" aria-hidden="true" />
+        </span>
       )}
       {label ? (
         <span data-control-ui="code-diff" data-control-family="code-diff" data-slot="expander-label" title={label} className="truncate">

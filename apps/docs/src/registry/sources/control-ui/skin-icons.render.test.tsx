@@ -85,3 +85,18 @@ test("keys a skin leaves out keep the built-in glyph", () => {
   expect(html).not.toContain("data-pen-glyph");
   expect(html).toContain("<svg");
 });
+
+const iconTextGlyph = /[›‹⋯⊘✓✔✕✗▾▸◂▴]/u;
+const registryRoot = new URL("../../", import.meta.url).pathname;
+
+test("components draw icons through the skin slot, never as text glyphs", async () => {
+  const offenders: string[] = [];
+  for await (const path of new Bun.Glob("{sources,blocks}/control-ui/**/*.tsx").scan(registryRoot)) {
+    if (path.includes(".test.")) continue;
+    const lines = (await Bun.file(`${registryRoot}${path}`).text()).split("\n");
+    for (const [index, line] of lines.entries()) {
+      if (iconTextGlyph.test(line)) offenders.push(`${path}:${index + 1}`);
+    }
+  }
+  expect(offenders).toEqual([]);
+});

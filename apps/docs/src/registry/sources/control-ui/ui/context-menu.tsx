@@ -199,6 +199,14 @@ function ContextMenuCheckIcon(props: SkinIconProps) {
   );
 }
 
+function ContextMenuChevronRightIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M4.5 2.5 8 6 4.5 9.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function ContextMenuCheckboxItem({ className, children, ...props }: ContextMenuCheckboxItemProps) {
   const CheckGlyph = useSkinIcon("check", ContextMenuCheckIcon);
   return (
@@ -311,6 +319,7 @@ export function ContextMenuSub(props: ContextMenuSubProps) {
 }
 
 export function ContextMenuSubTrigger({ className, inset = false, children, ...props }: ContextMenuSubTriggerProps) {
+  const ChevronGlyph = useSkinIcon("chevronRight", ContextMenuChevronRightIcon);
   return (
     <ContextMenuPrimitive.SubmenuTrigger
       data-control-ui="context-menu"
@@ -331,7 +340,7 @@ export function ContextMenuSubTrigger({ className, inset = false, children, ...p
         data-icon-dir="inline"
         aria-hidden="true"
       >
-        ›
+        <ChevronGlyph />
       </span>
     </ContextMenuPrimitive.SubmenuTrigger>
   );

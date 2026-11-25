@@ -61,6 +61,7 @@ export type SkinIconName =
   | "error"
   | "info"
   | "neutral"
+  | "noNewline"
   | "pending"
   | "permission"
   | "spinner"

@@ -174,10 +174,19 @@
   }
 
   :where([data-control-family="popup"][data-slot="sub-trigger-indicator"]) {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
     margin-inline-start: auto;
     padding-inline-start: calc(var(--spacing) * 4);
     line-height: 1;
     color: var(--_popup-submenu-indicator-foreground);
+  }
+
+  :where([data-control-family="popup"][data-slot="sub-trigger-indicator"] > svg) {
+    inline-size: var(--cui-popup-item-icon-size);
+    block-size: var(--cui-popup-item-icon-size);
+    pointer-events: none;
   }
 
   :where([data-control-family="popup"][data-popup-part="bar"]) {

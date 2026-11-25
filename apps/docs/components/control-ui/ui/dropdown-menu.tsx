@@ -246,7 +246,16 @@ export function DropdownMenuSub(props: DropdownMenuSubProps) {
   return <MenuPrimitive.SubmenuRoot {...props} />;
 }
 
+function DropdownMenuChevronRight(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M4.5 2.5 8 6 4.5 9.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function DropdownMenuSubTrigger({ inset, className, children, ...props }: DropdownMenuSubTriggerProps) {
+  const ChevronGlyph = useSkinIcon("chevronRight", DropdownMenuChevronRight);
   return (
     <MenuPrimitive.SubmenuTrigger
       data-control-ui="dropdown-menu"
@@ -265,7 +274,7 @@ export function DropdownMenuSubTrigger({ inset, className, children, ...props }:
         data-icon-dir="inline"
         aria-hidden="true"
       >
-        ›
+        <ChevronGlyph />
       </span>
     </MenuPrimitive.SubmenuTrigger>
   );

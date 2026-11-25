@@ -15,6 +15,8 @@ import {
   type WcagLevel,
   wcagLevels,
 } from "@/components/control-ui/lib/contrast";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { useColorPicker } from "@/components/control-ui/ui/color-picker-context";
 
 export type ColorPickerContrastProps = Omit<Omit<ComponentProps<"div">, "children">, "style"> & {
@@ -91,7 +93,26 @@ export function ColorPickerContrast({
   );
 }
 
+function ContrastPassIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ContrastFailIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M3.5 3.5 8.5 8.5M8.5 3.5 3.5 8.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function WcagPill({ ok, passLabel, failLabel, children }: { ok: boolean; passLabel: string; failLabel: string; children: ReactNode }) {
+  const PassGlyph = useSkinIcon("check", ContrastPassIcon);
+  const FailGlyph = useSkinIcon("close", ContrastFailIcon);
+  const StatusGlyph = ok ? PassGlyph : FailGlyph;
   return (
     <span
       data-control-ui="color-picker"
@@ -100,7 +121,7 @@ function WcagPill({ ok, passLabel, failLabel, children }: { ok: boolean; passLab
       data-passing={ok ? "true" : undefined}
       className="inline-flex items-center"
     >
-      <span aria-hidden="true">{ok ? "✓" : "✕"}</span>
+      <StatusGlyph className="size-3 shrink-0" aria-hidden="true" />
       <span className="sr-only">{ok ? passLabel : failLabel}</span> {children}
     </span>
   );

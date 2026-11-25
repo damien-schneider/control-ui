@@ -257,6 +257,14 @@ function MenubarCheck(props: SkinIconProps) {
   );
 }
 
+function MenubarChevronRight(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M4.5 2.5 8 6 4.5 9.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function MenubarLabel({ className, inset = false, ...props }: MenubarLabelProps) {
   return (
     <MenuPrimitive.GroupLabel
@@ -306,6 +314,7 @@ export function MenubarSub(props: MenubarSubProps) {
 }
 
 export function MenubarSubTrigger({ className, inset = false, children, ...props }: MenubarSubTriggerProps) {
+  const ChevronGlyph = useSkinIcon("chevronRight", MenubarChevronRight);
   return (
     <MenuPrimitive.SubmenuTrigger
       data-control-ui="menubar"
@@ -326,7 +335,7 @@ export function MenubarSubTrigger({ className, inset = false, children, ...props
         data-icon-dir="inline"
         aria-hidden="true"
       >
-        ›
+        <ChevronGlyph />
       </span>
     </MenuPrimitive.SubmenuTrigger>
   );
