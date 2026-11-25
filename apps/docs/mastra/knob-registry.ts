@@ -6072,6 +6072,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="tabs"][data-slot="root"])',
       },
       {
+        name: "--cui-tabs-scroll-fade-size",
+        syntax: "<length-percentage>",
+        defaultValue: "calc(var(--spacing) * 6)",
+        selector: ':where([data-control-family="tabs"][data-slot="root"])',
+      },
+      {
         name: "--cui-tabs-surface-background",
         syntax: "<color>",
         defaultValue: "var(--background)",

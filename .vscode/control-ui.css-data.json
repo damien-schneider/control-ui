@@ -112,6 +112,16 @@
       "syntax": "<length>"
     },
     {
+      "name": "--_tabs-scroll-fade-end",
+      "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--_tabs-scroll-fade-start",
+      "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
+    },
+    {
       "name": "--_track-preview",
       "description": "Control UI track-highlight knob — registered syntax <number>, fallback 0. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<number>"
@@ -4664,6 +4674,11 @@
     {
       "name": "--cui-tabs-list-shadow",
       "description": "Control UI tabs-motion knob — registered syntax *. Re-value it under [data-skin] or per instance via style."
+    },
+    {
+      "name": "--cui-tabs-scroll-fade-size",
+      "description": "Control UI tabs knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<length-percentage>"
     },
     {
       "name": "--cui-tabs-surface-background",

@@ -22,5 +22,6 @@ export const tabsKnobs = [
   "--cui-tabs-hover-foreground",
   "--cui-tabs-border-color",
   "--cui-tabs-border-width",
+  "--cui-tabs-scroll-fade-size",
 ] as const;
 export type TabsKnobStyle = Partial<Record<(typeof tabsKnobs)[number], string>>;

@@ -20988,6 +20988,12 @@ export const generatedSkinContract: SkinContract = {
         initialValue: "0px",
         defaultValue: "var(--control-rim-width)",
       },
+      {
+        name: "--cui-tabs-scroll-fade-size",
+        syntax: "<length-percentage>",
+        initialValue: "0px",
+        defaultValue: "calc(var(--spacing) * 6)",
+      },
     ],
     "task-list": [
       {

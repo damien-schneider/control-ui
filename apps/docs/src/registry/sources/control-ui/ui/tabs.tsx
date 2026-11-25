@@ -22,7 +22,10 @@ export type TabsListProps = Omit<ComponentProps<"div">, "style"> & { style?: CSS
   variant?: TabsListVariant;
   activateOnFocus?: boolean;
   loopFocus?: boolean;
-  /** Scrolls the list along its own axis instead of overflowing when the tabs do not fit. */
+  /**
+   * Scrolls the list along its own axis instead of overflowing when the tabs do not fit. Where scroll-driven animations
+   * are supported, the edges that still hide tabs fade out over `--cui-tabs-scroll-fade-size`.
+   */
   scrollable?: boolean;
 };
 

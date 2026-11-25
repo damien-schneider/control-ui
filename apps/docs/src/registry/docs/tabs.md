@@ -220,6 +220,7 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-tabs-hover-foreground`: `var(--foreground)`
 - `--cui-tabs-border-color`: `var(--border)`
 - `--cui-tabs-border-width`: `var(--control-rim-width)`
+- `--cui-tabs-scroll-fade-size`: `calc(var(--spacing) * 6)`
 
 ## Links
 

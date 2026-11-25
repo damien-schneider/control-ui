@@ -25,6 +25,7 @@
     --cui-tabs-border-width: var(--control-rim-width);
     --cui-tabs-font-size: var(--text-label);
     --cui-tabs-font-weight: var(--font-weight-medium);
+    --cui-tabs-scroll-fade-size: calc(var(--spacing) * 6);
   }
 
   :where([data-control-family="tabs"][data-slot="root"][data-orientation="vertical"]) {
@@ -82,6 +83,59 @@
   :where([data-control-family="tabs"][data-slot="list"][data-scrollable="true"][data-orientation="vertical"]) {
     max-block-size: 100%;
     overflow: hidden auto;
+  }
+
+  /* Scrollable lists fade the edge that still hides tabs. A scroll timeline drives the fade sizes, so a list that
+     fits has an inactive timeline and no fade; browsers without scroll timelines keep the hard edge. */
+  @supports (animation-timeline: scroll()) {
+    :where([data-control-family="tabs"][data-slot="list"][data-scrollable="true"]) {
+      --_tabs-scroll-fade-direction: to right;
+      /* Keyboard focus scrolls a tab clear of the fade, so its focus ring stays unmasked. */
+      scroll-padding-inline: calc(var(--cui-tabs-list-padding) + var(--cui-tabs-scroll-fade-size));
+      mask-image: linear-gradient(
+        var(--_tabs-scroll-fade-direction),
+        oklch(0 0 0 / 0),
+        oklch(0 0 0) var(--_tabs-scroll-fade-start),
+        oklch(0 0 0) calc(100% - var(--_tabs-scroll-fade-end)),
+        oklch(0 0 0 / 0)
+      );
+      animation:
+        cui-tabs-scroll-fade-start linear both,
+        cui-tabs-scroll-fade-end linear both;
+      animation-timeline: scroll(self inline), scroll(self inline);
+      animation-range:
+        0 var(--cui-tabs-scroll-fade-size),
+        calc(100% - var(--cui-tabs-scroll-fade-size)) 100%;
+    }
+
+    :where([data-control-family="tabs"][data-slot="list"][data-scrollable="true"]:not([data-orientation="vertical"]):dir(rtl)) {
+      --_tabs-scroll-fade-direction: to left;
+    }
+
+    :where([data-control-family="tabs"][data-slot="list"][data-scrollable="true"][data-orientation="vertical"]) {
+      --_tabs-scroll-fade-direction: to bottom;
+      scroll-padding-inline: var(--cui-tabs-list-padding);
+      scroll-padding-block: calc(var(--cui-tabs-list-padding) + var(--cui-tabs-scroll-fade-size));
+      animation-timeline: scroll(self block), scroll(self block);
+    }
+  }
+
+  @keyframes cui-tabs-scroll-fade-start {
+    from {
+      --_tabs-scroll-fade-start: 0px;
+    }
+    to {
+      --_tabs-scroll-fade-start: var(--cui-tabs-scroll-fade-size);
+    }
+  }
+
+  @keyframes cui-tabs-scroll-fade-end {
+    from {
+      --_tabs-scroll-fade-end: var(--cui-tabs-scroll-fade-size);
+    }
+    to {
+      --_tabs-scroll-fade-end: 0px;
+    }
   }
 
   :where([data-control-family="tabs"][data-slot="indicator"]) {
@@ -348,5 +402,23 @@
 @property --cui-tabs-border-width {
   syntax: "<length>";
   inherits: true;
+  initial-value: 0px;
+}
+
+@property --cui-tabs-scroll-fade-size {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --_tabs-scroll-fade-start {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --_tabs-scroll-fade-end {
+  syntax: "<length-percentage>";
+  inherits: false;
   initial-value: 0px;
 }
