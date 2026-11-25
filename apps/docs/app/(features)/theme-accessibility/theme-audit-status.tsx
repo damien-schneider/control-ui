@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertTriangleIcon, CheckCircle2Icon, ChevronRightIcon } from "lucide-react";
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { Alert, AlertDescription, AlertTitle } from "@/components/control-ui/ui/alert";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { Text, TextLink } from "@/components/control-ui/ui/typography";
@@ -53,7 +53,7 @@ export function ThemeAuditStatus({ root, className }: { root: HTMLElement | null
           </Collapsible>
         ) : null}
         <Text as="p" size="caption">
-          <TextLink render={<Link href="/theme-accessibility" />}>Open the active theme audit</TextLink>
+          <TextLink render={<IntentLink href="/theme-accessibility" />}>Open the active theme audit</TextLink>
         </Text>
       </AlertDescription>
     </Alert>

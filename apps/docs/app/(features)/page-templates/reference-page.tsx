@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { referenceOverview } from "@/app/(features)/catalog/guides";
 import { docsPageForPath } from "@/app/(features)/catalog/pages";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { getDocsData } from "@/app/(features)/model/data";
 import { guideNavSections } from "@/app/(features)/sidebar/nav-items";
 import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/control-ui/ui/item";
@@ -34,7 +34,7 @@ export function ReferencePage() {
             <Heading level={2}>{section.title}</Heading>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               {section.entries.map((entry) => (
-                <Item key={entry.id} variant="outline" render={<Link href={entry.href} />} className="min-w-0">
+                <Item key={entry.id} variant="outline" render={<IntentLink href={entry.href} />} className="min-w-0">
                   <ItemContent>
                     <ItemTitle>{entry.name}</ItemTitle>
                     <ItemDescription>{entry.summary}</ItemDescription>

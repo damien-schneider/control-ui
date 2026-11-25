@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from "lucide-react";
-import Link from "next/link";
 import { skinsOverview } from "@/app/(features)/catalog/skins";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { CodeBlock, SourceTabs } from "@/app/(features)/components/source";
 import { generatedSkinContract } from "@/app/(features)/model/generated-skin-contract";
 import { fullInstallCommand, fullInstallManifestHref, packInstallCommand } from "@/app/(features)/model/registry";
@@ -42,10 +42,10 @@ export function SkinPage({ skin }: { skin: DocsSkinPage }) {
         actions={<AgentActions name={skin.label} installCommand={install} />}
       />
       <div className="mb-8 flex flex-wrap gap-2">
-        <ButtonLink render={<Link href={`/theme-editor?skin=${skin.id}`} />} variant="solid" tone="primary" size="sm">
+        <ButtonLink render={<IntentLink href={`/theme-editor?skin=${skin.id}`} />} variant="solid" tone="primary" size="sm">
           Preview {skin.label}
         </ButtonLink>
-        <ButtonLink render={<Link href="/architecture" />} variant="quiet" size="sm">
+        <ButtonLink render={<IntentLink href="/architecture" />} variant="quiet" size="sm">
           How skin layers resolve
         </ButtonLink>
       </div>
@@ -152,9 +152,9 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
       <SectionStack>
         <Text as="p" tone="muted" className="text-pretty">
           Not sure a skin is even the right tool? The{" "}
-          <TextLink render={<Link href="/architecture#customization-ladder" />}>customization ladder</TextLink> in the Architecture guide
-          places every “make it different” request on one of eight rungs — with what each rung costs an app that never uses it. This page
-          picks up once the answer is a skin.
+          <TextLink render={<IntentLink href="/architecture#customization-ladder" />}>customization ladder</TextLink> in the Architecture
+          guide places every “make it different” request on one of eight rungs — with what each rung costs an app that never uses it. This
+          page picks up once the answer is a skin.
         </Text>
 
         <section id="skin-values" className="min-w-0 scroll-mt-20">
@@ -289,7 +289,7 @@ export function SkinsOverviewPage({ skins }: { skins: DocsSkinPage[] }) {
               else if (skin.kind === "advanced") kindLabel = "Advanced";
 
               return (
-                <Item key={skin.id} variant="outline" render={<Link href={`/skins/${skin.id}`} />} className="min-w-0">
+                <Item key={skin.id} variant="outline" render={<IntentLink href={`/skins/${skin.id}`} />} className="min-w-0">
                   <ItemContent>
                     <ItemTitle>{skin.label}</ItemTitle>
                     <ItemDescription>{skin.description}</ItemDescription>

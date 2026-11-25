@@ -2,9 +2,9 @@
 
 import { Search01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createContext, type ReactNode, use, useCallback, useEffect, useState } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { useIsHydrated } from "@/app/(features)/client/setup-preference";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { SearchItem } from "@/app/(features)/model/types";
@@ -140,7 +140,7 @@ export function DocsSearchProvider({ items, onNavigate, children }: { items: Sea
                 <EmptyDescription>Try a shorter term, or browse every component in the catalog.</EmptyDescription>
               </EmptyHeader>
               <EmptyContent>
-                <ButtonLink render={<Link href="/components" onClick={leaveForCatalog} />} variant="surface" size="sm">
+                <ButtonLink render={<IntentLink href="/components" onClick={leaveForCatalog} />} variant="surface" size="sm">
                   Browse components
                 </ButtonLink>
               </EmptyContent>

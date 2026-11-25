@@ -2,7 +2,7 @@
 
 import { AlertCircleIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
@@ -25,7 +25,7 @@ export default function DocsError({ error, reset }: { error: Error & { digest?: 
         <Button variant="solid" tone="primary" onClick={reset}>
           Try again
         </Button>
-        <ButtonLink render={<Link href="/get-started" />} variant="surface">
+        <ButtonLink render={<IntentLink href="/get-started" />} variant="surface">
           Back to the guides
         </ButtonLink>
       </EmptyContent>

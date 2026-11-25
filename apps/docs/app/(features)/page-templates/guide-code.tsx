@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { CodeBlock } from "@/app/(features)/components/source";
 import { guideCodeForKind, languageForGuideCode } from "@/app/(features)/model/registry";
 import type { GuideSection as GuideSectionData, IntegrationId } from "@/app/(features)/model/types";
@@ -78,7 +78,7 @@ export function InstallPaths({ current }: { current: InstallPathId }) {
               size="sm"
               active={isCurrent}
               aria-current={isCurrent ? "page" : undefined}
-              render={<Link href={path.href} />}
+              render={<IntentLink href={path.href} />}
             >
               {path.label}
             </ButtonLink>

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { SourceTabs } from "@/app/(features)/components/source";
 import type { DocsHook } from "@/app/(features)/model/types";
 import { ButtonLink } from "@/components/control-ui/ui/button";
@@ -22,7 +22,7 @@ export function HookPage({ hook }: { hook: DocsHook }) {
             {hook.references && hook.references.length > 0 ? (
               <div className="mt-3 flex flex-wrap gap-2">
                 {hook.references.map((reference) => (
-                  <ButtonLink key={reference.href} render={<Link href={reference.href} />} variant="surface" size="sm">
+                  <ButtonLink key={reference.href} render={<IntentLink href={reference.href} />} variant="surface" size="sm">
                     Used by {reference.label}
                   </ButtonLink>
                 ))}

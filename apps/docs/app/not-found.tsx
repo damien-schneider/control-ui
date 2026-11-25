@@ -1,6 +1,6 @@
 import { FileNotFoundIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { ButtonLink } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia } from "@/components/control-ui/ui/empty";
 import { Heading } from "@/components/control-ui/ui/typography";
@@ -20,10 +20,10 @@ export default function NotFound() {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row flex-wrap justify-center">
-        <ButtonLink render={<Link href="/get-started" />} variant="solid" tone="primary">
+        <ButtonLink render={<IntentLink href="/get-started" />} variant="solid" tone="primary">
           Start with the guides
         </ButtonLink>
-        <ButtonLink render={<Link href="/components" />} variant="surface">
+        <ButtonLink render={<IntentLink href="/components" />} variant="surface">
           Browse components
         </ButtonLink>
       </EmptyContent>

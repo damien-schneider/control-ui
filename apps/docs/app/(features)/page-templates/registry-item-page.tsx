@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 import type { PreviewLayout } from "@/app/(features)/catalog/shared";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 
 import { PreviewTabs, SourceTabs } from "@/app/(features)/components/source";
 import type { Composition, DocsKnobFamily, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
@@ -172,7 +172,7 @@ function KnobFamilyName({ id, href }: { id: string; href?: string }) {
   );
   if (!href) return name;
 
-  return <TextLink render={<Link href={href} />}>{name}</TextLink>;
+  return <TextLink render={<IntentLink href={href} />}>{name}</TextLink>;
 }
 
 function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
@@ -195,7 +195,7 @@ function KnobsSection({ families }: { families: DocsKnobFamily[] }) {
                 <Text numeric>{family.knobs.length}</Text> knobs
               </CardDescription>
               <CardAction>
-                <ButtonLink render={<Link href="/skins#component-knobs" />} variant="link" size="xs">
+                <ButtonLink render={<IntentLink href="/skins#component-knobs" />} variant="link" size="xs">
                   How the cascade resolves
                 </ButtonLink>
               </CardAction>

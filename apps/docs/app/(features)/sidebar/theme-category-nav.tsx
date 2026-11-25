@@ -1,9 +1,9 @@
 "use client";
 
 import { CodeXmlIcon, ShieldCheckIcon, WandSparklesIcon } from "lucide-react";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { Button } from "@/components/control-ui/ui/button";
 import { Separator } from "@/components/control-ui/ui/separator";
 import { SidebarGroup, SidebarMenu, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem } from "@/components/control-ui/ui/sidebar";
@@ -56,7 +56,7 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
               <SidebarMenuItem key={category.id}>
                 <SidebarMenuButton
                   render={
-                    <Link
+                    <IntentLink
                       href={category.href}
                       onClick={onNavigate}
                       aria-current={isActive ? "page" : undefined}
@@ -79,7 +79,7 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
         <SidebarMenu indicator="hover">
           <SidebarMenuItem>
             <SidebarMenuButton
-              render={<Link href="/theme-editor?view=source" onClick={onNavigate} aria-current={sourceActive ? "page" : undefined} />}
+              render={<IntentLink href="/theme-editor?view=source" onClick={onNavigate} aria-current={sourceActive ? "page" : undefined} />}
               isActive={sourceActive}
               size="sm"
             >
@@ -89,7 +89,7 @@ function ThemeCategoryNavContent({ onNavigate }: { onNavigate: () => void }) {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton
-              render={<Link href="/theme-accessibility" onClick={onNavigate} aria-current={auditActive ? "page" : undefined} />}
+              render={<IntentLink href="/theme-accessibility" onClick={onNavigate} aria-current={auditActive ? "page" : undefined} />}
               isActive={auditActive}
               size="sm"
             >

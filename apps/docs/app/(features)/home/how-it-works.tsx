@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { CodeBlock, CodeSnippet } from "@/app/(features)/components/source";
 import { packInstallCommand, registryInstallCommand } from "@/app/(features)/model/registry";
 import { Heading, Text, TextLink } from "@/components/control-ui/ui/typography";
@@ -59,7 +59,7 @@ function SkinStep() {
   return (
     <Step number={3} title={`Add the ${skin.label} skin`} code={<CodeSnippet code={installCommand} />}>
       Adds its tokens, component CSS, and config. Pass the config to <code>SkinProvider</code> and set its id as <code>data-skin</code> on
-      your theme boundary. <TextLink render={<Link href={`/${createASkinGuide.id}`} />}>Or make your own</TextLink>.
+      your theme boundary. <TextLink render={<IntentLink href={`/${createASkinGuide.id}`} />}>Or make your own</TextLink>.
     </Step>
   );
 }

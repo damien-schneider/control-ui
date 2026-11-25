@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { registryInstallCommand } from "@/app/(features)/model/registry";
 import type { ComponentId, DocsExtension, KitId } from "@/app/(features)/model/types";
@@ -30,7 +30,7 @@ export function AvailableExtensions({ hostId, extensions }: { hostId: KitId | Co
           <Card key={extension.id} size="sm" className="min-w-0">
             <CardContent>
               <div className="mb-1 flex items-center gap-2">
-                <ButtonLink render={<Link href={`/extensions/${extension.id}`} />} variant="link">
+                <ButtonLink render={<IntentLink href={`/extensions/${extension.id}`} />} variant="link">
                   {extension.name}
                 </ButtonLink>
                 <Badge variant="outline" size="sm">

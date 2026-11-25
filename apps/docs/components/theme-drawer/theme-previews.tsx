@@ -1,8 +1,8 @@
 "use client";
 
 import { ArrowUpRightIcon } from "lucide-react";
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { BlockPreview, ComponentPreview } from "@/app/(features)/components/previews";
 import { ColorFoundations } from "@/app/(features)/foundations/color-foundations";
 import { ElevationFoundations } from "@/app/(features)/foundations/elevation-foundations";
@@ -56,7 +56,7 @@ export function ThemePreviews({ category }: { category: ThemeCategoryId }) {
             <Heading level={2}>{section.title}</Heading>
             {section.kind === "component" ? (
               <ButtonLink
-                render={<Link href={`/components/${section.componentId}`} />}
+                render={<IntentLink href={`/components/${section.componentId}`} />}
                 variant="quiet"
                 size="xs"
                 iconOnly

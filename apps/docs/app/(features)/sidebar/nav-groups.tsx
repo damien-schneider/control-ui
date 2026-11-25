@@ -3,8 +3,8 @@
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import type { IconSvgElement } from "@hugeicons/react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { ActivePageId } from "@/app/(features)/model/types";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
@@ -21,7 +21,7 @@ export function NavMenu({ items, active, onNavigate }: { items: DocsNavItem[]; a
         return (
           <SidebarMenuItem key={item.id}>
             <SidebarMenuButton
-              render={<Link href={item.href} onClick={onNavigate} aria-current={active === item.id ? "page" : undefined} />}
+              render={<IntentLink href={item.href} onClick={onNavigate} aria-current={active === item.id ? "page" : undefined} />}
               isActive={active === item.id}
               size="sm"
             >
@@ -72,7 +72,7 @@ export function SidebarDoorMenu({ doors, onNavigate }: { doors: readonly Sidebar
       <SidebarMenu indicator="hover">
         {doors.map((door) => (
           <SidebarMenuItem key={door.id}>
-            <SidebarMenuButton render={<Link href={door.href} onClick={onNavigate} />} size="sm">
+            <SidebarMenuButton render={<IntentLink href={door.href} onClick={onNavigate} />} size="sm">
               <HugeiconsIcon aria-hidden icon={door.icon} size={16} strokeWidth={1.7} />
               <span className="min-w-0 truncate">{door.title}</span>
               <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} size={14} strokeWidth={1.7} className="ml-auto" />

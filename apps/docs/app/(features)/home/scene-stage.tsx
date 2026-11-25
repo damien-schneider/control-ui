@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { BlockPreview } from "@/app/(features)/components/previews";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/control-ui/ui/tabs";
@@ -24,7 +24,7 @@ export function SceneStage() {
           <TabsPanel key={scene.id} value={scene.id} className="grid min-w-0 gap-4">
             <BlockPreview blockId={scene.id} integration={integration} />
             <Text as="p" tone="muted" className="mx-auto max-w-2xl text-pretty text-center">
-              {scene.summary} <TextLink render={<Link href={scene.href} />}>Open {scene.name}</TextLink>.
+              {scene.summary} <TextLink render={<IntentLink href={scene.href} />}>Open {scene.name}</TextLink>.
             </Text>
           </TabsPanel>
         ))}

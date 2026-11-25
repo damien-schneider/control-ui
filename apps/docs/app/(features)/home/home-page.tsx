@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { CodeSnippet } from "@/app/(features)/components/source";
 import type { CatalogGalleryItem } from "@/app/(features)/model/catalog-gallery";
 import { fullInstallCommand } from "@/app/(features)/model/registry";
@@ -25,10 +25,10 @@ const cardGridClassName = "grid min-w-0 gap-x-4 gap-y-8 @2xl/home:grid-cols-2 @5
 function StartButtons() {
   return (
     <div className="flex flex-wrap justify-center gap-3">
-      <ButtonLink render={<Link href="/get-started" />} variant="solid" tone="primary" size="lg">
+      <ButtonLink render={<IntentLink href="/get-started" />} variant="solid" tone="primary" size="lg">
         Get started
       </ButtonLink>
-      <ButtonLink render={<Link href="/components" />} variant="surface" size="lg">
+      <ButtonLink render={<IntentLink href="/components" />} variant="surface" size="lg">
         Browse components
       </ButtonLink>
     </div>
@@ -94,7 +94,7 @@ function CatalogClosing() {
         </Heading>
         <Text as="p" size="body-lg" tone="muted" className="text-pretty">
           Coming from shadcn/ui? Read{" "}
-          <TextLink render={<Link href={`/${shadcnComparisonGuide.id}`} />}>{shadcnComparisonGuide.name}</TextLink>.
+          <TextLink render={<IntentLink href={`/${shadcnComparisonGuide.id}`} />}>{shadcnComparisonGuide.name}</TextLink>.
         </Text>
       </div>
       <ul className="grid w-full min-w-0 grid-cols-2 gap-3 @3xl/home:grid-cols-4">
@@ -102,7 +102,7 @@ function CatalogClosing() {
           <li key={entry.href} className="grid">
             <Card>
               <CardContent>
-                <CardLink render={<Link href={entry.href} />} className="grid gap-1">
+                <CardLink render={<IntentLink href={entry.href} />} className="grid gap-1">
                   <Text size="display" tone="foreground" numeric>
                     {entry.count}
                   </Text>
@@ -134,7 +134,7 @@ export function HomePage() {
           lead={
             <>
               The pickers, trees, and viewers you would otherwise build yourself.{" "}
-              <TextLink render={<Link href={`/${missingFromShadcnGuide.id}`} />}>See the full list</TextLink>.
+              <TextLink render={<IntentLink href={`/${missingFromShadcnGuide.id}`} />}>See the full list</TextLink>.
             </>
           }
         >
@@ -145,7 +145,8 @@ export function HomePage() {
           title={chatGroup.title}
           lead={
             <>
-              {chatGroup.summary} <TextLink render={<Link href={`/kits#${chatGroup.id}`} />}>Browse all {chatGroup.items.length}</TextLink>.
+              {chatGroup.summary}{" "}
+              <TextLink render={<IntentLink href={`/kits#${chatGroup.id}`} />}>Browse all {chatGroup.items.length}</TextLink>.
             </>
           }
         >

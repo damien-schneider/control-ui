@@ -1,8 +1,8 @@
 "use client";
 
 import { AlertTriangleIcon, CheckCircle2Icon, CircleHelpIcon, PaintbrushIcon, ShieldCheckIcon } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/control-ui/ui/alert";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
@@ -165,7 +165,7 @@ function AuditResults({ loading, results }: { loading: boolean; results: ThemeAu
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
-          <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
+          <ButtonLink variant="surface" size="sm" render={<IntentLink href="/theme-editor" />}>
             <PaintbrushIcon aria-hidden /> Open the token editor
           </ButtonLink>
         </EmptyContent>
@@ -212,7 +212,7 @@ export function ThemeAccessibility() {
           </AlertDescription>
           <AlertAction className="flex-wrap gap-2">
             <ThemeModeSwitch />
-            <ButtonLink variant="surface" size="sm" render={<Link href="/theme-editor" />}>
+            <ButtonLink variant="surface" size="sm" render={<IntentLink href="/theme-editor" />}>
               <PaintbrushIcon aria-hidden /> Edit theme
             </ButtonLink>
           </AlertAction>

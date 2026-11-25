@@ -1,9 +1,9 @@
 "use client";
 
 import { BookOpenIcon, ChevronRightIcon, CodeXmlIcon, DownloadIcon, EyeIcon, FileCodeIcon, PaletteIcon, WrapTextIcon } from "lucide-react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { type ReactNode, Suspense, useState } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import type { SourceFile } from "@/app/(features)/model/types";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button, ButtonLink } from "@/components/control-ui/ui/button";
@@ -148,7 +148,7 @@ export function SkinSourceGuide({ files }: { files: readonly Pick<SourceFile, "l
                 );
               })}
             </dl>
-            <ButtonLink variant="link" size="xs" render={<Link href="/architecture" />} className="mt-4">
+            <ButtonLink variant="link" size="xs" render={<IntentLink href="/architecture" />} className="mt-4">
               How skin layers resolve
             </ButtonLink>
           </CollapsibleContent>
@@ -235,7 +235,7 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
               Source
             </TabsTab>
           </TabsList>
-          <ButtonLink render={<Link href={`/skins/${skin}#source`} />} variant="quiet" size="sm">
+          <ButtonLink render={<IntentLink href={`/skins/${skin}#source`} />} variant="quiet" size="sm">
             <BookOpenIcon aria-hidden />
             Skin documentation
           </ButtonLink>
@@ -249,7 +249,7 @@ function SkinWorkspaceContent({ skin, source, onRetry, children }: SkinWorkspace
             {THEME_CATEGORIES.filter((category) => category.id !== "skin").map((category) => (
               <ButtonLink
                 key={category.id}
-                render={<Link href={category.href} />}
+                render={<IntentLink href={category.href} />}
                 variant="quiet"
                 size="xs"
                 aria-label={`Edit ${category.title.toLowerCase()}`}

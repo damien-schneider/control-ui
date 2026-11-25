@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { DeferredPreview } from "@/app/(features)/components/deferred-preview";
 import { BlockPreview } from "@/app/(features)/components/previews";
 import { StatusBadge } from "@/app/(features)/components/status";
@@ -74,7 +74,7 @@ function TemplatePreviewCard({ item, integration }: { item: TemplateGalleryItem;
       )}
       <CardHeader>
         <CardTitle render={(props) => <h3 {...props} />}>
-          <CardLink render={<Link href={item.href} />}>{item.name}</CardLink>
+          <CardLink render={<IntentLink href={item.href} />}>{item.name}</CardLink>
         </CardTitle>
         <CardDescription>{item.summary}</CardDescription>
         {item.status ? (

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { CodeBlock, CommandBlock } from "@/app/(features)/components/source";
 import { StatusBadge } from "@/app/(features)/components/status";
 import type { Composition, DocsRegistryDependency, DocsStatus, SourceFile } from "@/app/(features)/model/types";
@@ -183,7 +183,7 @@ export function RegistryDependencyReferences({ dependencies }: { dependencies: D
 
 function DependencyRow({ name, detail, kind, href }: { name: string; detail: string; kind: string; href?: string }) {
   return (
-    <Item variant="outline" render={href ? <Link href={href} /> : undefined} className="min-w-0">
+    <Item variant="outline" render={href ? <IntentLink href={href} /> : undefined} className="min-w-0">
       <ItemContent>
         <ItemTitle>{name}</ItemTitle>
         <ItemDescription>

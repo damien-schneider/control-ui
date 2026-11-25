@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { IntentLink } from "@/app/(features)/client/intent-link";
 import { DeferredPreview } from "@/app/(features)/components/deferred-preview";
 import { PreviewFrame } from "@/app/(features)/components/preview-frame";
 import { CatalogGalleryItemPreview } from "@/app/(features)/components/previews";
@@ -22,7 +22,7 @@ export function CatalogItemShowcaseCard({ item }: { item: CatalogGalleryItem }) 
       </CardContent>
       <CardHeader>
         <CardTitle render={(props) => <h3 {...props} />}>
-          <CardLink render={<Link href={item.href} />}>{item.name}</CardLink>
+          <CardLink render={<IntentLink href={item.href} />}>{item.name}</CardLink>
         </CardTitle>
         <CardDescription>{item.summary}</CardDescription>
       </CardHeader>
