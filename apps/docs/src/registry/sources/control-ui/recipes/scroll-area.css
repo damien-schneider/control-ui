@@ -191,7 +191,6 @@
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"]) {
     inline-size: var(--cui-scroll-area-scrollbar-size);
-    padding-block-end: var(--scroll-area-inset-end);
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"]) {
@@ -199,7 +198,7 @@
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"][data-buttons]) {
-    padding-block: var(--cui-scroll-area-scrollbar-size) calc(var(--cui-scroll-area-scrollbar-size) + var(--scroll-area-inset-end, 0px));
+    padding-block: var(--cui-scroll-area-scrollbar-size);
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="horizontal"][data-buttons]) {
@@ -238,7 +237,7 @@
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="vertical"][data-edge="end"]) {
-    inset-block-end: var(--scroll-area-inset-end, 0px);
+    inset-block-end: 0;
   }
 
   :where([data-control-family="scroll-area"][data-slot="scrollbar-button"][data-orientation="vertical"][data-edge="end"] > svg) {

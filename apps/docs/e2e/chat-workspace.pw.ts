@@ -145,6 +145,43 @@ for (const browserName of ["chromium", "webkit"] as const) {
       await expect.poll(() => transcript.evaluate((viewport) => viewport.scrollTop)).toBeGreaterThan(0);
     });
 
+    for (const [where, search] of [
+      ["floating", ""],
+      ["pinned", "?docked=1"],
+    ] as const) {
+      test(`runs the scrollbar down beside the composer, and scrolls on a wheel anywhere around it, ${where}`, async ({ page }) => {
+        await open(page, search);
+        const { panel, transcript } = parts(page);
+        const shell = panel.locator('[data-control-family="chat-composer"][data-slot="shell"]');
+        const thumb = panel.locator(
+          '[data-control-family="scroll-area"][data-slot="scrollbar"][data-orientation="vertical"] [data-slot="thumb"]',
+        );
+        const toEnd = () => transcript.evaluate((viewport) => viewport.scrollTo({ top: viewport.scrollHeight }));
+        const scrolled = () => transcript.evaluate((viewport) => viewport.scrollTop);
+
+        await toEnd();
+        const shellBox = await box(shell);
+        await expect
+          .poll(async () => (await box(thumb.first())).y + (await box(thumb.first())).height)
+          .toBeGreaterThan(shellBox.y + shellBox.height / 2);
+
+        const panelBox = await box(panel);
+        const beside = shellBox.y + shellBox.height / 2;
+        const below = (shellBox.y + shellBox.height + panelBox.y + panelBox.height) / 2;
+        for (const [x, y] of [
+          [panelBox.x + 4, beside],
+          [panelBox.x + panelBox.width - 4, beside],
+          [shellBox.x + shellBox.width / 2, below],
+        ]) {
+          await toEnd();
+          const before = await scrolled();
+          await page.mouse.move(x, y);
+          await page.mouse.wheel(0, -200);
+          await expect.poll(scrolled).toBeLessThan(before);
+        }
+      });
+    }
+
     test("floats the scroll-to-latest button above the composer, clear of the fade", async ({ page }) => {
       await open(page);
       const { panel, transcript } = parts(page);

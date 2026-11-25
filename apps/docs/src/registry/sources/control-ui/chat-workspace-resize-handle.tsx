@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps, KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
+import type { ComponentProps, KeyboardEvent, PointerEvent as ReactPointerEvent, WheelEvent } from "react";
 import { useEffect, useRef } from "react";
 import { useChatWorkspace, useChatWorkspaceElements } from "@/components/control-ui/chat-workspace-state";
 import { cn } from "@/components/control-ui/lib/cn";
@@ -15,10 +15,16 @@ export type ChatWorkspaceResizeHandleProps = Omit<
   "role" | "aria-orientation" | "aria-valuenow" | "aria-valuemin" | "aria-valuemax" | "aria-controls"
 >;
 
+function scrollWhatLiesBeneath(event: WheelEvent<HTMLDivElement>) {
+  const beneath = document.elementsFromPoint(event.clientX, event.clientY).find((element) => !event.currentTarget.contains(element));
+  beneath?.closest("[data-scroll-area-viewport]")?.scrollBy({ left: event.deltaX, top: event.deltaY });
+}
+
 export function ChatWorkspaceResizeHandle({
   className,
   onPointerDown,
   onKeyDown,
+  onWheel,
   "aria-label": ariaLabel = "Resize chat panel",
   ...props
 }: ChatWorkspaceResizeHandleProps) {
@@ -139,6 +145,10 @@ export function ChatWorkspaceResizeHandle({
       className={cn("absolute inset-y-0 touch-none select-none", className)}
       onPointerDown={startGesture}
       onKeyDown={resizeWithKeyboard}
+      onWheel={(event) => {
+        onWheel?.(event);
+        if (!event.defaultPrevented) scrollWhatLiesBeneath(event);
+      }}
     />
   );
 }
