@@ -3,9 +3,9 @@
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode, RefObject } from "react";
 import { createContext, useContext, useRef, useState } from "react";
-
 import type { InlineCitationKnobStyle } from "@/components/control-ui/knob-contracts/inline-citation-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { SourceFavicon, sourceHostname } from "@/components/control-ui/source-badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
@@ -314,6 +314,7 @@ export type InlineCitationPreviousProps = Omit<ComponentProps<typeof Button>, "c
 };
 
 export function InlineCitationPrevious({ className, children, disabled, onClick, ...props }: InlineCitationPreviousProps) {
+  const ArrowLeftGlyph = useSkinIcon("arrowLeft", ArrowLeft);
   const { hasPrevious, previous } = useInlineCitation();
   return (
     <Button
@@ -331,7 +332,7 @@ export function InlineCitationPrevious({ className, children, disabled, onClick,
       data-slot="previous"
       className={className}
     >
-      {children ?? <ArrowLeft aria-hidden="true" data-icon-dir="inline" />}
+      {children ?? <ArrowLeftGlyph aria-hidden="true" data-icon-dir="inline" />}
     </Button>
   );
 }
@@ -341,6 +342,7 @@ export type InlineCitationNextProps = Omit<ComponentProps<typeof Button>, "child
 };
 
 export function InlineCitationNext({ className, children, disabled, onClick, ...props }: InlineCitationNextProps) {
+  const ArrowRightGlyph = useSkinIcon("arrowRight", ArrowRight);
   const { hasNext, next } = useInlineCitation();
   return (
     <Button
@@ -358,7 +360,7 @@ export function InlineCitationNext({ className, children, disabled, onClick, ...
       data-slot="next"
       className={className}
     >
-      {children ?? <ArrowRight aria-hidden="true" data-icon-dir="inline" />}
+      {children ?? <ArrowRightGlyph aria-hidden="true" data-icon-dir="inline" />}
     </Button>
   );
 }
@@ -394,6 +396,7 @@ type SourcePanelStyle = CSSProperties & {
 
 function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
   const hostname = sourceHostname(source.href);
+  const ExternalLinkGlyph = useSkinIcon("externalLink", ExternalLink);
 
   return (
     <>
@@ -418,7 +421,7 @@ function InlineCitationSourceDetails({ source }: { source: SourceReference }) {
         className="group/source-title flex min-w-0 items-start"
       >
         <span className="min-w-0 flex-1 wrap-anywhere">{source.title ?? hostname}</span>
-        <ExternalLink
+        <ExternalLinkGlyph
           data-control-ui="inline-citation"
           data-control-family="inline-citation"
           data-slot="source-external-icon"

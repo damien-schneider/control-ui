@@ -144,6 +144,17 @@ export function AppTheme({ children }: { children: ReactNode }) {
 
 Scope the corresponding CSS to `[data-skin="acme"]`. Portalled surfaces carry the provider's id, so they receive the same theme. With no provider, portals inherit the root theme. Each provider owns its subtree; there is no global skin singleton.
 
+To draw every built-in glyph from your own icon set, set `icons` on the skin. Keys are semantic (`chevronDown`, `close`, `check`, `success`, `spinner`, …; see `SkinIconName`) and each value is a component that receives SVG props. Unset keys keep the default lucide or inline glyph, and icons passed as children or props still win per instance. Keep the map at module scope or memoized so icon identities stay stable:
+
+```tsx
+import type { ControlUiSkin, SkinIcons } from "@ctrl-ui/react/skin";
+
+const icons: SkinIcons = { chevronDown: AcmeChevronDown, close: AcmeClose, spinner: AcmeSpinner };
+const skin: ControlUiSkin = { id: "acme", icons };
+```
+
+Use `useSkinIcon(name, Fallback)` from `@ctrl-ui/react/skin-provider` to give your own components the same override.
+
 ## Optional peers
 
 Install a peer only when you import the component that needs it.

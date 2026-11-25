@@ -25,6 +25,7 @@ import {
 import type { MarkdownEditorStatus } from "@/components/control-ui/markdown-editor";
 import type { MarkdownEditorMention } from "@/components/control-ui/markdown-editor/suggestions";
 import type { MarkdownImageUploader } from "@/components/control-ui/markdown-editor/uploads";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd, KbdGroup } from "@/components/control-ui/ui/kbd";
 import { Markdown } from "@/components/control-ui/ui/markdown";
@@ -177,6 +178,7 @@ export function DiscussionComment({
   replyComposer,
   ...props
 }: DiscussionCommentProps) {
+  const ReplyGlyph = useSkinIcon("reply", CornerDownRightIcon);
   const hasReplies = Boolean(replies) || Boolean(replyComposer);
 
   return (
@@ -193,7 +195,7 @@ export function DiscussionComment({
           {onReply ? (
             <ChatMessageFooter>
               <Button variant="ghost" size="xs" onClick={onReply} className="-ms-2">
-                <CornerDownRightIcon aria-hidden="true" />
+                <ReplyGlyph aria-hidden="true" />
                 {replyLabel}
               </Button>
             </ChatMessageFooter>

@@ -3,10 +3,10 @@
 import { useRender } from "@base-ui/react/use-render";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentProps, CSSProperties, MouseEvent } from "react";
-
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { PaginationKnobStyle } from "@/components/control-ui/knob-contracts/pagination-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type PaginationEllipsisProps = Omit<ComponentProps<"span">, "style" | "children"> & {
   label?: string;
@@ -84,24 +84,27 @@ export function PaginationLink({ isActive = false, disabled = false, render, hre
 }
 
 export function PaginationPrevious({ className, children = "Previous", ...props }: PaginationLinkProps) {
+  const ChevronLeftGlyph = useSkinIcon("chevronLeft", ChevronLeft);
   return (
     <PaginationLink className={className} {...props}>
-      <ChevronLeft aria-hidden="true" data-icon-dir="inline" />
+      <ChevronLeftGlyph aria-hidden="true" data-icon-dir="inline" />
       <span>{children}</span>
     </PaginationLink>
   );
 }
 
 export function PaginationNext({ className, children = "Next", ...props }: PaginationLinkProps) {
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRight);
   return (
     <PaginationLink className={className} {...props}>
       <span>{children}</span>
-      <ChevronRight aria-hidden="true" data-icon-dir="inline" />
+      <ChevronRightGlyph aria-hidden="true" data-icon-dir="inline" />
     </PaginationLink>
   );
 }
 
 export function PaginationEllipsis({ label = "More pages", className, ...props }: PaginationEllipsisProps) {
+  const MoreGlyph = useSkinIcon("more", MoreHorizontal);
   return (
     <span
       data-control-ui="pagination"
@@ -110,7 +113,7 @@ export function PaginationEllipsis({ label = "More pages", className, ...props }
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal aria-hidden="true" />
+      <MoreGlyph aria-hidden="true" />
       <span className="sr-only">{label}</span>
     </span>
   );

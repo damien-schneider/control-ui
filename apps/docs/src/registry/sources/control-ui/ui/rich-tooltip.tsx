@@ -10,7 +10,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
 import { PopupArrowShape } from "@/components/control-ui/popup-parts";
 import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { stepAfter, stepBefore, type TourPosition, tourPosition } from "./rich-tooltip-tour";
 
 export type RichTooltipTone = "accent" | "surface";
@@ -474,6 +474,7 @@ export function RichTooltipPrevious({
   style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
   label?: string;
 }) {
+  const ChevronLeftGlyph = useSkinIcon("chevronLeft", ChevronLeftIcon);
   const { tour } = useRichTooltipContext();
   if (!tour || tour.total < 2) return null;
 
@@ -495,7 +496,7 @@ export function RichTooltipPrevious({
     >
       {children ?? (
         <>
-          <ChevronLeftIcon aria-hidden="true" data-icon-dir="inline" />
+          <ChevronLeftGlyph aria-hidden="true" data-icon-dir="inline" />
           <span className="sr-only">{label}</span>
         </>
       )}
@@ -518,6 +519,8 @@ export function RichTooltipNext({
   finishLabel?: string;
   gotItLabel?: string;
 }) {
+  const CheckGlyph = useSkinIcon("check", CheckIcon);
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRightIcon);
   const { dismiss, nextRef, tour } = useRichTooltipContext();
   const setRef = (node: HTMLButtonElement | null) => {
     nextRef.current = node;
@@ -546,7 +549,7 @@ export function RichTooltipNext({
         (tour ? (
           <>
             <span className="sr-only">{tour.isLast ? finishLabel : nextLabel}</span>
-            {tour.isLast ? <CheckIcon aria-hidden="true" /> : <ChevronRightIcon aria-hidden="true" data-icon-dir="inline" />}
+            {tour.isLast ? <CheckGlyph aria-hidden="true" /> : <ChevronRightGlyph aria-hidden="true" data-icon-dir="inline" />}
           </>
         ) : (
           gotItLabel
@@ -564,6 +567,7 @@ export function RichTooltipClose({
   style?: CSSProperties & RichTooltipKnobStyle & PopupKnobStyle;
   label?: string;
 }) {
+  const CloseGlyph = useSkinIcon("close", XIcon);
   const { tour } = useRichTooltipContext();
   return (
     <PopoverPrimitive.Close
@@ -577,7 +581,7 @@ export function RichTooltipClose({
     >
       {children ?? (
         <>
-          <XIcon aria-hidden="true" />
+          <CloseGlyph aria-hidden="true" />
           <span className="sr-only">{label ?? (tour ? "End tour" : "Dismiss")}</span>
         </>
       )}

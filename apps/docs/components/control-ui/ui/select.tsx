@@ -11,8 +11,8 @@ import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popu
 import { cn } from "@/components/control-ui/lib/cn";
 import { listboxNameRef } from "@/components/control-ui/lib/listbox-name";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { Button } from "@/components/control-ui/ui/button";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -81,7 +81,24 @@ export function Select<TValue extends string = string>({ children, onValueChange
 
 const selectTriggerLayoutClasses = "group relative isolate inline-flex shrink-0 items-center justify-between overflow-visible";
 
+function SelectChevronIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function SelectCheckIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function SelectIcon() {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", SelectChevronIcon);
   return (
     <SelectPrimitive.Icon
       data-control-ui="select"
@@ -90,9 +107,7 @@ function SelectIcon() {
       data-slot="icon"
       className="relative z-1"
     >
-      <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-        <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+      <ChevronDownGlyph aria-hidden="true" />
     </SelectPrimitive.Icon>
   );
 }
@@ -206,6 +221,7 @@ function renderListAsScrollViewport({ role: _role, tabIndex: _tabIndex, ...viewp
 }
 
 export function SelectItem({ className, children, disabled, ...props }: SelectItemProps) {
+  const CheckGlyph = useSkinIcon("check", SelectCheckIcon);
   return (
     <SelectPrimitive.Item
       data-control-ui="select"
@@ -234,9 +250,7 @@ export function SelectItem({ className, children, disabled, ...props }: SelectIt
         className="flex shrink-0 items-center justify-center"
       >
         <SelectPrimitive.ItemIndicator>
-          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-            <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <CheckGlyph aria-hidden="true" />
         </SelectPrimitive.ItemIndicator>
       </span>
     </SelectPrimitive.Item>

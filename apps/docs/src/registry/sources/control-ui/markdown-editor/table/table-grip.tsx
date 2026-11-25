@@ -2,6 +2,7 @@
 
 import { GripHorizontalIcon, GripVerticalIcon } from "lucide-react";
 import { type PointerEvent as ReactPointerEvent, type RefObject, useRef, useState } from "react";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +42,8 @@ function gripCenter(axis: MarkdownTableAxis, layout: TableLayout) {
 const withinClip = (left: number, clip: SurfaceBox) => left >= clip.left && left <= clip.left + clip.width;
 
 export function TableGrip({ axis, table, index, count, layout, container, open, onOpenChange, onDraggingChange, onMove }: TableGripProps) {
+  const GripVerticalGlyph = useSkinIcon("gripVertical", GripVerticalIcon);
+  const GripHorizontalGlyph = useSkinIcon("gripHorizontal", GripHorizontalIcon);
   const { engine, labels } = useMarkdownEditor();
   const [dropLine, setDropLine] = useState<{ gap: number; at: number } | null>(null);
   const press = useRef<Press | null>(null);
@@ -145,7 +148,7 @@ export function TableGrip({ axis, table, index, count, layout, container, open, 
             onMove(index, index + (event.key === back ? -1 : 1));
           }}
         >
-          {axis === "row" ? <GripVerticalIcon aria-hidden="true" /> : <GripHorizontalIcon aria-hidden="true" />}
+          {axis === "row" ? <GripVerticalGlyph aria-hidden="true" /> : <GripHorizontalGlyph aria-hidden="true" />}
         </DropdownMenuTrigger>
         <DropdownMenuContent ref={popup} side={axis === "row" ? "left" : "top"} align="start" finalFocus={editorIfFocusIsLost}>
           <TableGripMenu axis={axis} table={table} index={index} count={count} onMove={onMove} />

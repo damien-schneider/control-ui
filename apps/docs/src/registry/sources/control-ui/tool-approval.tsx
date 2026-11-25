@@ -4,10 +4,11 @@ import { useRender } from "@base-ui/react/use-render";
 import { Check, Clock, ShieldAlert, X } from "lucide-react";
 import type { ComponentProps, CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from "react";
 import { createContext, useContext, useEffect, useId, useRef } from "react";
-
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { ToolApprovalKnobStyle } from "@/components/control-ui/knob-contracts/tool-approval-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconComponent, SkinIconName } from "@/components/control-ui/skin";
+import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import type { BadgeColor } from "@/components/control-ui/ui/badge";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
@@ -164,6 +165,7 @@ export function ToolApprovalHeader({ className, ...props }: ToolApprovalHeaderPr
 export type ToolApprovalIconProps = ToolApprovalStyleProps<ComponentProps<"span">>;
 
 export function ToolApprovalIcon({ className, children, ...props }: ToolApprovalIconProps) {
+  const PermissionGlyph = useSkinIcon("permission", ShieldAlert);
   return (
     <span
       data-control-ui="tool-approval"
@@ -173,7 +175,7 @@ export function ToolApprovalIcon({ className, children, ...props }: ToolApproval
       className={cn("inline-flex size-5 shrink-0 items-center justify-center", className)}
       {...props}
     >
-      {children ?? <ShieldAlert />}
+      {children ?? <PermissionGlyph />}
     </span>
   );
 }
@@ -230,7 +232,11 @@ const decisionLabels = {
   expired: "Expired",
 } satisfies Record<Exclude<ToolApprovalState, "pending">, string>;
 
-const decisionIcons = { approved: Check, denied: X, expired: Clock } as const;
+const decisionIcons = {
+  approved: { name: "check", fallback: Check },
+  denied: { name: "close", fallback: X },
+  expired: { name: "clock", fallback: Clock },
+} satisfies Record<Exclude<ToolApprovalState, "pending">, { name: SkinIconName; fallback: SkinIconComponent }>;
 
 export type ToolApprovalStatusProps = ToolApprovalStyleProps<ComponentProps<"div">> & {
   labels?: Partial<Record<Exclude<ToolApprovalState, "pending">, string>>;
@@ -239,7 +245,7 @@ export type ToolApprovalStatusProps = ToolApprovalStyleProps<ComponentProps<"div
 export function ToolApprovalStatus({ labels, className, children, ...props }: ToolApprovalStatusProps) {
   const { state } = useToolApprovalContext();
   if (state === "pending") return null;
-  const StatusIcon = decisionIcons[state];
+  const decisionIcon = decisionIcons[state];
   return (
     <div
       data-control-ui="tool-approval"
@@ -249,7 +255,7 @@ export function ToolApprovalStatus({ labels, className, children, ...props }: To
       {...props}
     >
       <span data-control-ui="tool-approval" data-control-family="tool-approval" data-slot="status-icon" aria-hidden="true">
-        <StatusIcon />
+        <SkinIcon {...decisionIcon} />
       </span>
       {children ?? labels?.[state] ?? decisionLabels[state]}
     </div>

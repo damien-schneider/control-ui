@@ -39,6 +39,8 @@ import {
 } from "react";
 import type { EmojiPickerKnobStyle } from "@/components/control-ui/knob-contracts/emoji-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconComponent, SkinIconName } from "@/components/control-ui/skin";
+import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { IconPicker } from "@/components/control-ui/ui/icon-picker";
 import { PopoverViewport } from "@/components/control-ui/ui/popover";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -125,17 +127,21 @@ function stopPickerNavigation(event: KeyboardEvent<HTMLDivElement>) {
   if (event.key !== "Escape" && event.key !== "Tab") event.stopPropagation();
 }
 
-const categoryIcons = new Map([
-  [0, SmileIcon],
-  [1, HandIcon],
-  [3, LeafIcon],
-  [4, PizzaIcon],
-  [5, PlaneIcon],
-  [6, VolleyballIcon],
-  [7, LightbulbIcon],
-  [8, HeartIcon],
-  [9, FlagIcon],
+type CategoryIcon = { name: SkinIconName; fallback: SkinIconComponent };
+
+const categoryIcons = new Map<number, CategoryIcon>([
+  [0, { name: "emojiSmileys", fallback: SmileIcon }],
+  [1, { name: "emojiPeople", fallback: HandIcon }],
+  [3, { name: "emojiNature", fallback: LeafIcon }],
+  [4, { name: "emojiFood", fallback: PizzaIcon }],
+  [5, { name: "emojiTravel", fallback: PlaneIcon }],
+  [6, { name: "emojiActivities", fallback: VolleyballIcon }],
+  [7, { name: "emojiObjects", fallback: LightbulbIcon }],
+  [8, { name: "emojiSymbols", fallback: HeartIcon }],
+  [9, { name: "emojiFlags", fallback: FlagIcon }],
 ]);
+
+const otherCategoryIcon: CategoryIcon = { name: "emojiOther", fallback: HashIcon };
 
 function emojiCategoryRows(emojiData: EmojiData, columns: number) {
   let rowOffset = 0;
@@ -175,7 +181,7 @@ export function EmojiPickerCategories({ "aria-label": ariaLabel = "Emoji categor
       }}
     >
       {categories.map((category, categoryIndex) => {
-        const CategoryIcon = categoryIcons.get(category.index) ?? HashIcon;
+        const categoryIcon = categoryIcons.get(category.index) ?? otherCategoryIcon;
         return (
           <ToolbarPrimitive.Button
             key={category.index}
@@ -186,7 +192,7 @@ export function EmojiPickerCategories({ "aria-label": ariaLabel = "Emoji categor
             data-slot="category"
             onClick={() => scrollToCategory(category.startRow, categoryIndex)}
           >
-            <CategoryIcon aria-hidden="true" />
+            <SkinIcon {...categoryIcon} aria-hidden="true" />
           </ToolbarPrimitive.Button>
         );
       })}
@@ -262,9 +268,10 @@ export function EmojiPickerSearch({
   "aria-label": ariaLabel = "Search emoji",
   ...props
 }: EmojiPickerSearchProps) {
+  const SearchGlyph = useSkinIcon("search", SearchIcon);
   return (
     <div data-control-ui="emoji-picker" data-control-family="emoji-picker" data-slot="search" className="flex items-center">
-      <SearchIcon aria-hidden="true" data-control-ui="emoji-picker" data-control-family="emoji-picker" data-slot="search-icon" />
+      <SearchGlyph aria-hidden="true" data-control-ui="emoji-picker" data-control-family="emoji-picker" data-slot="search-icon" />
       <EmojiPickerPrimitive.Search
         data-control-ui="emoji-picker"
         data-control-family="emoji-picker"

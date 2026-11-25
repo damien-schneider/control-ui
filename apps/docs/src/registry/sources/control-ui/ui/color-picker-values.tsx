@@ -7,6 +7,8 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type ChannelId, type ColorFormat, getChannels } from "@/components/control-ui/lib/color";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { useColorPicker } from "@/components/control-ui/ui/color-picker-context";
 import { Input } from "@/components/control-ui/ui/input";
@@ -240,6 +242,7 @@ declare global {
 export function ColorPickerEyeDropper({ className, children, onClick, disabled: disabledProp, ...props }: ColorPickerEyeDropperProps) {
   const { setFromString, disabled } = useColorPicker();
   const supported = useSyncExternalStore(subscribeEyeDropper, getEyeDropperSnapshot, getEyeDropperServerSnapshot);
+  const EyeDropperGlyph = useSkinIcon("eyeDropper", ColorPickerEyeDropperIcon);
   if (!supported) return null;
   const pick = async () => {
     const Ctor = window.EyeDropper;
@@ -265,7 +268,7 @@ export function ColorPickerEyeDropper({ className, children, onClick, disabled: 
       }}
       {...props}
     >
-      {children ?? <EyeDropperIcon />}
+      {children ?? <EyeDropperGlyph aria-hidden="true" />}
     </Button>
   );
 }
@@ -315,7 +318,7 @@ export function ColorPickerOutput({ className, children, renderValue, ...props }
   );
 }
 
-function EyeDropperIcon() {
+function ColorPickerEyeDropperIcon(props: SkinIconProps) {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -325,6 +328,7 @@ function EyeDropperIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      {...props}
     >
       <path d="M10.5 2.5a1.8 1.8 0 0 1 2.5 2.5l-1.3 1.3.9.9-1.1 1.1-.9-.9-4.4 4.4-2.2.6.6-2.2 4.4-4.4-.9-.9 1.1-1.1.9.9 1.3-1.3Z" />
     </svg>

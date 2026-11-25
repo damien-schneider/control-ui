@@ -9,7 +9,7 @@ import type { RenderProp, SelectionIndicator } from "@/components/control-ui/con
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import type { TreeKnobStyle } from "@/components/control-ui/knob-contracts/tree-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type TreeSelectionMode = "none" | "single" | "multiple";
 
@@ -618,6 +618,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
 }
 
 export function TreeItemIndicator({ className, children, ...props }: TreeItemIndicatorProps) {
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRightIcon);
   const tree = useTree();
   const item = useTreeItem();
 
@@ -646,7 +647,7 @@ export function TreeItemIndicator({ className, children, ...props }: TreeItemInd
       className={cn("inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
-      {children ?? <ChevronRightIcon data-icon-dir="inline" className="size-4" />}
+      {children ?? <ChevronRightGlyph data-icon-dir="inline" className="size-4" />}
     </span>
   );
 }

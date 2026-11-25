@@ -23,6 +23,7 @@ import {
 import type { DropzoneKnobStyle } from "@/components/control-ui/knob-contracts/dropzone-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type DropzoneFileRejection, type DropzonePolicy, formatDropzoneFileSize } from "@/components/control-ui/lib/dropzone-validation";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "@/components/control-ui/ui/item";
 
@@ -395,6 +396,7 @@ function DropzoneItemRemove({
   ref,
   ...props
 }: ComponentProps<typeof Button> & { label: string; onRemove: () => void }) {
+  const CloseGlyph = useSkinIcon("close", XIcon);
   const context = useDropzoneContext();
   const focusTargets = useContext(DropzoneFocusContext);
   const removeRef = useFocusTargetRef("remove", ref);
@@ -415,7 +417,7 @@ function DropzoneItemRemove({
         onRemove();
       }}
     >
-      {children ?? <XIcon aria-hidden="true" />}
+      {children ?? <CloseGlyph aria-hidden="true" />}
     </Button>
   );
 }
@@ -470,10 +472,14 @@ function DropzoneFeedback({
   size: DropzoneSize;
   messages?: DropzoneFeedbackMessages;
 }) {
-  let icon: ReactNode = <CloudUpload aria-hidden="true" />;
+  const UploadGlyph = useSkinIcon("upload", CloudUpload);
+  const SpinnerGlyph = useSkinIcon("spinner", LoaderCircle);
+  const ErrorGlyph = useSkinIcon("error", CircleAlertIcon);
+  const SearchGlyph = useSkinIcon("search", Search);
+  let icon: ReactNode = <UploadGlyph aria-hidden="true" />;
   if (state === "processing") {
     icon = (
-      <LoaderCircle
+      <SpinnerGlyph
         data-control-ui="dropzone"
         data-control-family="dropzone"
         data-slot="feedback-spinner"
@@ -482,9 +488,9 @@ function DropzoneFeedback({
       />
     );
   } else if (state === "reject") {
-    icon = <CircleAlertIcon aria-hidden="true" />;
+    icon = <ErrorGlyph aria-hidden="true" />;
   } else if (state === "unknown") {
-    icon = <Search aria-hidden="true" />;
+    icon = <SearchGlyph aria-hidden="true" />;
   }
 
   return (
@@ -510,10 +516,11 @@ function DropzoneFeedback({
 }
 
 function DefaultFile({ file }: { file: File }) {
+  const FileGlyph = useSkinIcon("file", FileIcon);
   return (
     <Item variant="muted">
       <ItemMedia>
-        <FileIcon aria-hidden="true" />
+        <FileGlyph aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
         <ItemTitle className="wrap-anywhere">{file.name}</ItemTitle>
@@ -532,10 +539,11 @@ const rejectedItemStyle = {
 };
 
 function DefaultRejection({ rejection }: { rejection: DropzoneFileRejection }) {
+  const ErrorGlyph = useSkinIcon("error", CircleAlertIcon);
   return (
     <Item variant="muted" style={rejectedItemStyle}>
       <ItemMedia>
-        <CircleAlertIcon aria-hidden="true" />
+        <ErrorGlyph aria-hidden="true" />
       </ItemMedia>
       <ItemContent>
         <ItemTitle className="wrap-anywhere">{rejection.file.name}</ItemTitle>

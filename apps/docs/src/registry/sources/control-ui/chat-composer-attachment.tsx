@@ -7,6 +7,7 @@ import { useHoldChatComposerOpen } from "@/components/control-ui/chat-composer";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { ChatComposerAttachmentKnobStyle } from "@/components/control-ui/knob-contracts/chat-composer-attachment-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -413,6 +414,7 @@ export function ChatComposerAttachmentRemove({
   "aria-label": ariaLabel,
   ...props
 }: ChatComposerAttachmentRemoveProps) {
+  const CloseGlyph = useSkinIcon("close", XIcon);
   const { name, onRemove, removeLabel } = useChatComposerAttachmentContext();
 
   if (!onRemove) return null;
@@ -435,7 +437,7 @@ export function ChatComposerAttachmentRemove({
       onClick={handleClick}
       {...props}
     >
-      {children ?? <XIcon aria-hidden="true" />}
+      {children ?? <CloseGlyph aria-hidden="true" />}
     </Button>
   );
 }

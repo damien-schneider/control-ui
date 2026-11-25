@@ -95,6 +95,20 @@ export function AppTheme({ children }: { children: ReactNode }) {
   indicator; `sidebar`, `button-group`, `toggle-group`, `checkbox-group`, and `radio-group` accept a hover indicator.
   Each component's own indicator prop overrides the skin default for one instance.
 
+  Set `icons` to replace the glyphs components draw for themselves, such as the Select chevron, the Toast status
+  icons, the Spinner, and popup close buttons. Keys are semantic names (`chevronDown`, `close`, `check`, `success`,
+  `spinner`, …), and each value is a component that receives the SVG props the default would receive, including
+  `className` and `aria-hidden`. A key you leave out keeps the component's built-in glyph. Icons passed to a component
+  as children or props still win over the skin for that instance.
+
+```tsx
+const icons: SkinIcons = { chevronDown: AcmeChevronDown, close: AcmeClose, spinner: AcmeSpinner };
+const skin: ControlUiSkin = { id: "acme", icons };
+```
+
+  Define the `icons` map, like the rest of the skin, at module scope or memoize it. A map rebuilt during render hands
+  components new icon types and remounts every skinned glyph.
+
   The example packs resolve the required token contract explicitly so each has a complete, independent appearance.
   A consumer theme may inherit defaults and override only the values it needs.
 </GuideSection>

@@ -5,6 +5,7 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, use, useState } from "react";
 import type { AudioDeviceSelectKnobStyle } from "@/components/control-ui/knob-contracts/audio-device-select-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import type { SelectProps, SelectTriggerProps } from "@/components/control-ui/ui/select";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/control-ui/ui/select";
@@ -168,6 +169,8 @@ export function AudioDeviceSelect({
 }
 
 export function AudioDeviceSelectTrigger({ children, className, ...props }: SelectTriggerProps) {
+  const SpeakerGlyph = useSkinIcon("speaker", Volume2Icon);
+  const MicrophoneGlyph = useSkinIcon("microphone", MicIcon);
   const context = useAudioDeviceSelect();
   return (
     <SelectTrigger
@@ -184,9 +187,9 @@ export function AudioDeviceSelectTrigger({ children, className, ...props }: Sele
       {children ?? (
         <>
           {context.kind === "output" ? (
-            <Volume2Icon aria-hidden="true" className="size-4 shrink-0" />
+            <SpeakerGlyph aria-hidden="true" className="size-4 shrink-0" />
           ) : (
-            <MicIcon aria-hidden="true" className="size-4 shrink-0" />
+            <MicrophoneGlyph aria-hidden="true" className="size-4 shrink-0" />
           )}
           <AudioDeviceSelectValue />
         </>

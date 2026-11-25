@@ -4,6 +4,8 @@ import { Command as CommandPrimitive, useCommandState } from "cmdk";
 import { type ComponentProps, type CSSProperties, type ReactNode, useEffect, useRef } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/control-ui/ui/dialog";
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
@@ -74,8 +76,18 @@ export function CommandDialog({
 
 export type CommandInputProps = Omit<ComponentProps<typeof CommandPrimitive.Input>, "style"> & { style?: CSSProperties & PopupKnobStyle };
 
+function CommandSearchIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <circle cx="7" cy="7" r="4.25" stroke="currentColor" strokeWidth="1.3" />
+      <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function CommandInput({ className, ...props }: CommandInputProps) {
   const hasResults = useCommandState((state) => state.filtered.count > 0);
+  const SearchGlyph = useSkinIcon("search", CommandSearchIcon);
   return (
     <div
       data-control-ui="command"
@@ -87,19 +99,14 @@ export function CommandInput({ className, ...props }: CommandInputProps) {
       data-size="lg"
       className="flex items-center"
     >
-      <svg
+      <SearchGlyph
         data-control-ui="command"
         data-popup-kind="command"
         data-control-family="popup"
         data-slot="input-icon"
-        viewBox="0 0 16 16"
         className="shrink-0"
         aria-hidden="true"
-        fill="none"
-      >
-        <circle cx="7" cy="7" r="4.25" stroke="currentColor" strokeWidth="1.3" />
-        <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      </svg>
+      />
       <CommandPrimitive.Input
         asChild
         data-control-ui="command"
@@ -178,6 +185,7 @@ export function CommandEmpty({
   description = "Try a different search term.",
   ...props
 }: CommandEmptyProps) {
+  const SearchGlyph = useSkinIcon("search", CommandSearchIcon);
   return (
     <CommandPrimitive.Empty
       asChild
@@ -193,7 +201,7 @@ export function CommandEmpty({
           <Empty>
             <EmptyHeader>
               <EmptyMedia>
-                <CommandEmptyIcon />
+                <SearchGlyph aria-hidden="true" />
               </EmptyMedia>
               <EmptyTitle>{title}</EmptyTitle>
               {description ? <EmptyDescription>{description}</EmptyDescription> : null}
@@ -220,15 +228,6 @@ export function CommandLoading({ label = "Loading results", className, ...props 
       className={className}
       {...props}
     />
-  );
-}
-
-function CommandEmptyIcon() {
-  return (
-    <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
-      <circle cx="7" cy="7" r="4.25" stroke="currentColor" strokeWidth="1.3" />
-      <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-    </svg>
   );
 }
 

@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { type ComponentProps, type MouseEventHandler, type ReactNode, useId, useRef, useState } from "react";
 import { ChatComposerAttachment, ChatComposerAttachments } from "@/components/control-ui/chat-composer-attachment";
+import type { SkinIconComponent, SkinIconName } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   DropdownMenu,
@@ -37,30 +39,49 @@ import { useMarkdownEditor, useMarkdownEditorSnapshot } from "./context";
 import { markdownHeadingLevels } from "./engine";
 import { markdownImageTypes } from "./uploads";
 
-type MarkdownEditorFormatAction = { label: string; Icon: typeof BoldIcon; active: boolean; disabled?: boolean; run: () => void };
+type MarkdownEditorFormatAction = {
+  label: string;
+  icon: SkinIconName;
+  fallbackIcon: SkinIconComponent;
+  active: boolean;
+  disabled?: boolean;
+  run: () => void;
+};
 
 export function useMarkdownEditorFormatActions() {
   const { engine, labels } = useMarkdownEditor();
   const { marks: mark, blocks: block, inlineOnly } = useMarkdownEditorSnapshot();
   const marks: MarkdownEditorFormatAction[] = [
-    { label: labels.bold, Icon: BoldIcon, active: mark.bold, run: () => engine?.toggleMark("bold") },
-    { label: labels.italic, Icon: ItalicIcon, active: mark.italic, run: () => engine?.toggleMark("italic") },
-    { label: labels.strikethrough, Icon: StrikethroughIcon, active: mark.strike, run: () => engine?.toggleMark("strike") },
-    { label: labels.inlineCode, Icon: CodeIcon, active: mark.code, run: () => engine?.toggleMark("code") },
+    { label: labels.bold, icon: "bold", fallbackIcon: BoldIcon, active: mark.bold, run: () => engine?.toggleMark("bold") },
+    { label: labels.italic, icon: "italic", fallbackIcon: ItalicIcon, active: mark.italic, run: () => engine?.toggleMark("italic") },
+    {
+      label: labels.strikethrough,
+      icon: "strikethrough",
+      fallbackIcon: StrikethroughIcon,
+      active: mark.strike,
+      run: () => engine?.toggleMark("strike"),
+    },
+    { label: labels.inlineCode, icon: "code", fallbackIcon: CodeIcon, active: mark.code, run: () => engine?.toggleMark("code") },
   ];
-  const blockAction = (label: string, Icon: typeof BoldIcon, type: keyof typeof block): MarkdownEditorFormatAction => ({
+  const blockAction = (
+    label: string,
+    icon: SkinIconName,
+    fallbackIcon: SkinIconComponent,
+    type: keyof typeof block,
+  ): MarkdownEditorFormatAction => ({
     label,
-    Icon,
+    icon,
+    fallbackIcon,
     active: block[type],
     disabled: inlineOnly,
     run: () => engine?.toggleBlock(type),
   });
   const blocks = [
-    blockAction(labels.bulletList, ListIcon, "bulletList"),
-    blockAction(labels.orderedList, ListOrderedIcon, "orderedList"),
-    blockAction(labels.taskList, ListChecksIcon, "taskList"),
-    blockAction(labels.quote, QuoteIcon, "blockquote"),
-    blockAction(labels.codeBlock, SquareCodeIcon, "codeBlock"),
+    blockAction(labels.bulletList, "bulletList", ListIcon, "bulletList"),
+    blockAction(labels.orderedList, "orderedList", ListOrderedIcon, "orderedList"),
+    blockAction(labels.taskList, "taskList", ListChecksIcon, "taskList"),
+    blockAction(labels.quote, "quote", QuoteIcon, "blockquote"),
+    blockAction(labels.codeBlock, "codeBlock", SquareCodeIcon, "codeBlock"),
   ];
   return { marks, blocks };
 }
@@ -73,7 +94,8 @@ export function MarkdownEditorFormatButton({
   onMouseDown?: MouseEventHandler<HTMLButtonElement>;
 }) {
   const { editable } = useMarkdownEditor();
-  const { label, Icon, active, disabled, run } = action;
+  const { label, icon, fallbackIcon, active, disabled, run } = action;
+  const ActionGlyph = useSkinIcon(icon, fallbackIcon);
   return (
     <Tooltip>
       <TooltipTrigger
@@ -89,7 +111,7 @@ export function MarkdownEditorFormatButton({
           />
         }
       >
-        <Icon aria-hidden="true" />
+        <ActionGlyph aria-hidden="true" />
       </TooltipTrigger>
       <TooltipContent>{label}</TooltipContent>
     </Tooltip>
@@ -98,19 +120,22 @@ export function MarkdownEditorFormatButton({
 
 function MarkdownEditorHistoryButton({
   label,
-  Icon,
+  icon,
+  fallbackIcon,
   disabled,
   onClick,
 }: {
   label: string;
-  Icon: typeof UndoIcon;
+  icon: SkinIconName;
+  fallbackIcon: SkinIconComponent;
   disabled: boolean;
   onClick: () => void;
 }) {
+  const HistoryGlyph = useSkinIcon(icon, fallbackIcon);
   return (
     <Tooltip>
       <TooltipTrigger render={<ToolbarButton type="button" iconOnly aria-label={label} disabled={disabled} onClick={onClick} />}>
-        <Icon aria-hidden="true" />
+        <HistoryGlyph aria-hidden="true" />
       </TooltipTrigger>
       <TooltipContent>{label}</TooltipContent>
     </Tooltip>
@@ -136,13 +161,15 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
             <ToolbarSeparator />
             <MarkdownEditorHistoryButton
               label={labels.undo}
-              Icon={UndoIcon}
+              icon="undo"
+              fallbackIcon={UndoIcon}
               disabled={!editable || !canUndo}
               onClick={() => engine?.undo()}
             />
             <MarkdownEditorHistoryButton
               label={labels.redo}
-              Icon={RedoIcon}
+              icon="redo"
+              fallbackIcon={RedoIcon}
               disabled={!editable || !canRedo}
               onClick={() => engine?.redo()}
             />
@@ -163,6 +190,7 @@ export function MarkdownEditorToolbar({ children }: { children?: ReactNode }) {
 }
 
 export function MarkdownEditorHeading() {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", ChevronDownIcon);
   const { engine, editable, labels } = useMarkdownEditor();
   const { heading, inlineOnly } = useMarkdownEditorSnapshot();
   const current = heading ? labels.headingShort(heading) : labels.text;
@@ -175,7 +203,7 @@ export function MarkdownEditorHeading() {
         render={<DropdownMenuTrigger />}
       >
         <span>{current}</span>
-        <ChevronDownIcon aria-hidden="true" />
+        <ChevronDownGlyph aria-hidden="true" />
       </ToolbarButton>
       <DropdownMenuContent finalFocus={() => engine?.element ?? true}>
         <DropdownMenuRadioGroup
@@ -220,6 +248,7 @@ function MarkdownEditorUrlField({
 }
 
 export function MarkdownEditorLink() {
+  const LinkGlyph = useSkinIcon("link", LinkIcon);
   const { engine, editable, labels, isUrlAllowed } = useMarkdownEditor();
   const { link } = useMarkdownEditorSnapshot();
   const [open, setOpen] = useState(false);
@@ -246,7 +275,7 @@ export function MarkdownEditorLink() {
         <TooltipTrigger
           render={<ToolbarButton type="button" iconOnly aria-label={labels.link} disabled={!editable} render={<PopoverTrigger />} />}
         >
-          <LinkIcon aria-hidden="true" />
+          <LinkGlyph aria-hidden="true" />
         </TooltipTrigger>
         <TooltipContent>{labels.link}</TooltipContent>
       </Tooltip>
@@ -294,6 +323,7 @@ export function MarkdownEditorLink() {
 }
 
 export function MarkdownEditorImage() {
+  const ImageGlyph = useSkinIcon("image", ImageIcon);
   const { engine, editable, labels, canUpload, upload, isUrlAllowed } = useMarkdownEditor();
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
@@ -317,7 +347,7 @@ export function MarkdownEditorImage() {
         <TooltipTrigger
           render={<ToolbarButton type="button" iconOnly aria-label={labels.image} disabled={!editable} render={<PopoverTrigger />} />}
         >
-          <ImageIcon aria-hidden="true" />
+          <ImageGlyph aria-hidden="true" />
         </TooltipTrigger>
         <TooltipContent>{labels.image}</TooltipContent>
       </Tooltip>

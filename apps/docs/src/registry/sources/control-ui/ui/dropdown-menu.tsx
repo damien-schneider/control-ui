@@ -9,8 +9,8 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 type DropdownMenuStyledProps<PrimitiveProps> = Omit<PrimitiveProps, "className" | "style"> & {
@@ -192,6 +192,7 @@ export function DropdownMenuGroup(props: DropdownMenuGroupProps) {
 }
 
 export function DropdownMenuCheckboxItem({ className, children, ...props }: DropdownMenuCheckboxItemProps) {
+  const CheckGlyph = useSkinIcon("check", DropdownMenuCheck);
   return (
     <MenuPrimitive.CheckboxItem
       data-control-ui="dropdown-menu"
@@ -202,7 +203,7 @@ export function DropdownMenuCheckboxItem({ className, children, ...props }: Drop
       {...mergeProps(popupItemFocusProps, props)}
     >
       <MenuPrimitive.CheckboxItemIndicator className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
-        <DropdownMenuCheck />
+        <CheckGlyph className="size-3" aria-hidden="true" />
       </MenuPrimitive.CheckboxItemIndicator>
       {children}
     </MenuPrimitive.CheckboxItem>
@@ -214,6 +215,7 @@ export function DropdownMenuRadioGroup(props: DropdownMenuRadioGroupProps) {
 }
 
 export function DropdownMenuRadioItem({ className, children, value, ...props }: DropdownMenuRadioItemProps) {
+  const CheckGlyph = useSkinIcon("check", DropdownMenuCheck);
   return (
     <MenuPrimitive.RadioItem
       value={value}
@@ -225,16 +227,16 @@ export function DropdownMenuRadioItem({ className, children, value, ...props }: 
       {...mergeProps(popupItemFocusProps, props)}
     >
       <MenuPrimitive.RadioItemIndicator className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
-        <DropdownMenuCheck />
+        <CheckGlyph className="size-3" aria-hidden="true" />
       </MenuPrimitive.RadioItemIndicator>
       {children}
     </MenuPrimitive.RadioItem>
   );
 }
 
-function DropdownMenuCheck() {
+function DropdownMenuCheck(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
       <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

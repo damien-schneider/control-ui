@@ -2,6 +2,8 @@
 
 import type { CSSProperties } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 
 type PopupStyle = CSSProperties & PopupKnobStyle;
@@ -19,12 +21,19 @@ export type PopupCloseButtonProps = Omit<ButtonProps, "children" | "iconOnly"> &
   label: string;
 };
 
+function PopupCloseIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function PopupCloseButton({ label, variant = "ghost", size = "xs", ...props }: PopupCloseButtonProps) {
+  const CloseGlyph = useSkinIcon("close", PopupCloseIcon);
   return (
     <Button data-popup-part="close" variant={variant} size={size} iconOnly {...props}>
-      <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
-        <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      </svg>
+      <CloseGlyph aria-hidden="true" />
       <span className="sr-only">{label}</span>
     </Button>
   );

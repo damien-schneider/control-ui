@@ -9,6 +9,7 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { ContextKnobStyle } from "@/components/control-ui/knob-contracts/context-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   Popover,
@@ -555,6 +556,7 @@ export function ContextClose({
   children,
   ...props
 }: ContextCloseProps) {
+  const CloseGlyph = useSkinIcon("close", X);
   return (
     <Button
       {...props}
@@ -565,7 +567,7 @@ export function ContextClose({
       aria-label={ariaLabel}
       className={cn("ms-auto", className)}
     >
-      {children ?? <X aria-hidden="true" />}
+      {children ?? <CloseGlyph aria-hidden="true" />}
     </Button>
   );
 }

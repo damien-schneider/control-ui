@@ -20,7 +20,8 @@ import {
 } from "react-day-picker";
 import type { CalendarKnobStyle } from "@/components/control-ui/knob-contracts/calendar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import type { SkinIconComponent, SkinIconName, SkinIconProps } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 
 // react-day-picker v10 — Base UI ships no calendar, so this is one primitive reaching outside it.
 // CalendarProps stays here rather than contracts.ts, which every component installs, so plain Button install never pulls this import.
@@ -32,12 +33,53 @@ const dayButtonClasses = "flex w-full items-center justify-center";
 
 const navButtonClasses = "inline-flex items-center justify-center";
 
-const chevronPathByOrientation = {
-  left: "M10 3 5.5 8 10 13",
-  right: "M6 3 10.5 8 6 13",
-  up: "M3 10 8 5.5 13 10",
-  down: "M3 6 8 10.5 13 6",
-} satisfies Record<NonNullable<ChevronProps["orientation"]>, string>;
+const chevronStrokeProps = {
+  viewBox: "0 0 16 16",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+} satisfies SkinIconProps;
+
+function CalendarChevronLeftIcon(props: SkinIconProps) {
+  return (
+    <svg {...chevronStrokeProps} aria-hidden="true" {...props}>
+      <path d="M10 3 5.5 8 10 13" />
+    </svg>
+  );
+}
+
+function CalendarChevronRightIcon(props: SkinIconProps) {
+  return (
+    <svg {...chevronStrokeProps} aria-hidden="true" {...props}>
+      <path d="M6 3 10.5 8 6 13" />
+    </svg>
+  );
+}
+
+function CalendarChevronUpIcon(props: SkinIconProps) {
+  return (
+    <svg {...chevronStrokeProps} aria-hidden="true" {...props}>
+      <path d="M3 10 8 5.5 13 10" />
+    </svg>
+  );
+}
+
+function CalendarChevronDownIcon(props: SkinIconProps) {
+  return (
+    <svg {...chevronStrokeProps} aria-hidden="true" {...props}>
+      <path d="M3 6 8 10.5 13 6" />
+    </svg>
+  );
+}
+
+const chevronIconByOrientation = {
+  left: { name: "chevronLeft", fallback: CalendarChevronLeftIcon },
+  right: { name: "chevronRight", fallback: CalendarChevronRightIcon },
+  up: { name: "chevronUp", fallback: CalendarChevronUpIcon },
+  down: { name: "chevronDown", fallback: CalendarChevronDownIcon },
+} satisfies Record<NonNullable<ChevronProps["orientation"]>, { name: SkinIconName; fallback: SkinIconComponent }>;
 
 export function Calendar({ className, showOutsideDays, style, components, ...props }: CalendarProps) {
   const skin = useSkin();
@@ -273,26 +315,19 @@ function CalendarDayButton({ day, modifiers, className, ...props }: DayButtonPro
 
 function CalendarChevron({ className, orientation }: ChevronProps) {
   const { dayPickerProps } = useDayPicker();
-  const path = chevronPathByOrientation[orientation ?? "down"];
+  const chevronIcon = chevronIconByOrientation[orientation ?? "down"];
+  const ChevronGlyph = useSkinIcon(chevronIcon.name, chevronIcon.fallback);
   // the library swaps the previous/next chevrons only for navLayout="around" with an explicit dir prop; every other RTL case mirrors in CSS
   const librarySwaps = dayPickerProps.navLayout === "around" && dayPickerProps.dir === "rtl";
   const mirrorsInRtl = (orientation === "left" || orientation === "right") && !librarySwaps;
   return (
-    <svg
+    <ChevronGlyph
       data-control-ui="calendar"
       data-control-family="calendar"
       data-slot="chevron"
-      viewBox="0 0 16 16"
       className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       aria-hidden="true"
       data-icon-dir={mirrorsInRtl ? "inline" : undefined}
-    >
-      <path d={path} />
-    </svg>
+    />
   );
 }

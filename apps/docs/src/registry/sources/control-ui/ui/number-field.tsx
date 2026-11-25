@@ -6,6 +6,8 @@ import { createContext, useContext } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { FieldKnobStyle } from "@/components/control-ui/knob-contracts/field-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { useInputGroupControlRef, useIsInsideInputGroup } from "@/components/control-ui/ui/input-group";
 
 export type NumberFieldChangeReason =
@@ -144,6 +146,7 @@ export function NumberFieldInput({ ref, className, ...props }: NumberFieldInputP
 }
 
 export function NumberFieldDecrement({ className, children, ...props }: NumberFieldDecrementProps) {
+  const MinusGlyph = useSkinIcon("minus", NumberFieldMinusIcon);
   return (
     <NumberFieldPrimitive.Decrement
       data-control-ui="number-field"
@@ -157,12 +160,13 @@ export function NumberFieldDecrement({ className, children, ...props }: NumberFi
       )}
       {...props}
     >
-      {children ?? <MinusIcon />}
+      {children ?? <MinusGlyph aria-hidden="true" />}
     </NumberFieldPrimitive.Decrement>
   );
 }
 
 export function NumberFieldIncrement({ className, children, ...props }: NumberFieldIncrementProps) {
+  const PlusGlyph = useSkinIcon("plus", NumberFieldPlusIcon);
   return (
     <NumberFieldPrimitive.Increment
       data-control-ui="number-field"
@@ -176,7 +180,7 @@ export function NumberFieldIncrement({ className, children, ...props }: NumberFi
       )}
       {...props}
     >
-      {children ?? <PlusIcon />}
+      {children ?? <PlusGlyph aria-hidden="true" />}
     </NumberFieldPrimitive.Increment>
   );
 }
@@ -211,17 +215,17 @@ export function NumberFieldScrubArea({ className, children, direction = "horizon
   );
 }
 
-function MinusIcon() {
+function NumberFieldMinusIcon(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true" {...props}>
       <path d="M3 8h10" />
     </svg>
   );
 }
 
-function PlusIcon() {
+function NumberFieldPlusIcon(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true" {...props}>
       <path d="M8 3v10M3 8h10" />
     </svg>
   );

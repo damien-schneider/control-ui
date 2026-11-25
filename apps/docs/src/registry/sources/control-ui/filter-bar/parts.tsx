@@ -6,6 +6,7 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { useEffect, useId, useRef } from "react";
 import type { FilterBarKnobStyle } from "@/components/control-ui/knob-contracts/filter-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 import type { ComboboxInputProps } from "@/components/control-ui/ui/combobox";
 import { useFilterBarContext } from "./context";
@@ -42,6 +43,7 @@ function chipSegments(
 }
 
 function FilterBarChipContent({ item, readOnly = false, className, ref, ...props }: FilterBarChipProps) {
+  const CloseGlyph = useSkinIcon("close", XIcon);
   const context = useFilterBarContext();
   const field = context.fields.find((candidate) => candidate.id === item.fieldId);
   const operator = context.operators.find((candidate) => candidate.id === item.operatorId);
@@ -77,7 +79,7 @@ function FilterBarChipContent({ item, readOnly = false, className, ref, ...props
             onClick={() => context.remove(item)}
             onKeyDown={(event) => context.navigate(event, item.id, "remove")}
           >
-            <XIcon aria-hidden="true" />
+            <CloseGlyph aria-hidden="true" />
           </Button>
         )}
       </div>
@@ -193,6 +195,7 @@ function FilterBarChipContentWithEditor({ item, renderChip }: { item: FilterBarI
 }
 
 export function FilterBarAddButton({ className, children = "Add filter", onClick, onKeyDown, ref, ...props }: FilterBarAddButtonProps) {
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
   const context = useFilterBarContext();
   const owner = useId();
   const button = useRender({
@@ -217,7 +220,7 @@ export function FilterBarAddButton({ className, children = "Add filter", onClick
           context.navigate(event);
         }}
       >
-        <PlusIcon aria-hidden="true" />
+        <PlusGlyph aria-hidden="true" />
         {children}
       </Button>
     ),

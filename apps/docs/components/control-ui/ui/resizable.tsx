@@ -5,6 +5,8 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Group, Panel, Separator } from "react-resizable-panels";
 import type { ResizableKnobStyle } from "@/components/control-ui/knob-contracts/resizable-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type ResizableLayout = { [panelId: string]: number };
 
@@ -171,6 +173,7 @@ export function ResizableHandle({
   const { orientation, disableCursor } = useContext(ResizableGroupContext);
   const handleRef = useRef<HTMLDivElement>(null);
   useResizeCursor(handleRef, disableCursor);
+  const GripVerticalGlyph = useSkinIcon("gripVertical", ResizableGripIcon);
   const axis = orientation === "horizontal" ? "vertical" : "horizontal";
   return (
     <Separator
@@ -197,7 +200,7 @@ export function ResizableHandle({
           data-axis={axis}
           className="absolute top-1/2 left-1/2 z-(--z-raised) flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
         >
-          <GripIcon className={axis === "horizontal" ? "rotate-90" : undefined} />
+          <GripVerticalGlyph aria-hidden="true" className={axis === "horizontal" ? "rotate-90" : undefined} />
         </span>
       ) : null}
       {children}
@@ -339,9 +342,9 @@ export function ResizableFloatingPanel({
   );
 }
 
-function GripIcon({ className }: { className?: string }) {
+function ResizableGripIcon(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 6 10" width="6" height="10" fill="currentColor" aria-hidden="true" className={className}>
+    <svg viewBox="0 0 6 10" width="6" height="10" fill="currentColor" aria-hidden="true" {...props}>
       <circle cx="1" cy="1" r="1" />
       <circle cx="5" cy="1" r="1" />
       <circle cx="1" cy="5" r="1" />

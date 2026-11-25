@@ -10,6 +10,8 @@ import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { PhoneInputKnobStyle } from "@/components/control-ui/knob-contracts/phone-input-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { normalizePhoneInputText, normalizePhoneInputValue } from "@/components/control-ui/lib/phone-input-format";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/control-ui/ui/command";
 import { Input } from "@/components/control-ui/ui/input";
 import { InputGroup, InputGroupAddon } from "@/components/control-ui/ui/input-group";
@@ -125,6 +127,7 @@ function PhoneCountrySelect({
   knobStyle,
 }: PhoneCountrySelectProps) {
   const [open, setOpen] = useState(false);
+  const ChevronDownGlyph = useSkinIcon("chevronDown", PhoneInputChevronIcon);
   const selectedOption = options.find((option) => option.value === value);
   const selectedCallingCode = value ? `+${getCountryCallingCode(value)}` : undefined;
   const accessibleLabel = selectedOption
@@ -146,7 +149,13 @@ function PhoneCountrySelect({
           className="inline-flex h-full items-center justify-center"
         >
           <CountryFlag country={value} />
-          <ChevronIcon open={open} />
+          <ChevronDownGlyph
+            data-control-ui="phone-input"
+            data-control-family="phone-input"
+            data-slot="chevron"
+            data-open={open ? "true" : undefined}
+            aria-hidden="true"
+          />
         </PopoverTrigger>
         <PopoverContent align="start" padding="none" className="w-[min(20rem,calc(100vw-2rem))]">
           <div data-control-ui="phone-input" data-control-family="phone-input" data-slot="root" className="contents" style={knobStyle}>
@@ -177,7 +186,7 @@ function PhoneCountrySelect({
                           </span>
                         ) : null}
                         {selected ? <span className="sr-only">{selectedLabel}</span> : null}
-                        <CheckIcon visible={selected} />
+                        <CountryCheck visible={selected} />
                       </CommandItem>
                     );
                   })}
@@ -192,7 +201,18 @@ function PhoneCountrySelect({
 }
 
 function CountryFlag({ country }: { country?: PhoneInputCountry }) {
-  if (!country) return <GlobeIcon />;
+  const GlobeGlyph = useSkinIcon("globe", PhoneInputGlobeIcon);
+  if (!country) {
+    return (
+      <GlobeGlyph
+        data-control-ui="phone-input"
+        data-control-family="phone-input"
+        data-slot="flag"
+        className="size-4 shrink-0"
+        aria-hidden="true"
+      />
+    );
+  }
   const Flag = FLAG_COMPONENTS[country];
   // empty title renders no <title>, keeping flag decorative beside country name
   return Flag ? (
@@ -311,23 +331,24 @@ export function PhoneInput(props: PhoneInputProps) {
   );
 }
 
-function ChevronIcon({ open }: { open: boolean }) {
+function PhoneInputChevronIcon(props: SkinIconProps) {
   return (
-    <svg
-      data-control-ui="phone-input"
-      data-control-family="phone-input"
-      data-slot="chevron"
-      viewBox="0 0 12 12"
-      data-open={open ? "true" : undefined}
-      aria-hidden="true"
-      fill="none"
-    >
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
       <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-function CheckIcon({ visible }: { visible: boolean }) {
+function PhoneInputCheckIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function CountryCheck({ visible }: { visible: boolean }) {
+  const CheckGlyph = useSkinIcon("check", PhoneInputCheckIcon);
   return (
     <span
       data-control-ui="phone-input"
@@ -337,24 +358,14 @@ function CheckIcon({ visible }: { visible: boolean }) {
       className="flex shrink-0 items-center justify-center"
       aria-hidden="true"
     >
-      <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
-        <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+      <CheckGlyph aria-hidden="true" />
     </span>
   );
 }
 
-function GlobeIcon() {
+function PhoneInputGlobeIcon(props: SkinIconProps) {
   return (
-    <svg
-      data-control-ui="phone-input"
-      data-control-family="phone-input"
-      data-slot="flag"
-      viewBox="0 0 16 16"
-      className="size-4 shrink-0"
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.2" />
       <path
         d="M2.75 8h10.5M8 2.5c1.45 1.5 2.15 3.34 2.15 5.5S9.45 12 8 13.5C6.55 12 5.85 10.16 5.85 8S6.55 4 8 2.5Z"

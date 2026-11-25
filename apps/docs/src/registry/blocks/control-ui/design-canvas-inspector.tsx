@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   ColorPicker,
@@ -87,6 +88,12 @@ export type DesignCanvasInspectorProps = {
 };
 
 export function DesignCanvasInspector({ layer, onLayerChange, labels: labelOverrides }: DesignCanvasInspectorProps) {
+  const RotateGlyph = useSkinIcon("rotate", RotateCwIcon);
+  const LinkGlyph = useSkinIcon("link", Link2Icon);
+  const UnlinkGlyph = useSkinIcon("unlink", Unlink2Icon);
+  const BlendGlyph = useSkinIcon("blend", BlendIcon);
+  const CornerRadiusGlyph = useSkinIcon("cornerRadius", SquareRoundCornerIcon);
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
   const labels = { ...designCanvasInspectorLabels, ...labelOverrides };
   const [aspectRatioLocked, setAspectRatioLocked] = useState(false);
 
@@ -112,7 +119,7 @@ export function DesignCanvasInspector({ layer, onLayerChange, labels: labelOverr
         <ScrubField
           label={labels.rotation}
           className="col-start-1"
-          prefix={<RotateCwIcon />}
+          prefix={<RotateGlyph />}
           value={layer.rotation}
           min={-360}
           max={360}
@@ -144,14 +151,14 @@ export function DesignCanvasInspector({ layer, onLayerChange, labels: labelOverr
           pressed={aspectRatioLocked}
           onPressedChange={setAspectRatioLocked}
         >
-          {aspectRatioLocked ? <Link2Icon /> : <Unlink2Icon />}
+          {aspectRatioLocked ? <LinkGlyph /> : <UnlinkGlyph />}
         </Toggle>
       </InspectorSection>
 
       <InspectorSection title={labels.appearance}>
         <ScrubField
           label={labels.opacity}
-          prefix={<BlendIcon />}
+          prefix={<BlendGlyph />}
           suffix="%"
           value={layer.opacity}
           min={0}
@@ -161,7 +168,7 @@ export function DesignCanvasInspector({ layer, onLayerChange, labels: labelOverr
         {hasCornerRadius ? (
           <ScrubField
             label={labels.cornerRadius}
-            prefix={<SquareRoundCornerIcon />}
+            prefix={<CornerRadiusGlyph />}
             value={layer.cornerRadius}
             min={0}
             onValueChange={(cornerRadius) => update({ cornerRadius })}
@@ -174,7 +181,7 @@ export function DesignCanvasInspector({ layer, onLayerChange, labels: labelOverr
         action={
           layer.fill ? null : (
             <Button size="xs" variant="ghost" iconOnly aria-label={labels.addFill} onClick={() => update({ fill: DEFAULT_FILL })}>
-              <PlusIcon />
+              <PlusGlyph />
             </Button>
           )
         }
@@ -243,6 +250,9 @@ type FillRowProps = {
 };
 
 function FillRow({ labels, fill, onFillChange, onRemove }: FillRowProps) {
+  const VisibleGlyph = useSkinIcon("visible", EyeIcon);
+  const HiddenGlyph = useSkinIcon("hidden", EyeOffIcon);
+  const MinusGlyph = useSkinIcon("minus", MinusIcon);
   return (
     <>
       <ColorPicker value={fill.color} alpha={false} onValueChange={(color) => onFillChange({ ...fill, color })}>
@@ -285,10 +295,10 @@ function FillRow({ labels, fill, onFillChange, onRemove }: FillRowProps) {
           pressed={fill.visible}
           onPressedChange={(visible) => onFillChange({ ...fill, visible })}
         >
-          {fill.visible ? <EyeIcon /> : <EyeOffIcon />}
+          {fill.visible ? <VisibleGlyph /> : <HiddenGlyph />}
         </Toggle>
         <Button size="sm" variant="ghost" iconOnly aria-label={labels.removeFill} onClick={onRemove}>
-          <MinusIcon />
+          <MinusGlyph />
         </Button>
       </div>
     </>

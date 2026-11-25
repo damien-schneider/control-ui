@@ -22,7 +22,7 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { attachComposerEngagement, claimComposerPress } from "@/components/control-ui/lib/composer-engagement";
 import { focusTextControlOnPress } from "@/components/control-ui/lib/press-focus";
 import { hasSkinAdornment, skinAdornment } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 
@@ -291,12 +291,13 @@ export function ChatComposerSubmit({
   children = "Send",
   onStop,
   stopLabel = "Stop response",
-  stopIcon = <Square aria-hidden="true" className="fill-current" />,
+  stopIcon,
   onClick,
   "aria-label": ariaLabel,
   ...props
 }: ChatComposerSubmitProps) {
   const input = useChatComposerContext();
+  const StopGlyph = useSkinIcon("stop", Square);
   const isStop = input.isLocked && onStop !== undefined;
   const isBusy = input.isLocked && !isStop;
   const stopName = iconOnly ? stopLabel : undefined;
@@ -307,7 +308,10 @@ export function ChatComposerSubmit({
   }
 
   function content() {
-    if (isStop) return iconOnly ? stopIcon : stopLabel;
+    if (isStop) {
+      if (!iconOnly) return stopLabel;
+      return stopIcon === undefined ? <StopGlyph aria-hidden="true" className="fill-current" /> : stopIcon;
+    }
     if (!isBusy) return children;
     if (iconOnly) return <Spinner aria-hidden="true" />;
     return (

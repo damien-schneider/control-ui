@@ -2,6 +2,7 @@
 
 import { PlusIcon } from "lucide-react";
 import { type ReactNode, type RefObject, useRef, useState } from "react";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { useMarkdownEditor } from "../context";
@@ -11,6 +12,7 @@ import { TableGrip } from "./table-grip";
 import { useTableTarget } from "./use-table-target";
 
 export function MarkdownEditorTableControls({ container }: { container: RefObject<HTMLDivElement | null> }) {
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
   const { engine, editable, labels } = useMarkdownEditor();
   const [menu, setMenu] = useState<MarkdownTableAxis | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -60,7 +62,7 @@ export function MarkdownEditorTableControls({ container }: { container: RefObjec
         style={{ top: layout.table.top + layout.table.height, left: visibleLeft, width: visibleRight - visibleLeft }}
         onClick={() => tables.append(table, "row")}
       >
-        <PlusIcon aria-hidden="true" />
+        <PlusGlyph aria-hidden="true" />
       </Button>
       <Button
         type="button"
@@ -72,7 +74,7 @@ export function MarkdownEditorTableControls({ container }: { container: RefObjec
         style={{ top: layout.table.top, left: visibleRight, height: layout.table.height }}
         onClick={() => tables.append(table, "column")}
       >
-        <PlusIcon aria-hidden="true" />
+        <PlusGlyph aria-hidden="true" />
       </Button>
       {status}
     </TableControlsFrame>

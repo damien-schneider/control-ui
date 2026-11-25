@@ -2,6 +2,7 @@
 
 import { GripVerticalIcon } from "lucide-react";
 import { type RefObject, useEffect, useRef, useState } from "react";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { useMarkdownEditor } from "../context";
@@ -23,6 +24,7 @@ function textColumnPoint(element: HTMLElement, point: { x: number; y: number }) 
 }
 
 export function MarkdownEditorDragHandle({ container }: { container: RefObject<HTMLDivElement | null> }) {
+  const GripVerticalGlyph = useSkinIcon("gripVertical", GripVerticalIcon);
   const { engine, editable, labels } = useMarkdownEditor();
   const [block, setBlock] = useState<BlockHandle | null>(null);
   const [announcement, setAnnouncement] = useState("");
@@ -174,7 +176,7 @@ export function MarkdownEditorDragHandle({ container }: { container: RefObject<H
           setBlock(conceal);
         }}
       >
-        <GripVerticalIcon aria-hidden="true" />
+        <GripVerticalGlyph aria-hidden="true" />
       </Button>
       <LiveStatus message={announcement} />
     </>

@@ -4,6 +4,8 @@ import { ChevronDownIcon, MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import type { ComponentProps, ComponentType, CSSProperties } from "react";
 import { useId } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import {
   DropdownMenu,
@@ -55,16 +57,31 @@ export type ThemeDropdownProps = Omit<ComponentProps<typeof DropdownMenuTrigger>
     label?: string;
   };
 
-const systemThemeOption = { value: "system", label: "System", icon: MonitorIcon } satisfies ThemeToggleOption;
+function SystemThemeIcon(props: SkinIconProps) {
+  const ThemeSystemGlyph = useSkinIcon("themeSystem", MonitorIcon);
+  return <ThemeSystemGlyph {...props} />;
+}
+
+function LightThemeIcon(props: SkinIconProps) {
+  const ThemeLightGlyph = useSkinIcon("themeLight", SunIcon);
+  return <ThemeLightGlyph {...props} />;
+}
+
+function DarkThemeIcon(props: SkinIconProps) {
+  const ThemeDarkGlyph = useSkinIcon("themeDark", MoonIcon);
+  return <ThemeDarkGlyph {...props} />;
+}
+
+const systemThemeOption = { value: "system", label: "System", icon: SystemThemeIcon } satisfies ThemeToggleOption;
 
 const defaultThemeOptions: readonly ThemeToggleOption[] = [
-  { value: "light", label: "Light", icon: SunIcon },
-  { value: "dark", label: "Dark", icon: MoonIcon },
+  { value: "light", label: "Light", icon: LightThemeIcon },
+  { value: "dark", label: "Dark", icon: DarkThemeIcon },
   systemThemeOption,
 ];
 
-const defaultSwitchCheckedIcon = <MoonIcon />;
-const defaultSwitchUncheckedIcon = <SunIcon />;
+const defaultSwitchCheckedIcon = <DarkThemeIcon />;
+const defaultSwitchUncheckedIcon = <LightThemeIcon />;
 
 function enabledOptions(options: readonly ThemeToggleOption[]) {
   return options.filter((option) => !option.disabled);
@@ -243,6 +260,7 @@ export function ThemeDropdown({
   "aria-label": ariaLabel,
   ...props
 }: ThemeDropdownProps) {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", ChevronDownIcon);
   const choices = controlOptions(options);
   const current = currentThemeOption(value, choices);
   const CurrentIcon = current.icon;
@@ -252,7 +270,7 @@ export function ThemeDropdown({
       <DropdownMenuTrigger aria-label={ariaLabel ?? `${label}: ${current.label}`} className={cn("min-w-36", className)} {...props}>
         <CurrentIcon aria-hidden />
         <span className="min-w-0 truncate">{current.label}</span>
-        <ChevronDownIcon aria-hidden />
+        <ChevronDownGlyph aria-hidden />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-40">
         <DropdownMenuRadioGroup value={value} onValueChange={onValueChange}>

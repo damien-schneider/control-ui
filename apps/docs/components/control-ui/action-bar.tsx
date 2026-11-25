@@ -7,6 +7,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import type { ActionBarKnobStyle } from "@/components/control-ui/knob-contracts/action-bar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { Swap, SwapItem } from "@/components/control-ui/ui/swap";
@@ -115,6 +116,8 @@ export function ActionBarCopy({
   "aria-label": ariaLabel,
   ...props
 }: ActionBarCopyProps) {
+  const CopyGlyph = useSkinIcon("copy", CopyIcon);
+  const CheckGlyph = useSkinIcon("check", CheckIcon);
   const { copyValue: contextCopyValue, onCopy, onCopyError } = useContext(ActionBarContext);
   const copyValue = value ?? contextCopyValue;
   const { status, copyToClipboard } = useCopyToClipboard({
@@ -153,9 +156,9 @@ export function ActionBarCopy({
   const isIconOnly = children === undefined;
   const swap = (
     <Swap value={copied ? "copied" : "idle"}>
-      <SwapItem value="idle">{children ?? <CopyIcon aria-hidden="true" />}</SwapItem>
+      <SwapItem value="idle">{children ?? <CopyGlyph aria-hidden="true" />}</SwapItem>
       <SwapItem value="copied" aria-hidden="true">
-        {copiedChildren ?? (isIconOnly ? <CheckIcon aria-hidden="true" /> : "Copied")}
+        {copiedChildren ?? (isIconOnly ? <CheckGlyph aria-hidden="true" /> : "Copied")}
       </SwapItem>
     </Swap>
   );
@@ -195,6 +198,7 @@ export type ActionBarEditProps = ActionBarItemBaseProps & {
 };
 
 export function ActionBarEdit({ value, children, disabled, onClick, "aria-label": ariaLabel, ...props }: ActionBarEditProps) {
+  const EditGlyph = useSkinIcon("edit", PencilIcon);
   const { copyValue, editValue: contextEditValue, onEdit, onEditError } = useContext(ActionBarContext);
   const editValue = value ?? contextEditValue ?? copyValue;
 
@@ -217,7 +221,7 @@ export function ActionBarEdit({ value, children, disabled, onClick, "aria-label"
     return (
       <ActionBarItem
         aria-label={ariaLabel ?? "Edit"}
-        icon={<PencilIcon aria-hidden="true" />}
+        icon={<EditGlyph aria-hidden="true" />}
         disabled={itemDisabled}
         onClick={handleClick}
         {...props}

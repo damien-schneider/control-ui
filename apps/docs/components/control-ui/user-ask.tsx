@@ -4,12 +4,12 @@ import { useRender } from "@base-ui/react/use-render";
 import { Check, ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, KeyboardEvent, MouseEvent } from "react";
 import { createContext, useContext, useEffect, useId, useRef } from "react";
-
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { UserAskProps } from "@/components/control-ui/hooks/use-user-ask";
 import { useUserAsk } from "@/components/control-ui/hooks/use-user-ask";
 import type { UserAskKnobStyle } from "@/components/control-ui/knob-contracts/user-ask-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Kbd } from "@/components/control-ui/ui/kbd";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
@@ -157,6 +157,8 @@ export function UserAskPagination({
   className,
   ...props
 }: UserAskPaginationProps) {
+  const ChevronLeftGlyph = useSkinIcon("chevronLeft", ChevronLeft);
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRight);
   const ask = useUserAskContext();
   if (ask.questions.length <= 1) return null;
 
@@ -176,7 +178,7 @@ export function UserAskPagination({
         disabled={ask.activeIndex === 0}
         onClick={() => ask.goTo(ask.activeIndex - 1)}
       >
-        <ChevronLeft aria-hidden="true" data-icon-dir="inline" />
+        <ChevronLeftGlyph aria-hidden="true" data-icon-dir="inline" />
       </Button>
       <span data-control-ui="user-ask" data-control-family="user-ask" data-slot="pagination-count">
         {countLabel(ask.activeIndex + 1, ask.questions.length)}
@@ -189,7 +191,7 @@ export function UserAskPagination({
         disabled={ask.isLastQuestion}
         onClick={() => ask.goTo(ask.activeIndex + 1)}
       >
-        <ChevronRight aria-hidden="true" data-icon-dir="inline" />
+        <ChevronRightGlyph aria-hidden="true" data-icon-dir="inline" />
       </Button>
     </div>
   );
@@ -266,6 +268,7 @@ export function UserAskOption({
   onClick,
   ...props
 }: UserAskOptionProps) {
+  const CheckGlyph = useSkinIcon("check", Check);
   const ask = useUserAskContext();
   const question = useUserAskQuestionContext();
   const key = useId();
@@ -309,7 +312,7 @@ export function UserAskOption({
           data-selected={selected ? "" : undefined}
           className="inline-flex shrink-0 items-center justify-center"
         >
-          {selected ? <Check /> : index + 1}
+          {selected ? <CheckGlyph /> : index + 1}
         </span>
         <span className="min-w-0">{children}</span>
       </button>
@@ -366,6 +369,8 @@ export function UserAskOptionInput({
   ref,
   ...props
 }: UserAskOptionInputProps) {
+  const CheckGlyph = useSkinIcon("check", Check);
+  const EditGlyph = useSkinIcon("edit", PencilLine);
   const ask = useUserAskContext();
   const question = useUserAskQuestionContext();
   const key = useId();
@@ -458,7 +463,7 @@ export function UserAskOptionInput({
           onClick={() => ask.select(question.id, key)}
           className="inline-flex shrink-0 items-center justify-center"
         >
-          <Check />
+          <CheckGlyph />
         </button>
       ) : (
         // biome-ignore lint/a11y/useSemanticElements: the selected freeform row's label is the text input beside it; the indicator exposes checked state and hands focus to that input.
@@ -476,7 +481,7 @@ export function UserAskOptionInput({
           onClick={() => inputRef.current?.focus()}
           className="inline-flex shrink-0 items-center justify-center"
         >
-          <PencilLine />
+          <EditGlyph />
         </button>
       )}
       <input

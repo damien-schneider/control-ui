@@ -10,8 +10,8 @@ import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popu
 import { cn } from "@/components/control-ui/lib/cn";
 import { listboxNameRef } from "@/components/control-ui/lib/listbox-name";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import {
   InputGroup,
@@ -133,7 +133,16 @@ export function Combobox<Value = string, Multiple extends boolean | undefined = 
   );
 }
 
+function ComboboxChevronIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function ComboboxTrigger({ className, children, "aria-label": ariaLabel = "Toggle suggestions", ...props }: ComboboxTriggerProps) {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", ComboboxChevronIcon);
   return (
     <ComboboxPrimitive.Trigger
       data-control-ui="combobox"
@@ -146,9 +155,7 @@ export function ComboboxTrigger({ className, children, "aria-label": ariaLabel =
     >
       {children ?? (
         <ComboboxPrimitive.Icon data-control-ui="combobox" data-control-family="field" data-field-kind="combobox" data-slot="icon">
-          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-            <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <ChevronDownGlyph aria-hidden="true" />
         </ComboboxPrimitive.Icon>
       )}
     </ComboboxPrimitive.Trigger>
@@ -296,8 +303,17 @@ export function ComboboxEmpty({ className, children, ...props }: ComboboxEmptyPr
   );
 }
 
+function ComboboxCheckIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function ComboboxItem<Value = unknown>({ className, children, disabled, value, ...props }: ComboboxItemProps<Value>) {
   const disabledValueRegistry = use(ComboboxDisabledValueContext);
+  const CheckGlyph = useSkinIcon("check", ComboboxCheckIcon);
 
   useEffect(() => disabledValueRegistry?.register(value, Boolean(disabled)), [disabled, disabledValueRegistry, value]);
 
@@ -332,9 +348,7 @@ export function ComboboxItem<Value = unknown>({ className, children, disabled, v
         className="flex shrink-0 items-center justify-center"
       >
         <ComboboxPrimitive.ItemIndicator>
-          <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-            <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <CheckGlyph aria-hidden="true" />
         </ComboboxPrimitive.ItemIndicator>
       </span>
     </ComboboxPrimitive.Item>

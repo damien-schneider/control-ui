@@ -7,8 +7,8 @@ import type { CSSProperties, ReactNode } from "react";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { PopupCloseButton } from "@/components/control-ui/popup-parts";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconComponent, type SkinIconName, skinScopeAttributes } from "@/components/control-ui/skin";
+import { SkinIcon, useSkin } from "@/components/control-ui/skin-provider";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 import { Spinner } from "@/components/control-ui/ui/spinner";
 
@@ -74,11 +74,11 @@ export const toast = Object.assign(show, {
 });
 
 const statusIcons = {
-  success: CircleCheckIcon,
-  error: CircleXIcon,
-  warning: TriangleAlertIcon,
-  info: InfoIcon,
-};
+  success: { name: "success", fallback: CircleCheckIcon },
+  error: { name: "error", fallback: CircleXIcon },
+  warning: { name: "warning", fallback: TriangleAlertIcon },
+  info: { name: "info", fallback: InfoIcon },
+} satisfies Record<string, { name: SkinIconName; fallback: SkinIconComponent }>;
 
 type ToastStatus = keyof typeof statusIcons | "loading";
 
@@ -95,7 +95,7 @@ type ToastListProps = Pick<ToasterProps, "rootStyle" | "indicatorStyle" | "actio
 
 function ToastIndicator({ status, style }: { status: ToastStatus | undefined; style: ToasterProps["indicatorStyle"] }) {
   if (!status) return null;
-  const StatusIcon = status === "loading" ? null : statusIcons[status];
+  const statusIcon = status === "loading" ? null : statusIcons[status];
   return (
     <span
       aria-hidden="true"
@@ -106,7 +106,7 @@ function ToastIndicator({ status, style }: { status: ToastStatus | undefined; st
       style={style}
       className="shrink-0"
     >
-      {StatusIcon ? <StatusIcon /> : <Spinner size="sm" />}
+      {statusIcon ? <SkinIcon {...statusIcon} /> : <Spinner size="sm" />}
     </span>
   );
 }

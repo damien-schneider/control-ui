@@ -9,6 +9,7 @@ import type { ControlledChoice, RenderProp } from "@/components/control-ui/contr
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { TabsKnobStyle } from "@/components/control-ui/knob-contracts/tabs-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 
 export type TabsProps<TValue extends string = string> = Omit<ComponentProps<"div">, "defaultValue" | "onChange"> &
@@ -201,6 +202,7 @@ export function TabsList({ size = "sm", variant = "default", scrollable, classNa
 }
 
 export function TabsTab({ className, onClose, closeLabel = "Close tab", onKeyDown, ref, ...props }: TabsTabProps) {
+  const CloseGlyph = useSkinIcon("close", XIcon);
   const tabElements = useContext(TabsContext)?.tabElements;
   const tabRef = (node: HTMLButtonElement | null) => {
     const cleanup = setRef(ref, node);
@@ -247,7 +249,7 @@ export function TabsTab({ className, onClose, closeLabel = "Close tab", onKeyDow
         className="absolute z-10"
         onClick={onClose}
       >
-        <XIcon />
+        <CloseGlyph />
       </Button>
     </span>
   );

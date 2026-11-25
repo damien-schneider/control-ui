@@ -13,6 +13,8 @@ import { useIsMobile } from "@/components/control-ui/hooks/use-mobile";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { DockablePanelKnobStyle } from "@/components/control-ui/knob-contracts/dockable-panel-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconComponent, SkinIconName, SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerBody, DrawerContent } from "@/components/control-ui/ui/drawer";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
@@ -449,7 +451,7 @@ export function DockablePanelToggle({ className, children, "aria-label": ariaLab
       }}
       {...props}
     >
-      {children ?? <DockPanelIcon side={target} />}
+      {children ?? <PlacementIcon placement={target} />}
     </Button>
   );
 }
@@ -495,6 +497,7 @@ export function DockablePanelClose({
   ...props
 }: DockablePanelCloseProps) {
   const { close } = useDockablePanelContext();
+  const CloseGlyph = useSkinIcon("close", DockablePanelCloseIcon);
   return (
     <Button
       type="button"
@@ -510,7 +513,7 @@ export function DockablePanelClose({
       }}
       {...props}
     >
-      {children ?? <CloseIcon />}
+      {children ?? <CloseGlyph className="size-4" aria-hidden="true" />}
     </Button>
   );
 }
@@ -560,22 +563,38 @@ function defaultDockedAnnouncement(placement: DockablePanelPlacement) {
   return `Panel docked ${placement}.`;
 }
 
-function PlacementIcon({ placement }: { placement: DockablePanelPlacement }) {
-  return <DockPanelIcon side={placement} />;
-}
-
-function DockPanelIcon({ side = "right" }: { side?: "left" | "right" }) {
+function DockPanelLeftIcon(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <rect x="2.25" y="2.25" width="11.5" height="11.5" rx="2" stroke="currentColor" strokeWidth="1.25" />
-      <path d={side === "left" ? "M6 2.75v10.5" : "M10 2.75v10.5"} stroke="currentColor" strokeWidth="1.25" />
+      <path d="M6 2.75v10.5" stroke="currentColor" strokeWidth="1.25" />
     </svg>
   );
 }
 
-function CloseIcon() {
+function DockPanelRightIcon(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <rect x="2.25" y="2.25" width="11.5" height="11.5" rx="2" stroke="currentColor" strokeWidth="1.25" />
+      <path d="M10 2.75v10.5" stroke="currentColor" strokeWidth="1.25" />
+    </svg>
+  );
+}
+
+const placementIcons = {
+  left: { name: "panelLeft", fallback: DockPanelLeftIcon },
+  right: { name: "panelRight", fallback: DockPanelRightIcon },
+} satisfies Record<DockablePanelPlacement, { name: SkinIconName; fallback: SkinIconComponent }>;
+
+function PlacementIcon({ placement }: { placement: DockablePanelPlacement }) {
+  const placementIcon = placementIcons[placement];
+  const PlacementGlyph = useSkinIcon(placementIcon.name, placementIcon.fallback);
+  return <PlacementGlyph className="size-4" aria-hidden="true" />;
+}
+
+function DockablePanelCloseIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path d="m4.5 4.5 7 7m0-7-7 7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   );

@@ -4,8 +4,8 @@ import { Globe } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { BadgeKnobStyle } from "@/components/control-ui/knob-contracts/badge-knobs";
 import type { SourceBadgeKnobStyle } from "@/components/control-ui/knob-contracts/source-badge-knobs";
-
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/control-ui/ui/avatar";
 import { Badge } from "@/components/control-ui/ui/badge";
 
@@ -42,12 +42,13 @@ export type SourceFaviconProps = Omit<ComponentProps<typeof Avatar>, "children" 
 };
 
 export function SourceFavicon({ faviconSrc, href, imageProps, fallbackProps, className, ...props }: SourceFaviconProps) {
+  const GlobeGlyph = useSkinIcon("globe", Globe);
   const resolvedFaviconSrc = faviconSrc === false ? undefined : (faviconSrc ?? sourceFaviconHref(href));
   return (
     <Avatar data-control-ui="source-badge" data-source-badge-favicon="" data-slot="root" {...props} className={className}>
       {resolvedFaviconSrc ? <AvatarImage src={resolvedFaviconSrc} alt="" {...imageProps} /> : null}
       <AvatarFallback {...fallbackProps} className={fallbackProps?.className}>
-        <Globe aria-hidden="true" className="size-2.5" />
+        <GlobeGlyph aria-hidden="true" className="size-2.5" />
       </AvatarFallback>
     </Avatar>
   );

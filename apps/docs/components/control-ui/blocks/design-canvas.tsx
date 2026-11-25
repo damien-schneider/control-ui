@@ -4,6 +4,7 @@ import { CircleIcon, FrameIcon, HandIcon, LayersIcon, MousePointer2Icon, Sliders
 import type { ComponentProps, KeyboardEvent, PointerEvent, ReactNode } from "react";
 import { useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerContent, DrawerTitle } from "@/components/control-ui/ui/drawer";
@@ -58,19 +59,19 @@ export type DesignCanvasBlockProps = Omit<ComponentProps<"div">, "children" | "d
 };
 
 const TOOLS: readonly { tool: DesignCanvasTool; label: string; shortcut: string; icon: ReactNode }[] = [
-  { tool: "move", label: "Move", shortcut: "V", icon: <MousePointer2Icon /> },
-  { tool: "hand", label: "Hand", shortcut: "H", icon: <HandIcon /> },
-  { tool: "frame", label: "Frame", shortcut: "F", icon: <FrameIcon /> },
-  { tool: "rectangle", label: "Rectangle", shortcut: "R", icon: <SquareIcon /> },
-  { tool: "ellipse", label: "Ellipse", shortcut: "O", icon: <CircleIcon /> },
-  { tool: "text", label: "Text", shortcut: "T", icon: <TypeIcon /> },
+  { tool: "move", label: "Move", shortcut: "V", icon: <SkinIcon name="toolMove" fallback={MousePointer2Icon} /> },
+  { tool: "hand", label: "Hand", shortcut: "H", icon: <SkinIcon name="toolHand" fallback={HandIcon} /> },
+  { tool: "frame", label: "Frame", shortcut: "F", icon: <SkinIcon name="toolFrame" fallback={FrameIcon} /> },
+  { tool: "rectangle", label: "Rectangle", shortcut: "R", icon: <SkinIcon name="toolRectangle" fallback={SquareIcon} /> },
+  { tool: "ellipse", label: "Ellipse", shortcut: "O", icon: <SkinIcon name="toolEllipse" fallback={CircleIcon} /> },
+  { tool: "text", label: "Text", shortcut: "T", icon: <SkinIcon name="toolText" fallback={TypeIcon} /> },
 ];
 
 const LAYER_ICONS: Record<DesignCanvasLayerKind, ReactNode> = {
-  frame: <FrameIcon />,
-  rectangle: <SquareIcon />,
-  ellipse: <CircleIcon />,
-  text: <TypeIcon />,
+  frame: <SkinIcon name="toolFrame" fallback={FrameIcon} />,
+  rectangle: <SkinIcon name="toolRectangle" fallback={SquareIcon} />,
+  ellipse: <SkinIcon name="toolEllipse" fallback={CircleIcon} />,
+  text: <SkinIcon name="toolText" fallback={TypeIcon} />,
 };
 
 const NUDGE_DIRECTIONS: Partial<Record<string, { x: number; y: number }>> = {
@@ -130,6 +131,8 @@ export function DesignCanvasBlock({
   className,
   ...props
 }: DesignCanvasBlockProps) {
+  const LayersGlyph = useSkinIcon("layers", LayersIcon);
+  const PropertiesGlyph = useSkinIcon("properties", SlidersHorizontalIcon);
   const [internalLayers, setInternalLayers] = useState<readonly DesignCanvasLayer[]>(defaultLayers);
   const [internalSelectedLayerId, setInternalSelectedLayerId] = useState(defaultSelectedLayerId);
   const transformRef = useRef(defaultTransform);
@@ -361,7 +364,7 @@ export function DesignCanvasBlock({
               aria-expanded={layersOpen}
               onClick={() => setLayersOpen(true)}
             >
-              <LayersIcon />
+              <LayersGlyph />
             </DesignCanvasToolbarButton>
             <DesignCanvasToolbarButton
               label={openPropertiesLabel}
@@ -371,7 +374,7 @@ export function DesignCanvasBlock({
               className="@xl/design-canvas:hidden"
               onClick={() => setPropertiesOpen(true)}
             >
-              <SlidersHorizontalIcon />
+              <PropertiesGlyph />
             </DesignCanvasToolbarButton>
           </ToolbarGroup>
         </Toolbar>

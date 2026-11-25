@@ -16,6 +16,8 @@ import {
 import type { ChatRole } from "@/components/control-ui/hooks/use-chat-message";
 import type { ThreadRailKnobStyle } from "@/components/control-ui/knob-contracts/thread-rail-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type ThreadRailProps = ComponentProps<"nav"> & { style?: CSSProperties & ThreadRailKnobStyle };
 
@@ -344,7 +346,22 @@ export type ThreadRailFileIconProps = Omit<ComponentProps<"span">, "style"> & {
   style?: CSSProperties & ThreadRailKnobStyle;
 };
 
+function ThreadRailDocumentIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M4 1.5h5L13 5.5V14a.5.5 0 0 1-.5.5h-8A.5.5 0 0 1 4 14V2a.5.5 0 0 1 .5-.5Z"
+        stroke="currentColor"
+        strokeWidth="1.1"
+        strokeLinejoin="round"
+      />
+      <path d="M9 1.5V5.5h4" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function ThreadRailFileIcon({ className, children, ...props }: ThreadRailFileIconProps) {
+  const FileGlyph = useSkinIcon("file", ThreadRailDocumentIcon);
   return (
     <span
       data-control-ui="thread-rail"
@@ -354,17 +371,7 @@ export function ThreadRailFileIcon({ className, children, ...props }: ThreadRail
       aria-hidden
       {...props}
     >
-      {children ?? (
-        <svg viewBox="0 0 16 16" fill="none" className="size-3" role="presentation">
-          <path
-            d="M4 1.5h5L13 5.5V14a.5.5 0 0 1-.5.5h-8A.5.5 0 0 1 4 14V2a.5.5 0 0 1 .5-.5Z"
-            stroke="currentColor"
-            strokeWidth="1.1"
-            strokeLinejoin="round"
-          />
-          <path d="M9 1.5V5.5h4" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
-        </svg>
-      )}
+      {children ?? <FileGlyph className="size-3" role="presentation" />}
     </span>
   );
 }

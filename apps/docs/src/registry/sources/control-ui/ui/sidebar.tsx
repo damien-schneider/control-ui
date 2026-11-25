@@ -9,7 +9,7 @@ import type { RenderProp } from "@/components/control-ui/control-props";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import type { SidebarLayout } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 
 import { Button } from "@/components/control-ui/ui/button";
 import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/control-ui/ui/drawer";
@@ -315,6 +315,7 @@ export function SidebarTrigger({
   ref,
   ...props
 }: SidebarTriggerProps) {
+  const PanelLeftGlyph = useSkinIcon("panelLeft", PanelLeftIcon);
   const { toggleSidebar, isMobile, openMobile, open, keyboardShortcut, sidebarId } = useSidebar();
   const { triggerRef, activeTriggerRef, railRef } = useSidebarElements();
   const shortcutKey = keyboardShortcut?.toUpperCase();
@@ -345,7 +346,7 @@ export function SidebarTrigger({
       },
       children: (
         <>
-          <PanelLeftIcon className="size-4" data-icon-dir="inline" aria-hidden="true" />
+          <PanelLeftGlyph className="size-4" data-icon-dir="inline" aria-hidden="true" />
           <span className="sr-only">{label}</span>
         </>
       ),

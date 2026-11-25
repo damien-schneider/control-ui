@@ -1,8 +1,11 @@
+"use client";
+
 import { Loader2 } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { ControlSize } from "@/components/control-ui/control-variants";
 import type { SpinnerKnobStyle } from "@/components/control-ui/knob-contracts/spinner-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type SpinnerProps = Omit<
   ComponentProps<"span"> & {
@@ -13,6 +16,7 @@ export type SpinnerProps = Omit<
 > & { style?: CSSProperties & SpinnerKnobStyle };
 
 export function Spinner({ size = "sm", label = "Loading", className, ...props }: SpinnerProps) {
+  const SpinnerGlyph = useSkinIcon("spinner", Loader2);
   return (
     <span
       role="status"
@@ -23,7 +27,7 @@ export function Spinner({ size = "sm", label = "Loading", className, ...props }:
       className={cn("inline-flex", className)}
       {...props}
     >
-      <Loader2 aria-hidden="true" data-control-ui="spinner" data-control-family="spinner" data-slot="indicator" data-size={size} />
+      <SpinnerGlyph aria-hidden="true" data-control-ui="spinner" data-control-family="spinner" data-slot="indicator" data-size={size} />
       <span className="sr-only">{label}</span>
     </span>
   );

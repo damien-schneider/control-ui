@@ -5,6 +5,8 @@ import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext } from "react";
 import type { ActivityKnobStyle } from "@/components/control-ui/knob-contracts/activity-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconComponent, SkinIconName, SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import type { CollapsibleProps } from "@/components/control-ui/ui/collapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
@@ -40,12 +42,12 @@ const activityStatusLabels = {
 } satisfies Record<ActivityState, string>;
 
 const activityStatusIcons = {
-  pending: CircleDashed,
-  running: LoaderCircle,
-  waiting: CirclePause,
-  success: Check,
-  error: CircleAlert,
-} satisfies Record<ActivityState, typeof CircleDashed>;
+  pending: { name: "pending", fallback: CircleDashed },
+  running: { name: "spinner", fallback: LoaderCircle },
+  waiting: { name: "waiting", fallback: CirclePause },
+  success: { name: "success", fallback: Check },
+  error: { name: "error", fallback: CircleAlert },
+} satisfies Record<ActivityState, { name: SkinIconName; fallback: SkinIconComponent }>;
 
 type ActivityContextValue = {
   isRunning: boolean;
@@ -117,10 +119,11 @@ export function ActivityRow({ className, ...props }: ActivityRowProps) {
 }
 
 export type ActivityTriggerProps = ActivityStyleProps<ComponentProps<typeof CollapsibleTrigger>, ActivityKnobStyle> & {
-  chevronProps?: ActivityStyleProps<ComponentProps<typeof ChevronRight>, ActivityKnobStyle> & { "data-slot"?: string };
+  chevronProps?: ActivityStyleProps<SkinIconProps, ActivityKnobStyle> & { "data-slot"?: string };
 };
 
 export function ActivityTrigger({ className, children, chevronProps, ...props }: ActivityTriggerProps) {
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRight);
   return (
     <CollapsibleTrigger
       data-control-ui="activity"
@@ -130,7 +133,7 @@ export function ActivityTrigger({ className, children, chevronProps, ...props }:
       className={cn(activityRowClassName, className)}
     >
       {children}
-      <ChevronRight
+      <ChevronRightGlyph
         aria-hidden="true"
         data-icon-dir="inline"
         data-control-ui="activity"
@@ -147,7 +150,8 @@ export type ActivityIconProps = ActivityStyleProps<ComponentProps<"span">, Activ
 
 export function ActivityIcon({ className, children, ...props }: ActivityIconProps) {
   const activity = useActivityContext();
-  const Icon = activityStatusIcons[activity.state];
+  const statusIcon = activityStatusIcons[activity.state];
+  const StatusGlyph = useSkinIcon(statusIcon.name, statusIcon.fallback);
   return (
     <span
       aria-hidden="true"
@@ -158,7 +162,7 @@ export function ActivityIcon({ className, children, ...props }: ActivityIconProp
       {...props}
       className={cn("flex shrink-0 items-center justify-center", className)}
     >
-      {children ?? <Icon data-motion-essential={activity.isRunning ? "" : undefined} />}
+      {children ?? <StatusGlyph data-motion-essential={activity.isRunning ? "" : undefined} />}
     </span>
   );
 }

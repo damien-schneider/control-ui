@@ -6,6 +6,7 @@ import type { ComponentProps, CSSProperties, MouseEvent } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { SidebarKnobStyle } from "@/components/control-ui/knob-contracts/sidebar-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { SidebarMenuButton, type SidebarMenuButtonProps } from "@/components/control-ui/ui/sidebar-menu";
 import { useSidebar, useSidebarElements } from "@/components/control-ui/ui/sidebar-provider";
 
@@ -65,6 +66,7 @@ export type SidebarMobileTriggerProps = Omit<ComponentProps<"button">, "style"> 
 };
 
 export function SidebarMobileTrigger({ render, children, onClick, ref, ...props }: SidebarMobileTriggerProps) {
+  const MenuGlyph = useSkinIcon("menu", MenuIcon);
   const { openMobile, setOpenMobile, sidebarId } = useSidebar();
   const { activeTriggerRef } = useSidebarElements();
   return useRender({
@@ -89,7 +91,7 @@ export function SidebarMobileTrigger({ render, children, onClick, ref, ...props 
       },
       children: children ?? (
         <>
-          <MenuIcon aria-hidden="true" />
+          <MenuGlyph aria-hidden="true" />
           <span>Menu</span>
         </>
       ),

@@ -2,6 +2,7 @@
 
 import { CheckIcon, CircleAlertIcon, CircleDashedIcon, CirclePauseIcon, CircleSlashIcon, PlusIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import {
   Sidebar,
@@ -23,11 +24,11 @@ import type { AgentRunStatus, AgentRunSummary } from "./agent-run-status";
 
 const runStatusIcons = {
   running: <Spinner aria-hidden="true" />,
-  waiting: <CirclePauseIcon aria-hidden="true" />,
-  success: <CheckIcon aria-hidden="true" />,
-  error: <CircleAlertIcon aria-hidden="true" />,
-  cancelled: <CircleSlashIcon aria-hidden="true" />,
-  pending: <CircleDashedIcon aria-hidden="true" />,
+  waiting: <SkinIcon name="waiting" fallback={CirclePauseIcon} aria-hidden="true" />,
+  success: <SkinIcon name="success" fallback={CheckIcon} aria-hidden="true" />,
+  error: <SkinIcon name="error" fallback={CircleAlertIcon} aria-hidden="true" />,
+  cancelled: <SkinIcon name="cancelled" fallback={CircleSlashIcon} aria-hidden="true" />,
+  pending: <SkinIcon name="pending" fallback={CircleDashedIcon} aria-hidden="true" />,
 } satisfies Record<AgentRunStatus, ReactNode>;
 
 const runStatusIconTones = {
@@ -64,6 +65,7 @@ export function AgentRunSidebar({
   onRunSelect?: (run: AgentRunSummary) => void;
   onNewRun?: () => void;
 }) {
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
   const { setOpenMobile } = useSidebar();
 
   return (
@@ -89,7 +91,7 @@ export function AgentRunSidebar({
                   setOpenMobile(false);
                 }}
               >
-                <PlusIcon />
+                <PlusGlyph />
                 <span>{newRunLabel}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>

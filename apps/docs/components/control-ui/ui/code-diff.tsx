@@ -9,6 +9,7 @@ import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/c
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
 import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine, diffRunEnd } from "@/components/control-ui/lib/diff";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import type { CodeOverflow } from "@/components/control-ui/ui/code";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
@@ -778,6 +779,8 @@ export function CodeDiff({
   style,
   ...props
 }: CodeDiffProps) {
+  const ChevronsDownUpGlyph = useSkinIcon("chevronsDownUp", ChevronsDownUp);
+  const ChevronsUpDownGlyph = useSkinIcon("chevronsUpDown", ChevronsUpDown);
   const files = useMemo(() => {
     const options = { name, lang, lineDiffType, maxLineDiffLength, maxEditLength };
     const parsedFiles =
@@ -840,7 +843,7 @@ export function CodeDiff({
                       aria-expanded={open}
                       onClick={() => setOpen(!open)}
                     >
-                      {open ? <ChevronsDownUp aria-hidden="true" /> : <ChevronsUpDown aria-hidden="true" />}
+                      {open ? <ChevronsDownUpGlyph aria-hidden="true" /> : <ChevronsUpDownGlyph aria-hidden="true" />}
                     </Button>
                   }
                 />

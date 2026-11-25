@@ -7,8 +7,8 @@ import type { ControlledChoice, OpenChangeEventDetails } from "@/components/cont
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 type ContextMenuPositionerProps = Pick<
@@ -191,7 +191,16 @@ export function ContextMenuItem({ className, inset = false, tone = "neutral", ..
   );
 }
 
+function ContextMenuCheckIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function ContextMenuCheckboxItem({ className, children, ...props }: ContextMenuCheckboxItemProps) {
+  const CheckGlyph = useSkinIcon("check", ContextMenuCheckIcon);
   return (
     <ContextMenuPrimitive.CheckboxItem
       data-control-ui="context-menu"
@@ -204,9 +213,7 @@ export function ContextMenuCheckboxItem({ className, children, ...props }: Conte
     >
       <span className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.CheckboxItemIndicator>
-          <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
-            <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <CheckGlyph className="size-3" aria-hidden="true" />
         </ContextMenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}

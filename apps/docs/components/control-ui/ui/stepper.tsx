@@ -5,6 +5,7 @@ import type { ComponentProps, CSSProperties } from "react";
 import { createContext, useContext, useEffect, useId, useState } from "react";
 import type { StepperKnobStyle } from "@/components/control-ui/knob-contracts/stepper-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { SkinIcon } from "@/components/control-ui/skin-provider";
 
 export type StepperOrientation = "horizontal" | "vertical";
 
@@ -126,8 +127,8 @@ function defaultStatusLabel({ step, state, invalid, disabled }: StepperStatusDet
 }
 
 function defaultIndicatorContent(step: number, state: StepperState, invalid: boolean) {
-  if (invalid) return <CircleAlertIcon className="size-4" />;
-  if (state === "complete") return <CheckIcon className="size-4" />;
+  if (invalid) return <SkinIcon name="error" fallback={CircleAlertIcon} className="size-4" />;
+  if (state === "complete") return <SkinIcon name="success" fallback={CheckIcon} className="size-4" />;
   return step + 1;
 }
 

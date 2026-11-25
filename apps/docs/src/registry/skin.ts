@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentProps, ComponentType, ReactNode } from "react";
 import type { HoverIndicator, SelectionIndicator } from "@/components/control-ui/control-props";
 import type { ButtonVariant, ControlTone } from "@/components/control-ui/control-variants";
 
@@ -24,6 +24,108 @@ export type SkinIndicators = {
   "radio-group"?: HoverIndicator;
 };
 
+export type SkinIconName =
+  | "arrowDown"
+  | "arrowLeft"
+  | "arrowRight"
+  | "arrowUp"
+  | "chevronDown"
+  | "chevronLeft"
+  | "chevronRight"
+  | "chevronUp"
+  | "chevronsDownUp"
+  | "chevronsUpDown"
+  | "externalLink"
+  | "menu"
+  | "more"
+  | "panelLeft"
+  | "panelRight"
+  | "pictureInPicture"
+  | "check"
+  | "close"
+  | "copy"
+  | "edit"
+  | "eyeDropper"
+  | "link"
+  | "maximize"
+  | "minus"
+  | "plus"
+  | "reply"
+  | "rotate"
+  | "search"
+  | "stop"
+  | "unlink"
+  | "upload"
+  | "cancelled"
+  | "clock"
+  | "error"
+  | "info"
+  | "neutral"
+  | "pending"
+  | "permission"
+  | "spinner"
+  | "success"
+  | "waiting"
+  | "warning"
+  | "agent"
+  | "file"
+  | "folder"
+  | "globe"
+  | "gripHorizontal"
+  | "gripVertical"
+  | "image"
+  | "microphone"
+  | "speaker"
+  | "user"
+  | "themeDark"
+  | "themeLight"
+  | "themeSystem"
+  | "bold"
+  | "bulletList"
+  | "code"
+  | "codeBlock"
+  | "divider"
+  | "heading1"
+  | "heading2"
+  | "heading3"
+  | "italic"
+  | "orderedList"
+  | "paragraph"
+  | "quote"
+  | "redo"
+  | "strikethrough"
+  | "table"
+  | "taskList"
+  | "undo"
+  | "emojiActivities"
+  | "emojiFlags"
+  | "emojiFood"
+  | "emojiNature"
+  | "emojiObjects"
+  | "emojiOther"
+  | "emojiPeople"
+  | "emojiSmileys"
+  | "emojiSymbols"
+  | "emojiTravel"
+  | "blend"
+  | "cornerRadius"
+  | "hidden"
+  | "layers"
+  | "properties"
+  | "toolEllipse"
+  | "toolFrame"
+  | "toolHand"
+  | "toolMove"
+  | "toolRectangle"
+  | "toolText"
+  | "visible";
+
+export type SkinIconProps = ComponentProps<"svg">;
+
+export type SkinIconComponent = ComponentType<SkinIconProps>;
+
+export type SkinIcons = Partial<Record<SkinIconName, SkinIconComponent>>;
+
 export type ControlUiSkin = {
   id?: string;
 
@@ -40,6 +142,7 @@ export type ControlUiSkin = {
   calendarShowOutsideDays?: boolean;
   buttonGroupJoin?: ButtonGroupJoin;
   indicators?: SkinIndicators;
+  icons?: SkinIcons;
 
   effects?: readonly ControlEffect[];
   adornments?: {

@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { AccordionKnobStyle } from "@/components/control-ui/knob-contracts/accordion-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import type { HeadingLevel } from "@/components/control-ui/ui/typography";
 
 export type AccordionValue = (string | number)[];
@@ -57,6 +58,7 @@ export function AccordionItem({ className, ...props }: AccordionItemProps) {
 }
 
 export function AccordionTrigger({ headingLevel = 3, className, children, ...props }: AccordionTriggerProps) {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", ChevronDown);
   const Heading: `h${HeadingLevel}` = `h${headingLevel}`;
 
   return (
@@ -69,7 +71,13 @@ export function AccordionTrigger({ headingLevel = 3, className, children, ...pro
         {...props}
       >
         {children}
-        <ChevronDown aria-hidden="true" data-control-ui="accordion" data-control-family="accordion" data-slot="icon" className="shrink-0" />
+        <ChevronDownGlyph
+          aria-hidden="true"
+          data-control-ui="accordion"
+          data-control-family="accordion"
+          data-slot="icon"
+          className="shrink-0"
+        />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );

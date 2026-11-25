@@ -12,6 +12,7 @@ import type { AudioVisualizerKnobStyle } from "@/components/control-ui/knob-cont
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatAudioRecorderDuration } from "@/components/control-ui/lib/format-audio-recorder-duration";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
@@ -176,6 +177,7 @@ export function AudioRecorderTrigger({
   sendingLabel = "Sending voice recording",
   ...props
 }: AudioRecorderTriggerProps) {
+  const MicrophoneGlyph = useSkinIcon("microphone", MicIcon);
   const recorder = useAudioRecorderContext();
   const triggerRef = use(AudioRecorderTriggerRefContext);
 
@@ -226,7 +228,7 @@ export function AudioRecorderTrigger({
       onClick={handleClick}
       {...props}
     >
-      {children ?? <MicIcon aria-hidden="true" className="size-3.5" />}
+      {children ?? <MicrophoneGlyph aria-hidden="true" className="size-3.5" />}
     </Button>
   );
 }
@@ -344,6 +346,7 @@ export function AudioRecorderCancel({
   label = "Cancel voice recording",
   ...props
 }: AudioRecorderCancelProps) {
+  const CloseGlyph = useSkinIcon("close", XIcon);
   const recorder = useAudioRecorderContext();
   const triggerRef = use(AudioRecorderTriggerRefContext);
   const isVisible = recorder.canCancel;
@@ -374,7 +377,7 @@ export function AudioRecorderCancel({
       onClick={handleClick}
       {...props}
     >
-      {children ?? <XIcon aria-hidden="true" className="size-3.5" />}
+      {children ?? <CloseGlyph aria-hidden="true" className="size-3.5" />}
     </Button>
   );
 }
@@ -394,6 +397,7 @@ export function AudioRecorderSubmit({
   retryLabel = "Retry sending voice recording",
   ...props
 }: AudioRecorderSubmitProps) {
+  const CheckGlyph = useSkinIcon("check", CheckIcon);
   const recorder = useAudioRecorderContext();
   const triggerRef = use(AudioRecorderTriggerRefContext);
   const isVisible = recorder.canSubmit;
@@ -424,7 +428,7 @@ export function AudioRecorderSubmit({
       onClick={handleClick}
       {...props}
     >
-      {children ?? <CheckIcon aria-hidden="true" className="size-3.5" />}
+      {children ?? <CheckGlyph aria-hidden="true" className="size-3.5" />}
     </Button>
   );
 }

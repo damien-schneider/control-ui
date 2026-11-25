@@ -1,7 +1,16 @@
 "use client";
 
 import { createContext, type ReactNode, useContext, useLayoutEffect } from "react";
-import { type ControlUiSkin, type SkinAdornmentContexts, type SkinAdornmentPart, type SkinAdornmentScope, skinAdornment } from "./skin";
+import {
+  type ControlUiSkin,
+  type SkinAdornmentContexts,
+  type SkinAdornmentPart,
+  type SkinAdornmentScope,
+  type SkinIconComponent,
+  type SkinIconName,
+  type SkinIconProps,
+  skinAdornment,
+} from "./skin";
 
 const defaultSkin: ControlUiSkin = {};
 const SkinContext = createContext(defaultSkin);
@@ -12,6 +21,11 @@ export type SkinAdornmentProps<Scope extends SkinAdornmentScope, Part extends Sk
   scope: Scope;
   part: Part;
   context: SkinAdornmentContexts[Scope][Part];
+};
+
+export type SkinIconElementProps = Omit<SkinIconProps, "name"> & {
+  name: SkinIconName;
+  fallback: SkinIconComponent;
 };
 
 function reduceRootMotion(root: HTMLElement) {
@@ -70,4 +84,15 @@ export function SkinAdornment<Scope extends SkinAdornmentScope, Part extends Ski
 }: SkinAdornmentProps<Scope, Part>) {
   const skin = useSkin();
   return skinAdornment(skin, scope, part, context);
+}
+
+/** The skin's icon for `name`, or the component's own `fallback` when the skin leaves it unset. */
+export function useSkinIcon(name: SkinIconName, fallback: SkinIconComponent): SkinIconComponent {
+  return useSkin().icons?.[name] ?? fallback;
+}
+
+/** Element form of `useSkinIcon`, for icons declared outside a render body, such as module-level status maps. */
+export function SkinIcon({ name, fallback, ...props }: SkinIconElementProps) {
+  const Icon = useSkinIcon(name, fallback);
+  return <Icon {...props} />;
 }

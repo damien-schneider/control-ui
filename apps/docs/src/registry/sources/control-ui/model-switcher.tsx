@@ -6,6 +6,8 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { modelIdentity } from "@/components/control-ui/lib/model-name";
 import { PROVIDER_MARKS } from "@/components/control-ui/lib/provider-marks";
 import { ProviderLogo } from "@/components/control-ui/provider-logo";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { levelFill, type ThinkingLevel, ThinkingLevelBrain, ThinkingLevelRamp } from "@/components/control-ui/thinking-level";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 import {
@@ -114,11 +116,21 @@ function OptionIcon({ icon }: { icon: ReactNode }) {
 
 const FLUSH_SEPARATOR = { "--cui-popup-separator-inset": "0px", "--cui-popup-separator-gap": "0px" };
 
-const CHECK = (
-  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
-    <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+function ModelSwitcherCheckIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ModelSwitcherChevronIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 type ModelCommandProps = {
   label: string;
@@ -131,6 +143,7 @@ type ModelCommandProps = {
 };
 
 function ModelCommand({ label, emptyMessage, options, selected, search, divided, onPick }: ModelCommandProps) {
+  const CheckGlyph = useSkinIcon("check", ModelSwitcherCheckIcon);
   return (
     <Command chrome="embedded" label={label} filter={matchModel}>
       <CommandInput ref={search} placeholder={`${label}…`} />
@@ -156,7 +169,7 @@ function ModelCommand({ label, emptyMessage, options, selected, search, divided,
                     </span>
                   ) : null}
                   <span aria-hidden="true" data-control-ui="model-switcher" data-control-family="model-switcher" data-slot="check">
-                    {CHECK}
+                    <CheckGlyph aria-hidden="true" />
                   </span>
                 </CommandItem>
               );
@@ -188,6 +201,7 @@ export function ModelSwitcher({
   ...props
 }: ModelSwitcherProps) {
   const [open, setOpen] = useState(false);
+  const ChevronDownGlyph = useSkinIcon("chevronDown", ModelSwitcherChevronIcon);
   const search = useRef<HTMLInputElement>(null);
   const options = models.map(resolveModel);
   const [selected, pick] = usePicked(options, value, defaultValue, onValueChange);
@@ -221,9 +235,7 @@ export function ModelSwitcher({
             </span>
           ) : null}
           <span aria-hidden="true" data-control-ui="model-switcher" data-control-family="model-switcher" data-slot="chevron">
-            <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-              <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <ChevronDownGlyph aria-hidden="true" />
           </span>
         </PopoverTrigger>
         <PopoverContent side="top" align="end" padding="none" initialFocus={search} className="w-[min(20rem,calc(100vw-2rem))]">

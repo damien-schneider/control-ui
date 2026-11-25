@@ -38,6 +38,7 @@ import {
   keyboardStep,
   runInfiniteCanvasKeyCommand,
 } from "@/components/control-ui/lib/infinite-canvas-navigation";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Toolbar, ToolbarButton, ToolbarSeparator } from "@/components/control-ui/ui/toolbar";
 
@@ -402,6 +403,7 @@ export function InfiniteCanvasItemHandle({
   "aria-label": ariaLabel = "Move item",
   ...props
 }: InfiniteCanvasItemHandleProps) {
+  const GripVerticalGlyph = useSkinIcon("gripVertical", GripVerticalIcon);
   const position = use(InfiniteCanvasItemContext);
   if (!position) throw new Error("InfiniteCanvasItemHandle must be used within InfiniteCanvasItem");
   const { dragging, dragHandlers } = useInfiniteCanvasItemDrag(position, onPositionChange, {
@@ -425,7 +427,7 @@ export function InfiniteCanvasItemHandle({
       data-dragging={dragging || undefined}
       className={cn("touch-none", className)}
     >
-      {children ?? <GripVerticalIcon />}
+      {children ?? <GripVerticalGlyph />}
     </Button>
   );
 }
@@ -443,6 +445,9 @@ export function InfiniteCanvasControls({
   className,
   ...props
 }: InfiniteCanvasControlsProps) {
+  const MinusGlyph = useSkinIcon("minus", MinusIcon);
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
+  const MaximizeGlyph = useSkinIcon("maximize", MaximizeIcon);
   const canvas = useInfiniteCanvas();
   const scale = useInfiniteCanvasTransform(selectScale);
   const percentage = Math.round(scale * 100);
@@ -461,7 +466,7 @@ export function InfiniteCanvasControls({
           aria-label={zoomOutLabel}
           onClick={() => canvas.zoomBy(1 / CONTROL_ZOOM_FACTOR)}
         >
-          <MinusIcon />
+          <MinusGlyph />
         </ToolbarButton>
         <ToolbarButton className="tabular-nums" aria-label={getResetLabel(percentage)} onClick={() => canvas.reset()}>
           {percentage}%
@@ -472,11 +477,11 @@ export function InfiniteCanvasControls({
           aria-label={zoomInLabel}
           onClick={() => canvas.zoomBy(CONTROL_ZOOM_FACTOR)}
         >
-          <PlusIcon />
+          <PlusGlyph />
         </ToolbarButton>
         <ToolbarSeparator />
         <ToolbarButton iconOnly aria-label={fitViewLabel} onClick={() => canvas.fit()}>
-          <MaximizeIcon />
+          <MaximizeGlyph />
         </ToolbarButton>
       </Toolbar>
     </div>

@@ -23,6 +23,7 @@ import type { FlowKnobStyle } from "@/components/control-ui/knob-contracts/flow-
 import { CANVAS_GRID_DOT_RADIUS, CANVAS_GRID_GAP } from "@/components/control-ui/lib/canvas-grid";
 import { cn } from "@/components/control-ui/lib/cn";
 import { prefersReducedMotion, readDurationMs } from "@/components/control-ui/lib/motion";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 
 export type FlowProps<NodeType extends Node = Node, EdgeType extends Edge = Edge> = Omit<
@@ -93,6 +94,9 @@ export function FlowControls({
   className,
   ...props
 }: FlowControlsProps) {
+  const MinusGlyph = useSkinIcon("minus", MinusIcon);
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
+  const MaximizeGlyph = useSkinIcon("maximize", MaximizeIcon);
   const { zoomIn, zoomOut, fitView } = useReactFlow();
   const minZoom = useOptionsStore((state) => state.minZoom);
   const maxZoom = useOptionsStore((state) => state.maxZoom);
@@ -119,7 +123,7 @@ export function FlowControls({
         aria-label={zoomOutLabel}
         onClick={(event) => zoomOut({ duration: viewportTransitionMs(event.currentTarget) })}
       >
-        <MinusIcon />
+        <MinusGlyph />
       </Button>
       <Button
         type="button"
@@ -131,7 +135,7 @@ export function FlowControls({
         aria-label={zoomInLabel}
         onClick={(event) => zoomIn({ duration: viewportTransitionMs(event.currentTarget) })}
       >
-        <PlusIcon />
+        <PlusGlyph />
       </Button>
       <Button
         type="button"
@@ -141,7 +145,7 @@ export function FlowControls({
         aria-label={fitViewLabel}
         onClick={(event) => fitView({ ...fitViewOptions, duration: viewportTransitionMs(event.currentTarget) })}
       >
-        <MaximizeIcon />
+        <MaximizeGlyph />
       </Button>
     </Panel>
   );

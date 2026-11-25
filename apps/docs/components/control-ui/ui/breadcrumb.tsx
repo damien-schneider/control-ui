@@ -6,6 +6,7 @@ import type { ComponentProps, CSSProperties } from "react";
 import type { RenderProp } from "@/components/control-ui/control-props";
 import type { BreadcrumbKnobStyle } from "@/components/control-ui/knob-contracts/breadcrumb-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type BreadcrumbProps = ComponentProps<"nav"> & { style?: CSSProperties & BreadcrumbKnobStyle };
 export type BreadcrumbListProps = Omit<ComponentProps<"ol">, "style"> & { style?: CSSProperties & BreadcrumbKnobStyle };
@@ -87,6 +88,7 @@ export function BreadcrumbPage({ className, ...props }: BreadcrumbPageProps) {
 }
 
 export function BreadcrumbSeparator({ children, className, ...props }: BreadcrumbSeparatorProps) {
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRight);
   return (
     <li
       data-control-ui="breadcrumb"
@@ -97,12 +99,13 @@ export function BreadcrumbSeparator({ children, className, ...props }: Breadcrum
       className={className}
       {...props}
     >
-      {children ?? <ChevronRight data-icon-dir="inline" />}
+      {children ?? <ChevronRightGlyph data-icon-dir="inline" />}
     </li>
   );
 }
 
 export function BreadcrumbEllipsis({ label = "Show hidden breadcrumbs", className, ...props }: BreadcrumbEllipsisProps) {
+  const MoreGlyph = useSkinIcon("more", MoreHorizontal);
   return (
     <span
       data-control-ui="breadcrumb"
@@ -111,7 +114,7 @@ export function BreadcrumbEllipsis({ label = "Show hidden breadcrumbs", classNam
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal aria-hidden="true" />
+      <MoreGlyph aria-hidden="true" />
       <span className="sr-only">{label}</span>
     </span>
   );

@@ -5,6 +5,8 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { ColorPickerKnobStyle } from "@/components/control-ui/knob-contracts/color-picker-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { formatColor, parseColor } from "@/components/control-ui/lib/color";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { useColorPicker } from "@/components/control-ui/ui/color-picker-context";
 
@@ -108,6 +110,7 @@ export function ColorPickerSwatch({
 
 export function ColorPickerSwatchAdd({ onAdd, children, disabled: disabledProp, ...props }: ColorPickerSwatchAddProps) {
   const { valueString, disabled } = useColorPicker();
+  const PlusGlyph = useSkinIcon("plus", ColorPickerPlusIcon);
   return (
     <Button
       variant="dashed"
@@ -119,7 +122,7 @@ export function ColorPickerSwatchAdd({ onAdd, children, disabled: disabledProp, 
       onClick={() => onAdd?.(valueString)}
       {...props}
     >
-      {children ?? <PlusIcon />}
+      {children ?? <PlusGlyph aria-hidden="true" />}
     </Button>
   );
 }
@@ -131,9 +134,9 @@ function sameColor(a: string, b: string): boolean {
   return formatColor(pa, "hex", { alpha: true }) === formatColor(pb, "hex", { alpha: true });
 }
 
-function PlusIcon() {
+function ColorPickerPlusIcon(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true" {...props}>
       <path d="M8 3v10M3 8h10" />
     </svg>
   );

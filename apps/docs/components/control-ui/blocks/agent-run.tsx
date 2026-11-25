@@ -16,6 +16,7 @@ import {
   ActivityTrigger,
 } from "@/components/control-ui/activity";
 import { cn } from "@/components/control-ui/lib/cn";
+import { SkinIcon } from "@/components/control-ui/skin-provider";
 import { AppShellHeader } from "@/components/control-ui/ui/app-shell";
 import { Badge } from "@/components/control-ui/ui/badge";
 import { Card, CardAction, CardContent, CardHeader } from "@/components/control-ui/ui/card";
@@ -215,12 +216,12 @@ export function AgentRunPlan({ title = "Plan", description, className, children,
 }
 
 const stepIcons = {
-  neutral: <Circle aria-hidden="true" />,
-  pending: <CircleDashed aria-hidden="true" />,
+  neutral: <SkinIcon name="neutral" fallback={Circle} aria-hidden="true" />,
+  pending: <SkinIcon name="pending" fallback={CircleDashed} aria-hidden="true" />,
   running: <Spinner aria-hidden="true" />,
-  waiting: <CirclePause aria-hidden="true" />,
-  success: <Check aria-hidden="true" />,
-  error: <CircleAlert aria-hidden="true" />,
+  waiting: <SkinIcon name="waiting" fallback={CirclePause} aria-hidden="true" />,
+  success: <SkinIcon name="success" fallback={Check} aria-hidden="true" />,
+  error: <SkinIcon name="error" fallback={CircleAlert} aria-hidden="true" />,
 } satisfies Record<TimelineState, ReactNode>;
 
 export type AgentRunStepProps = Omit<TimelineItemProps, "title"> & {

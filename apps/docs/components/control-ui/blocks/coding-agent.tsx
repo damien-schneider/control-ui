@@ -4,6 +4,7 @@ import { BotIcon, ChevronRightIcon, FolderIcon, PlusIcon, SearchIcon } from "luc
 import type { ComponentProps, ReactNode } from "react";
 import { ChatLayout, ChatThread, ChatThreadScrollButton } from "@/components/control-ui/chat-layout";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { AppShellHeader } from "@/components/control-ui/ui/app-shell";
 import { Avatar, AvatarFallback } from "@/components/control-ui/ui/avatar";
 import { Button } from "@/components/control-ui/ui/button";
@@ -182,6 +183,10 @@ function CodingAgentSidebar({
   onNewTask?: () => void;
   onSearch?: () => void;
 }) {
+  const SearchGlyph = useSkinIcon("search", SearchIcon);
+  const PlusGlyph = useSkinIcon("plus", PlusIcon);
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRightIcon);
+  const FolderGlyph = useSkinIcon("folder", FolderIcon);
   const { setOpenMobile } = useSidebar();
 
   function finishMobileNavigation() {
@@ -210,7 +215,7 @@ function CodingAgentSidebar({
           </div>
           {onSearch ? (
             <Button variant="ghost" size="sm" iconOnly aria-label={searchLabel} onClick={onSearch}>
-              <SearchIcon aria-hidden="true" />
+              <SearchGlyph aria-hidden="true" />
             </Button>
           ) : null}
         </div>
@@ -218,7 +223,7 @@ function CodingAgentSidebar({
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton size="sm" onClick={startTask}>
-                <PlusIcon />
+                <PlusGlyph />
                 <span>{newTaskLabel}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -261,8 +266,8 @@ function CodingAgentSidebar({
             {projects.map((project) => (
               <Collapsible key={project.id} defaultOpen={project.open ?? true} className="min-w-0">
                 <CollapsibleTrigger>
-                  <ChevronRightIcon aria-hidden="true" />
-                  {project.icon ?? <FolderIcon aria-hidden="true" />}
+                  <ChevronRightGlyph aria-hidden="true" />
+                  {project.icon ?? <FolderGlyph aria-hidden="true" />}
                   <span className="truncate">{project.name}</span>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
@@ -343,10 +348,11 @@ export function CodingAgentEmptyState({
   className,
   ...props
 }: CodingAgentEmptyStateProps) {
+  const AgentGlyph = useSkinIcon("agent", BotIcon);
   return (
     <Empty className={cn("my-auto w-full", className)} {...props}>
       <EmptyHeader>
-        <EmptyMedia>{icon ?? <BotIcon aria-hidden="true" />}</EmptyMedia>
+        <EmptyMedia>{icon ?? <AgentGlyph aria-hidden="true" />}</EmptyMedia>
         <EmptyTitle render={(titleProps) => <h2 {...titleProps} />}>{title}</EmptyTitle>
         {description ? <EmptyDescription>{description}</EmptyDescription> : null}
       </EmptyHeader>

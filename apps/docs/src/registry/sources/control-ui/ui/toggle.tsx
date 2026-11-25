@@ -6,8 +6,8 @@ import { type ComponentProps, useContext } from "react";
 import type { ControlledMultiChoice, HoverIndicator } from "@/components/control-ui/control-props";
 import { TrackHighlight } from "@/components/control-ui/extensions/track-highlight";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinAdornment } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinAdornment } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 
 import type { ButtonProps } from "@/components/control-ui/ui/button";
 import {
@@ -33,6 +33,14 @@ export type ToggleGroupProps<TValue extends string = string> = Omit<ComponentPro
     indicator?: HoverIndicator;
   };
 
+function ToggleCheckIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function Toggle({
   variant = "surface",
   size = "sm",
@@ -51,6 +59,7 @@ export function Toggle({
   children,
   ...props
 }: ToggleProps) {
+  const CheckGlyph = useSkinIcon("check", ToggleCheckIcon);
   const skin = useSkin();
   const layer = skinAdornment(skin, "button", "layer", { variant, tone });
   const tracksHover = useContext(ButtonTrackContext);
@@ -85,11 +94,7 @@ export function Toggle({
             <span data-control-ui="toggle" data-control-family="button" data-slot="content" className={buttonContentClasses}>
               {showCheck ? (
                 <span data-control-ui="toggle" data-slot="check" className="flex size-3.5 shrink-0 items-center justify-center">
-                  {isActive ? (
-                    <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
-                      <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  ) : null}
+                  {isActive ? <CheckGlyph className="size-3" aria-hidden="true" /> : null}
                 </span>
               ) : null}
               {renderProps.children}

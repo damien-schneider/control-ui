@@ -4,11 +4,11 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import type { ChangeEvent, ComponentProps, CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
 import { Children, createContext, isValidElement, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-
 import { type CopyStatus, useCopyToClipboard } from "@/components/control-ui/hooks/use-copy-to-clipboard";
 import type { CodeKnobStyle } from "@/components/control-ui/knob-contracts/code-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens } from "@/components/control-ui/lib/code-tokens";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea, type ScrollAreaLockAxis } from "@/components/control-ui/ui/scroll-area";
@@ -177,10 +177,12 @@ export function CodeCopy({
   "aria-label": ariaLabel,
   ...props
 }: CodeCopyProps) {
+  const CheckGlyph = useSkinIcon("check", CheckIcon);
+  const CopyGlyph = useSkinIcon("copy", CopyIcon);
   const { status, handleCopy } = useCopyToClipboard({ text: value, onCopy, onCopyError });
   const isIconOnly = children === undefined;
   const label = ariaLabel ?? (isIconOnly ? "Copy code" : undefined);
-  const copied = copiedLabel ?? (isIconOnly ? <CheckIcon aria-hidden="true" /> : "Copied");
+  const copied = copiedLabel ?? (isIconOnly ? <CheckGlyph aria-hidden="true" /> : "Copied");
   const liveStatus = <LiveStatus message={copyStatusMessage(status, copiedAriaLabel, copyFailedLabel)} />;
 
   const button = (
@@ -195,7 +197,7 @@ export function CodeCopy({
       onClick={handleCopy}
     >
       <Swap value={status === "copied" ? "copied" : "idle"}>
-        <SwapItem value="idle">{children ?? <CopyIcon aria-hidden="true" />}</SwapItem>
+        <SwapItem value="idle">{children ?? <CopyGlyph aria-hidden="true" />}</SwapItem>
         <SwapItem value="copied">{copied}</SwapItem>
       </Swap>
     </Button>

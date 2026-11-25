@@ -9,8 +9,8 @@ import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/but
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { type PopupItemTone, popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 
 type MenubarStyledProps<PrimitiveProps> = Omit<PrimitiveProps, "className" | "style"> & {
@@ -197,6 +197,7 @@ export function MenubarItem({ tone = "neutral", inset, className, ...props }: Me
 }
 
 export function MenubarCheckboxItem({ className, children, ...props }: MenubarCheckboxItemProps) {
+  const CheckGlyph = useSkinIcon("check", MenubarCheck);
   return (
     <MenuPrimitive.CheckboxItem
       data-control-ui="menubar"
@@ -208,7 +209,7 @@ export function MenubarCheckboxItem({ className, children, ...props }: MenubarCh
       {...mergeProps(popupItemFocusProps, props)}
     >
       <MenuPrimitive.CheckboxItemIndicator className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
-        <MenubarCheck />
+        <CheckGlyph className="size-3" aria-hidden="true" />
       </MenuPrimitive.CheckboxItemIndicator>
       {children}
     </MenuPrimitive.CheckboxItem>
@@ -228,6 +229,7 @@ export function MenubarRadioGroup(props: MenubarRadioGroupProps) {
 }
 
 export function MenubarRadioItem({ className, children, value, ...props }: MenubarRadioItemProps) {
+  const CheckGlyph = useSkinIcon("check", MenubarCheck);
   return (
     <MenuPrimitive.RadioItem
       value={value}
@@ -240,16 +242,16 @@ export function MenubarRadioItem({ className, children, value, ...props }: Menub
       {...mergeProps(popupItemFocusProps, props)}
     >
       <MenuPrimitive.RadioItemIndicator className="pointer-events-none absolute start-2 flex size-4 items-center justify-center">
-        <MenubarCheck />
+        <CheckGlyph className="size-3" aria-hidden="true" />
       </MenuPrimitive.RadioItemIndicator>
       {children}
     </MenuPrimitive.RadioItem>
   );
 }
 
-function MenubarCheck() {
+function MenubarCheck(props: SkinIconProps) {
   return (
-    <svg viewBox="0 0 12 12" className="size-3" aria-hidden="true" fill="none">
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
       <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

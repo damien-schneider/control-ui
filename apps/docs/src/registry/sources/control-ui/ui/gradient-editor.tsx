@@ -22,6 +22,8 @@ import {
   type GradientValue,
   gradientColorAt,
 } from "@/components/control-ui/lib/gradient";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 
 export type { GradientInterpolation, GradientStop, GradientType, GradientValue } from "@/components/control-ui/lib/gradient";
@@ -381,8 +383,17 @@ export function GradientEditorStop({
   );
 }
 
+function GradientEditorPlusIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true" {...props}>
+      <path d="M8 3v10M3 8h10" />
+    </svg>
+  );
+}
+
 export function GradientEditorStopAdd({ children, disabled: disabledProp, ...props }: GradientEditorStopAddProps) {
   const { addStop, disabled, readOnly } = useGradientEditor();
+  const PlusGlyph = useSkinIcon("plus", GradientEditorPlusIcon);
   return (
     <Button
       variant="dashed"
@@ -394,11 +405,7 @@ export function GradientEditorStopAdd({ children, disabled: disabledProp, ...pro
       onClick={() => addStop(0.5)}
       {...props}
     >
-      {children ?? (
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-          <path d="M8 3v10M3 8h10" />
-        </svg>
-      )}
+      {children ?? <PlusGlyph aria-hidden="true" />}
     </Button>
   );
 }

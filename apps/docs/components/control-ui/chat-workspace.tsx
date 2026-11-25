@@ -17,6 +17,7 @@ import {
 } from "@/components/control-ui/chat-workspace-state";
 import { startMorphViewTransition } from "@/components/control-ui/extensions/view-transition";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button, type ButtonProps } from "@/components/control-ui/ui/button";
 
 // biome-ignore lint/performance/noBarrelFile: The workspace exposes one install-facing API across its split files.
@@ -302,6 +303,7 @@ export function ChatWorkspaceExpandToggle({
   "aria-label": ariaLabel = "Conversation",
   ...props
 }: ChatWorkspaceExpandToggleProps) {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", ChevronDown);
   const { collapsibleId, expanded, presentation, setExpanded } = useChatWorkspace();
   if (presentation === "docked") return null;
   function toggle(event: MouseEvent<HTMLButtonElement>) {
@@ -320,7 +322,7 @@ export function ChatWorkspaceExpandToggle({
       aria-controls={collapsibleId}
       onClick={toggle}
     >
-      {children ?? <ChevronDown aria-hidden="true" data-control-family="chat-workspace" data-slot="expand-icon" />}
+      {children ?? <ChevronDownGlyph aria-hidden="true" data-control-family="chat-workspace" data-slot="expand-icon" />}
     </Button>
   );
 }
@@ -338,15 +340,18 @@ export function ChatWorkspaceDockToggle({
   ...props
 }: ChatWorkspaceDockToggleProps) {
   const { docked, canDock, side, setDocked } = useChatWorkspace();
+  const PanelLeftGlyph = useSkinIcon("panelLeft", PanelLeft);
+  const PanelRightGlyph = useSkinIcon("panelRight", PanelRight);
+  const PictureInPictureGlyph = useSkinIcon("pictureInPicture", PictureInPicture2);
   if (!canDock) return null;
-  const PinIcon = side === "left" ? PanelLeft : PanelRight;
+  const PinGlyph = side === "left" ? PanelLeftGlyph : PanelRightGlyph;
   function toggle(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
     if (!event.defaultPrevented) setDocked(!docked);
   }
   return (
     <Button variant="ghost" size="sm" iconOnly {...props} type="button" aria-label={docked ? floatLabel : pinLabel} onClick={toggle}>
-      {children ?? (docked ? <PictureInPicture2 aria-hidden="true" /> : <PinIcon aria-hidden="true" />)}
+      {children ?? (docked ? <PictureInPictureGlyph aria-hidden="true" /> : <PinGlyph aria-hidden="true" />)}
     </Button>
   );
 }

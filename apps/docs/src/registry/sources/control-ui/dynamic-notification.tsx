@@ -9,6 +9,8 @@ import type { DynamicNotificationProps, DynamicNotificationVariant } from "@/com
 import { type DynamicNotificationController, useDynamicNotification } from "@/components/control-ui/hooks/use-dynamic-notification";
 import type { DynamicNotificationKnobStyle } from "@/components/control-ui/knob-contracts/dynamic-notification-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconProps } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 
@@ -560,8 +562,17 @@ export function DynamicNotificationReplyInput({ className, onChange, disabled, r
 
 export type DynamicNotificationReplySubmitProps = ComponentProps<typeof Button>;
 
+function DynamicNotificationSendIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path d="M8 12.5v-9M4 7l4-3.5L12 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function DynamicNotificationReplySubmit({ className, disabled, children, ...props }: DynamicNotificationReplySubmitProps) {
   const { canSubmit } = useDynamicNotificationReplyContext();
+  const ArrowUpGlyph = useSkinIcon("arrowUp", DynamicNotificationSendIcon);
 
   return (
     <Button
@@ -578,16 +589,20 @@ export function DynamicNotificationReplySubmit({ className, disabled, children, 
       className={cn("shrink-0", className)}
       {...props}
     >
-      {children ?? (
-        <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
-          <path d="M8 12.5v-9M4 7l4-3.5L12 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )}
+      {children ?? <ArrowUpGlyph aria-hidden="true" />}
     </Button>
   );
 }
 
 export type DynamicNotificationCloseProps = ComponentProps<typeof Button> & { collapseLabel?: string };
+
+function DynamicNotificationCloseIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export function DynamicNotificationClose({
   className,
@@ -598,6 +613,7 @@ export function DynamicNotificationClose({
   ...props
 }: DynamicNotificationCloseProps) {
   const { disabled: contextDisabled, setOpen } = useDynamicNotificationShellContext();
+  const CloseGlyph = useSkinIcon("close", DynamicNotificationCloseIcon);
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
     onClick?.(event);
@@ -620,11 +636,7 @@ export function DynamicNotificationClose({
       className={cn("shrink-0", className)}
       {...props}
     >
-      {children ?? (
-        <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
-          <path d="M4 4 12 12M12 4 4 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
-      )}
+      {children ?? <CloseGlyph aria-hidden="true" />}
     </Button>
   );
 }

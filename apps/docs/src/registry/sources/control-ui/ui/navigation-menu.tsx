@@ -6,8 +6,8 @@ import { createContext, use } from "react";
 import type { ButtonKnobStyle } from "@/components/control-ui/knob-contracts/button-knobs";
 import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popup-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 
 export type NavigationMenuProps = ComponentProps<"nav"> & {
   value?: string | null;
@@ -89,7 +89,16 @@ export function NavigationMenuItem({ className, ...props }: NavigationMenuItemPr
   );
 }
 
+function NavigationMenuChevronIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function NavigationMenuTrigger({ className, children, ...props }: NavigationMenuTriggerProps) {
+  const ChevronDownGlyph = useSkinIcon("chevronDown", NavigationMenuChevronIcon);
   return (
     <NavigationMenuPrimitive.Trigger
       data-control-ui="navigation-menu"
@@ -111,9 +120,7 @@ export function NavigationMenuTrigger({ className, children, ...props }: Navigat
         data-popup-kind="navigation-menu"
         data-slot="icon"
       >
-        <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-          <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ChevronDownGlyph aria-hidden="true" />
       </NavigationMenuPrimitive.Icon>
     </NavigationMenuPrimitive.Trigger>
   );

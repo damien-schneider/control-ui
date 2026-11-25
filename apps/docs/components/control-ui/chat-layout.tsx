@@ -10,7 +10,7 @@ import { ChatThreadAnnounceContext, ChatThreadDockContext } from "@/components/c
 import { useChatThreadScroll } from "@/components/control-ui/hooks/use-chat-thread-scroll";
 import type { ChatLayoutKnobStyle } from "@/components/control-ui/knob-contracts/chat-layout-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
-import { SkinAdornment } from "@/components/control-ui/skin-provider";
+import { SkinAdornment, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
@@ -213,6 +213,7 @@ export function ChatThreadScrollButton({
   onClick,
   ...props
 }: ChatThreadScrollButtonProps) {
+  const ArrowDownGlyph = useSkinIcon("arrowDown", ArrowDown);
   const scroll = useContext(ChatThreadScrollContext);
   if (!scroll) throw new Error("<ChatThreadScrollButton> must be rendered inside <ChatThread>.");
 
@@ -235,7 +236,7 @@ export function ChatThreadScrollButton({
     >
       <Button {...props} type="button" variant={variant} size={size} shape={shape} iconOnly aria-label={label} onClick={handleClick}>
         <span data-control-family="chat-layout" data-slot="scroll-glyph" aria-hidden="true">
-          <ArrowDown data-control-family="chat-layout" data-slot="scroll-arrow" />
+          <ArrowDownGlyph data-control-family="chat-layout" data-slot="scroll-arrow" />
           <svg data-control-family="chat-layout" data-slot="scroll-writing" viewBox="0 0 20 16" fill="none" aria-hidden="true">
             <path pathLength={1} d={PEN_STROKE} />
           </svg>

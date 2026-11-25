@@ -17,6 +17,7 @@ import {
 import { useEffect, useEffectEvent, useMemo } from "react";
 import { isComposingKey, type TriggerMenuItemData, useTriggerMenu } from "@/components/control-ui/hooks/use-trigger-menu";
 import { detectTrigger } from "@/components/control-ui/lib/trigger-detect";
+import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
 import { TriggerMenu, TriggerMenuEmpty, TriggerMenuIcon, TriggerMenuItem, TriggerMenuList } from "@/components/control-ui/ui/trigger-menu";
 import { type MarkdownEditorLabels, useMarkdownEditor } from "./context";
@@ -31,65 +32,75 @@ function blockCommands(labels: MarkdownEditorLabels): readonly EditorSuggestion[
       id: "paragraph",
       label: labels.text,
       keywords: ["paragraph"],
-      icon: <TextIcon />,
+      icon: <SkinIcon name="paragraph" fallback={TextIcon} />,
       block: { type: "paragraph" },
     },
     {
       id: "heading-1",
       label: labels.heading(1),
       keywords: ["h1", "title"],
-      icon: <Heading1Icon />,
+      icon: <SkinIcon name="heading1" fallback={Heading1Icon} />,
       block: { type: "heading", level: 1 },
     },
     {
       id: "heading-2",
       label: labels.heading(2),
       keywords: ["h2", "subtitle"],
-      icon: <Heading2Icon />,
+      icon: <SkinIcon name="heading2" fallback={Heading2Icon} />,
       block: { type: "heading", level: 2 },
     },
     {
       id: "heading-3",
       label: labels.heading(3),
       keywords: ["h3"],
-      icon: <Heading3Icon />,
+      icon: <SkinIcon name="heading3" fallback={Heading3Icon} />,
       block: { type: "heading", level: 3 },
     },
-    { id: "bullet-list", label: labels.bulletList, icon: <ListIcon />, block: { type: "bulletList" } },
+    {
+      id: "bullet-list",
+      label: labels.bulletList,
+      icon: <SkinIcon name="bulletList" fallback={ListIcon} />,
+      block: { type: "bulletList" },
+    },
     {
       id: "ordered-list",
       label: labels.orderedList,
       keywords: ["ordered"],
-      icon: <ListOrderedIcon />,
+      icon: <SkinIcon name="orderedList" fallback={ListOrderedIcon} />,
       block: { type: "orderedList" },
     },
     {
       id: "task-list",
       label: labels.taskList,
       keywords: ["todo", "checklist"],
-      icon: <ListChecksIcon />,
+      icon: <SkinIcon name="taskList" fallback={ListChecksIcon} />,
       block: { type: "taskList" },
     },
     {
       id: "quote",
       label: labels.quote,
       keywords: ["blockquote"],
-      icon: <QuoteIcon />,
+      icon: <SkinIcon name="quote" fallback={QuoteIcon} />,
       block: { type: "blockquote" },
     },
-    { id: "code-block", label: labels.codeBlock, icon: <SquareCodeIcon />, block: { type: "codeBlock" } },
+    {
+      id: "code-block",
+      label: labels.codeBlock,
+      icon: <SkinIcon name="codeBlock" fallback={SquareCodeIcon} />,
+      block: { type: "codeBlock" },
+    },
     {
       id: "divider",
       label: labels.divider,
       keywords: ["rule", "separator"],
-      icon: <MinusIcon />,
+      icon: <SkinIcon name="divider" fallback={MinusIcon} />,
       block: { type: "horizontalRule" },
     },
     {
       id: "table",
       label: labels.table,
       keywords: ["grid", "columns"],
-      icon: <TableIcon />,
+      icon: <SkinIcon name="table" fallback={TableIcon} />,
       block: { type: "table" },
     },
   ];
@@ -111,6 +122,7 @@ export type MarkdownEditorSuggestionsProps = {
 
 export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: MarkdownEditorSuggestionsProps) {
   const { engine, editable: enabled, labels, isUrlAllowed } = useMarkdownEditor();
+  const UserGlyph = useSkinIcon("user", UserIcon);
   const commands = useMemo(() => blockCommands(labels), [labels]);
   const controller = useTriggerMenu<EditorSuggestion>({
     triggers: [
@@ -199,7 +211,7 @@ export function MarkdownEditorSuggestions({ mentions = [], onMentionSelect }: Ma
               onPointerMove={() => controller.setActiveIndex(index)}
               onClick={() => controller.select(item)}
             >
-              <TriggerMenuIcon>{item.icon ?? <UserIcon />}</TriggerMenuIcon>
+              <TriggerMenuIcon>{item.icon ?? <UserGlyph />}</TriggerMenuIcon>
               <span className="min-w-0 flex-1 truncate">{item.label}</span>
               {item.description ? (
                 <span

@@ -5,6 +5,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useId, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { prefersReducedMotion } from "@/components/control-ui/lib/motion";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/control-ui/ui/empty";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/control-ui/ui/field";
@@ -264,10 +265,12 @@ function SettingsSearch({
   placeholder: string;
   onValueChange: (value: string) => void;
 }) {
+  const SearchGlyph = useSkinIcon("search", SearchIcon);
+  const CloseGlyph = useSkinIcon("close", XIcon);
   return (
     <InputGroup size="sm">
       <InputGroupAddon>
-        <SearchIcon aria-hidden="true" />
+        <SearchGlyph aria-hidden="true" />
       </InputGroupAddon>
       <Input
         type="search"
@@ -278,7 +281,7 @@ function SettingsSearch({
       />
       {value ? (
         <Button variant="ghost" size="xs" iconOnly aria-label={clearLabel} className="me-1" onClick={() => onValueChange("")}>
-          <XIcon aria-hidden="true" />
+          <CloseGlyph aria-hidden="true" />
         </Button>
       ) : null}
     </InputGroup>
@@ -431,11 +434,12 @@ function SettingsRow({
 }
 
 function SettingsEmpty({ title, description, action }: { title: string; description: string; action?: ReactNode }) {
+  const SearchGlyph = useSkinIcon("search", SearchIcon);
   return (
     <Empty className="min-h-40">
       <EmptyHeader>
         <EmptyMedia>
-          <SearchIcon aria-hidden="true" />
+          <SearchGlyph aria-hidden="true" />
         </EmptyMedia>
         <EmptyTitle>{title}</EmptyTitle>
         <EmptyDescription>{description}</EmptyDescription>
@@ -460,9 +464,10 @@ export function SettingsBackAction({
   className,
   ...props
 }: Omit<ComponentProps<typeof Button>, "children"> & { children?: ReactNode }) {
+  const ArrowLeftGlyph = useSkinIcon("arrowLeft", ArrowLeftIcon);
   return (
     <Button variant="quiet" size="sm" className={cn("-ms-1 justify-start", className)} {...props}>
-      <ArrowLeftIcon data-icon-dir="inline" aria-hidden="true" />
+      <ArrowLeftGlyph data-icon-dir="inline" aria-hidden="true" />
       {children}
     </Button>
   );

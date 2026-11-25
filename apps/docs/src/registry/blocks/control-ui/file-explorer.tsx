@@ -4,6 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon, FileIcon, FolderIcon, MoreHorizontal
 import type { ComponentProps, KeyboardEvent, ReactNode, RefCallback } from "react";
 import { Fragment, useEffect, useId, useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -298,11 +299,12 @@ function FileExplorerUnavailable({
   className,
   ...props
 }: ComponentProps<typeof Empty> & { emptyTitle: string; emptyDescription: string }) {
+  const FolderGlyph = useSkinIcon("folder", FolderIcon);
   return (
     <Empty className={cn("min-h-96", className)} {...props}>
       <EmptyHeader>
         <EmptyMedia>
-          <FolderIcon />
+          <FolderGlyph />
         </EmptyMedia>
         <EmptyTitle>{emptyTitle}</EmptyTitle>
         <EmptyDescription>{emptyDescription}</EmptyDescription>
@@ -324,6 +326,7 @@ function FileExplorerSidebar({
   sidebarFooter?: ReactNode;
   onLocationSelect: (location: FileExplorerLocation) => void;
 }) {
+  const FolderGlyph = useSkinIcon("folder", FolderIcon);
   const { setOpenMobile } = useSidebar();
   const groups = groupFileExplorerItems(locations);
 
@@ -345,7 +348,7 @@ function FileExplorerSidebar({
                       setOpenMobile(false);
                     }}
                   >
-                    {location.icon ?? <FolderIcon />}
+                    {location.icon ?? <FolderGlyph />}
                     <span>{location.label}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -395,6 +398,10 @@ function FileExplorerHeader({
   onBreadcrumbSelect: (breadcrumb: FileExplorerBreadcrumb) => void;
   onQueryChange: (value: string) => void;
 }) {
+  const ChevronLeftGlyph = useSkinIcon("chevronLeft", ChevronLeftIcon);
+  const MoreGlyph = useSkinIcon("more", MoreHorizontalIcon);
+  const SearchGlyph = useSkinIcon("search", SearchIcon);
+  const CloseGlyph = useSkinIcon("close", XIcon);
   return (
     <header className="shrink-0 border-b border-border/70">
       <div className="flex h-12 items-center gap-2 px-3">
@@ -408,7 +415,7 @@ function FileExplorerHeader({
           aria-label={backLabel}
           onClick={onBack}
         >
-          <ChevronLeftIcon data-icon-dir="inline" />
+          <ChevronLeftGlyph data-icon-dir="inline" />
         </Button>
         <Heading level={headingLevel} size="label" weight="semibold" className="min-w-0 flex-1 truncate" title={location.label}>
           {location.label}
@@ -425,7 +432,7 @@ function FileExplorerHeader({
               aria-label={moreActionsLabel}
               className={headerActions ? "@2xl/explorer:hidden" : undefined}
             >
-              <MoreHorizontalIcon aria-hidden="true" />
+              <MoreGlyph aria-hidden="true" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">{headerMenuItems}</DropdownMenuContent>
           </DropdownMenu>
@@ -433,7 +440,7 @@ function FileExplorerHeader({
         {searchPlaceholder ? (
           <InputGroup size="sm" className="flex-[0_1_9rem] @xl/explorer:flex-[0_0_12rem]">
             <InputGroupAddon>
-              <SearchIcon aria-hidden="true" />
+              <SearchGlyph aria-hidden="true" />
             </InputGroupAddon>
             <Input
               type="search"
@@ -444,7 +451,7 @@ function FileExplorerHeader({
             />
             {query ? (
               <Button variant="ghost" size="xs" iconOnly className="me-1" aria-label={clearSearchLabel} onClick={() => onQueryChange("")}>
-                <XIcon />
+                <CloseGlyph />
               </Button>
             ) : null}
           </InputGroup>
@@ -484,6 +491,7 @@ function FileExplorerColumns({
   onNavigate: (path: readonly string[], entry: FileExplorerEntry | undefined) => void;
   onOpen: (entry: FileExplorerEntry, path: readonly string[]) => void;
 }) {
+  const ChevronLeftGlyph = useSkinIcon("chevronLeft", ChevronLeftIcon);
   const rootRef = useRef<HTMLDivElement>(null);
   const optionElements = useRef(new Map<string, HTMLElement>());
   const pendingFocus = useRef<OptionTarget | null>(null);
@@ -620,7 +628,7 @@ function FileExplorerColumns({
                   aria-label={`${backLabel}: ${parentColumn.label}`}
                   onClick={() => moveToParent(activeIndex)}
                 >
-                  <ChevronLeftIcon data-icon-dir="inline" />
+                  <ChevronLeftGlyph data-icon-dir="inline" />
                   <span className="truncate">{parentColumn.label}</span>
                 </Button>
               ) : (
@@ -696,7 +704,9 @@ function FileExplorerPanel({ children, ...props }: ComponentProps<typeof Resizab
 }
 
 function FileExplorerEntryIcon({ entry }: { entry: FileExplorerEntry }) {
-  return entry.icon ?? (entry.kind === "folder" ? <FolderIcon /> : <FileIcon />);
+  const FolderGlyph = useSkinIcon("folder", FolderIcon);
+  const FileGlyph = useSkinIcon("file", FileIcon);
+  return entry.icon ?? (entry.kind === "folder" ? <FolderGlyph /> : <FileGlyph />);
 }
 
 function FileExplorerColumnView({
@@ -716,6 +726,8 @@ function FileExplorerColumnView({
   onOpen: (entry: FileExplorerEntry) => void;
   onOptionKeyDown: (event: KeyboardEvent<HTMLElement>, entry: FileExplorerEntry) => void;
 }) {
+  const FolderGlyph = useSkinIcon("folder", FolderIcon);
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRightIcon);
   const groupId = useId();
   const groups = groupFileExplorerItems(column.entries);
   const tabStopId = column.selectedId ?? groups[0]?.items[0]?.id;
@@ -725,7 +737,7 @@ function FileExplorerColumnView({
       <Empty className="h-full">
         <EmptyHeader>
           <EmptyMedia>
-            <FolderIcon />
+            <FolderGlyph />
           </EmptyMedia>
           <EmptyTitle>{emptyTitle}</EmptyTitle>
           <EmptyDescription>{emptyDescription}</EmptyDescription>
@@ -759,7 +771,7 @@ function FileExplorerColumnView({
               >
                 <FileExplorerEntryIcon entry={entry} />
                 <span className="min-w-0 flex-1 truncate">{entry.name}</span>
-                {entry.kind === "folder" ? <ChevronRightIcon data-icon-dir="inline" /> : null}
+                {entry.kind === "folder" ? <ChevronRightGlyph data-icon-dir="inline" /> : null}
               </Button>
             );
           });
@@ -793,12 +805,13 @@ function FileExplorerPreview({
   emptyTitle: string;
   emptyDescription: string;
 }) {
+  const FileGlyph = useSkinIcon("file", FileIcon);
   if (!entry) {
     return (
       <Empty className="h-full">
         <EmptyHeader>
           <EmptyMedia>
-            <FileIcon />
+            <FileGlyph />
           </EmptyMedia>
           <EmptyTitle>{emptyTitle}</EmptyTitle>
           <EmptyDescription>{emptyDescription}</EmptyDescription>
@@ -879,6 +892,7 @@ function FileExplorerSearchResults({
   onOpen: (entry: FileExplorerEntry, path: readonly string[]) => void;
   onClear: () => void;
 }) {
+  const SearchGlyph = useSkinIcon("search", SearchIcon);
   const optionElements = useRef<(HTMLElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const tabStop = Math.min(activeIndex, results.length - 1);
@@ -888,7 +902,7 @@ function FileExplorerSearchResults({
       <Empty className="h-full">
         <EmptyHeader>
           <EmptyMedia>
-            <SearchIcon />
+            <SearchGlyph />
           </EmptyMedia>
           <EmptyTitle>{status}</EmptyTitle>
           <EmptyDescription>{noResultsDescription}</EmptyDescription>

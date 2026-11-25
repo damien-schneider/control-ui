@@ -10,8 +10,8 @@ import type { PopupKnobStyle } from "@/components/control-ui/knob-contracts/popu
 import { cn } from "@/components/control-ui/lib/cn";
 import { listboxNameRef } from "@/components/control-ui/lib/listbox-name";
 import { popupItemFocusProps } from "@/components/control-ui/lib/popup-item-focus";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { useSkin } from "@/components/control-ui/skin-provider";
+import { type SkinIconProps, skinScopeAttributes } from "@/components/control-ui/skin";
+import { useSkin, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { popupItemStructureClasses } from "@/components/control-ui/surface-variants";
 import {
   InputGroup,
@@ -85,7 +85,16 @@ export function Autocomplete<Value = string>({ children, autoHighlight = true, .
   );
 }
 
+function AutocompleteClearIcon(props: SkinIconProps) {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true" {...props}>
+      <path d="M3 3 9 9M9 3 3 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function AutocompleteClear({ className, children, "aria-label": ariaLabel = "Clear search", ...props }: AutocompleteClearProps) {
+  const CloseGlyph = useSkinIcon("close", AutocompleteClearIcon);
   return (
     <AutocompletePrimitive.Clear
       data-control-ui="autocomplete"
@@ -96,11 +105,7 @@ export function AutocompleteClear({ className, children, "aria-label": ariaLabel
       className={cn("inline-flex size-6 shrink-0 items-center justify-center", className)}
       {...props}
     >
-      {children ?? (
-        <svg viewBox="0 0 12 12" aria-hidden="true" fill="none">
-          <path d="M3 3 9 9M9 3 3 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      )}
+      {children ?? <CloseGlyph aria-hidden="true" />}
     </AutocompletePrimitive.Clear>
   );
 }

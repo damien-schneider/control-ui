@@ -3,9 +3,10 @@
 import { ChevronRight, CircleCheck, CircleDashed, Loader2 } from "lucide-react";
 import type { ComponentProps, CSSProperties, ReactNode } from "react";
 import { createContext, useContext, useEffect, useId, useRef, useState } from "react";
-
 import type { TaskListKnobStyle } from "@/components/control-ui/knob-contracts/task-list-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
+import type { SkinIconComponent, SkinIconName } from "@/components/control-ui/skin";
+import { useSkinIcon } from "@/components/control-ui/skin-provider";
 import type { CollapsibleProps } from "@/components/control-ui/ui/collapsible";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/control-ui/ui/collapsible";
 import { LiveStatus } from "@/components/control-ui/ui/live-status";
@@ -143,6 +144,7 @@ export function TaskList({ statusLabels, completedLabel = "All tasks completed",
 export type TaskListTriggerProps = TaskListStyleProps<ComponentProps<"button">, TaskListKnobStyle>;
 
 export function TaskListTrigger({ className, children, ...props }: TaskListTriggerProps) {
+  const ChevronRightGlyph = useSkinIcon("chevronRight", ChevronRight);
   const { current } = useTaskListContext();
 
   return (
@@ -157,7 +159,7 @@ export function TaskListTrigger({ className, children, ...props }: TaskListTrigg
         <>
           <TaskListIndicator status={current?.status ?? "pending"} />
           <TaskListProgress />
-          <ChevronRight
+          <ChevronRightGlyph
             aria-hidden="true"
             data-icon-dir="inline"
             data-control-ui="task-list"
@@ -268,17 +270,18 @@ export function TaskListItem({ label, status = "pending", className, children, r
 }
 
 const indicatorIcons = {
-  pending: CircleDashed,
-  active: Loader2,
-  completed: CircleCheck,
-} as const;
+  pending: { name: "pending", fallback: CircleDashed },
+  active: { name: "spinner", fallback: Loader2 },
+  completed: { name: "success", fallback: CircleCheck },
+} satisfies Record<TaskStatus, { name: SkinIconName; fallback: SkinIconComponent }>;
 
 export type TaskListIndicatorProps = TaskListStyleProps<ComponentProps<"span">, TaskListKnobStyle> & {
   status?: TaskStatus;
 };
 
 export function TaskListIndicator({ status = "pending", className, ...props }: TaskListIndicatorProps) {
-  const Icon = indicatorIcons[status];
+  const indicatorIcon = indicatorIcons[status];
+  const IndicatorGlyph = useSkinIcon(indicatorIcon.name, indicatorIcon.fallback);
   const statusLabels = useContext(TaskListContext)?.statusLabels ?? taskStatusLabels;
 
   return (
@@ -290,7 +293,7 @@ export function TaskListIndicator({ status = "pending", className, ...props }: T
       className={cn("inline-flex shrink-0 items-center justify-center", className)}
       {...props}
     >
-      <Icon aria-hidden="true" data-motion-essential={status === "active" ? "" : undefined} />
+      <IndicatorGlyph aria-hidden="true" data-motion-essential={status === "active" ? "" : undefined} />
       <span className="sr-only">{statusLabels[status]}</span>
     </span>
   );
