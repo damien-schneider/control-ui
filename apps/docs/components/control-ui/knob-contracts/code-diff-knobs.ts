@@ -16,5 +16,9 @@ export const codeDiffKnobs = [
   "--cui-code-diff-expand-button-shadow",
   "--cui-code-diff-expand-button-hover-background",
   "--cui-code-diff-expand-button-hover-foreground",
+  "--cui-code-diff-selected-background",
+  "--cui-code-diff-selected-gutter-background",
+  "--cui-code-diff-gutter-hover-background",
+  "--cui-code-diff-annotation-background",
 ] as const;
 export type CodeDiffKnobStyle = Partial<Record<(typeof codeDiffKnobs)[number], string>>;

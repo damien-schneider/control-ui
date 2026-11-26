@@ -5,16 +5,34 @@ import { ChevronsDownUp, ChevronsUpDown, CircleSlash, MoreHorizontal } from "luc
 import type { ComponentProps, CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
+import {
+  type DiffLineColumn,
+  type DiffLineSelection,
+  type DiffLineTarget,
+  useDiffLineSelection,
+} from "@/components/control-ui/code-diff-selection";
 import type { CodeDiffKnobStyle } from "@/components/control-ui/knob-contracts/code-diff-knobs";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type CodeTokenLines, highlightToTokens, mergeCodeTokenLineWithEmphasis } from "@/components/control-ui/lib/code-tokens";
-import { buildDiffFromFiles, buildDiffFromPatch, type DiffFile, type DiffLine, diffRunEnd } from "@/components/control-ui/lib/diff";
+import {
+  buildDiffFromFiles,
+  buildDiffFromPatch,
+  type CodeDiffAnnotation,
+  type DiffFile,
+  type DiffLine,
+  type DiffLinePoint,
+  type DiffLineRange,
+  diffRunEnd,
+  hiddenContext,
+} from "@/components/control-ui/lib/diff";
 import { SkinIcon, useSkinIcon } from "@/components/control-ui/skin-provider";
 import { Button } from "@/components/control-ui/ui/button";
 import type { CodeOverflow } from "@/components/control-ui/ui/code";
 import { CodeCopy, type CodeCopyProps, CodeFloatingCopy, CodeTokenLine } from "@/components/control-ui/ui/code";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/control-ui/ui/tooltip";
+
+export type { CodeDiffAnnotation, DiffLinePoint, DiffLineRange, DiffSide } from "@/components/control-ui/lib/diff";
 
 export type DiffStyle = "unified" | "split";
 
@@ -46,11 +64,14 @@ const NO_EXPANSION: Expansion = { identity: "", gaps: new Set(), revealedRowId: 
 type VisualRow =
   | { kind: "separator"; id: string; gapIndex: number; label: string; hidden: number; canExpand: boolean }
   | { kind: "unified"; id: string; line: DiffLine }
-  | { kind: "split"; id: string; left: DiffLine | null; right: DiffLine | null };
+  | { kind: "split"; id: string; left: DiffLine | null; right: DiffLine | null }
+  | { kind: "annotation"; id: string; index: number };
+
+type AnnotationTarget = { at: DiffLinePoint; key: string };
 
 export type CodeDiffLineRole = "added" | "deleted" | "unchanged" | "original" | "modified";
 
-export type CodeDiffProps = Omit<ComponentProps<"figure">, "children" | "style"> & {
+export type CodeDiffProps<T = unknown> = Omit<ComponentProps<"figure">, "children" | "style"> & {
   // one path or other: `patch` is partial and cannot expand context, text pair can
   patch?: string;
   oldText?: string;
@@ -64,6 +85,7 @@ export type CodeDiffProps = Omit<ComponentProps<"figure">, "children" | "style">
   maxLineDiffLength?: number;
   // past this edit distance the text pair renders as one replace block; 0 disables guard
   maxEditLength?: number;
+  // "none" lets the page scroll the diff: every row renders, nothing virtualizes
   maxHeight?: string;
   header?: boolean;
   emptyLabel?: ReactNode;
@@ -78,6 +100,13 @@ export type CodeDiffProps = Omit<ComponentProps<"figure">, "children" | "style">
   getStatsLabel?: (additions: number, deletions: number) => string;
   getLineLabel?: (role: CodeDiffLineRole, lineNumber: number | undefined, text: string) => string;
   getFileCountLabel?: (count: number) => string;
+  // selection is enabled by the callback; ranges and annotations address the first file of a patch only
+  selectedLines?: readonly DiffLineRange[];
+  onSelectedLinesChange?: (lines: DiffLineRange[]) => void;
+  annotations?: readonly CodeDiffAnnotation<T>[];
+  renderAnnotation?: (annotation: CodeDiffAnnotation<T>) => ReactNode;
+  // text pairs only: lines differing in leading or trailing whitespace read as unchanged
+  ignoreWhitespace?: boolean;
   style?: CSSProperties & CodeDiffKnobStyle;
 };
 
@@ -186,31 +215,6 @@ function hiddenAfter(file: DiffFile): number {
   return last && !file.isPartial ? Math.max(0, file.oldLines.length - (last.oldStart + last.oldCount) + 1) : 0;
 }
 
-function trailingContext(file: DiffFile): DiffLine[] {
-  const last = file.hunks.at(-1);
-  if (!last || file.isPartial) return [];
-  const offset = last.newStart + last.newCount - (last.oldStart + last.oldCount);
-  const lines: DiffLine[] = [];
-  for (let oldNo = last.oldStart + last.oldCount; oldNo <= file.oldLines.length; oldNo += 1) {
-    lines.push({ type: "context", oldNo, newNo: oldNo + offset, text: file.oldLines[oldNo - 1] ?? "" });
-  }
-  return lines;
-}
-
-// non-partial only — numbering comes from file's full text; the index past the last hunk is the file's tail
-function expandedContext(file: DiffFile, gapIndex: number): DiffLine[] {
-  if (gapIndex === file.hunks.length) return trailingContext(file);
-  const hunk = file.hunks[gapIndex];
-  if (!hunk) return [];
-  const offset = hunk.newStart - hunk.oldStart;
-  const lines: DiffLine[] = [];
-  for (let oldNo = hunk.oldStart - hunk.collapsedBefore; oldNo < hunk.oldStart; oldNo += 1) {
-    const text = file.oldLines[oldNo - 1] ?? "";
-    lines.push({ type: "context", oldNo, newNo: oldNo + offset, text });
-  }
-  return lines;
-}
-
 // the unified format writes an empty range one line early
 function hunkRange(start: number, count: number): string {
   return `${count === 0 ? start - 1 : start},${count}`;
@@ -226,7 +230,7 @@ function gapRows(file: DiffFile, hunk: DiffHunk, gapIndex: number, diffStyle: Di
   const hasGap = gapIndex > 0 || hunk.collapsedBefore > 0;
   if (!hasGap) return [];
   if ((expanded.has(gapIndex) || hunk.collapsedBefore === 1) && !file.isPartial) {
-    return expandedContext(file, gapIndex).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
+    return hiddenContext(file, gapIndex).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
   }
 
   const range = `@@ -${hunkRange(hunk.oldStart, hunk.oldCount)} +${hunkRange(hunk.newStart, hunk.newCount)} @@`;
@@ -259,20 +263,68 @@ function trailingRows(file: DiffFile, diffStyle: DiffStyle, expanded: ReadonlySe
   const gapIndex = file.hunks.length;
   if (hiddenAfter(file) === 0) return [];
   if (expanded.has(gapIndex) || hiddenAfter(file) === 1) {
-    return trailingContext(file).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
+    return hiddenContext(file, gapIndex).map((line) => rowForLine(diffStyle, line, expandedRowId(gapIndex, line)));
   }
   return [{ kind: "separator", id: `sep-${gapIndex}`, gapIndex, label: "", hidden: hiddenAfter(file), canExpand: true }];
 }
 
+function pointKeys(line: DiffLine): string[] {
+  const keys: string[] = [];
+  if (line.type !== "add" && line.oldNo !== undefined) keys.push(`old:${line.oldNo}`);
+  if (line.type !== "del" && line.newNo !== undefined) keys.push(`new:${line.newNo}`);
+  return keys;
+}
+
+function rowLines(row: VisualRow): DiffLine[] {
+  if (row.kind === "unified") return [row.line];
+  if (row.kind !== "split") return [];
+  if (row.left === row.right) return row.left ? [row.left] : [];
+  return [row.left, row.right].filter((line) => line !== null);
+}
+
 // pushed one by one: spreading a hunk of 100k+ lines into push() overflows the call stack
-function buildRows(file: DiffFile, diffStyle: DiffStyle, expanded: ReadonlySet<number>): VisualRow[] {
-  const rows: VisualRow[] = [];
-  for (const [gapIndex, hunk] of file.hunks.entries()) {
-    for (const row of gapRows(file, hunk, gapIndex, diffStyle, expanded)) rows.push(row);
-    for (const row of changedRows(hunk, gapIndex, diffStyle)) rows.push(row);
+function buildRows(
+  file: DiffFile,
+  diffStyle: DiffStyle,
+  expanded: ReadonlySet<number>,
+  annotations: readonly AnnotationTarget[],
+): VisualRow[] {
+  const annotationsAt = new Map<string, number[]>();
+  for (const [index, annotation] of annotations.entries()) {
+    const key = `${annotation.at.side}:${annotation.at.line}`;
+    annotationsAt.set(key, [...(annotationsAt.get(key) ?? []), index]);
   }
-  for (const row of trailingRows(file, diffStyle, expanded)) rows.push(row);
+  const rows: VisualRow[] = [];
+  const push = (row: VisualRow) => {
+    rows.push(row);
+    if (annotationsAt.size === 0) return;
+    const indexes = new Set(rowLines(row).flatMap((line) => pointKeys(line).flatMap((key) => annotationsAt.get(key) ?? [])));
+    for (const index of indexes) rows.push({ kind: "annotation", id: `note-${annotations[index]?.key ?? index}`, index });
+  };
+  for (const [gapIndex, hunk] of file.hunks.entries()) {
+    for (const row of gapRows(file, hunk, gapIndex, diffStyle, expanded)) push(row);
+    for (const row of changedRows(hunk, gapIndex, diffStyle)) push(row);
+  }
+  for (const row of trailingRows(file, diffStyle, expanded)) push(row);
   return rows;
+}
+
+// unified view selects a deleted line by its old number and every other line by its new number
+function lineTarget(rowId: string, rowIndex: number, column: DiffLineColumn, line: DiffLine): DiffLineTarget {
+  const onOldSide = column === "left" || (column === "unified" && line.type === "del");
+  const point: DiffLinePoint = onOldSide ? { side: "old", line: line.oldNo ?? 0 } : { side: "new", line: line.newNo ?? 0 };
+  return { id: `${rowId}:${column}`, rowIndex, column, point, line };
+}
+
+function lineTargets(rows: readonly VisualRow[]): DiffLineTarget[] {
+  const targets: DiffLineTarget[] = [];
+  for (const [rowIndex, row] of rows.entries()) {
+    if (row.kind === "unified") targets.push(lineTarget(row.id, rowIndex, "unified", row.line));
+    if (row.kind !== "split") continue;
+    if (row.left) targets.push(lineTarget(row.id, rowIndex, "left", row.left));
+    if (row.right) targets.push(lineTarget(row.id, rowIndex, "right", row.right));
+  }
+  return targets;
 }
 
 function gutterDigits(file: DiffFile, expanded: ReadonlySet<number>): number {
@@ -319,7 +371,7 @@ function DiffCode({
   if (line.segments && line.segments.length > 0) {
     const runs = mergeCodeTokenLineWithEmphasis(line.text, tokens, line.segments);
     return (
-      <code className={cn("min-w-0 flex-1", wrapClass)}>
+      <code aria-hidden="true" className={cn("min-w-0 flex-1", wrapClass)}>
         {runs.map((run) => {
           const style: CSSProperties | undefined = run.style || undefined;
           if (run.emphasis) {
@@ -347,7 +399,7 @@ function DiffCode({
     );
   }
   return (
-    <code className={cn("min-w-0 flex-1", wrapClass)}>
+    <code aria-hidden="true" className={cn("min-w-0 flex-1", wrapClass)}>
       {/* a row holding no text node is skipped by text selection, losing the blank line on copy */}
       {line.text === "" ? "\n" : <CodeTokenLine tokens={tokens} plain={line.text} />}
       {noNewline}
@@ -355,18 +407,58 @@ function DiffCode({
   );
 }
 
-function Gutter({ children, type }: { children: ReactNode; type: DiffLine["type"] }) {
+function Gutter({
+  children,
+  type,
+  selected,
+  selectable,
+}: {
+  children: ReactNode;
+  type: DiffLine["type"];
+  selected: boolean;
+  selectable: boolean;
+}) {
   return (
     <span
       data-control-ui="code-diff"
       data-control-family="code-diff"
       data-line-type={type}
       data-slot="gutter"
+      data-selected={selected ? "true" : undefined}
+      data-selectable={selectable ? "true" : undefined}
       aria-hidden="true"
       className="shrink-0 select-none"
     >
       {children}
     </span>
+  );
+}
+
+// the line numbers are the selection control: one tab stop per file, arrows move between lines
+function LineButton({
+  target,
+  selection,
+  label,
+  children,
+}: {
+  target: DiffLineTarget | undefined;
+  selection: DiffLineSelection;
+  label: string;
+  children: ReactNode;
+}) {
+  if (!selection.enabled || !target) return children;
+  return (
+    <button
+      type="button"
+      data-control-ui="code-diff"
+      data-control-family="code-diff"
+      data-slot="line-button"
+      aria-label={label}
+      {...selection.buttonProps(target)}
+      className="flex shrink-0 select-none"
+    >
+      {children}
+    </button>
   );
 }
 
@@ -385,31 +477,37 @@ function Marker({ type }: { type: DiffLine["type"] }) {
   );
 }
 
-function UnifiedRow({
-  line,
-  tokens,
-  indicators,
-  overflow,
-  noNewlineLabel,
-}: {
-  line: DiffLine;
+type LineRowProps = {
   tokens: CodeTokenLines[number] | null;
   indicators: DiffIndicators;
   overflow: CodeOverflow;
   noNewlineLabel: string;
-}) {
+  label: string;
+  selection: DiffLineSelection;
+  target: DiffLineTarget | undefined;
+};
+
+function UnifiedRow({ line, tokens, indicators, overflow, noNewlineLabel, label, selection, target }: LineRowProps & { line: DiffLine }) {
+  const selected = selection.isSelected(line);
   return (
     <div
+      ref={selection.enabled && target ? selection.lineRef(target) : undefined}
       data-control-ui="code-diff"
       data-control-family="code-diff"
       data-slot="line"
       data-line-type={line.type}
       data-indicators={indicators}
-      aria-hidden="true"
+      data-selected={selected ? "true" : undefined}
       className="flex w-full"
     >
-      <Gutter type={line.type}>{line.oldNo ?? ""}</Gutter>
-      <Gutter type={line.type}>{line.newNo ?? ""}</Gutter>
+      <LineButton target={target} selection={selection} label={label}>
+        <Gutter type={line.type} selected={selected} selectable={selection.enabled}>
+          {line.oldNo ?? ""}
+        </Gutter>
+        <Gutter type={line.type} selected={selected} selectable={selection.enabled}>
+          {line.newNo ?? ""}
+        </Gutter>
+      </LineButton>
       <Marker type={line.type} />
       <DiffCode line={line} tokens={tokens} overflow={overflow} noNewlineLabel={noNewlineLabel} />
     </div>
@@ -423,14 +521,10 @@ function SplitHalf({
   overflow,
   side,
   noNewlineLabel,
-}: {
-  line: DiffLine | null;
-  tokens: CodeTokenLines[number] | null;
-  indicators: DiffIndicators;
-  overflow: CodeOverflow;
-  side: "left" | "right";
-  noNewlineLabel: string;
-}) {
+  label,
+  selection,
+  target,
+}: Omit<LineRowProps, "tokens"> & { line: DiffLine | null; tokens: LineRowProps["tokens"]; side: "left" | "right" }) {
   if (!line)
     return (
       <div
@@ -442,18 +536,24 @@ function SplitHalf({
         className="flex min-w-0"
       />
     );
+  const selected = selection.isSelected(line);
   return (
     <div
+      ref={selection.enabled && target ? selection.lineRef(target) : undefined}
       data-control-ui="code-diff"
       data-control-family="code-diff"
       data-slot="line"
       data-line-type={line.type}
       data-indicators={indicators}
       data-side={side}
-      aria-hidden="true"
+      data-selected={selected ? "true" : undefined}
       className="flex min-w-0"
     >
-      <Gutter type={line.type}>{side === "left" ? (line.oldNo ?? "") : (line.newNo ?? "")}</Gutter>
+      <LineButton target={target} selection={selection} label={label}>
+        <Gutter type={line.type} selected={selected} selectable={selection.enabled}>
+          {side === "left" ? (line.oldNo ?? "") : (line.newNo ?? "")}
+        </Gutter>
+      </LineButton>
       <Marker type={line.type} />
       <DiffCode line={line} tokens={tokens} overflow={overflow} noNewlineLabel={noNewlineLabel} />
     </div>
@@ -489,16 +589,24 @@ function unifiedLineDescription(labels: DiffLabels, line: DiffLine): string {
   return lineDescription(labels, "unchanged", line, line.newNo ?? line.oldNo);
 }
 
+function splitHalfDescription(labels: DiffLabels, row: Extract<VisualRow, { kind: "split" }>, side: "left" | "right"): string {
+  const line = side === "left" ? row.left : row.right;
+  if (!line) return "";
+  if (line.type === "context") return lineDescription(labels, "unchanged", line, line.newNo ?? line.oldNo);
+  if (side === "left") return lineDescription(labels, row.right ? "original" : "deleted", line, line.oldNo);
+  return lineDescription(labels, row.left ? "modified" : "added", line, line.newNo);
+}
+
 function splitRowDescriptions(labels: DiffLabels, row: Extract<VisualRow, { kind: "split" }>): string[] {
-  if (row.left?.type === "context") return [lineDescription(labels, "unchanged", row.left, row.left.newNo ?? row.left.oldNo)];
+  if (row.left?.type === "context") return [splitHalfDescription(labels, row, "left")];
   const descriptions: string[] = [];
-  if (row.left) descriptions.push(lineDescription(labels, row.right ? "original" : "deleted", row.left, row.left.oldNo));
-  if (row.right) descriptions.push(lineDescription(labels, row.left ? "modified" : "added", row.right, row.right.newNo));
+  if (row.left) descriptions.push(splitHalfDescription(labels, row, "left"));
+  if (row.right) descriptions.push(splitHalfDescription(labels, row, "right"));
   return descriptions;
 }
 
 function rowDescriptions(labels: DiffLabels, row: VisualRow): string[] {
-  if (row.kind === "separator") return [];
+  if (row.kind === "separator" || row.kind === "annotation") return [];
   if (row.kind === "unified") return [unifiedLineDescription(labels, row.line)];
   return splitRowDescriptions(labels, row);
 }
@@ -565,6 +673,10 @@ function CodeDiffFileSection({
   onOverflowingChange,
   showFileHeader,
   labels,
+  selectedLines,
+  onSelectedLinesChange,
+  annotations,
+  renderAnnotation,
 }: {
   file: DiffFile;
   lang: string | undefined;
@@ -576,16 +688,24 @@ function CodeDiffFileSection({
   onOverflowingChange: Dispatch<SetStateAction<number>>;
   showFileHeader: boolean;
   labels: DiffLabels;
+  selectedLines: readonly DiffLineRange[] | undefined;
+  onSelectedLinesChange: ((lines: DiffLineRange[]) => void) | undefined;
+  annotations: readonly AnnotationTarget[];
+  renderAnnotation: (index: number) => ReactNode;
 }) {
   const identity = useMemo(() => fileIdentity(file), [file]);
   const [expansion, setExpansion] = useState(NO_EXPANSION);
   const { gaps: expanded, revealedRowId } = expansion.identity === identity ? expansion : NO_EXPANSION;
   const texts = useMemo(() => sideTexts(file), [file]);
   const tokens = useSideTokens(texts.old, texts.new, lang, Boolean(lang));
-  const rows = useMemo(() => buildRows(file, diffStyle, expanded), [file, diffStyle, expanded]);
+  const rows = useMemo(() => buildRows(file, diffStyle, expanded, annotations), [file, diffStyle, expanded, annotations]);
+  const targets = useMemo(() => lineTargets(rows), [rows]);
+  const targetById = useMemo(() => new Map(targets.map((target) => [target.id, target])), [targets]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const revealedRowRef = useRef<HTMLDivElement>(null);
-  const shouldVirtualize = rows.length > VIRTUALIZE_THRESHOLD;
+  const bodyMaxHeight = open ? OPEN_MAX_HEIGHT : maxHeight;
+  // a body that grows with its rows has nothing to scroll, so a virtual window would never move
+  const shouldVirtualize = bodyMaxHeight !== "none" && rows.length > VIRTUALIZE_THRESHOLD;
   // react-doctor-disable-next-line react-hooks-js/incompatible-library
   const virtualizer = useVirtualizer({
     count: rows.length,
@@ -595,6 +715,17 @@ function CodeDiffFileSection({
     enabled: shouldVirtualize,
   });
   const virtualItems = virtualizer.getVirtualItems();
+  const selection = useDiffLineSelection({
+    file,
+    targets,
+    selectedLines,
+    onSelectedLinesChange,
+    firstRenderedRow: shouldVirtualize ? (virtualItems[0]?.index ?? 0) : 0,
+    lastRenderedRow: shouldVirtualize ? (virtualItems.at(-1)?.index ?? -1) : rows.length - 1,
+    revealRow: (rowIndex) => {
+      if (shouldVirtualize) virtualizer.scrollToIndex(rowIndex, { align: "auto" });
+    },
+  });
   const [overflows, setOverflows] = useState(false);
 
   useEffect(() => {
@@ -615,7 +746,7 @@ function CodeDiffFileSection({
   }, [overflows, onOverflowingChange]);
 
   function expandGap(gapIndex: number) {
-    const firstLine = expandedContext(file, gapIndex)[0];
+    const firstLine = hiddenContext(file, gapIndex)[0];
     flushSync(() => {
       setExpansion((current) => ({
         identity,
@@ -643,34 +774,42 @@ function CodeDiffFileSection({
     if (row.kind === "separator") {
       return <DiffSeparator row={row} labels={labels} onExpand={() => expandGap(row.gapIndex)} />;
     }
+    if (row.kind === "annotation") {
+      return (
+        <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="annotation">
+          {renderAnnotation(row.index)}
+        </div>
+      );
+    }
+    const lineProps = { indicators: diffIndicators, overflow, noNewlineLabel: labels.noNewline, selection };
     if (row.kind === "unified") {
       return (
         <UnifiedRow
+          {...lineProps}
           line={row.line}
           tokens={lineTokens(row.line, tokens)}
-          indicators={diffIndicators}
-          overflow={overflow}
-          noNewlineLabel={labels.noNewline}
+          label={unifiedLineDescription(labels, row.line)}
+          target={targetById.get(`${row.id}:unified`)}
         />
       );
     }
     return (
       <div data-control-ui="code-diff" data-control-family="code-diff" data-slot="row" className="grid w-full grid-cols-2">
         <SplitHalf
+          {...lineProps}
           line={row.left}
           tokens={row.left ? lineTokens(row.left, tokens) : null}
-          indicators={diffIndicators}
-          overflow={overflow}
           side="left"
-          noNewlineLabel={labels.noNewline}
+          label={splitHalfDescription(labels, row, "left")}
+          target={targetById.get(`${row.id}:left`)}
         />
         <SplitHalf
+          {...lineProps}
           line={row.right}
           tokens={row.right ? lineTokens(row.right, tokens) : null}
-          indicators={diffIndicators}
-          overflow={overflow}
           side="right"
-          noNewlineLabel={labels.noNewline}
+          label={splitHalfDescription(labels, row, "right")}
+          target={targetById.get(`${row.id}:right`)}
         />
       </div>
     );
@@ -701,7 +840,7 @@ function CodeDiffFileSection({
         <code>{accessibleDiffText(labels, file, rows)}</code>
       </pre>
       <ScrollArea
-        maxHeight={open ? OPEN_MAX_HEIGHT : maxHeight}
+        maxHeight={bodyMaxHeight}
         aria-label={fileTitle(file)}
         viewportProps={{
           "data-control-ui": "code-diff",
@@ -752,7 +891,9 @@ function CodeDiffFileSection({
   );
 }
 
-export function CodeDiff({
+const NO_ANNOTATIONS: readonly AnnotationTarget[] = [];
+
+export function CodeDiff<T = unknown>({
   patch,
   oldText,
   newText,
@@ -778,18 +919,23 @@ export function CodeDiff({
   getStatsLabel = defaultStatsLabel,
   getLineLabel = defaultLineLabel,
   getFileCountLabel = defaultFileCountLabel,
+  selectedLines,
+  onSelectedLinesChange,
+  annotations,
+  renderAnnotation,
+  ignoreWhitespace,
   className,
   style,
   ...props
-}: CodeDiffProps) {
+}: CodeDiffProps<T>) {
   const ChevronsDownUpGlyph = useSkinIcon("chevronsDownUp", ChevronsDownUp);
   const ChevronsUpDownGlyph = useSkinIcon("chevronsUpDown", ChevronsUpDown);
   const files = useMemo(() => {
-    const options = { name, lang, lineDiffType, maxLineDiffLength, maxEditLength };
+    const options = { name, lang, lineDiffType, maxLineDiffLength, maxEditLength, ignoreWhitespace };
     const parsedFiles =
       patch === undefined ? [buildDiffFromFiles(oldText ?? "", newText ?? "", options)] : buildDiffFromPatch(patch, options);
     return parsedFiles.length > 0 ? parsedFiles : [emptyFile(name)];
-  }, [patch, oldText, newText, name, lang, lineDiffType, maxLineDiffLength, maxEditLength]);
+  }, [patch, oldText, newText, name, lang, lineDiffType, maxLineDiffLength, maxEditLength, ignoreWhitespace]);
   const additions = files.reduce((total, file) => total + file.additions, 0);
   const deletions = files.reduce((total, file) => total + file.deletions, 0);
   const copyValue = patch ?? newText ?? "";
@@ -873,6 +1019,13 @@ export function CodeDiff({
           onOverflowingChange={setOverflowing}
           showFileHeader={files.length > 1}
           labels={labels}
+          selectedLines={index === 0 ? selectedLines : undefined}
+          onSelectedLinesChange={index === 0 ? onSelectedLinesChange : undefined}
+          annotations={index === 0 && annotations ? annotations : NO_ANNOTATIONS}
+          renderAnnotation={(annotationIndex) => {
+            const annotation = annotations?.[annotationIndex];
+            return annotation && renderAnnotation ? renderAnnotation(annotation) : null;
+          }}
         />
       ))}
     </figure>

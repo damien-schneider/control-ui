@@ -101,6 +101,30 @@
       "syntax": "<color>",
       "initialValue": "transparent",
       "defaultValue": "var(--foreground)"
+    },
+    {
+      "name": "--cui-code-diff-selected-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.12)"
+    },
+    {
+      "name": "--cui-code-diff-selected-gutter-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.24)"
+    },
+    {
+      "name": "--cui-code-diff-gutter-hover-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "oklch(from var(--primary) l c h / 0.12)"
+    },
+    {
+      "name": "--cui-code-diff-annotation-background",
+      "syntax": "<color>",
+      "initialValue": "transparent",
+      "defaultValue": "var(--background)"
     }
   ],
   "parts": {
@@ -142,6 +166,13 @@
         "states": []
       },
       "actions": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
+      },
+      "annotation": {
         "family": "code-diff",
         "registryItems": [
           "code-diff"
@@ -261,6 +292,18 @@
               "context",
               "del"
             ]
+          },
+          {
+            "attribute": "data-selectable",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
           }
         ]
       },
@@ -297,6 +340,12 @@
             ]
           },
           {
+            "attribute": "data-selected",
+            "source": "control-ui",
+            "valueKind": "presence",
+            "values": []
+          },
+          {
             "attribute": "data-side",
             "source": "control-ui",
             "valueKind": "enum",
@@ -306,6 +355,13 @@
             ]
           }
         ]
+      },
+      "line-button": {
+        "family": "code-diff",
+        "registryItems": [
+          "code-diff"
+        ],
+        "states": []
       },
       "marker": {
         "family": "code-diff",

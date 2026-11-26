@@ -205,7 +205,7 @@
       "registryItems": [
         "code-diff"
       ],
-      "knobs": 16,
+      "knobs": 20,
       "probes": 16
     },
     "collapsible": {

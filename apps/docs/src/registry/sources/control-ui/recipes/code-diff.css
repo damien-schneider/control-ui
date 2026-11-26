@@ -21,6 +21,10 @@
     --cui-code-diff-expand-button-shadow: none;
     --cui-code-diff-expand-button-hover-background: var(--hover-fill);
     --cui-code-diff-expand-button-hover-foreground: var(--foreground);
+    --cui-code-diff-selected-background: oklch(from var(--primary) l c h / 0.12);
+    --cui-code-diff-selected-gutter-background: oklch(from var(--primary) l c h / 0.24);
+    --cui-code-diff-gutter-hover-background: oklch(from var(--primary) l c h / 0.12);
+    --cui-code-diff-annotation-background: var(--background);
     border: var(--cui-code-diff-border-width) solid var(--cui-code-diff-border-color);
     border-radius: var(--cui-code-diff-radius);
     background: var(--cui-code-diff-background);
@@ -128,6 +132,48 @@
     color: var(--muted-foreground);
   }
 
+  :where([data-control-family="code-diff"][data-slot="gutter"][data-selectable="true"]) {
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    :where([data-control-family="code-diff"][data-slot="line-button"]:hover > [data-slot="gutter"]) {
+      background-image: linear-gradient(var(--cui-code-diff-gutter-hover-background), var(--cui-code-diff-gutter-hover-background));
+    }
+  }
+
+  /* layered over the add/del fill so a selected change keeps its colour */
+  :where([data-control-family="code-diff"][data-slot="line"][data-selected="true"]) {
+    background-image: linear-gradient(var(--cui-code-diff-selected-background), var(--cui-code-diff-selected-background));
+  }
+
+  :where([data-control-family="code-diff"][data-slot="gutter"][data-selected="true"]) {
+    background-image: linear-gradient(var(--cui-code-diff-selected-gutter-background), var(--cui-code-diff-selected-gutter-background));
+    color: var(--foreground);
+  }
+
+  :where([data-control-family="code-diff"][data-slot="line-button"]) {
+    --focus-ring-offset: calc(var(--focus-ring-width) * -1);
+  }
+
+  /* an annotation stays in view while the code scrolls sideways */
+  :where([data-control-family="code-diff"][data-slot="body"]:has([data-slot="annotation"])) {
+    container-type: inline-size;
+  }
+
+  :where([data-control-family="code-diff"][data-slot="annotation"]) {
+    position: sticky;
+    inset-inline-start: 0;
+    max-inline-size: 100cqi;
+    padding-block: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 3);
+    border-block: 1px solid oklch(from var(--border) l c h / 0.6);
+    background: var(--cui-code-diff-annotation-background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    white-space: normal;
+  }
+
   :where([data-control-family="code-diff"][data-slot="marker"]) {
     padding-inline: calc(var(--spacing) * 1);
     color: transparent;
@@ -211,6 +257,17 @@
 
     :where([data-control-family="code-diff"][data-slot="emphasis"][data-line-type="del"]) {
       text-decoration: line-through;
+    }
+
+    :where([data-control-family="code-diff"][data-slot="line"][data-selected="true"]) {
+      outline: 1px solid Highlight;
+      outline-offset: -1px;
+    }
+
+    :where([data-control-family="code-diff"][data-slot="gutter"][data-selected="true"]) {
+      forced-color-adjust: none;
+      background: Highlight;
+      color: HighlightText;
     }
   }
 }
@@ -304,6 +361,30 @@
 }
 
 @property --cui-code-diff-expand-button-hover-foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-code-diff-selected-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-code-diff-selected-gutter-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-code-diff-gutter-hover-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --cui-code-diff-annotation-background {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;

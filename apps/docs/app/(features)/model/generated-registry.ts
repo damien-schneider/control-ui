@@ -2554,6 +2554,11 @@ export const registryMetadata = {
         type: "registry:lib",
       },
       {
+        path: "src/registry/sources/control-ui/code-diff-selection.ts",
+        target: "@components/control-ui/code-diff-selection.ts",
+        type: "registry:component",
+      },
+      {
         path: "src/registry/sources/control-ui/recipes/code-diff.css",
         target: "@components/control-ui/styles/recipes/code-diff.css",
         type: "registry:file",

@@ -173,4 +173,67 @@ describe("CodeDiff renders", () => {
     expect(html).toContain("added|2|c");
     expect(html).not.toContain("Deleted line");
   });
+
+  test("selected lines carry data-selected on their line and gutters, and only they do", () => {
+    const html = renderToString(
+      <CodeDiff
+        oldText={OLD}
+        newText={NEW}
+        selectedLines={[{ from: { side: "old", line: 2 }, to: { side: "new", line: 2 } }]}
+        onSelectedLinesChange={() => {}}
+      />,
+    );
+    const selectedLines = html.match(/<div[^>]*data-slot="line"[^>]*data-selected="true"/g) ?? [];
+    const selectedGutters = html.match(/data-slot="gutter"[^>]*data-selected="true"/g) ?? [];
+
+    expect(selectedLines).toHaveLength(2);
+    expect(selectedGutters).toHaveLength(4);
+    expect(html).toMatch(/data-slot="gutter"[^>]*data-selectable="true"/);
+    expect(html.match(/aria-pressed="true"/g)).toHaveLength(2);
+    expect(html.match(/<button[^>]*data-slot="line-button"[^>]*tabindex="0"/g)).toHaveLength(1);
+  });
+
+  test("without onSelectedLinesChange the gutter is not a control", () => {
+    const html = renderToString(
+      <CodeDiff oldText={OLD} newText={NEW} selectedLines={[{ from: { side: "new", line: 1 }, to: { side: "new", line: 1 } }]} />,
+    );
+
+    expect(html).not.toContain("data-selectable");
+    expect(html).not.toContain('data-slot="line-button"');
+  });
+
+  test.each(["unified", "split"] as const)("%s: an annotation renders right after the row of its line", (diffStyle) => {
+    const html = renderToString(
+      <CodeDiff
+        oldText={OLD}
+        newText={NEW}
+        diffStyle={diffStyle}
+        annotations={[{ at: { side: "new", line: 2 }, key: "note", data: "Why twenty?" }]}
+        renderAnnotation={(annotation) => <p>{annotation.data}</p>}
+      />,
+    );
+    const annotationStart = html.indexOf('data-slot="annotation"');
+
+    expect(annotationStart).toBeGreaterThan(html.indexOf(">20</span>"));
+    expect(html.indexOf("Why twenty?")).toBeGreaterThan(annotationStart);
+    expect(html.indexOf("const c = 3;</")).toBeGreaterThan(annotationStart);
+  });
+
+  test("ignoreWhitespace turns an indentation-only change into context", () => {
+    const before = "if (ready) {\nstart();\n}\nstop();\n";
+    const after = "if (ready) {\n  start();\n}\nhalt();\n";
+    const html = renderToString(<CodeDiff oldText={before} newText={after} ignoreWhitespace />);
+
+    expect(html).toContain("Unchanged line 2:   start();");
+    expect(html).not.toContain("Deleted line 2: start();");
+    expect(html).toContain("Deleted line 4: stop();");
+  });
+
+  test("a body that cannot scroll renders every row instead of a virtual window", () => {
+    const oldText = Array.from({ length: 160 }, (_, index) => `old ${index + 1}`).join("\n");
+    const newText = Array.from({ length: 160 }, (_, index) => `new ${index + 1}`).join("\n");
+    const html = renderToString(<CodeDiff oldText={oldText} newText={newText} maxHeight="none" />);
+
+    expect(html.match(/data-slot="line"/g)).toHaveLength(320);
+  });
 });

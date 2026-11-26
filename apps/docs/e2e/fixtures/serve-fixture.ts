@@ -46,6 +46,7 @@ const fixtureStylesheets = {
   "chat-thread-send": "docs",
   "chat-workspace": "docs",
   "code-diff-proposal": "docs",
+  "code-diff-selection": "docs",
   "component-performance": "docs",
   "dropdown-hover": "docs",
   "infinite-canvas": "docs",

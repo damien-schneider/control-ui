@@ -2919,6 +2919,18 @@ export const componentEntries = [
         ),
         previewClassName: "min-h-[220px]",
       },
+      {
+        id: "review",
+        title: "Line selection and annotations",
+        description: "Select line numbers by click, drag, Shift, Cmd/Ctrl or arrow keys, and anchor a full-width annotation after a line.",
+        source: sourceFile("Code diff review preview", "src/registry/examples/control-ui/primitives/code-diff-review.tsx", "example"),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/code-diff-review").then((mod) => ({
+            default: mod.PrimitiveCodeDiffReviewExample,
+          })),
+        ),
+        previewClassName: "min-h-[300px]",
+      },
     ],
   },
   {

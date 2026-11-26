@@ -77,6 +77,7 @@ import { PrimitiveCheckboxGroupExample } from "@/src/registry/examples/control-u
 import { PrimitiveCodeExample } from "@/src/registry/examples/control-ui/primitives/code";
 import { PrimitiveCodeDiffExample } from "@/src/registry/examples/control-ui/primitives/code-diff";
 import { PrimitiveCodeDiffHeaderlessExample } from "@/src/registry/examples/control-ui/primitives/code-diff-headerless";
+import { PrimitiveCodeDiffReviewExample } from "@/src/registry/examples/control-ui/primitives/code-diff-review";
 import { PrimitiveCodeEditableExample } from "@/src/registry/examples/control-ui/primitives/code-editable";
 import { PrimitiveCodeHeaderlessExample } from "@/src/registry/examples/control-ui/primitives/code-headerless";
 import { PrimitiveCollapsibleExample } from "@/src/registry/examples/control-ui/primitives/collapsible";
@@ -363,6 +364,7 @@ export const previewReferences: LoadedPreviews = {
   "component/code/editable": PrimitiveCodeEditableExample,
   "component/code-diff": PrimitiveCodeDiffExample,
   "component/code-diff/headerless": PrimitiveCodeDiffHeaderlessExample,
+  "component/code-diff/review": PrimitiveCodeDiffReviewExample,
   "component/markdown": PrimitiveMarkdownExample,
   "kit/email": EmailInvitationPreview,
   "kit/email/announcement": EmailAnnouncementPreview,

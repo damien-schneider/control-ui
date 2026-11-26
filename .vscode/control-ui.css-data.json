@@ -1411,6 +1411,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-code-diff-annotation-background",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-code-diff-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -1465,6 +1470,11 @@
       "syntax": "<color>"
     },
     {
+      "name": "--cui-code-diff-gutter-hover-background",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
       "name": "--cui-code-diff-header-background",
       "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<color>"
@@ -1478,6 +1488,16 @@
       "name": "--cui-code-diff-radius",
       "description": "Control UI code-diff knob — registered syntax <length-percentage>, fallback 0px. Re-value it under [data-skin] or per instance via style.",
       "syntax": "<length-percentage>"
+    },
+    {
+      "name": "--cui-code-diff-selected-background",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
+    },
+    {
+      "name": "--cui-code-diff-selected-gutter-background",
+      "description": "Control UI code-diff knob — registered syntax <color>, fallback transparent. Re-value it under [data-skin] or per instance via style.",
+      "syntax": "<color>"
     },
     {
       "name": "--cui-code-diff-shadow",

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { buildDiffFromFiles, buildDiffFromPatch, computeWordDiff, type DiffLine } from "./diff";
+import { buildDiffFromFiles, buildDiffFromPatch, computeWordDiff, type DiffLine, linesInRange } from "./diff";
 
 const OLD = `line one
 line two
@@ -318,5 +318,79 @@ describe("computeWordDiff — readable emphasis", () => {
   test("a small edit inside a long line still points at the words that moved", () => {
     const [, newSeg] = computeWordDiff("  return fetchUser(id);", "  return fetchUser(id, { cache: true });", "word", 2000);
     expect(newSeg?.filter((segment) => segment.emphasis).length).toBe(1);
+  });
+});
+
+describe("linesInRange — a selection read back as diff lines", () => {
+  const rows = Array.from({ length: 20 }, (_, index) => `row ${index + 1}`);
+  const changed = [...rows];
+  changed.splice(4, 2, "ROW 5", "ROW 6", "row 6b");
+  const file = buildDiffFromFiles(rows.join("\n"), changed.join("\n"), { name: "rows.txt", context: 1 });
+  const describeLines = (lines: DiffLine[]) => lines.map((line) => `${line.type[0]}${line.oldNo ?? "-"}/${line.newNo ?? "-"}`);
+
+  test("a range from a deleted line to an added line spans the whole del/add run in display order", () => {
+    const lines = linesInRange(file, { from: { side: "old", line: 5 }, to: { side: "new", line: 6 } });
+
+    expect(describeLines(lines)).toEqual(["d5/-", "d6/-", "a-/5", "a-/6"]);
+  });
+
+  test("context lines answer to either side's number", () => {
+    const fromOld = linesInRange(file, { from: { side: "old", line: 4 }, to: { side: "new", line: 4 } });
+    const fromNew = linesInRange(file, { from: { side: "new", line: 4 }, to: { side: "new", line: 4 } });
+
+    expect(describeLines(fromOld)).toEqual(["c4/4"]);
+    expect(describeLines(fromNew)).toEqual(["c4/4"]);
+  });
+
+  test("a range reaching past the hunk includes the hidden context it spans", () => {
+    const lines = linesInRange(file, { from: { side: "new", line: 1 }, to: { side: "old", line: 5 } });
+
+    expect(describeLines(lines)).toEqual(["c1/1", "c2/2", "c3/3", "c4/4", "d5/-"]);
+    expect(lines[0]?.text).toBe("row 1");
+  });
+
+  test("trailing context after the last change numbers the new side past the insertion", () => {
+    const lines = linesInRange(file, { from: { side: "new", line: 20 }, to: { side: "new", line: 21 } });
+
+    expect(describeLines(lines)).toEqual(["c19/20", "c20/21"]);
+  });
+
+  test("a reversed range reads in display order and an unknown line selects nothing", () => {
+    const reversed = linesInRange(file, { from: { side: "new", line: 6 }, to: { side: "old", line: 6 } });
+
+    expect(describeLines(reversed)).toEqual(["d6/-", "a-/5", "a-/6"]);
+    expect(linesInRange(file, { from: { side: "new", line: 99 }, to: { side: "new", line: 1 } })).toEqual([]);
+  });
+
+  test("a patch only knows the lines its hunks carry", () => {
+    const [patchFile] = buildDiffFromPatch("--- a/x.ts\n+++ b/x.ts\n@@ -10,3 +10,3 @@\n a\n-b\n+c\n d\n");
+    if (!patchFile) throw new Error("patch did not parse");
+
+    expect(describeLines(linesInRange(patchFile, { from: { side: "new", line: 10 }, to: { side: "new", line: 12 } }))).toEqual([
+      "c10/10",
+      "d11/-",
+      "a-/11",
+      "c12/12",
+    ]);
+  });
+});
+
+describe("buildDiffFromFiles — ignoreWhitespace", () => {
+  const before = "if (ready) {\nstart();\n}\n";
+  const after = "if (ready) {\n  start();\n}\n";
+
+  test("an indentation-only change reads as unchanged context", () => {
+    const file = buildDiffFromFiles(before, after, { ignoreWhitespace: true });
+
+    expect(file.additions).toBe(0);
+    expect(file.deletions).toBe(0);
+    expect(file.hunks).toEqual([]);
+  });
+
+  test("without it the same change is a deletion and an addition", () => {
+    const file = buildDiffFromFiles(before, after);
+
+    expect(file.additions).toBe(1);
+    expect(file.deletions).toBe(1);
   });
 });

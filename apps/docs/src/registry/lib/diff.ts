@@ -48,6 +48,13 @@ export type DiffFile = {
   deletions: number;
 };
 
+export type DiffSide = "old" | "new";
+// 1-based line number on that side; an unchanged line answers to either side's number
+export type DiffLinePoint = { side: DiffSide; line: number };
+// inclusive, in unified display order, hidden unchanged lines included
+export type DiffLineRange = { from: DiffLinePoint; to: DiffLinePoint };
+export type CodeDiffAnnotation<T> = { at: DiffLinePoint; key: string; data: T };
+
 export type BuildDiffOptions = {
   name?: string;
   lang?: string;
@@ -58,6 +65,8 @@ export type BuildDiffOptions = {
   maxLineDiffLength?: number;
   // past this edit distance the whole change renders as one replace block; 0 disables guard
   maxEditLength?: number;
+  // lines differing only in leading or trailing whitespace read as unchanged; text pairs only
+  ignoreWhitespace?: boolean;
 };
 
 const DEFAULT_CONTEXT = 3;
@@ -341,6 +350,7 @@ export function buildDiffFromFiles(oldText: string, newText: string, options: Bu
   const patch = structuredPatch(name, name, oldText, newText, "", "", {
     context,
     maxEditLength: maxEditLength > 0 ? maxEditLength : Number.POSITIVE_INFINITY,
+    ignoreWhitespace: options.ignoreWhitespace ?? false,
   });
   if (patch) return toDiffFile(patch, options, oldLines, newLines, false);
   return toDiffFile(replacementPatch(name, oldLines, newLines, context), { ...options, lineDiffType: "none" }, oldLines, newLines, false);
@@ -357,6 +367,73 @@ export function buildDiffFromPatch(patchText: string, options: BuildDiffOptions 
     patches = parsePatchLenient(patchText);
   }
   return patches.map((patch) => toDiffFile(patch, options, [], [], true));
+}
+
+// unchanged lines a text pair hides before hunk `gapIndex`; the index past the last hunk is the file's tail
+export function hiddenContext(file: DiffFile, gapIndex: number): DiffLine[] {
+  if (file.isPartial) return [];
+  const hunk = file.hunks[gapIndex];
+  const last = file.hunks.at(-1);
+  let firstOld: number;
+  let endOld: number;
+  let offset: number;
+  if (hunk) {
+    firstOld = hunk.oldStart - hunk.collapsedBefore;
+    endOld = hunk.oldStart;
+    offset = hunk.newStart - hunk.oldStart;
+  } else if (gapIndex === file.hunks.length && last) {
+    firstOld = last.oldStart + last.oldCount;
+    endOld = file.oldLines.length + 1;
+    offset = last.newStart + last.newCount - firstOld;
+  } else {
+    return [];
+  }
+  const lines: DiffLine[] = [];
+  for (let oldNo = firstOld; oldNo < endOld; oldNo += 1) {
+    const newNo = oldNo + offset;
+    // ignoring whitespace keeps the new side's indentation, as jsdiff does for its own context lines
+    lines.push({ type: "context", oldNo, newNo, text: file.newLines[newNo - 1] ?? file.oldLines[oldNo - 1] ?? "" });
+  }
+  return lines;
+}
+
+type DiffLineIndex = { lines: DiffLine[]; positions: Map<string, number> };
+
+const lineIndexes = new WeakMap<DiffFile, DiffLineIndex>();
+
+function pointKey(side: DiffSide, line: number): string {
+  return `${side}:${line}`;
+}
+
+// every line of the file in unified display order, hidden context included
+function lineIndex(file: DiffFile): DiffLineIndex {
+  const cached = lineIndexes.get(file);
+  if (cached) return cached;
+  const index: DiffLineIndex = { lines: [], positions: new Map() };
+  const add = (line: DiffLine) => {
+    const position = index.lines.push(line) - 1;
+    if (line.type !== "add" && line.oldNo !== undefined) index.positions.set(pointKey("old", line.oldNo), position);
+    if (line.type !== "del" && line.newNo !== undefined) index.positions.set(pointKey("new", line.newNo), position);
+  };
+  for (const [gapIndex, hunk] of file.hunks.entries()) {
+    for (const line of hiddenContext(file, gapIndex)) add(line);
+    for (const line of hunk.lines) add(line);
+  }
+  for (const line of hiddenContext(file, file.hunks.length)) add(line);
+  lineIndexes.set(file, index);
+  return index;
+}
+
+// display position of a line, or -1 when the file has no such line on that side
+export function diffLinePosition(file: DiffFile, point: DiffLinePoint): number {
+  return lineIndex(file).positions.get(pointKey(point.side, point.line)) ?? -1;
+}
+
+export function linesInRange(file: DiffFile, range: DiffLineRange): DiffLine[] {
+  const from = diffLinePosition(file, range.from);
+  const to = diffLinePosition(file, range.to);
+  if (from < 0 || to < 0) return [];
+  return lineIndex(file).lines.slice(Math.min(from, to), Math.max(from, to) + 1);
 }
 
 function emptyStructuredPatch(): StructuredPatch {

@@ -1761,6 +1761,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="code-diff"][data-slot="root"])',
       },
       {
+        name: "--cui-code-diff-annotation-background",
+        syntax: "<color>",
+        defaultValue: "var(--background)",
+        selector: ':where([data-control-family="code-diff"][data-slot="root"])',
+      },
+      {
         name: "--cui-code-diff-background",
         syntax: "<color>",
         defaultValue: "var(--background)",
@@ -1827,6 +1833,12 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         selector: ':where([data-control-family="code-diff"][data-slot="root"])',
       },
       {
+        name: "--cui-code-diff-gutter-hover-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.12)",
+        selector: ':where([data-control-family="code-diff"][data-slot="root"])',
+      },
+      {
         name: "--cui-code-diff-header-background",
         syntax: "<color>",
         defaultValue: "var(--diff-gutter-bg)",
@@ -1843,6 +1855,18 @@ export const KNOB_REGISTRY: readonly RegisteredKnobFamily[] = [
         syntax: "<length-percentage>",
         defaultValue:
           "min(\n      var(--radius-panel),\n      calc(var(--control-h-xs) / 2 + var(--cui-code-diff-border-width) + var(--_code-corner-inset))\n    )",
+        selector: ':where([data-control-family="code-diff"][data-slot="root"])',
+      },
+      {
+        name: "--cui-code-diff-selected-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.12)",
+        selector: ':where([data-control-family="code-diff"][data-slot="root"])',
+      },
+      {
+        name: "--cui-code-diff-selected-gutter-background",
+        syntax: "<color>",
+        defaultValue: "oklch(from var(--primary) l c h / 0.24)",
         selector: ':where([data-control-family="code-diff"][data-slot="root"])',
       },
       {

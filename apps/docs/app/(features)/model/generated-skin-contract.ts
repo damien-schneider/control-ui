@@ -3076,6 +3076,11 @@ export const generatedSkinContract: SkinContract = {
           registryItems: ["code-diff"],
           states: [],
         },
+        annotation: {
+          family: "code-diff",
+          registryItems: ["code-diff"],
+          states: [],
+        },
         body: {
           family: "code-diff",
           registryItems: ["code-diff"],
@@ -3157,6 +3162,18 @@ export const generatedSkinContract: SkinContract = {
               valueKind: "enum",
               values: ["add", "context", "del"],
             },
+            {
+              attribute: "data-selectable",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
+              attribute: "data-selected",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
           ],
         },
         header: {
@@ -3181,12 +3198,23 @@ export const generatedSkinContract: SkinContract = {
               values: ["add", "context", "del"],
             },
             {
+              attribute: "data-selected",
+              source: "control-ui",
+              valueKind: "presence",
+              values: [],
+            },
+            {
               attribute: "data-side",
               source: "control-ui",
               valueKind: "enum",
               values: ["left", "right"],
             },
           ],
+        },
+        "line-button": {
+          family: "code-diff",
+          registryItems: ["code-diff"],
+          states: [],
         },
         marker: {
           family: "code-diff",
@@ -16968,6 +16996,30 @@ export const generatedSkinContract: SkinContract = {
         syntax: "<color>",
         initialValue: "transparent",
         defaultValue: "var(--foreground)",
+      },
+      {
+        name: "--cui-code-diff-selected-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--primary) l c h / 0.12)",
+      },
+      {
+        name: "--cui-code-diff-selected-gutter-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--primary) l c h / 0.24)",
+      },
+      {
+        name: "--cui-code-diff-gutter-hover-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "oklch(from var(--primary) l c h / 0.12)",
+      },
+      {
+        name: "--cui-code-diff-annotation-background",
+        syntax: "<color>",
+        initialValue: "transparent",
+        defaultValue: "var(--background)",
       },
     ],
     collapsible: [

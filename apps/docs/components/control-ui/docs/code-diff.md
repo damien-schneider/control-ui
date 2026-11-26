@@ -31,8 +31,9 @@ With `@ctrl-ui/react` instead of the registry, import from `@ctrl-ui/react/` whe
 ## Exports
 
 - `@/components/control-ui/knob-contracts/code-diff-knobs`: `codeDiffKnobs`, types `CodeDiffKnobStyle`
-- `@/components/control-ui/lib/diff`: `computeWordDiff`, `diffRunEnd`, `buildDiffFromFiles`, `buildDiffFromPatch`, types `CodeDiffLineType`, `CodeLineType`, `LineDiffType`, `DiffFileType`, `DiffSegment`, `DiffLine`, `DiffHunk`, `DiffFile`, `BuildDiffOptions`
-- `@/components/control-ui/ui/code-diff`: `CodeDiff`, `CodeDiffCopy`, types `DiffStyle`, `DiffIndicators`, `DiffLineKind`, `CodeDiffLineRole`, `CodeDiffProps`, `CodeDiffCopyProps`
+- `@/components/control-ui/lib/diff`: `computeWordDiff`, `diffRunEnd`, `buildDiffFromFiles`, `buildDiffFromPatch`, `hiddenContext`, `diffLinePosition`, `linesInRange`, types `CodeDiffLineType`, `CodeLineType`, `LineDiffType`, `DiffFileType`, `DiffSegment`, `DiffLine`, `DiffHunk`, `DiffFile`, `DiffSide`, `DiffLinePoint`, `DiffLineRange`, `CodeDiffAnnotation`, `BuildDiffOptions`
+- `@/components/control-ui/code-diff-selection`: `diffLineKey`, `useDiffLineSelection`, types `DiffLineColumn`, `DiffLineTarget`, `DiffLineButtonProps`, `DiffLineSelection`
+- `@/components/control-ui/ui/code-diff`: `CodeDiff`, `CodeDiffCopy`, types `CodeDiffAnnotation`, `DiffLinePoint`, `DiffLineRange`, `DiffSide`, `DiffStyle`, `DiffIndicators`, `DiffLineKind`, `CodeDiffLineRole`, `CodeDiffProps`, `CodeDiffCopyProps`
 
 ## Composition
 
@@ -105,6 +106,7 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
 - `code-diff`
   - `accessible-source`
   - `actions`
+  - `annotation`
   - `body`
   - `emphasis`: `data-line-type` (`add` | `context` | `del`)
   - `empty`
@@ -115,9 +117,10 @@ Scopes, their parts, and the state attributes each part carries. Selector patter
   - `file`: `data-file-name` (any value)
   - `file-header`
   - `file-title`
-  - `gutter`: `data-line-type` (`add` | `context` | `del`)
+  - `gutter`: `data-line-type` (`add` | `context` | `del`), `data-selectable`, `data-selected`
   - `header`
-  - `line`: `data-indicators` (`bars` | `classic`), `data-line-type` (`add` | `context` | `del`), `data-side` (`left` | `right`)
+  - `line`: `data-indicators` (`bars` | `classic`), `data-line-type` (`add` | `context` | `del`), `data-selected`, `data-side` (`left` | `right`)
+  - `line-button`
   - `marker`: `data-line-type` (`add` | `context` | `del`)
   - `no-newline`
   - `revealed-row`
@@ -153,6 +156,10 @@ Registered `--cui-*` custom properties with their recipe defaults. Set them thro
 - `--cui-code-diff-expand-button-shadow`: `none`
 - `--cui-code-diff-expand-button-hover-background`: `var(--hover-fill)`
 - `--cui-code-diff-expand-button-hover-foreground`: `var(--foreground)`
+- `--cui-code-diff-selected-background`: `oklch(from var(--primary) l c h / 0.12)`
+- `--cui-code-diff-selected-gutter-background`: `oklch(from var(--primary) l c h / 0.24)`
+- `--cui-code-diff-gutter-hover-background`: `oklch(from var(--primary) l c h / 0.12)`
+- `--cui-code-diff-annotation-background`: `var(--background)`
 
 ## Links
 
