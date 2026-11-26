@@ -84,6 +84,7 @@ function buildLlmsFull() {
     "",
     `- MCP: \`${base}/api/mcp\` speaks streamable HTTP Model Context Protocol with \`search_registry\`, \`get_registry_item\` and \`list_registry\`, no authentication; the card is at \`${base}/.well-known/mcp/server-card.json\`.`,
     "- Markdown: request any canonical documentation page with `Accept: text/markdown` to read it as markdown; browsers still get HTML.",
+    `- Site search: \`GET ${base}/.well-known/search?q=<query>\` returns matching documentation pages as markdown with canonical links.`,
     `- Discover: \`GET ${base}/api/registry\` (or the static \`${base}/r/agent-index.json\`) → the agent-friendly index.`,
     `- shadcn catalog: \`${base}/r/registry.json\` → the official registry schema used by shadcn tooling.`,
     `- Read one item: \`GET ${base}/api/registry/<id>\` → source files, install command, and deps.`,

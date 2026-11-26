@@ -1,3 +1,4 @@
+import { agentSearch } from "@/app/(features)/agent-discovery/agent-search";
 import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
@@ -42,6 +43,7 @@ export function siteIndexMarkdown() {
     `- [MCP server](${absoluteSiteUrl("/api/mcp")}): Streamable HTTP Model Context Protocol endpoint — \`search_registry\`, \`get_registry_item\`, \`list_registry\`. No authentication. Card at ${absoluteSiteUrl("/.well-known/mcp/server-card.json")}.`,
     `- [OpenAPI description](${absoluteSiteUrl("/openapi.json")}): The registry HTTP API, linked from ${absoluteSiteUrl("/.well-known/api-catalog")}.`,
     "- Markdown pages: request any canonical page with `Accept: text/markdown` to read it as markdown instead of HTML.",
+    `- Search: \`GET ${agentSearch.endpoint}\` returns matching pages as markdown with canonical links.`,
     `- [auth.md](${absoluteSiteUrl("/auth.md")}): Registration and credential policy. Nothing to register, nothing to send.`,
     `- [Registry API](${absoluteSiteUrl("/api/registry")}): JSON index of every public catalog item.`,
     `- [Agent index](${absoluteSiteUrl("/r/agent-index.json")}): Static agent-friendly registry metadata.`,

@@ -194,6 +194,9 @@ claude mcp add --transport http control-ui ${base}/api/mcp`;
     return `# Any documentation page answers in markdown when you ask for it
 curl -H "Accept: text/markdown" ${base}/components/button
 
+# Search every page; results come back as markdown with canonical links
+curl "${base}/.well-known/search?q=date+picker"
+
 # The HTML page stays the default for browsers
 curl -H "Accept: text/html" ${base}/components/button`;
   }

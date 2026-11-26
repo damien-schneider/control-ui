@@ -235,6 +235,7 @@ Control UI installs editable React source through the shadcn CLI. The catalog be
 - [MCP server](https://control-ui.dev/api/mcp): Streamable HTTP Model Context Protocol endpoint — `search_registry`, `get_registry_item`, `list_registry`. No authentication. Card at https://control-ui.dev/.well-known/mcp/server-card.json.
 - [OpenAPI description](https://control-ui.dev/openapi.json): The registry HTTP API, linked from https://control-ui.dev/.well-known/api-catalog.
 - Markdown pages: request any canonical page with `Accept: text/markdown` to read it as markdown instead of HTML.
+- Search: `GET https://control-ui.dev/.well-known/search?q={query}` returns matching pages as markdown with canonical links.
 - [auth.md](https://control-ui.dev/auth.md): Registration and credential policy. Nothing to register, nothing to send.
 - [Registry API](https://control-ui.dev/api/registry): JSON index of every public catalog item.
 - [Agent index](https://control-ui.dev/r/agent-index.json): Static agent-friendly registry metadata.

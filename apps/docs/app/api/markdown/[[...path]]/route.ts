@@ -1,3 +1,4 @@
+import { agentSearchFrontMatter } from "@/app/(features)/agent-discovery/agent-search";
 import { markdownForPath } from "@/app/(features)/agent-markdown/page-markdown";
 import { markdownRedirectForPath } from "@/app/(features)/agent-markdown/redirects";
 
@@ -11,7 +12,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ pat
     return new Response("Not found\n", { status: 404, headers: { "content-type": "text/plain; charset=utf-8" } });
   }
 
-  return new Response(markdown, {
+  return new Response(`${agentSearchFrontMatter}${markdown}`, {
     headers: {
       "content-type": "text/markdown; charset=utf-8",
       vary: "Accept",

@@ -26,6 +26,8 @@
   Every documentation page answers in markdown when the request asks for it, at its canonical URL. Guides return their
   prose and code blocks; component, hook, and skin pages return the install command, dependencies, and installed source
   paths. Browsers keep getting HTML.
+  `/.well-known/search?q=` searches every page and answers in markdown with canonical links; pages advertise it in
+  `agent:*` meta tags and in the `agent:` front matter of their markdown.
 
   <GuideCode kind="agent-markdown" />
 </GuideSection>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { agentSearchMetaTags } from "@/app/(features)/agent-discovery/agent-search";
 import { WebMcpTools } from "@/app/(features)/agent-discovery/webmcp-tools";
 import { DocsShell } from "@/app/(features)/client/client";
 import { getControlUiGitHubStars } from "@/app/(features)/client/github-stars";
@@ -37,6 +38,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: The saved sidebar state must apply before the first paint. */}
         <script id="control-ui-sidebar-init" dangerouslySetInnerHTML={{ __html: sidebarFirstPaintScript }} />
         <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
+        {agentSearchMetaTags.map((tag) => (
+          <meta key={tag.name} name={tag.name} content={tag.content} />
+        ))}
       </head>
       <body>
         <SiteStructuredData />
