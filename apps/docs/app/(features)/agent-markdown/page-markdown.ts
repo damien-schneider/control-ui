@@ -6,6 +6,7 @@ import { registryItemIdFor } from "@/app/(features)/registry-api/registry-index"
 import { absoluteSiteUrl } from "@/lib/site-config";
 import { guideMarkdown } from "./guide-markdown";
 import { dependencySections, installSection } from "./registry-sections";
+import { siteIndexMarkdown } from "./site-index";
 
 function skillBody(skill: DocsSkill) {
   return [
@@ -76,6 +77,7 @@ function pageBody(page: SearchItem) {
 
 export function markdownForPath(pathname: string) {
   const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  if (normalized === "/") return siteIndexMarkdown();
   const page = docsPageForPath(normalized);
   if (!page) return undefined;
 

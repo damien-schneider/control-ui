@@ -1,8 +1,8 @@
 import { markdownForPath } from "@/app/(features)/agent-markdown/page-markdown";
 import { markdownRedirectForPath } from "@/app/(features)/agent-markdown/redirects";
 
-export async function GET(_request: Request, { params }: { params: Promise<{ path: string[] }> }) {
-  const { path } = await params;
+export async function GET(_request: Request, { params }: { params: Promise<{ path?: string[] }> }) {
+  const { path = [] } = await params;
   const pathname = `/${path.join("/")}`;
   const markdown = markdownForPath(pathname);
   if (!markdown) {

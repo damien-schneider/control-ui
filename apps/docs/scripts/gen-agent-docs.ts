@@ -1,15 +1,15 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { practiceSkills, skillConcerns } from "@control-ui/skills";
+import { siteIndexMarkdown } from "@/app/(features)/agent-markdown/site-index";
 import { type CatalogCategoryId, catalogCategories } from "@/app/(features)/catalog/categories";
 import { componentEntries } from "@/app/(features)/catalog/components";
 import { kitEntries } from "@/app/(features)/catalog/kits";
-import { docsPageManifest } from "@/app/(features)/catalog/pages";
 import type { SearchItem } from "@/app/(features)/model/types";
 import { listRegistry } from "@/app/(features)/registry-api/registry-index";
 import { contrastAgentRules } from "@/app/(features)/theme-accessibility/agent-rules";
 import { env } from "@/env";
-import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 import { publicPayloads } from "./public-payloads";
 
 const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
@@ -21,18 +21,6 @@ const KIND_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
   { kind: "Hook", heading: "Hooks" },
   { kind: "Util", heading: "Utils" },
   { kind: "Guide", heading: "Guides" },
-];
-
-const LLMS_SECTIONS: { kind: SearchItem["kind"]; heading: string }[] = [
-  { kind: "Guide", heading: "Documentation" },
-  { kind: "Component", heading: "Components" },
-  { kind: "Kit", heading: "Kits" },
-  { kind: "Block", heading: "Templates" },
-  { kind: "Extension", heading: "Extensions" },
-  { kind: "Skin", heading: "Skins" },
-  { kind: "Hook", heading: "Hooks" },
-  { kind: "Util", heading: "Utilities" },
-  { kind: "Skill", heading: "Practice guides" },
 ];
 
 function itemLine(item: { id: string; name: string; summary: string; install?: string; status?: SearchItem["status"] }) {
@@ -124,54 +112,13 @@ function buildLlmsFull() {
     .replaceAll(env.NEXT_PUBLIC_REGISTRY_URL, siteConfig.url.origin);
 }
 
-function llmsItemLine(item: SearchItem) {
-  const status = item.status ? ` Status: ${item.status}.` : "";
-  return `- [${item.name}](${absoluteSiteUrl(item.href)}): ${item.summary}${status}`;
-}
-
-function buildLlmsIndex() {
-  const sections = LLMS_SECTIONS.map(({ kind, heading }) => {
-    const pages = docsPageManifest.filter((page) => page.kind === kind);
-    if (pages.length === 0) return undefined;
-    return `## ${heading}\n\n${pages.map(llmsItemLine).join("\n")}`;
-  }).filter(Boolean);
-
-  return [
-    `# ${siteConfig.name}`,
-    "",
-    `> ${siteConfig.description}`,
-    "",
-    `${siteConfig.name} installs editable React source through the shadcn CLI. The catalog below is generated from the same page manifest used by the website, sitemap, search, and registry API.`,
-    "",
-    sections.join("\n\n"),
-    "",
-    "## Machine-readable indexes",
-    "",
-    `- [MCP server](${absoluteSiteUrl("/api/mcp")}): Streamable HTTP Model Context Protocol endpoint — \`search_registry\`, \`get_registry_item\`, \`list_registry\`. No authentication. Card at ${absoluteSiteUrl("/.well-known/mcp/server-card.json")}.`,
-    `- [OpenAPI description](${absoluteSiteUrl("/openapi.json")}): The registry HTTP API, linked from ${absoluteSiteUrl("/.well-known/api-catalog")}.`,
-    "- Markdown pages: request any canonical page with `Accept: text/markdown` to read it as markdown instead of HTML.",
-    `- [auth.md](${absoluteSiteUrl("/auth.md")}): Registration and credential policy. Nothing to register, nothing to send.`,
-    `- [Registry API](${absoluteSiteUrl("/api/registry")}): JSON index of every public catalog item.`,
-    `- [Agent index](${absoluteSiteUrl("/r/agent-index.json")}): Static agent-friendly registry metadata.`,
-    `- [shadcn registry](${absoluteSiteUrl("/r/registry.json")}): Registry schema consumed by shadcn tooling.`,
-    `- [Skin anatomy contract](${absoluteSiteUrl("/r/contract/index.json")}): Index of every paint family. Each family slices its own scopes, parts, states, knobs (the \`--cui-*\` CSS custom properties every component paints through), and adornments, with a \`.contrast.json\` sibling carrying the rendered ancestor chain that paints behind each one.`,
-    `- [Theme token contract](${absoluteSiteUrl("/r/theme-contract.json")}): Generated skin token reference.`,
-    `- [Setup prompt](${absoluteSiteUrl(`/r/${publicPayloads.setupPrompt}`)}): Paste-ready instructions for a coding agent: read a repository, install ${siteConfig.name} into it, wire the CSS, then design and contrast-check its skin.`,
-    "",
-    "## Optional",
-    "",
-    `- [Extended agent reference](${absoluteSiteUrl("/llms-full.txt")}): Detailed catalog, install commands, and ${siteConfig.name} practice rules.`,
-    "",
-  ].join("\n");
-}
-
 const checkOnly = process.argv.includes("--check");
-const llmsIndex = buildLlmsIndex();
+const llmsIndex = siteIndexMarkdown();
 const llmsFull = buildLlmsFull();
 const repoRoot = path.resolve(process.cwd(), "../..");
 
 const targets = [
-  { path: path.join(process.cwd(), "public/llms.txt"), expected: `${llmsIndex.trimEnd()}\n` },
+  { path: path.join(process.cwd(), "public/llms.txt"), expected: llmsIndex },
   { path: path.join(process.cwd(), "public/llms-full.txt"), expected: `${llmsFull.trimEnd()}\n` },
 ];
 
