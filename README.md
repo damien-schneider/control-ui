@@ -1,6 +1,6 @@
 # Control UI
 
-Shadcn-compatible React components where one source runs under 11 skins, from Refined to Windows 98.
+React components for shadcn/ui and Tailwind CSS v4. One component source, ten skins, from a neutral default to Windows XP.
 
 <p align="center">
   <a href="https://control-ui.dev/skins">
@@ -12,183 +12,120 @@ Shadcn-compatible React components where one source runs under 11 skins, from Re
 npx shadcn@latest add https://control-ui.dev/r/all.json
 ```
 
-[Browse the skins](https://control-ui.dev/skins) · [Windows 98](https://control-ui.dev/skins/windows-98) · [Windows XP](https://control-ui.dev/skins/xp) · [Linear](https://control-ui.dev/skins/linear)
-
+[![npm](https://img.shields.io/npm/v/@ctrl-ui/react.svg)](https://www.npmjs.com/package/@ctrl-ui/react)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-control--ui.dev-black.svg)](https://control-ui.dev)
 
-[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Browse components](https://control-ui.dev/components) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
+[Documentation](https://control-ui.dev) · [Get started](https://control-ui.dev/get-started) · [Components](https://control-ui.dev/components) · [Skins](https://control-ui.dev/skins) · [Report an issue](https://github.com/damien-schneider/control-ui/issues)
 
-Control UI is an owned-source registry of 100+ React components for Tailwind CSS v4 and shadcn/ui: form controls and pickers, navigation and layout, code and content, canvases, complete app templates, and the chat and coding-agent surfaces AI products need. Install only what you need with the shadcn CLI and adapt the source in your application, or add the same set as the versioned `@ctrl-ui/react` package. Either way there is no provider lock-in.
+Control UI is a registry of 100+ components, kits, and templates: form controls and pickers, trees and navigation, code and markdown editors, canvases and node graphs, complete app screens, and the chat and coding-agent surfaces AI products need. The shadcn CLI copies the source into your app, so you own it and can edit it. The same set also ships as the `@ctrl-ui/react` package.
 
 > [!NOTE]
-> Control UI is currently in alpha. Stable, beta, and experimental items are labeled in the catalog; beta and experimental APIs may change.
+> Control UI is in alpha. The catalog labels each item stable, beta, or experimental; beta and experimental APIs can still change.
 
 ## Why Control UI
 
-- **Own the source.** Components are copied into your repository; customization lives in the skin layer, so updating never overwrites your changes.
-- **Bring any runtime.** Plain props and children keep model calls, streaming, persistence, and transport in your application.
-- **Skin the whole system.** One component implementation supports complete token-driven skins without forking behavior or markup.
-- **Install at the right level.** Choose a component, a kit, a complete template, or a dependency bundle.
-- **Coexist with shadcn/ui.** Control UI installs under `components/control-ui/*` and does not overwrite `components/ui/*`.
-- **Use root or `src/` layouts.** Registry targets resolve through the consumer's configured shadcn aliases.
+- **You own the source.** Components land in your repository. Your customizations live in the skin layer, so an update never overwrites them.
+- **No runtime lock-in.** Components take plain props, children, and callbacks. Model calls, streaming, persistence, and transport stay in your app.
+- **Skins change the whole system.** A skin is three files: tokens, component knobs, and an optional config. Swapping it restyles every component without forking markup or behavior.
+- **Install at the size you need.** One component, a kit of related parts, a complete template, or everything.
+- **Lives next to shadcn/ui.** Control UI installs under `components/control-ui/*` and never touches `components/ui/*`. Root and `src/` layouts both work through your shadcn aliases.
 
 ## Quick start
 
-Start with a React application configured for shadcn and Tailwind CSS v4.
+You need a React 19 app with shadcn and Tailwind CSS v4 set up.
 
-### 1. Install components
+1. Install a component:
 
-```bash
-npx shadcn@latest add https://control-ui.dev/r/chat-message.json
-```
+   ```bash
+   npx shadcn@latest add https://control-ui.dev/r/chat-message.json
+   ```
 
-Core ships neutral light and dark defaults, so no skin is required. Install a skin when you want a complete visual system; installing another skin replaces the active skin files without replacing component source.
+2. Import the styles once in `app/globals.css` (or `src/app/globals.css`):
 
-### 2. Import the generated styles
+   ```css
+   @import "tailwindcss";
+   @import "../components/control-ui/styles/theme.css";
+   @import "../components/control-ui/styles/effects.css";
+   ```
 
-Add the imports once in `app/globals.css` or `src/app/globals.css`:
+3. Render it:
 
-```css
-@import "tailwindcss";
-@import "../components/control-ui/styles/theme.css";
-@import "../components/control-ui/styles/effects.css";
-```
+   ```tsx
+   import type { ReactNode } from "react";
 
-### 3. Set up your root layout
+   import {
+     ChatMessage,
+     ChatMessageBody,
+     ChatMessageContent,
+     ChatMessageRow,
+   } from "@/components/control-ui/chat-message";
 
-```tsx
-import type { ReactNode } from "react";
+   export function AssistantMessage({ children }: { children: ReactNode }) {
+     return (
+       <ChatMessage from="assistant">
+         <ChatMessageRow>
+           <ChatMessageBody>
+             <ChatMessageContent>{children}</ChatMessageContent>
+           </ChatMessageBody>
+         </ChatMessageRow>
+       </ChatMessage>
+     );
+   }
+   ```
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
-```
-
-### 4. Render the component
-
-```tsx
-import type { ReactNode } from "react";
-
-import {
-  ChatMessage,
-  ChatMessageBody,
-  ChatMessageContent,
-  ChatMessageRow,
-} from "@/components/control-ui/chat-message";
-
-export function AssistantMessage({ children }: { children: ReactNode }) {
-  return (
-    <ChatMessage from="assistant">
-      <ChatMessageRow>
-        <ChatMessageBody>
-          <ChatMessageContent>{children}</ChatMessageContent>
-        </ChatMessageBody>
-      </ChatMessageRow>
-    </ChatMessage>
-  );
-}
-```
-
-For a complete chat composition, install the template instead:
+Core ships neutral light and dark defaults, so a skin is optional. Installing a skin replaces only the active skin files, never component source. For a complete chat screen, install the template instead:
 
 ```bash
 npx shadcn@latest add https://control-ui.dev/r/chat-block.json
 ```
 
-See the [getting-started guide](https://control-ui.dev/get-started) for skin choices, provider integrations, CSS setup, and contract migrations.
+The [getting-started guide](https://control-ui.dev/get-started) covers skins, provider integrations, CSS setup, and migrations.
 
 ### Prefer a package?
 
-The same set ships as `@ctrl-ui/react` with neutral defaults and no skin presets. Import paths mirror the registry tree, so every example above works after replacing `@/components/control-ui/` with `@ctrl-ui/react/`.
+`@ctrl-ui/react` ships the same components with neutral defaults and no skin presets. Import paths mirror the registry tree: replace `@/components/control-ui/` with `@ctrl-ui/react/` and the examples above work unchanged.
 
 ```bash
-bun add @ctrl-ui/react
+npm install @ctrl-ui/react
 ```
 
 ```css
 @import "tailwindcss";
 @import "@ctrl-ui/react/styles/index.css";
 @source "../node_modules/@ctrl-ui/react/dist";
+@source not "../node_modules/@ctrl-ui/react/dist/docs";
 ```
 
-The package includes neutral defaults and no skin presets. Customize application tokens directly, or supply a consumer-owned config through the optional SkinProvider. Choose the registry when you want to edit component source.
+Theme it by setting tokens in your own CSS, or pass a skin config through the optional `SkinProvider`. Pick the registry instead when you want to edit component source. The [package README](./packages/components/README.md) lists its lint rules and optional peers.
+
+## Built for coding agents
+
+Every install includes what an agent needs to use the components correctly, so it does not have to guess from the docs site.
+
+- **Docs beside the source.** Each component installs with `docs/<id>.md`: exports, composition, a usage example, anatomy, and knobs, matching the installed version.
+- **An agent skill.** Every skin pack installs `.claude/skills/control-ui` with the token contract and the working rules. Updates refresh it.
+- **An MCP server.** Search, inspect, and install from the registry:
+
+  ```bash
+  claude mcp add --transport http control-ui https://control-ui.dev/api/mcp
+  ```
+
+- **Machine-readable docs.** [`/llms.txt`](https://control-ui.dev/llms.txt), [`/llms-full.txt`](https://control-ui.dev/llms-full.txt), the [agent index](https://control-ui.dev/r/agent-index.json), and any docs page as markdown with `Accept: text/markdown`.
 
 ## Explore the catalog
 
-- [Components](https://control-ui.dev/components) — accessible controls, pickers, navigation, layout, code, and canvas building blocks.
-- [Templates](https://control-ui.dev/templates) — complete settings, file-explorer, design-canvas, team-chat, chat, and coding-agent compositions.
-- [Kits](https://control-ui.dev/kits) — pre-assembled sets of components for messages, composers, activities, attachments, citations, and task UI.
-- [Skins](https://control-ui.dev/skins) — complete visual systems sharing one component contract.
-- [Agent-facing registry](https://control-ui.dev/r/agent-index.json) — machine-readable discovery, dependencies, and install commands.
-
-## Architecture
-
-The docs catalog describes the public product surface. The registry model derives delivery metadata from that catalog and the real import graph. Generated manifests, public payloads, installed fixtures, API metadata, agent docs, and `llms.txt` are outputs rather than competing sources of truth.
-
-Control UI stays runtime-neutral: examples show how to map provider-owned data at the application boundary, but installed core files do not depend on Mastra, AI SDK, LangChain, or another model runner.
-
-## Local development
-
-### Requirements
-
-- [Bun 1.3.14](https://bun.sh/) — use the version pinned in `package.json`.
-- Node.js 24.x for parity with the hosted docs project.
-
-### Setup
-
-```bash
-git clone https://github.com/damien-schneider/control-ui.git
-cd control-ui
-bun install
-bun run dev
-```
-
-The docs app runs at `http://127.0.0.1:3000`. No environment variables are required for local development; optional values are documented in `apps/docs/.env.example`.
-
-### Commands
-
-| Command | Purpose |
-| --- | --- |
-| `bun run dev` | Run the docs app and fixture sync watcher |
-| `bun run sync` | Regenerate manifests, fixtures, public payloads, and agent docs |
-| `bun run validate` | Check contracts, catalog data, registry payloads, and generated drift |
-| `bun run typecheck` | Type-check the workspace |
-| `bun run lint` | Run Biome lint |
-| `bun run format:check` | Check formatting |
-| `cd apps/docs && bun test` | Run the docs workspace test suite |
-| `cd apps/docs && bun run test:browser` | Run Playwright browser tests in parallel |
-| `cd apps/docs && bun run test:browser:audits` | Run performance benchmarks and full-site sweeps one at a time |
-| `bun run build` | Build the production docs app |
-
-Run `bun run sync` after changing registry source, catalog metadata, or skin packs. Commit generated outputs with the source change.
-
-## Repository layout
-
-| Path | Responsibility |
-| --- | --- |
-| `apps/docs/src/registry/sources/control-ui` | Canonical component and kit source |
-| `apps/docs/src/registry/hooks` and `lib` | Shared component behavior and local utilities |
-| `apps/docs/src/registry/blocks/control-ui` | Composed installable blocks |
-| `apps/docs/src/registry/skin-packs` | Skin tokens, CSS, typed slots, and optional adornments |
-| `apps/docs/app/(features)/catalog` | Public product and documentation metadata |
-| `apps/docs/scripts/registry-model.ts` | Install graph, targets, ownership, and dependency derivation |
-| `apps/docs/registry` | Generated source manifests |
-| `apps/docs/src/registry/docs` | Generated per-item Markdown docs, installed beside each component's source |
-| `apps/docs/public/r` | Generated shadcn payloads served to consumers |
-| `apps/docs/components/control-ui` | Generated installed fixture used by the docs app |
-| `packages/components` | `@ctrl-ui/react`, the skin-free `all` install set as an npm package; its `src/` is generated |
-
-Do not edit generated manifests, payloads, or the installed fixture directly. Change the canonical source and run `bun run sync`.
+- [Components](https://control-ui.dev/components): controls, pickers, navigation, layout, code, and canvas building blocks.
+- [Kits](https://control-ui.dev/kits): related parts installed together, for messages, composers, activities, attachments, citations, and tasks.
+- [Templates](https://control-ui.dev/templates): complete settings, file explorer, design canvas, team chat, chat, and coding-agent screens.
+- [Skins](https://control-ui.dev/skins): Refined, Windows XP, Windows 98, Linear, Mastra, and more, all on one component contract.
 
 ## Contributing
 
-Bug reports, feature proposals, documentation fixes, and component contributions are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request, and use [GitHub Issues](https://github.com/damien-schneider/control-ui/issues) for reproducible bugs or scoped proposals.
+Bug reports, proposals, docs fixes, and new components are welcome. [CONTRIBUTING.md](./CONTRIBUTING.md) covers local setup, how the repository is organized, and the checks a pull request must pass. Security issues go through [SECURITY.md](./SECURITY.md), not public issues.
 
 ## License
 
-Control UI is available under the [MIT License](./LICENSE).
+[MIT](./LICENSE). Releases and breaking changes are listed in the [changelog](./CHANGELOG.md).
+
+The pixel font in the Windows XP and Windows 98 skins comes from [XP.css](https://github.com/botoxparty/XP.css) and [98.css](https://github.com/jdan/98.css), both MIT. Windows is a trademark of Microsoft and macOS a trademark of Apple; Control UI is not affiliated with either, and its skins are recreated in CSS.

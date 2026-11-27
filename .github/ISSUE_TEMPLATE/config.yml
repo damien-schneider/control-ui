@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/damien-schneider/control-ui/security/advisories/new
+    about: Report it privately, not in a public issue.
+  - name: Documentation
+    url: https://control-ui.dev/get-started
+    about: Setup, skins, and every component's API.

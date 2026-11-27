@@ -33,7 +33,7 @@ export function Hero() {
             <span className="block text-muted-foreground">in your own skin.</span>
           </Heading>
           <Text as="p" size="heading-2" weight="normal" tone="muted" className="max-w-160 text-pretty">
-            React components for app screens, from form controls to AI chat. The look is a skin you write in CSS.
+            React components for shadcn and Tailwind apps, from form controls to AI chat. The look is a skin you write in CSS.
           </Text>
         </div>
         <div className="flex min-w-0 flex-col gap-3 @3xl/home:flex-row @3xl/home:items-start @3xl/home:gap-5.5">

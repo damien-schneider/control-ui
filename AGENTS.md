@@ -29,12 +29,12 @@
 ## Publishing `@ctrl-ui/react`
 
 - `~/.npmrc` holds a granular npm token (write access to `@ctrl-ui/*`, bypasses 2FA, expires 2027-02-10). Agents publish without asking; `npm whoami` must print `damien-schneider`. On 401/403, ask the user for a new token. Never commit the token or add a repo `.npmrc` with an `_authToken` line.
-- Release: bump `version` in `packages/components/package.json` (patch for fixes; minor for any API or contract break while 0.x), commit `chore(release): <version>`, push, then `cd packages/components && bun run build && npm publish`.
+- Release: bump `version` in `packages/components/package.json` (patch for fixes; minor for any API or contract break while 0.x), add the version's entry to `CHANGELOG.md` (consumer-visible changes only, breaks under **Breaking**), commit `chore(release): <version>`, push, then `cd packages/components && bun run build && npm publish`. Finish with `git tag v<version> && git push origin v<version>` and `gh release create v<version> --notes` carrying that changelog entry.
 - A patch must not include unreleased breaking changes from `main`. Branch from the last release commit, cherry-pick the fix, and publish from there.
 
 ## References and checks
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) lists setup and required checks; use focused behavior tests for the affected code and browser checks when the result depends on rendering.
 - [Architecture](apps/docs/content/guides/architecture.mdx) explains component, runtime, and styling boundaries.
-- [Repository layout](README.md#repository-layout) maps sources and generated outputs.
+- [Repository layout](CONTRIBUTING.md#how-the-repository-fits-together) maps sources and generated outputs.
 - [Consumer agent reference](apps/docs/public/llms-full.txt) contains registry discovery, installation, skin authoring, and detailed practice rules. Read the relevant section when needed.

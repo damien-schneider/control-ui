@@ -1,0 +1,48 @@
+name: Bug report
+description: A component, skin, or docs page does something it should not.
+labels: [bug]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Component or page
+      description: The registry item, skin, or docs URL where it happens.
+      placeholder: tree, xp skin, https://control-ui.dev/components/tree
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How you installed it
+      options:
+        - shadcn registry
+        - "@ctrl-ui/react package"
+        - Only seen on control-ui.dev
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The `@ctrl-ui/react` version, or the date you installed from the registry.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: A minimal snippet or a link to a repository helps most.
+      placeholder: |
+        1. Render <Tree> with ...
+        2. Press ArrowDown
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and OS
+      placeholder: Safari 18, macOS 15

@@ -1,0 +1,29 @@
+name: Proposal
+description: A new component, part, prop, or skin, or a change to an existing API.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Who needs it, and when
+      description: The situation where you hit this. The use case decides the design, so be concrete.
+      placeholder: Building a file manager, I need rows that open on click but expand only from the chevron.
+    validations:
+      required: true
+  - type: textarea
+    id: today
+    attributes:
+      label: What you do today
+      description: The workaround you use now, and what it costs you.
+  - type: textarea
+    id: shape
+    attributes:
+      label: Proposed shape
+      description: Parts, props, or callbacks, as a short JSX sketch if you can.
+      render: tsx
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I would like to open the pull request myself.
