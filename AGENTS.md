@@ -28,9 +28,9 @@
 
 ## Publishing `@ctrl-ui/react`
 
-- `~/.npmrc` holds a granular npm token (write access to `@ctrl-ui/*`, bypasses 2FA, expires 2027-02-10). Agents publish without asking; `npm whoami` must print `damien-schneider`. On 401/403, ask the user for a new token. Never commit the token or add a repo `.npmrc` with an `_authToken` line.
-- Release: bump `version` in `packages/components/package.json` (patch for fixes; minor for any API or contract break while 0.x), commit `chore(release): <version>`, push, then `cd packages/components && bun run build && npm publish`.
-- A patch must not include unreleased breaking changes from `main`. Branch from the last release commit, cherry-pick the fix, and publish from there.
+- Releases publish from GitHub Actions (`.github/workflows/publish.yml`) through npm trusted publishing, with provenance and no npm token. Agents release without asking; never run `npm publish` locally, never commit a token or add a repo `.npmrc` with an `_authToken` line.
+- Release: bump `version` in `packages/components/package.json` (patch for fixes; minor for any API or contract break while 0.x), commit `chore(release): <version>`, push, then tag that commit `v<version>` and push the tag. The workflow refuses a tag that differs from the version, builds, runs typecheck, tests and lint, then publishes.
+- A patch must not include unreleased breaking changes from `main`. Branch from the last release commit, cherry-pick the fix, and tag the patch commit there.
 
 ## References and checks
 
