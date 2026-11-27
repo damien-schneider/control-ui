@@ -47,6 +47,8 @@ export type TreeItemProps = Omit<ComponentProps<"li">, "value"> & {
   label?: string;
   /** Marks the item as a branch when its `TreeItemContent` is wrapped or not rendered yet; detected from direct children otherwise. */
   expandable?: boolean;
+  /** A click or Enter on a branch expands it too. Off, they only select it, for rows that open as a page: the indicator and the arrow keys expand it. */
+  expandOnClick?: boolean;
   children?: ReactNode;
 };
 
@@ -100,6 +102,7 @@ type TreeItemContextValue = {
   level: number;
   disabled: boolean;
   expandable: boolean;
+  expandOnClick: boolean;
   labelId: string;
   setLabelled: (labelled: boolean) => void;
 };
@@ -123,6 +126,7 @@ type RegisteredTreeItem = {
   level: number;
   disabled: boolean;
   expandable: boolean;
+  expandOnClick: boolean;
   label?: string;
 };
 
@@ -251,7 +255,7 @@ function activateItem(key: "Enter" | " ", item: RegisteredTreeItem, ctx: TreeCon
     return;
   }
   ctx.select(item.value, "keyboard", false);
-  if (item.expandable) ctx.toggleExpanded(item.value, undefined, "keyboard");
+  if (item.expandable && item.expandOnClick) ctx.toggleExpanded(item.value, undefined, "keyboard");
 }
 
 function handleTreeKeyDown(event: KeyboardEvent<HTMLUListElement>, ctx: TreeContextValue, typeahead: TypeaheadRef): void {
@@ -487,6 +491,7 @@ export function TreeItem({
   disabled = false,
   label,
   expandable: expandableProp,
+  expandOnClick = true,
   className,
   style,
   children,
@@ -506,12 +511,12 @@ export function TreeItem({
   useEffect(() => {
     const node = nodeRef.current;
     if (!node) return;
-    return registerItem({ value, parentValue, node, level, disabled, expandable, label });
-  }, [registerItem, value, parentValue, level, disabled, expandable, label]);
+    return registerItem({ value, parentValue, node, level, disabled, expandable, expandOnClick, label });
+  }, [registerItem, value, parentValue, level, disabled, expandable, expandOnClick, label]);
 
   const expanded = expandable && tree.expanded.has(value);
   const selected = tree.selected.has(value);
-  const itemContext: TreeItemContextValue = { value, level, disabled, expandable, labelId, setLabelled };
+  const itemContext: TreeItemContextValue = { value, level, disabled, expandable, expandOnClick, labelId, setLabelled };
   const itemRef = (node: HTMLElement | null) => {
     nodeRef.current = node instanceof HTMLLIElement ? node : null;
     return setRef(ref, nodeRef.current);
@@ -575,11 +580,24 @@ export function TreeItem({
 const NESTED_CONTROL =
   'a[href], button, input, select, textarea, summary, [role="button"], [role="checkbox"], [role="switch"], [role="menuitem"], [role="link"], [contenteditable]:not([contenteditable="false"])';
 
+const INDICATOR = '[data-control-ui="tree"][data-slot="item-indicator"]';
+
 function isNestedControl(event: MouseEvent<HTMLElement>): boolean {
   const { target, currentTarget } = event;
   if (!(target instanceof Element)) return false;
   const control = target.closest(NESTED_CONTROL);
   return control !== null && control !== currentTarget && currentTarget.contains(control);
+}
+
+function clickItem(event: MouseEvent<HTMLElement>, item: TreeItemContextValue, tree: TreeContextValue): void {
+  const multiple = tree.selectionMode === "multiple";
+  if (multiple && event.shiftKey) {
+    tree.selectRange(item.value, "pointer", null);
+    return;
+  }
+  const onIndicator = event.target instanceof Element && event.target.closest(INDICATOR) !== null;
+  if (!onIndicator || item.expandOnClick) tree.select(item.value, "pointer", multiple && (event.metaKey || event.ctrlKey));
+  if (item.expandable && (onIndicator || item.expandOnClick)) tree.toggleExpanded(item.value);
 }
 
 export function TreeItemTrigger({ className, children, onClick, render, ...props }: TreeItemTriggerProps) {
@@ -602,13 +620,7 @@ export function TreeItemTrigger({ className, children, onClick, render, ...props
       onClick: (event: MouseEvent<HTMLDivElement>) => {
         onClick?.(event);
         if (event.defaultPrevented || item.disabled || isNestedControl(event)) return;
-        const multiple = tree.selectionMode === "multiple";
-        if (multiple && event.shiftKey) {
-          tree.selectRange(item.value, "pointer", null);
-        } else {
-          tree.select(item.value, "pointer", multiple && (event.metaKey || event.ctrlKey));
-          if (item.expandable) tree.toggleExpanded(item.value);
-        }
+        clickItem(event, item, tree);
         focusItem(tree.getItem(item.value), tree);
       },
       className: cn("flex cursor-pointer select-none items-center", "aria-disabled:pointer-events-none", className),

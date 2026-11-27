@@ -2242,6 +2242,22 @@ export const componentEntries = [
           })),
         ),
       },
+      {
+        id: "open-and-expand",
+        title: "Rows that open and expand",
+        description:
+          "expandOnClick={false} on a TreeItem makes a click or Enter open the row without expanding it, for rows that are a page and hold others too. Its chevron and the arrow keys expand it.",
+        source: sourceFile(
+          "Tree open and expand preview",
+          "src/registry/examples/control-ui/primitives/tree-open-and-expand.tsx",
+          "example",
+        ),
+        preview: preview(() =>
+          import("@/src/registry/examples/control-ui/primitives/tree-open-and-expand").then((mod) => ({
+            default: mod.PrimitiveTreeOpenAndExpandExample,
+          })),
+        ),
+      },
     ],
   },
   {

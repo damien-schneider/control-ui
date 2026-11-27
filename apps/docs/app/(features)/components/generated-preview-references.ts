@@ -196,6 +196,7 @@ import {
 } from "@/src/registry/examples/control-ui/primitives/track-highlight";
 import { PrimitiveTreeExample } from "@/src/registry/examples/control-ui/primitives/tree";
 import { PrimitiveTreeMultipleExample } from "@/src/registry/examples/control-ui/primitives/tree-multiple";
+import { PrimitiveTreeOpenAndExpandExample } from "@/src/registry/examples/control-ui/primitives/tree-open-and-expand";
 import { PrimitiveTriggerMenuExample } from "@/src/registry/examples/control-ui/primitives/trigger-menu";
 import { TypographyTokensExample } from "@/src/registry/examples/control-ui/primitives/typography";
 import { SerializeExample } from "@/src/registry/examples/control-ui/serialize";
@@ -328,6 +329,7 @@ export const previewReferences: LoadedPreviews = {
   "component/chart/states": ChartStatesExample,
   "component/tree": PrimitiveTreeExample,
   "component/tree/multiple-selection": PrimitiveTreeMultipleExample,
+  "component/tree/open-and-expand": PrimitiveTreeOpenAndExpandExample,
   "component/checkbox-group": PrimitiveCheckboxGroupExample,
   "component/autocomplete": PrimitiveAutocompleteExample,
   "component/autocomplete/leading-addon": PrimitiveAutocompleteInputGroupExample,
