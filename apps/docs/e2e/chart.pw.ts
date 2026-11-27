@@ -1,5 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { pinSkin, waitForReactHydration } from "./browser-test-helpers";
 
 const CHART_ROOT = '[data-control-family="chart"][data-slot="root"]';
 const AREA_PATH = ".cui-chart-area path";
@@ -62,6 +62,7 @@ test("bridges the Control UI palette into TanStack Charts", async ({ page }) => 
 });
 
 test("reveals each area once and morphs the same paths when data changes", async ({ page }) => {
+  await pinSkin(page, "refined");
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await openSettledChartPage(page);
   const starts = await revealStarts(page);

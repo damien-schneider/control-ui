@@ -1,19 +1,19 @@
 import { expect, test } from "@playwright/test";
 import { waitForReactHydration } from "./browser-test-helpers";
 
-test("Refined is the default, No skin persists, and portals follow preset changes", async ({ page }) => {
+test("Windows XP is the default, No skin persists, and portals follow preset changes", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/components/popover");
   const picker = page.getByRole("combobox", { name: "Skin", exact: true });
   await waitForReactHydration(picker);
-  await expect(picker).toContainText("Refined");
+  await expect(picker).toContainText("Windows XP");
   const trigger = page.getByRole("button", { name: "Dimensions", exact: true });
   await waitForReactHydration(trigger);
   await trigger.click();
   const popup = page.locator('[data-control-ui="popover"][data-slot="content"]');
   await expect(popup).toBeVisible();
-  await expect(popup.locator("..")).toHaveAttribute("data-skin", "refined");
+  await expect(popup.locator("..")).toHaveAttribute("data-skin", "xp");
   await page.keyboard.press("Escape");
   await expect(trigger).toBeFocused();
   await picker.focus();

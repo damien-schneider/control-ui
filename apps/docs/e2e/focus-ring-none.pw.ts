@@ -8,7 +8,7 @@ test('a control that declares data-focus-ring="none" on itself draws no ring, no
 
   await button.focus();
   expect(await button.evaluate((element) => element.matches(":focus-visible"))).toBe(true);
-  await expect(button).toHaveCSS("outline-style", "solid");
+  await expect(button).not.toHaveCSS("outline-style", "none");
 
   await button.blur();
   await button.evaluate((element) => element.setAttribute("data-focus-ring", "none"));

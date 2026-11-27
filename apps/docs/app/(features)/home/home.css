@@ -1,0 +1,56 @@
+@property --lens-fx {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.03;
+}
+
+@property --lens-fy {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.12;
+}
+
+.home-lens-stage {
+  --lens-w: min(480px, 62%);
+  --lens-h: min(400px, 62%);
+  --lens-radius: calc(var(--radius) * 2.6);
+  --lens-halo: 10px;
+  --lens-left: calc(var(--lens-fx) * (100% - var(--lens-w)));
+  --lens-top: calc(var(--lens-fy) * (100% - var(--lens-h)));
+  transition:
+    --lens-fx var(--duration-slow) var(--ease-emphasized),
+    --lens-fy var(--duration-slow) var(--ease-emphasized);
+}
+
+.home-lens-stage[data-dragging] {
+  transition: none;
+}
+
+.home-lens-halo {
+  top: calc(var(--lens-top) - var(--lens-halo));
+  left: calc(var(--lens-left) - var(--lens-halo));
+  width: calc(var(--lens-w) + 2 * var(--lens-halo));
+  height: calc(var(--lens-h) + 2 * var(--lens-halo));
+  border-radius: calc(var(--lens-radius) + var(--lens-halo));
+}
+
+.home-lens-view {
+  clip-path: inset(
+    var(--lens-top) calc(100% - var(--lens-left) - var(--lens-w)) calc(100% - var(--lens-top) - var(--lens-h)) var(--lens-left) round
+      var(--lens-radius)
+  );
+}
+
+.home-lens-frame {
+  top: var(--lens-top);
+  left: var(--lens-left);
+  width: var(--lens-w);
+  height: var(--lens-h);
+  border-radius: var(--lens-radius);
+}
+
+@keyframes home-caret-blink {
+  50% {
+    opacity: 0;
+  }
+}

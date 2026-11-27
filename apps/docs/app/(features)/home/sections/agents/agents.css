@@ -1,0 +1,46 @@
+@keyframes home-agents-reveal {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+
+.home-agents-session[data-reveal="armed"] .home-agents-reveal {
+  opacity: 0;
+}
+
+.home-agents-session[data-reveal="done"] .home-agents-reveal {
+  animation: home-agents-reveal var(--duration-slow) var(--ease-emphasized) backwards;
+  animation-delay: calc(var(--home-agents-order, 0) * var(--duration-fast) / 2);
+}
+
+li.home-agents-reveal:nth-child(1) {
+  --home-agents-order: 1;
+}
+
+li.home-agents-reveal:nth-child(2) {
+  --home-agents-order: 2;
+}
+
+li.home-agents-reveal:nth-child(3) {
+  --home-agents-order: 3;
+}
+
+li.home-agents-reveal:nth-child(4) {
+  --home-agents-order: 4;
+}
+
+li.home-agents-reveal:nth-child(n + 5) {
+  --home-agents-order: 5;
+}
+
+.home-agents-reveal-last {
+  --home-agents-order: 6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-agents-session .home-agents-reveal {
+    opacity: 1;
+    animation: none;
+  }
+}

@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page, test } from "@playwright/test";
 import { buildKnobReachabilityProbe } from "../scripts/knob-sentinels";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { pinSkin, waitForReactHydration } from "./browser-test-helpers";
 
 const probe = buildKnobReachabilityProbe();
 
@@ -83,6 +83,10 @@ async function reValueEveryKnob(page: Page) {
     document.head.append(probeStyle);
   }, probe.css);
 }
+
+test.beforeEach(async ({ page }) => {
+  await pinSkin(page, "refined");
+});
 
 test("every knob a recipe paints reaches the part it paints in the catalog", async ({ page }) => {
   const offenders = new Set<string>();

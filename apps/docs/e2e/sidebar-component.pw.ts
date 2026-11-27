@@ -13,7 +13,7 @@ for (const side of ["left", "right"] as const) {
     await rail.focus();
     await rail.press("End");
     await expect(rail).toHaveAttribute("aria-valuenow", "420");
-    await expect(preview.locator('[data-control-ui="sidebar"][data-slot="container"]')).toHaveCSS("transition-duration", "0s, 0s");
+    await expect(preview.locator('[data-control-ui="sidebar"][data-slot="container"]')).toHaveCSS("transition-duration", /^0s(, 0s)*$/);
     await expect(preview.locator('[data-slot="gap"]')).toHaveCSS("transition-duration", "0s");
     await expect(preview.locator('[data-slot="inner"]')).toHaveCSS("transition-duration", "0s");
     const containerWidth = await preview

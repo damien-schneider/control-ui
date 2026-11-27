@@ -2,7 +2,7 @@ export type Theme = "light" | "dark";
 
 export const THEME_STORAGE_KEY = "control-ui:theme:v1";
 
-export const DEFAULT_SKIN_ID = "refined";
+export const DEFAULT_SKIN_ID = "xp";
 export const BASE_SKIN_ID = "none";
 
 export const THEME_EDITOR_STORAGE_KEY = "control-ui:theme-editor:v2";

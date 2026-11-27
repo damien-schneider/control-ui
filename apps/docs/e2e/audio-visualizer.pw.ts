@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { pinSkin, waitForReactHydration } from "./browser-test-helpers";
+
+test.beforeEach(async ({ page }) => {
+  await pinSkin(page, "refined");
+});
 
 test("audio visualizer knobs reach computed paint from the family root and from the painted slot", async ({ page }) => {
   await page.goto("/kits/audio-visualizer");

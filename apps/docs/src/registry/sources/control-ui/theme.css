@@ -522,9 +522,9 @@
   --text-display--font-weight: var(--text-display--font-weight);
   --text-display--letter-spacing: var(--text-display--letter-spacing);
   --text-hero: var(--text-hero);
-  --text-hero--line-height: var(--text-display--line-height);
+  --text-hero--line-height: max(1.05, calc(var(--text-display--line-height) - 0.2));
   --text-hero--font-weight: var(--text-display--font-weight);
-  --text-hero--letter-spacing: var(--text-display--letter-spacing);
+  --text-hero--letter-spacing: calc(var(--text-display--letter-spacing) - 0.025em);
 
   --font-body: var(--font-body);
   --font-display: var(--font-display);

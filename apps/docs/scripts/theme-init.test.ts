@@ -6,6 +6,7 @@ import {
   COLOR_SCHEME_LOCK_ATTR,
   DEFAULT_SKIN_ID,
   MODE_LOCKED_SKINS,
+  MOTION_REDUCED_SKINS,
   PAGE_LAYOUT_SKINS,
   THEME_EDITOR_STORAGE_KEY,
   THEME_STORAGE_KEY,
@@ -153,7 +154,7 @@ describe("pre-paint theme restoration", () => {
     const { html } = runThemeInit({ storageBlocked: true, prefersDark: true });
     expect(html.dataset.skin).toBe(DEFAULT_SKIN_ID);
     expect(html.classList.contains("dark")).toBe(true);
-    expect(html.dataset.motion).not.toBe("reduced");
+    expect(html.dataset.motion === "reduced").toBe(MOTION_REDUCED_SKINS.includes(DEFAULT_SKIN_ID));
   });
 
   for (const skin of ["windows-98", "none"]) {

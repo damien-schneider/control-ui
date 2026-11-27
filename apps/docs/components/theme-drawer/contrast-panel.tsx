@@ -108,7 +108,7 @@ export function ContrastPanel({ t, onFix }: { t: ThemeState; onFix: (textFixes: 
                 <ItemMedia>
                   <span
                     aria-hidden
-                    className="grid size-8 shrink-0 place-items-center rounded-[5px] border border-border"
+                    className="grid size-8 shrink-0 place-items-center rounded-sm border border-border"
                     style={{ color: `var(${r.fg})`, background: `var(${r.bg})` }}
                   >
                     <Text size="caption" weight="semibold">

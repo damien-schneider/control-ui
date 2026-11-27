@@ -1,4 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
+import { pinSkin, waitForSkinLayout } from "./browser-test-helpers";
 
 async function edges(locator: Locator) {
   return locator.evaluate((element) => {
@@ -16,8 +17,10 @@ async function edges(locator: Locator) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await pinSkin(page, "refined");
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/components/sidebar");
+  await waitForSkinLayout(page, "refined");
 });
 
 test("the icon rail keeps icons and tooltips while the panel collapses away", async ({ page }) => {

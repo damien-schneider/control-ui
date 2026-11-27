@@ -78,7 +78,9 @@ test("homepage skin picker repaints the site in place and stays put while scroll
   await expect(picker).toBeInViewport();
   for (const skin of ["windows-98", DEFAULT_SKIN_ID] as const) {
     await picker.click();
-    const option = page.getByRole("option", { name: SKIN_META_BY_ID[skin].label, exact: true });
+    const option = page
+      .getByRole("listbox", { name: "Skin", exact: true })
+      .getByRole("option", { name: SKIN_META_BY_ID[skin].label, exact: true });
     await expect(option).toBeInViewport();
     const box = await option.boundingBox();
     if (!box) throw new Error(`${skin} option has no layout box`);

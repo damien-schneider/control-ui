@@ -1,0 +1,19 @@
+.home-agent-workspace[data-highlight="rung-1"] [data-mark]:where(:not([data-mark="1"])) > .home-agent-workspace-outline,
+.home-agent-workspace[data-highlight="rung-2"] [data-mark]:where(:not([data-mark="2"])) > .home-agent-workspace-outline,
+.home-agent-workspace[data-highlight="rung-3"] [data-mark]:where(:not([data-mark="3"])) > .home-agent-workspace-outline {
+  opacity: 0.3;
+}
+
+.home-agent-workspace[data-highlight$="-3"] [data-mark="3"] > .home-agent-workspace-outline,
+.home-agent-workspace[data-highlight$="-2"] [data-mark="2"] > .home-agent-workspace-outline {
+  background-color: oklch(from var(--info) l c h / 0.16);
+}
+
+.home-agent-workspace[data-highlight$="-3"]
+  :is([data-mark="3"] > .home-agent-workspace-outline, [data-rung="3"] .home-agent-workspace-rung-badge),
+.home-agent-workspace[data-highlight$="-2"]
+  :is([data-mark="2"] > .home-agent-workspace-outline, [data-rung="2"] .home-agent-workspace-rung-badge),
+.home-agent-workspace[data-highlight$="-1"]
+  :is([data-mark="1"] > .home-agent-workspace-outline, [data-rung="1"] .home-agent-workspace-rung-badge) {
+  box-shadow: 0 0 0 3px oklch(from var(--info) l c h / 0.32);
+}

@@ -1,6 +1,6 @@
 import { expect, type Locator, test } from "@playwright/test";
 import { THEME_EDITOR_STORAGE_KEY, THEME_STORAGE_KEY } from "@/components/theme";
-import { meanScreenshotDifference, waitForReactHydration } from "./browser-test-helpers";
+import { meanScreenshotDifference, pinSkin, waitForReactHydration } from "./browser-test-helpers";
 
 async function sampleFoldingMotion(panel: Locator) {
   await expect
@@ -69,6 +69,7 @@ const foldingExamples = [
 
 for (const example of foldingExamples) {
   test(`${example.component} clips during folding and releases the open content`, async ({ page }) => {
+    await pinSkin(page, "refined");
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto(`/components/${example.component}`);

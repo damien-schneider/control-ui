@@ -11,7 +11,7 @@ import { buildSetupPrompt } from "./setup-prompt";
 
 const setupPrompt = buildSetupPrompt({ origin: siteConfig.url.origin });
 
-function useSetupPromptCopy() {
+export function useSetupPromptCopy() {
   const [copyError, setCopyError] = useState<string | null>(null);
   const promptCopy = useCopyToClipboard({
     text: setupPrompt,

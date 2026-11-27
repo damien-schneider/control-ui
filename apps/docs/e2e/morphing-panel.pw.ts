@@ -1,5 +1,5 @@
 import { expect, type Locator, test } from "@playwright/test";
-import { waitForReactHydration } from "./browser-test-helpers";
+import { pinSkin, waitForReactHydration } from "./browser-test-helpers";
 
 const TRIGGER = '[data-control-ui="morphing-panel"][data-slot="trigger"]';
 const CONTENT = '[data-control-ui="morphing-panel"][data-slot="content"]';
@@ -21,6 +21,7 @@ async function expectSize(locator: Locator, width: number, height: number) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await pinSkin(page, "refined");
   await page.goto("/components/morphing-panel");
   await waitForReactHydration(page.locator('[data-example="settings"]'));
 });

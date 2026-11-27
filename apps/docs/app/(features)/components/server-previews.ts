@@ -1,6 +1,6 @@
 import "server-only";
 
-import { defaultHeroSceneId } from "@/app/(features)/home/showcase";
+import { stageSceneId } from "@/app/(features)/home/home-content";
 import type { BlockId, ComponentId, ExtensionId, KitId, UtilId } from "@/app/(features)/model/types";
 import { extensionDemoComponentId } from "@/app/(features)/page-templates/extension-demo-ids";
 import { themePreviewSections } from "@/components/theme-drawer/preview-sections";
@@ -67,7 +67,7 @@ export function extensionPagePreviews(extensionId: ExtensionId) {
 }
 
 export function homePreviews() {
-  return previewsFor([blockPreviewTarget(defaultHeroSceneId)]);
+  return previewsFor([blockPreviewTarget(stageSceneId)]);
 }
 
 export function themeEditorPreviews(category: ThemeCategoryId = SKIN_CATEGORY) {
