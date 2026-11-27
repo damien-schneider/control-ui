@@ -1,6 +1,10 @@
 import type { ReactNode } from "react";
-import { cn } from "@/components/control-ui/lib/cn";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 
-export function PreviewPanel({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("w-full rounded-xl border border-border bg-card", className)}>{children}</div>;
+export function PreviewPanel({ children }: { children: ReactNode }) {
+  return (
+    <Card size="sm" className="w-full">
+      <CardContent>{children}</CardContent>
+    </Card>
+  );
 }

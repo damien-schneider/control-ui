@@ -2,15 +2,15 @@
 
 import { LockIcon } from "lucide-react";
 import { useId, useState } from "react";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
-import { SkinProvider } from "@/components/control-ui/skin-provider";
+import { IsolatedSkinScope } from "@/app/(features)/home/shared/isolated-skin-scope";
 import { Button } from "@/components/control-ui/ui/button";
 import { ButtonGroup } from "@/components/control-ui/ui/button-group";
+import { Card, CardContent, CardFooter } from "@/components/control-ui/ui/card";
 import { Field, FieldLabel } from "@/components/control-ui/ui/field";
+import { NativeSelect } from "@/components/control-ui/ui/native-select";
 import { ScrollArea } from "@/components/control-ui/ui/scroll-area";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/control-ui/ui/select";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
-import { acmeSkin, type PinId } from "./acme-skin";
+import { acmeSkin, acmeStyleSheet, type PinId } from "./acme-skin";
 import { PinButton, PinTarget } from "./pin-context";
 
 const steps = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
@@ -158,45 +158,44 @@ function Changelog() {
 
 function ReleaseCard() {
   return (
-    <PinTarget pin={3} hover={false} className="flex min-h-0 flex-1 flex-col gap-5.5 rounded-lg border bg-background p-4.5 @4xl/home:p-6">
-      <div className="grid justify-items-start gap-1">
-        <PinTarget pin={4}>
-          <Heading level={3} size="display" weight="normal">
-            Ship the spring release
-          </Heading>
-          <PinButton pin={4} side="preview" className="absolute top-1/2 left-full ml-1 -translate-y-1/2 @4xl/home:hidden" />
-        </PinTarget>
-        <Text as="p" tone="muted">
-          Three checks left before this goes live.
-        </Text>
-      </div>
-      <PinTarget pin={5} part='[data-slot="icon"]'>
-        <Field>
-          <FieldLabel>Channel</FieldLabel>
-          <Select defaultValue="stable" items={channels}>
-            <SelectTrigger className="w-full">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {channels.map((channel) => (
-                <SelectItem key={channel.value} value={channel.value}>
-                  {channel.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </Field>
-        <PinButton pin={5} side="preview" className="absolute top-3.5 -right-2.25 z-10 @4xl/home:hidden" />
-      </PinTarget>
-      <Changelog />
-      <Rollout />
-      <div className="flex justify-end gap-2">
-        <Button variant="surface">Save draft</Button>
-        <PinTarget pin={8} className="flex">
-          <Button variant="solid">Publish</Button>
-          <PinButton pin={8} side="preview" className={cornerPinClassName} />
-        </PinTarget>
-      </div>
+    <PinTarget pin={3} hover={false} part='[data-control-family="card"][data-slot="root"]' className="flex min-h-0 flex-1 flex-col">
+      <Card className="min-h-0 flex-1">
+        <CardContent className="flex min-h-0 flex-1 flex-col gap-5.5">
+          <div className="grid justify-items-start gap-1">
+            <PinTarget pin={4}>
+              <Heading level={3} size="display" weight="normal">
+                Ship the spring release
+              </Heading>
+              <PinButton pin={4} side="preview" className="absolute top-1/2 left-full ml-1 -translate-y-1/2 @4xl/home:hidden" />
+            </PinTarget>
+            <Text as="p" tone="muted">
+              Three checks left before this goes live.
+            </Text>
+          </div>
+          <PinTarget pin={5} part='[data-slot="icon"]'>
+            <Field>
+              <FieldLabel>Channel</FieldLabel>
+              <NativeSelect defaultValue="stable">
+                {channels.map((channel) => (
+                  <option key={channel.value} value={channel.value}>
+                    {channel.label}
+                  </option>
+                ))}
+              </NativeSelect>
+            </Field>
+            <PinButton pin={5} side="preview" className="absolute top-3.5 -right-2.25 z-10 @4xl/home:hidden" />
+          </PinTarget>
+          <Changelog />
+          <Rollout />
+        </CardContent>
+        <CardFooter className="justify-end gap-2">
+          <Button variant="surface">Save draft</Button>
+          <PinTarget pin={8} className="flex">
+            <Button variant="solid">Publish</Button>
+            <PinButton pin={8} side="preview" className={cornerPinClassName} />
+          </PinTarget>
+        </CardFooter>
+      </Card>
       <PinTarget
         pin={3}
         anchor={false}
@@ -210,11 +209,9 @@ function ReleaseCard() {
 
 export function AcmePreview() {
   return (
-    <SkinProvider skin={acmeSkin}>
-      <div
-        {...skinScopeAttributes(acmeSkin)}
-        className="flex h-full min-w-0 flex-col gap-5 rounded-[inherit] border bg-(--scale-neutral-2) p-4 font-sans text-foreground @4xl/home:gap-6 @4xl/home:p-7"
-      >
+    <IsolatedSkinScope skin={acmeSkin} className="h-full min-w-0 overflow-clip rounded-2xl border">
+      <style>{acmeStyleSheet}</style>
+      <div className="flex h-full min-w-0 flex-col gap-5 bg-(--scale-neutral-2) p-4 @4xl/home:gap-6 @4xl/home:p-7">
         <div className="@container/ramp grid gap-4.5">
           <div className="grid gap-1.5">
             <Ramp pin={1} scale="primary" label="--scale-primary-1 … 12, derived from the seed" seedStep={9} />
@@ -228,6 +225,6 @@ export function AcmePreview() {
           Same component source as every other skin. Nothing was forked.
         </Text>
       </div>
-    </SkinProvider>
+    </IsolatedSkinScope>
   );
 }

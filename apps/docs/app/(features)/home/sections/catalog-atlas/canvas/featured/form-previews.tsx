@@ -12,6 +12,7 @@ import {
 } from "@/components/control-ui/ui/color-picker";
 import { EmojiPicker, EmojiPickerContent, EmojiPickerFooter, EmojiPickerSearch } from "@/components/control-ui/ui/emoji-picker";
 import { InputOTP } from "@/components/control-ui/ui/input-otp";
+import { PreviewPanel } from "./preview-panel";
 
 const INITIAL_COLOR = "rgb(91 82 234)";
 
@@ -47,13 +48,13 @@ export function ColorPickerPreview() {
 
 export function EmojiPickerPreview() {
   return (
-    <div className="w-full overflow-hidden rounded-xl border border-border bg-card">
+    <PreviewPanel>
       <EmojiPicker columns={7} className="h-52 w-full">
         <EmojiPickerSearch />
         <EmojiPickerContent />
         <EmojiPickerFooter />
       </EmojiPicker>
-    </div>
+    </PreviewPanel>
   );
 }
 

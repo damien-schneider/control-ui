@@ -12,9 +12,11 @@ import { useDocsIntegration } from "@/app/(features)/page-templates/integration"
 import { cn } from "@/components/control-ui/lib/cn";
 import { Button } from "@/components/control-ui/ui/button";
 import { Text } from "@/components/control-ui/ui/typography";
+import { SKIN_CONFIGS } from "@/components/skin-registry";
 import { DEFAULT_SKIN_ID } from "@/components/theme";
 import { SKIN_META_BY_ID } from "@/components/theme-drawer/presets";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
+import { ModernAppleGlassFilter } from "@/src/registry/skin-packs/modern-apple/modern-apple-glass-filter";
 
 const lensSkinIds = ["refined", "modern-apple"] as const satisfies readonly SkinMetaId[];
 
@@ -162,11 +164,12 @@ export function SkinStage() {
               className="home-lens-halo pointer-events-none absolute z-10 bg-background/60 backdrop-blur-xs transition-opacity duration-(--duration-slow) ease-(--ease-standard) starting:opacity-0"
             />
             <IsolatedSkinScope
-              skinId={lensSkin}
+              skin={SKIN_CONFIGS[lensSkin]}
               inert
               className="home-lens-view pointer-events-none absolute inset-0 z-10 select-none transition-opacity duration-(--duration-slow) ease-(--ease-standard) starting:opacity-0"
             >
               <BlockPreview blockId={stageSceneId} integration={integration} />
+              {lensSkin === "modern-apple" ? <ModernAppleGlassFilter /> : null}
             </IsolatedSkinScope>
             <div
               {...lens.frameProps}

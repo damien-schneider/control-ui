@@ -24,6 +24,7 @@ import {
   ToolApprovalTitle,
 } from "@/components/control-ui/tool-approval";
 import { Button } from "@/components/control-ui/ui/button";
+import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/control-ui/ui/card";
 import {
   Timeline,
   TimelineContent,
@@ -150,27 +151,29 @@ export function WorkspaceThread({
             )}
           </div>
           <LevelMark level={2} label="Context" shape="card" className="hidden @3xl/workspace:block">
-            <div className="rounded-panel border bg-popover p-4 shadow-pop">
-              <Context
-                segments={contextSegments}
-                maxTokens={contextTokenLimit}
-                model={model}
-                locale="en-US"
-                className="grid w-full gap-3.5"
-              >
-                <div className="flex min-w-0 items-baseline justify-between gap-3">
-                  <Text size="label" weight="semibold">
-                    Context
-                  </Text>
-                  <Text size="caption" tone="muted" mono className="truncate">
+            <Card size="sm">
+              <CardHeader>
+                <CardTitle>Context</CardTitle>
+                <CardAction>
+                  <Text size="caption" tone="muted" mono>
                     {model}
                   </Text>
-                </div>
-                <ContextSummary />
-                <ContextGraph />
-                <ContextLegend />
-              </Context>
-            </div>
+                </CardAction>
+              </CardHeader>
+              <CardContent>
+                <Context
+                  segments={contextSegments}
+                  maxTokens={contextTokenLimit}
+                  model={model}
+                  locale="en-US"
+                  className="grid w-full gap-3.5"
+                >
+                  <ContextSummary />
+                  <ContextGraph />
+                  <ContextLegend />
+                </Context>
+              </CardContent>
+            </Card>
           </LevelMark>
         </div>
       </ChatTurn>

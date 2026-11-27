@@ -77,7 +77,7 @@ export function TreePreview() {
   const [expanded, setExpanded] = useState(["src", "src/components"]);
 
   return (
-    <PreviewPanel className="p-1.5">
+    <PreviewPanel>
       <Tree
         aria-label="Project files"
         expandedValue={expanded}

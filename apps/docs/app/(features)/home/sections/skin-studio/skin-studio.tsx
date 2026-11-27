@@ -30,7 +30,7 @@ export function SkinStudio() {
       >
         <figure className="relative grid min-w-0 justify-items-start gap-1.5">
           <AnnotationTag className="@4xl/home:absolute @4xl/home:-top-7 @4xl/home:left-0">{`data-skin="${acmeSkin.id}"`}</AnnotationTag>
-          <div data-pin-lane="from" className="size-full min-w-0 rounded-2xl">
+          <div data-pin-lane="from" className="size-full min-w-0">
             <AcmePreview />
           </div>
         </figure>

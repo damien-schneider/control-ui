@@ -23,6 +23,7 @@ import {
   FlowNodeHeader,
 } from "@/components/control-ui/ui/flow";
 import { Text } from "@/components/control-ui/ui/typography";
+import { PreviewPanel } from "./preview-panel";
 
 type StepKind = "trigger" | "model" | "billing" | "engineering";
 
@@ -116,26 +117,25 @@ const FIT_VIEW_OPTIONS = { padding: "6%", maxZoom: 1 } as const;
 
 export function FlowPreview() {
   return (
-    <div
-      className="h-56.5 w-full overflow-hidden rounded-xl border border-border bg-card"
-      onPointerDown={(event) => event.stopPropagation()}
-    >
-      <Flow<StepNode, StepEdge>
-        aria-label="Ticket triage workflow"
-        defaultNodes={nodes}
-        defaultEdges={edges}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        fitView
-        fitViewOptions={FIT_VIEW_OPTIONS}
-        zoomOnScroll={false}
-        zoomOnPinch={false}
-        zoomOnDoubleClick={false}
-        panOnScroll={false}
-        preventScrolling={false}
-      >
-        <FlowControls position="bottom-right" fitViewOptions={FIT_VIEW_OPTIONS} />
-      </Flow>
-    </div>
+    <PreviewPanel>
+      <div className="h-50" onPointerDown={(event) => event.stopPropagation()}>
+        <Flow<StepNode, StepEdge>
+          aria-label="Ticket triage workflow"
+          defaultNodes={nodes}
+          defaultEdges={edges}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          fitView
+          fitViewOptions={FIT_VIEW_OPTIONS}
+          zoomOnScroll={false}
+          zoomOnPinch={false}
+          zoomOnDoubleClick={false}
+          panOnScroll={false}
+          preventScrolling={false}
+        >
+          <FlowControls position="bottom-right" fitViewOptions={FIT_VIEW_OPTIONS} />
+        </Flow>
+      </div>
+    </PreviewPanel>
   );
 }

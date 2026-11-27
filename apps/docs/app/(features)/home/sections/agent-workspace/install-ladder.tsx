@@ -6,7 +6,7 @@ import { CodeSnippet } from "@/app/(features)/components/source";
 import { componentCount, kitCount, templateCount } from "@/app/(features)/home/home-content";
 import { registryInstallCommand } from "@/app/(features)/model/registry";
 import type { BlockId, ComponentId, KitId } from "@/app/(features)/model/types";
-import { Heading, Text } from "@/components/control-ui/ui/typography";
+import { Heading, Text, TextLink } from "@/components/control-ui/ui/typography";
 import type { InstallLevel } from "./level-mark";
 
 const templatesOnScreen: readonly BlockId[] = ["coding-agent"];
@@ -124,13 +124,10 @@ function LadderRung({ rung }: { rung: Rung }) {
           ))}
           {rung.moreCount ? (
             <li>
-              <a
-                href="#catalog-atlas"
-                className="inline-flex items-center gap-1 rounded-sm text-muted-foreground outline-none transition-colors duration-(--duration-fast) ease-(--ease-standard) hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
-              >
+              <TextLink href="#catalog-atlas" className="inline-flex items-center gap-1">
                 <Text size="caption">and {rung.moreCount} more, in the index above</Text>
                 <ArrowUpIcon aria-hidden="true" className="size-3" />
-              </a>
+              </TextLink>
             </li>
           ) : null}
         </ul>

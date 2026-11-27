@@ -2,9 +2,9 @@
 
 import { type UIEvent, useEffect, useEffectEvent, useRef, useState } from "react";
 import { useDocsIntegration } from "@/app/(features)/page-templates/integration";
+import { Badge } from "@/components/control-ui/ui/badge";
 import { Button } from "@/components/control-ui/ui/button";
 import { InfiniteCanvas, InfiniteCanvasContent } from "@/components/control-ui/ui/infinite-canvas";
-import { Text } from "@/components/control-ui/ui/typography";
 import {
   ATLAS_DEFAULT_VIEW,
   type AtlasNode,
@@ -136,11 +136,7 @@ export function AtlasCanvas({
           className="absolute inset-0 hidden touch-pan-y place-items-end justify-center pb-20 outline-none pointer-coarse:grid"
           onClick={() => setTouchUnlocked(true)}
         >
-          <span className="rounded-control bg-foreground px-3.5 py-2 text-background shadow-pop">
-            <Text size="label" weight="medium">
-              Tap to pan and zoom
-            </Text>
-          </span>
+          <Badge size="md">Tap to pan and zoom</Badge>
         </button>
       )}
     </div>

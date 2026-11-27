@@ -2,6 +2,7 @@
 
 import type { PointerEvent } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { useInfiniteCanvas, useInfiniteCanvasTransform } from "@/components/control-ui/ui/infinite-canvas";
 import { Text } from "@/components/control-ui/ui/typography";
 import { type AtlasNode, type AtlasRect, type AtlasSize, visibleWorld } from "../atlas-layout";
@@ -47,39 +48,41 @@ export function AtlasMinimap({
   }
 
   return (
-    <div className={cn("w-46 rounded-xl border border-border bg-card/90 p-2.5 shadow-sm backdrop-blur-md", className)}>
-      <div
-        role="presentation"
-        className="relative cursor-crosshair touch-none overflow-hidden rounded-md bg-muted"
-        style={{ aspectRatio: `${bounds.width} / ${bounds.height}` }}
-        onPointerDown={(event) => {
-          event.currentTarget.setPointerCapture(event.pointerId);
-          centerOn(event);
-        }}
-        onPointerMove={(event) => {
-          if (event.currentTarget.hasPointerCapture(event.pointerId)) centerOn(event);
-        }}
-      >
-        {nodes.map((node) => (
-          <span
-            key={node.item.id}
-            className={cn(
-              "absolute transition-colors duration-(--duration-base) ease-(--ease-standard)",
-              inView.has(node.item.id) ? "bg-foreground/70" : "bg-foreground/15",
-            )}
-            style={placeWithin(node, bounds)}
-          />
-        ))}
-        <span className="absolute border-[1.5px] border-info bg-info/10" style={placeWithin(visibleWorld(view, viewport), bounds)} />
-      </div>
-      <div className="mt-2 flex items-center justify-between gap-2 text-muted-foreground">
-        <Text size="micro" mono numeric>
-          {inView.size} of {nodes.length} in view
-        </Text>
-        <Text size="micro" mono numeric>
-          {Math.round(view.scale * 100)}%
-        </Text>
-      </div>
-    </div>
+    <Card size="sm" className={cn("w-46", className)}>
+      <CardContent className="grid gap-2">
+        <div
+          role="presentation"
+          className="relative cursor-crosshair touch-none overflow-hidden rounded-md bg-muted"
+          style={{ aspectRatio: `${bounds.width} / ${bounds.height}` }}
+          onPointerDown={(event) => {
+            event.currentTarget.setPointerCapture(event.pointerId);
+            centerOn(event);
+          }}
+          onPointerMove={(event) => {
+            if (event.currentTarget.hasPointerCapture(event.pointerId)) centerOn(event);
+          }}
+        >
+          {nodes.map((node) => (
+            <span
+              key={node.item.id}
+              className={cn(
+                "absolute transition-colors duration-(--duration-base) ease-(--ease-standard)",
+                inView.has(node.item.id) ? "bg-foreground/70" : "bg-foreground/15",
+              )}
+              style={placeWithin(node, bounds)}
+            />
+          ))}
+          <span className="absolute border-[1.5px] border-info bg-info/10" style={placeWithin(visibleWorld(view, viewport), bounds)} />
+        </div>
+        <div className="flex items-center justify-between gap-2 text-muted-foreground">
+          <Text size="micro" mono numeric>
+            {inView.size} of {nodes.length} in view
+          </Text>
+          <Text size="micro" mono numeric>
+            {Math.round(view.scale * 100)}%
+          </Text>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

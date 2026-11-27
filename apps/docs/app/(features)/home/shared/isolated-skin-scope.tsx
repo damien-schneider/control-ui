@@ -2,13 +2,10 @@
 
 import { type ComponentProps, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import type { SkinMetaId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
-import { skinScopeAttributes } from "@/components/control-ui/skin";
+import { type ControlUiSkin, skinScopeAttributes } from "@/components/control-ui/skin";
 import { SkinProvider } from "@/components/control-ui/skin-provider";
-import { SKIN_CONFIGS } from "@/components/skin-registry";
 import { useThemeRuntime } from "@/components/theme-drawer/theme-runtime-context";
-import { ModernAppleGlassFilter } from "@/src/registry/skin-packs/modern-apple/modern-apple-glass-filter";
 
 const STYLE_SOURCES = 'link[rel="stylesheet"], style';
 
@@ -17,10 +14,10 @@ function isLoadingLink(node: Element): node is HTMLLinkElement {
 }
 
 function whenSettled(link: HTMLLinkElement) {
-  return new Promise<void>((resolve) => {
-    link.addEventListener("load", () => resolve(), { once: true });
-    link.addEventListener("error", () => resolve(), { once: true });
-  });
+  const { promise, resolve } = Promise.withResolvers<void>();
+  link.addEventListener("load", () => resolve(), { once: true });
+  link.addEventListener("error", () => resolve(), { once: true });
+  return promise;
 }
 
 function dropRemovedSources(copies: Map<Element, Element>, sources: readonly Element[]) {
@@ -77,8 +74,7 @@ function mirrorHeadStyles(shadow: ShadowRoot) {
   };
 }
 
-export function IsolatedSkinScope({ skinId, children, ...props }: ComponentProps<"div"> & { skinId: SkinMetaId }) {
-  const skin = SKIN_CONFIGS[skinId];
+export function IsolatedSkinScope({ skin, children, ...props }: ComponentProps<"div"> & { skin: ControlUiSkin }) {
   const { isDark } = useThemeRuntime();
   const [host, setHost] = useState<HTMLDivElement | null>(null);
   const [root, setRoot] = useState<ShadowRoot | null>(null);
@@ -99,20 +95,21 @@ export function IsolatedSkinScope({ skinId, children, ...props }: ComponentProps
   }, [host]);
 
   return (
-    <div {...props} ref={setHost}>
-      {root
-        ? createPortal(
-            <SkinProvider skin={skin}>
-              <div className={cn("size-full", isDark && "dark")}>
-                <div {...skinScopeAttributes(skin)} className="size-full bg-background font-sans text-foreground">
-                  {children}
+    <div {...props}>
+      <div {...skinScopeAttributes(skin)} ref={setHost} className="contents">
+        {root
+          ? createPortal(
+              <SkinProvider skin={skin}>
+                <div className={cn("size-full", isDark && "dark")}>
+                  <div {...skinScopeAttributes(skin)} className="size-full bg-background font-sans text-foreground">
+                    {children}
+                  </div>
                 </div>
-              </div>
-              <ModernAppleGlassFilter />
-            </SkinProvider>,
-            root,
-          )
-        : null}
+              </SkinProvider>,
+              root,
+            )
+          : null}
+      </div>
     </div>
   );
 }

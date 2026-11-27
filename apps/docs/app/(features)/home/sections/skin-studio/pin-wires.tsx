@@ -3,7 +3,7 @@
 import { type CSSProperties, type ReactNode, type RefObject, useEffect, useRef, useState } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
 import { type PinId, pins } from "./acme-skin";
-import { PinProvider, usePins } from "./pin-context";
+import { type PinAnchors, PinProvider, usePins } from "./pin-context";
 
 type Mark = { kind: "edge" | "ring" | "corner"; offset: number; radius: number };
 
@@ -43,7 +43,7 @@ function cornerPath({ x, y, width, radius }: Box): string {
   return `M${right - cornerReach} ${y}H${right - radius}Q${right} ${y} ${right} ${y + radius}V${y + cornerReach}`;
 }
 
-function measure(host: HTMLElement): Wire[] {
+function measure(host: HTMLElement, anchors: PinAnchors): Wire[] {
   const origin = host.getBoundingClientRect();
   const from = host.querySelector('[data-pin-lane="from"]')?.getBoundingClientRect();
   const to = host.querySelector('[data-pin-lane="to"]')?.getBoundingClientRect();
@@ -52,7 +52,7 @@ function measure(host: HTMLElement): Wire[] {
   const laneStep = (to.left - from.right) / (pins.length + 1);
   const wires: Wire[] = [];
   for (const [index, pin] of pins.entries()) {
-    const anchor = host.querySelector<HTMLElement>(`[data-pin-anchor="${pin.id}"]`);
+    const anchor = anchors.get(pin.id);
     const end = host.querySelector(`[data-pin-end="${pin.id}"]`)?.getBoundingClientRect();
     const part = anchor?.dataset.pinPart;
     const element = part ? anchor?.querySelector(part) : anchor;
@@ -81,7 +81,7 @@ function measure(host: HTMLElement): Wire[] {
 function PinWires({ hostRef }: { hostRef: RefObject<HTMLDivElement | null> }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [wires, setWires] = useState<Wire[]>([]);
-  const { active } = usePins();
+  const { active, anchors } = usePins();
 
   useEffect(() => {
     const host = hostRef.current;
@@ -91,7 +91,7 @@ function PinWires({ hostRef }: { hostRef: RefObject<HTMLDivElement | null> }) {
     let signature = "";
     const update = () => {
       frame = 0;
-      const next = svg.getBoundingClientRect().width === 0 ? [] : measure(host);
+      const next = svg.getBoundingClientRect().width === 0 ? [] : measure(host, anchors);
       const nextSignature = JSON.stringify(next);
       if (nextSignature === signature) return;
       signature = nextSignature;
@@ -101,20 +101,32 @@ function PinWires({ hostRef }: { hostRef: RefObject<HTMLDivElement | null> }) {
       if (frame === 0) frame = requestAnimationFrame(update);
     };
     const resizes = new ResizeObserver(schedule);
-    resizes.observe(host);
-    for (const element of host.querySelectorAll("[data-pin-anchor], [data-pin-end], [data-pin-lane]")) resizes.observe(element);
     const mutations = new MutationObserver(schedule);
-    for (const element of host.querySelectorAll("[data-pin-part]")) mutations.observe(element, { childList: true, subtree: true });
+    const observe = () => {
+      resizes.disconnect();
+      mutations.disconnect();
+      resizes.observe(host);
+      for (const element of host.querySelectorAll("[data-pin-end], [data-pin-lane]")) resizes.observe(element);
+      for (const pin of pins) {
+        const anchor = anchors.get(pin.id);
+        if (!anchor) continue;
+        resizes.observe(anchor);
+        if (anchor.dataset.pinPart) mutations.observe(anchor, { childList: true, subtree: true });
+      }
+      schedule();
+    };
+    observe();
+    const unsubscribe = anchors.subscribe(observe);
     document.fonts.addEventListener("loadingdone", schedule);
     document.fonts.ready.then(schedule);
-    schedule();
     return () => {
+      unsubscribe();
       cancelAnimationFrame(frame);
       resizes.disconnect();
       mutations.disconnect();
       document.fonts.removeEventListener("loadingdone", schedule);
     };
-  }, [hostRef]);
+  }, [hostRef, anchors]);
 
   return (
     <svg

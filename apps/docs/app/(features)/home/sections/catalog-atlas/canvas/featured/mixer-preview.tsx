@@ -93,7 +93,7 @@ function MixerChannel({ channel }: { channel: Channel }) {
 
 export function MixerPreview() {
   return (
-    <PreviewPanel className="px-2 py-3">
+    <PreviewPanel>
       <Mixer aria-label="Drum bus mixer" className="w-full auto-cols-fr">
         {channels.map((channel) => (
           <MixerChannel key={channel.name} channel={channel} />

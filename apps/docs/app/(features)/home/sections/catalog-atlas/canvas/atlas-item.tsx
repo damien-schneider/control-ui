@@ -9,6 +9,7 @@ import type { ComponentItem } from "@/app/(features)/home/home-content";
 import { annotationTagClassName } from "@/app/(features)/home/shared/annotation-tag";
 import type { IntegrationId } from "@/app/(features)/model/types";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { InfiniteCanvasItem } from "@/components/control-ui/ui/infinite-canvas";
 import { Text } from "@/components/control-ui/ui/typography";
 import { ATLAS_LABEL_HEIGHT, ATLAS_TILE, type AtlasNode, type AtlasSize, isAtlasFeaturedId } from "../atlas-layout";
@@ -55,25 +56,21 @@ function SelectionFrame() {
 
 function TilePreview({ item, live, integration }: { item: ComponentItem; live: boolean; integration: IntegrationId }) {
   return (
-    <div
-      inert
-      className="overflow-hidden rounded-xl border border-border bg-card [content-visibility:auto]"
-      style={{ height: ATLAS_TILE.height }}
-    >
-      {live ? (
-        <div className={cn("grid size-full place-items-center p-5 [zoom:0.8]", item.previewClassName)}>
-          <PreviewFrame layout={item.previewLayout}>
-            <CatalogGalleryItemPreview item={item} integration={integration} />
-          </PreviewFrame>
-        </div>
-      ) : (
-        <div className="grid size-full place-items-center px-6 text-center">
-          <Text size="display" tone="muted" className="text-balance">
+    <Card inert size="sm" className="overflow-hidden [content-visibility:auto]" style={{ height: ATLAS_TILE.height }}>
+      <CardContent className="grid min-h-0 flex-1 place-items-center">
+        {live ? (
+          <div className={cn("grid size-full place-items-center [zoom:0.8]", item.previewClassName)}>
+            <PreviewFrame layout={item.previewLayout}>
+              <CatalogGalleryItemPreview item={item} integration={integration} />
+            </PreviewFrame>
+          </div>
+        ) : (
+          <Text size="display" tone="muted" className="text-balance text-center">
             {item.name}
           </Text>
-        </div>
-      )}
-    </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 

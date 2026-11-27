@@ -1,10 +1,10 @@
-import type { ReactNode } from "react";
 import { mcpEndpointPath, mcpToolCards } from "@/app/(features)/agent-discovery/mcp-server";
 import { IntentLink } from "@/app/(features)/client/intent-link";
 import { countWord } from "@/app/(features)/home/home-content";
 import { SectionLead, SectionTitle } from "@/app/(features)/home/shared/section-header";
 import { Code, CodeActions, CodeContent, CodeCopy, CodeHeader, CodeTitle } from "@/components/control-ui/ui/code";
-import { Text } from "@/components/control-ui/ui/typography";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/control-ui/ui/table";
+import { Text, TextLink } from "@/components/control-ui/ui/typography";
 import { absoluteSiteUrl, siteConfig } from "@/lib/site-config";
 import { AgentSession } from "./agent-session";
 import { agentSessionScript } from "./session-data";
@@ -47,61 +47,50 @@ const surfaces: Surface[] = [
   },
 ];
 
-const surfaceLinkClassName =
-  "inline-flex min-h-10 items-center rounded-sm text-foreground underline decoration-transparent underline-offset-4 outline-none transition-colors duration-(--duration-fast) ease-(--ease-standard) hover:decoration-foreground/40 focus-visible:ring-2 focus-visible:ring-ring";
-
 function SurfaceLinkItem({ link }: { link: SurfaceLink }) {
-  const label: ReactNode = (
-    <Text as="code" size="label" mono className="wrap-anywhere">
-      {link.label}
-    </Text>
-  );
-
-  if (link.file) {
-    return (
-      <a href={link.href} className={surfaceLinkClassName}>
-        {label}
-      </a>
-    );
-  }
-
   return (
-    <IntentLink href={link.href} className={surfaceLinkClassName}>
-      {label}
-    </IntentLink>
+    <TextLink
+      href={link.href}
+      render={link.file ? undefined : <IntentLink href={link.href} />}
+      className="inline-flex min-h-10 items-center"
+    >
+      <Text as="code" size="label" mono className="wrap-anywhere">
+        {link.label}
+      </Text>
+    </TextLink>
   );
 }
 
 function SurfaceTable() {
   return (
-    <table className="w-full border-collapse">
-      <caption className="sr-only">Agent surfaces and what each one returns</caption>
-      <thead className="sr-only">
-        <tr>
-          <th scope="col">Surface</th>
-          <th scope="col">What it returns</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Table>
+      <TableCaption className="sr-only">Agent surfaces and what each one returns</TableCaption>
+      <TableHeader className="sr-only">
+        <TableRow>
+          <TableHead scope="col">Surface</TableHead>
+          <TableHead scope="col">What it returns</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {surfaces.map((surface) => (
-          <tr key={surface.id} className="border-y">
-            <th scope="row" className="p-0 text-left font-normal">
+          <TableRow key={surface.id}>
+            <TableCell className="whitespace-normal">
               <span className="flex flex-wrap gap-x-3">
                 {surface.links.map((link) => (
                   <SurfaceLinkItem key={link.href} link={link} />
                 ))}
               </span>
-            </th>
-            <td className="p-0 pl-3 text-right">
+            </TableCell>
+            <TableCell className="whitespace-normal text-right">
               <Text size="label" tone="muted">
                 {surface.wideOnly ? <span className="hidden @md/home:inline">{surface.wideOnly}</span> : null}
                 {surface.returns}
               </Text>
-            </td>
-          </tr>
+            </TableCell>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }
 

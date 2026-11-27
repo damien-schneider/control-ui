@@ -1,6 +1,8 @@
 import { FileCodeIcon, FileTextIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/components/control-ui/lib/cn";
+import { Badge } from "@/components/control-ui/ui/badge";
+import { Card, CardContent } from "@/components/control-ui/ui/card";
 import { Heading, Text } from "@/components/control-ui/ui/typography";
 import { type AcmeFile, acmeFiles, acmeLineCount, pinForLine } from "./acme-skin";
 import { PinButton, PinLine } from "./pin-context";
@@ -105,26 +107,24 @@ function KnobFact({ term, value }: { term: string; value: string }) {
 function KnobCard({ knob }: { knob: KnobFacts }) {
   return (
     <div className="pt-1 pr-4 pb-4 pl-8 @md/skin-editor:pl-11">
-      <div className="grid gap-2.5 rounded-lg border bg-card p-3.5 shadow-md">
-        <div className="flex min-w-0 items-center gap-2">
-          <span className="flex shrink-0 rounded-sm bg-muted px-1.5 py-0.5">
-            <Text size="micro" tone="muted" mono>
-              @property
+      <Card size="sm">
+        <CardContent className="grid gap-2.5">
+          <div className="flex min-w-0 items-center gap-2">
+            <Badge size="sm">@property</Badge>
+            <Text size="label" weight="medium" mono className="min-w-0 truncate">
+              {knob.name}
             </Text>
-          </span>
-          <Text size="label" weight="medium" mono className="min-w-0 truncate">
-            {knob.name}
+          </div>
+          <dl className="flex flex-wrap gap-x-5.5 gap-y-2">
+            <KnobFact term="syntax" value={knob.syntax} />
+            <KnobFact term="initial" value={knob.initialValue} />
+            <KnobFact term="on Button" value={`${knob.familyKnobCount} knobs`} />
+          </dl>
+          <Text as="p" size="caption" tone="muted" className="text-pretty">
+            Typed, so a bad value falls back to the initial instead of breaking the paint.
           </Text>
-        </div>
-        <dl className="flex flex-wrap gap-x-5.5 gap-y-2">
-          <KnobFact term="syntax" value={knob.syntax} />
-          <KnobFact term="initial" value={knob.initialValue} />
-          <KnobFact term="on Button" value={`${knob.familyKnobCount} knobs`} />
-        </dl>
-        <Text as="p" size="caption" tone="muted" className="text-pretty">
-          Typed, so a bad value falls back to the initial instead of breaking the paint.
-        </Text>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

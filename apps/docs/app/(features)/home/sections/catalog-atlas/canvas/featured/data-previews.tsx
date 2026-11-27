@@ -96,7 +96,7 @@ const releaseEvents: readonly { title: string; time: string; state: TimelineStat
 
 export function TimelinePreview() {
   return (
-    <PreviewPanel className="p-4.5">
+    <PreviewPanel>
       <Timeline>
         {releaseEvents.map(({ title, time, state, icon: Icon }) => (
           <TimelineItem key={title} state={state}>

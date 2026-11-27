@@ -5,42 +5,76 @@ import { cn } from "@/components/control-ui/lib/cn";
 import { Text } from "@/components/control-ui/ui/typography";
 import { type PinId, pins } from "./acme-skin";
 
+export type PinAnchors = {
+  get: (pin: PinId) => HTMLElement | undefined;
+  register: (pin: PinId, element: HTMLElement) => () => void;
+  subscribe: (listener: () => void) => () => void;
+};
+
 type PinState = {
   active: PinId | null;
   locked: PinId | null;
   preview: (pin: PinId | null) => void;
   toggle: (pin: PinId) => void;
+  anchors: PinAnchors;
 };
 
-const PinContext = createContext<PinState>({ active: null, locked: null, preview: () => {}, toggle: () => {} });
+function createPinAnchors(): PinAnchors {
+  const elements = new Map<PinId, HTMLElement>();
+  const listeners = new Set<() => void>();
+  const notify = () => {
+    for (const listener of listeners) listener();
+  };
+  return {
+    get: (pin) => elements.get(pin),
+    register(pin, element) {
+      elements.set(pin, element);
+      notify();
+      return () => {
+        if (elements.get(pin) === element) elements.delete(pin);
+        notify();
+      };
+    },
+    subscribe(listener) {
+      listeners.add(listener);
+      return () => {
+        listeners.delete(listener);
+      };
+    },
+  };
+}
+
+const PinContext = createContext<PinState | null>(null);
 
 export function PinProvider({ children }: { children: ReactNode }) {
   const [hovered, setHovered] = useState<PinId | null>(null);
   const [locked, setLocked] = useState<PinId | null>(null);
+  const [anchors] = useState(createPinAnchors);
   const state: PinState = {
     active: hovered ?? locked,
     locked,
     preview: setHovered,
     toggle: (pin) => setLocked((current) => (current === pin ? null : pin)),
+    anchors,
   };
   return <PinContext value={state}>{children}</PinContext>;
 }
 
 export function usePins(): PinState {
-  return use(PinContext);
+  const state = use(PinContext);
+  if (!state) throw new Error("usePins must be used within a PinProvider");
+  return state;
 }
 
-function revealCounterpart(pin: PinId, side: "code" | "preview") {
-  const selector = side === "code" ? `[data-pin-anchor="${pin}"]` : `[data-pin-line="${pin}"]`;
+function revealCounterpart(pin: PinId, side: "code" | "preview", anchors: PinAnchors) {
+  const counterpart =
+    side === "code" ? anchors.get(pin) : document.getElementById("skin-studio")?.querySelector(`[data-pin-line="${pin}"]`);
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document
-    .getElementById("skin-studio")
-    ?.querySelector(selector)
-    ?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+  counterpart?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
 }
 
 export function PinButton({ pin, side, className }: { pin: PinId; side: "code" | "preview"; className?: string }) {
-  const { active, locked, preview, toggle } = usePins();
+  const { active, locked, preview, toggle, anchors } = usePins();
   const meta = pins.find((candidate) => candidate.id === pin);
   if (!meta) return null;
   const label =
@@ -55,7 +89,7 @@ export function PinButton({ pin, side, className }: { pin: PinId; side: "code" |
       data-active={active === pin}
       data-pin-end={side === "code" ? pin : undefined}
       onClick={() => {
-        if (locked !== pin) revealCounterpart(pin, side);
+        if (locked !== pin) revealCounterpart(pin, side, anchors);
         toggle(pin);
       }}
       onFocus={() => preview(pin)}
@@ -103,14 +137,21 @@ export function PinTarget({
   className?: string;
   children?: ReactNode;
 }) {
-  const { active, preview } = usePins();
+  const { active, preview, anchors } = usePins();
   return (
     <div
-      data-pin-anchor={anchor ? pin : undefined}
+      ref={anchor ? (element) => (element ? anchors.register(pin, element) : undefined) : undefined}
       data-pin-part={part}
       data-active={active === pin}
-      onPointerEnter={hover ? () => preview(pin) : undefined}
-      onPointerLeave={hover ? () => preview(null) : undefined}
+      onPointerOver={hover ? () => preview(pin) : undefined}
+      onPointerOut={
+        hover
+          ? (event) => {
+              const next = event.relatedTarget;
+              if (!(next instanceof Node && event.currentTarget.contains(next))) preview(null);
+            }
+          : undefined
+      }
       className={cn("relative", className)}
     >
       {children}
